@@ -2,13 +2,26 @@
 <html>
   <head>
     <meta charset="UTF-8"> <!-- 文字化けを防ぐための設定 -->
-    <link rel="stylesheet" href="style.css"> <!--style.cssファイルを読み込む -->
+    <link rel="stylesheet" href="css/style.css"> <!--style.cssファイルを読み込む -->
   </head>
     
     <body>
       <div id="loadingArea">loading</div>  <!-- JavaScriptが文字を書き換える場所 -->
-      <script src="main.js"></script>   <!-- メインの動きが入ったファイルを読み込む -->
-      <script src="quize.js"></script>   <!-- クイズの動きが入ったファイルを読み込む -->
-      <script src="character.js"></script>  <!-- キャラクターの動きが入ったファイルを読み込む -->
+      <script src="assets.js"></script>
+      <script src="quiz.js"></script>   
+      <script src="character.js"></script>  
+      <div id="uiWrapper"></div>
+
+      <div id="battleScreen">
+        <div id="statusArea">
+          <div id="kiwami-container">
+           <img id="kiwami-bg">
+           <img id="kiwami-image">
+          </div>
+        </div>
+      </div>
+    
+      <div id="quizArea"></div>
+      <script src="screenManager.js"></script>
     </body>
 </html>

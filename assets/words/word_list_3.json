@@ -1,0 +1,1202 @@
+[
+  {
+    "kanji": "悪い",
+    "yomi": "わる",
+    "english": "bad",
+    "romaji": "waru"
+  },
+  {
+    "kanji": "安い",
+    "yomi": "やす",
+    "english": "cheap",
+    "romaji": "yasu"
+  },
+  {
+    "kanji": "暗い",
+    "yomi": "くら",
+    "english": "dark",
+    "romaji": "kura"
+  },
+  {
+    "kanji": "医者",
+    "yomi": "いしゃ",
+    "english": "doctor",
+    "romaji": "isha"
+  },
+  {
+    "kanji": "委員",
+    "yomi": "いいん",
+    "english": "committee member",
+    "romaji": "iin"
+  },
+  {
+    "kanji": "意味",
+    "yomi": "いみ",
+    "english": "meaning",
+    "romaji": "imi"
+  },
+  {
+    "kanji": "育つ",
+    "yomi": "そだ",
+    "english": "grow",
+    "romaji": "soda"
+  },
+  {
+    "kanji": "社員",
+    "yomi": "しゃいん",
+    "english": "employee",
+    "romaji": "shain"
+  },
+  {
+    "kanji": "病院",
+    "yomi": "びょういん",
+    "english": "hospital",
+    "romaji": "byouin"
+  },
+  {
+    "kanji": "飲む",
+    "yomi": "の",
+    "english": "drink",
+    "romaji": "no"
+  },
+  {
+    "kanji": "運ぶ",
+    "yomi": "はこ",
+    "english": "carry",
+    "romaji": "hako"
+  },
+  {
+    "kanji": "泳ぐ",
+    "yomi": "およ",
+    "english": "swim",
+    "romaji": "oyo"
+  },
+  {
+    "kanji": "駅",
+    "yomi": "えき",
+    "english": "station",
+    "romaji": "eki"
+  },
+  {
+    "kanji": "中央",
+    "yomi": "ちゅうおう",
+    "english": "center",
+    "romaji": "chuuou"
+  },
+  {
+    "kanji": "横",
+    "yomi": "よこ",
+    "english": "side",
+    "romaji": "yoko"
+  },
+  {
+    "kanji": "屋",
+    "yomi": "や",
+    "english": "shop",
+    "romaji": "ya"
+  },
+  {
+    "kanji": "温かい",
+    "yomi": "あたた",
+    "english": "warm",
+    "romaji": "atatada"
+  },
+  {
+    "kanji": "化ける",
+    "yomi": "ば",
+    "english": "transform",
+    "romaji": "ba"
+  },
+  {
+    "kanji": "荷物",
+    "yomi": "にもつ",
+    "english": "luggage",
+    "romaji": "nimotsu"
+  },
+  {
+    "kanji": "世界",
+    "yomi": "せかい",
+    "english": "world",
+    "romaji": "sekai"
+  },
+  {
+    "kanji": "開く",
+    "yomi": "ひら",
+    "english": "open",
+    "romaji": "hira"
+  },
+  {
+    "kanji": "階",
+    "yomi": "かい",
+    "english": "floor",
+    "romaji": "kai"
+  },
+  {
+    "kanji": "寒い",
+    "yomi": "さむ",
+    "english": "cold",
+    "romaji": "samu"
+  },
+  {
+    "kanji": "感じる",
+    "yomi": "かん",
+    "english": "feel",
+    "romaji": "kan"
+  },
+  {
+    "kanji": "漢字",
+    "yomi": "かんじ",
+    "english": "kanji",
+    "romaji": "kanji"
+  },
+  {
+    "kanji": "図書館",
+    "yomi": "としょかん",
+    "english": "library",
+    "romaji": "toshokan"
+  },
+  {
+    "kanji": "岸",
+    "yomi": "きし",
+    "english": "shore",
+    "romaji": "kishi"
+  },
+  {
+    "kanji": "起きる",
+    "yomi": "お",
+    "english": "wake up",
+    "romaji": "o"
+  },
+  {
+    "kanji": "期間",
+    "yomi": "きかん",
+    "english": "period",
+    "romaji": "kikan"
+  },
+  {
+    "kanji": "客",
+    "yomi": "きゃく",
+    "english": "guest",
+    "romaji": "kyaku"
+  },
+  {
+    "kanji": "研究",
+    "yomi": "けんきゅう",
+    "english": "research",
+    "romaji": "kenkyuu"
+  },
+  {
+    "kanji": "急ぐ",
+    "yomi": "いそ",
+    "english": "hurry",
+    "romaji": "iso"
+  },
+  {
+    "kanji": "級",
+    "yomi": "きゅう",
+    "english": "grade",
+    "romaji": "kyuu"
+  },
+  {
+    "kanji": "神宮",
+    "yomi": "じんぐう",
+    "english": "shrine",
+    "romaji": "jinguu"
+  },
+  {
+    "kanji": "野球",
+    "yomi": "やきゅう",
+    "english": "baseball",
+    "romaji": "yakyuu"
+  },
+  {
+    "kanji": "去る",
+    "yomi": "さ",
+    "english": "leave",
+    "romaji": "sa"
+  },
+  {
+    "kanji": "橋",
+    "yomi": "はし",
+    "english": "bridge",
+    "romaji": "hashi"
+  },
+  {
+    "kanji": "授業",
+    "yomi": "じゅぎょう",
+    "english": "class",
+    "romaji": "jugyou"
+  },
+  {
+    "kanji": "曲",
+    "yomi": "きょく",
+    "english": "song",
+    "romaji": "kyoku"
+  },
+  {
+    "kanji": "局",
+    "yomi": "きょく",
+    "english": "office",
+    "romaji": "kyoku"
+  },
+  {
+    "kanji": "銀行",
+    "yomi": "ぎんこう",
+    "english": "bank",
+    "romaji": "ginkou"
+  },
+  {
+    "kanji": "区",
+    "yomi": "く",
+    "english": "ward",
+    "romaji": "ku"
+  },
+  {
+    "kanji": "苦しい",
+    "yomi": "くる",
+    "english": "painful",
+    "romaji": "kuru"
+  },
+  {
+    "kanji": "道具",
+    "yomi": "どうぐ",
+    "english": "tool",
+    "romaji": "dougu"
+  },
+  {
+    "kanji": "君",
+    "yomi": "きみ",
+    "english": "you",
+    "romaji": "kimi"
+  },
+  {
+    "kanji": "関係",
+    "yomi": "かんけい",
+    "english": "relationship",
+    "romaji": "kankei"
+  },
+  {
+    "kanji": "軽い",
+    "yomi": "かる",
+    "english": "light",
+    "romaji": "karu"
+  },
+  {
+    "kanji": "血",
+    "yomi": "ち",
+    "english": "blood",
+    "romaji": "chi"
+  },
+  {
+    "kanji": "決める",
+    "yomi": "き",
+    "english": "decide",
+    "romaji": "ki"
+  },
+  {
+    "kanji": "研究",
+    "yomi": "けんきゅう",
+    "english": "research",
+    "romaji": "kenkyuu"
+  },
+  {
+    "kanji": "県",
+    "yomi": "けん",
+    "english": "prefecture",
+    "romaji": "ken"
+  },
+  {
+    "kanji": "冷蔵庫",
+    "yomi": "れいぞうこ",
+    "english": "fridge",
+    "romaji": "reizouko"
+  },
+  {
+    "kanji": "湖",
+    "yomi": "みずうみ",
+    "english": "lake",
+    "romaji": "mizuumI"
+  },
+  {
+    "kanji": "向く",
+    "yomi": "む",
+    "english": "face",
+    "romaji": "mu"
+  },
+  {
+    "kanji": "幸せ",
+    "yomi": "しあわ",
+    "english": "happy",
+    "romaji": "shiawa"
+  },
+  {
+    "kanji": "港",
+    "yomi": "みなと",
+    "english": "port",
+    "romaji": "minato"
+  },
+  {
+    "kanji": "番号",
+    "yomi": "ばんごう",
+    "english": "number",
+    "romaji": "bangou"
+  },
+  {
+    "kanji": "根",
+    "yomi": "ね",
+    "english": "root",
+    "romaji": "ne"
+  },
+  {
+    "kanji": "祭り",
+    "yomi": "まつ",
+    "english": "festival",
+    "romaji": "matsu"
+  },
+  {
+    "kanji": "皿",
+    "yomi": "さら",
+    "english": "plate",
+    "romaji": "sara"
+  },
+  {
+    "kanji": "仕事",
+    "yomi": "しごと",
+    "english": "work",
+    "romaji": "shigoto"
+  },
+  {
+    "kanji": "死ぬ",
+    "yomi": "し",
+    "english": "die",
+    "romaji": "shi"
+  },
+  {
+    "kanji": "使う",
+    "yomi": "つか",
+    "english": "use",
+    "romaji": "tsuka"
+  },
+  {
+    "kanji": "始める",
+    "yomi": "はじ",
+    "english": "start",
+    "romaji": "haji"
+  },
+  {
+    "kanji": "指",
+    "yomi": "ゆび",
+    "english": "finger",
+    "romaji": "yubi"
+  },
+  {
+    "kanji": "歯",
+    "yomi": "は",
+    "english": "tooth",
+    "romaji": "ha"
+  },
+  {
+    "kanji": "詩",
+    "yomi": "し",
+    "english": "poem",
+    "romaji": "shi"
+  },
+  {
+    "kanji": "次",
+    "yomi": "つぎ",
+    "english": "next",
+    "romaji": "tsugi"
+  },
+  {
+    "kanji": "事",
+    "yomi": "こと",
+    "english": "thing",
+    "romaji": "koto"
+  },
+  {
+    "kanji": "持つ",
+    "yomi": "も",
+    "english": "hold",
+    "romaji": "mo"
+  },
+  {
+    "kanji": "式",
+    "yomi": "しき",
+    "english": "ceremony",
+    "romaji": "shiki"
+  },
+  {
+    "kanji": "実",
+    "yomi": "み",
+    "english": "fruit",
+    "romaji": "mi"
+  },
+  {
+    "kanji": "写真",
+    "yomi": "しゃしん",
+    "english": "photo",
+    "romaji": "shashin"
+  },
+  {
+    "kanji": "者",
+    "yomi": "もの",
+    "english": "person",
+    "romaji": "mono"
+  },
+  {
+    "kanji": "主人",
+    "yomi": "しゅじん",
+    "english": "husband",
+    "romaji": "shujin"
+  },
+  {
+    "kanji": "守る",
+    "yomi": "まも",
+    "english": "protect",
+    "romaji": "mamo"
+  },
+  {
+    "kanji": "取る",
+    "yomi": "と",
+    "english": "take",
+    "romaji": "to"
+  },
+  {
+    "kanji": "酒",
+    "yomi": "さけ",
+    "english": "alcohol",
+    "romaji": "sake"
+  },
+  {
+    "kanji": "受ける",
+    "yomi": "う",
+    "english": "receive",
+    "romaji": "u"
+  },
+  {
+    "kanji": "州",
+    "yomi": "しゅう",
+    "english": "state",
+    "romaji": "shuu"
+  },
+  {
+    "kanji": "拾う",
+    "yomi": "ひろ",
+    "english": "pick up",
+    "romaji": "hiro"
+  },
+  {
+    "kanji": "終わる",
+    "yomi": "お",
+    "english": "finish",
+    "romaji": "o"
+  },
+  {
+    "kanji": "習う",
+    "yomi": "なら",
+    "english": "learn",
+    "romaji": "nara"
+  },
+  {
+    "kanji": "集まる",
+    "yomi": "あつ",
+    "english": "gather",
+    "romaji": "atsu"
+  },
+  {
+    "kanji": "住む",
+    "yomi": "す",
+    "english": "live",
+    "romaji": "su"
+  },
+  {
+    "kanji": "重い",
+    "yomi": "おも",
+    "english": "heavy",
+    "romaji": "omo"
+  },
+  {
+    "kanji": "宿",
+    "yomi": "やど",
+    "english": "inn",
+    "romaji": "yado"
+  },
+  {
+    "kanji": "場所",
+    "yomi": "ばしょ",
+    "english": "place",
+    "romaji": "basho"
+  },
+  {
+    "kanji": "暑い",
+    "yomi": "あつ",
+    "english": "hot",
+    "romaji": "atsu"
+  },
+  {
+    "kanji": "助ける",
+    "yomi": "たす",
+    "english": "help",
+    "romaji": "tasu"
+  },
+  {
+    "kanji": "昭和",
+    "yomi": "しょうわ",
+    "english": "Showa",
+    "romaji": "shouwa"
+  },
+  {
+    "kanji": "消える",
+    "yomi": "き",
+    "english": "disappear",
+    "romaji": "ki"
+  },
+  {
+    "kanji": "商品",
+    "yomi": "しょうひん",
+    "english": "product",
+    "romaji": "shouhin"
+  },
+  {
+    "kanji": "文章",
+    "yomi": "ぶんしょう",
+    "english": "sentence",
+    "romaji": "bunshou"
+  },
+  {
+    "kanji": "勝つ",
+    "yomi": "か",
+    "english": "win",
+    "romaji": "ka"
+  },
+  {
+    "kanji": "乗る",
+    "yomi": "の",
+    "english": "ride",
+    "romaji": "no"
+  },
+  {
+    "kanji": "植物",
+    "yomi": "しょくぶつ",
+    "english": "plant",
+    "romaji": "shokubutsu"
+  },
+  {
+    "kanji": "申す",
+    "yomi": "もう",
+    "english": "say (humble)",
+    "romaji": "mou"
+  },
+  {
+    "kanji": "体",
+    "yomi": "からだ",
+    "english": "body",
+    "romaji": "karada"
+  },
+  {
+    "kanji": "神",
+    "yomi": "かみ",
+    "english": "god",
+    "romaji": "kami"
+  },
+  {
+    "kanji": "真",
+    "yomi": "ま",
+    "english": "TRUE",
+    "romaji": "ma"
+  },
+  {
+    "kanji": "深い",
+    "yomi": "ふか",
+    "english": "deep",
+    "romaji": "fuka"
+  },
+  {
+    "kanji": "進む",
+    "yomi": "すす",
+    "english": "advance",
+    "romaji": "susu"
+  },
+  {
+    "kanji": "世界",
+    "yomi": "せかい",
+    "english": "world",
+    "romaji": "sekai"
+  },
+  {
+    "kanji": "整理",
+    "yomi": "せいり",
+    "english": "organize",
+    "romaji": "seiri"
+  },
+  {
+    "kanji": "昔",
+    "yomi": "むかし",
+    "english": "past",
+    "romaji": "mukashi"
+  },
+  {
+    "kanji": "全部",
+    "yomi": "ぜんぶ",
+    "english": "all",
+    "romaji": "zenbu"
+  },
+  {
+    "kanji": "相手",
+    "yomi": "あいて",
+    "english": "partner",
+    "romaji": "aite"
+  },
+  {
+    "kanji": "送る",
+    "yomi": "おく",
+    "english": "send",
+    "romaji": "oku"
+  },
+  {
+    "kanji": "想う",
+    "yomi": "おも",
+    "english": "think",
+    "romaji": "omo"
+  },
+  {
+    "kanji": "息",
+    "yomi": "いき",
+    "english": "breath",
+    "romaji": "iki"
+  },
+  {
+    "kanji": "速い",
+    "yomi": "はや",
+    "english": "fast",
+    "romaji": "haya"
+  },
+  {
+    "kanji": "家族",
+    "yomi": "かぞく",
+    "english": "family",
+    "romaji": "kazoku"
+  },
+  {
+    "kanji": "他",
+    "yomi": "ほか",
+    "english": "other",
+    "romaji": "hoka"
+  },
+  {
+    "kanji": "打つ",
+    "yomi": "う",
+    "english": "hit",
+    "romaji": "u"
+  },
+  {
+    "kanji": "対する",
+    "yomi": "たい",
+    "english": "oppose",
+    "romaji": "tai"
+  },
+  {
+    "kanji": "待つ",
+    "yomi": "ま",
+    "english": "wait",
+    "romaji": "ma"
+  },
+  {
+    "kanji": "代",
+    "yomi": "だい",
+    "english": "generation",
+    "romaji": "dai"
+  },
+  {
+    "kanji": "第一",
+    "yomi": "だいいち",
+    "english": "first",
+    "romaji": "daiichi"
+  },
+  {
+    "kanji": "問題",
+    "yomi": "もんだい",
+    "english": "problem",
+    "romaji": "mondai"
+  },
+  {
+    "kanji": "炭",
+    "yomi": "すみ",
+    "english": "charcoal",
+    "romaji": "sumi"
+  },
+  {
+    "kanji": "短い",
+    "yomi": "みじか",
+    "english": "short",
+    "romaji": "mijika"
+  },
+  {
+    "kanji": "談話",
+    "yomi": "だんわ",
+    "english": "talk",
+    "romaji": "danwa"
+  },
+  {
+    "kanji": "着る",
+    "yomi": "き",
+    "english": "wear",
+    "romaji": "ki"
+  },
+  {
+    "kanji": "注意",
+    "yomi": "ちゅうい",
+    "english": "attention",
+    "romaji": "chuui"
+  },
+  {
+    "kanji": "柱",
+    "yomi": "はしら",
+    "english": "pillar",
+    "romaji": "hashira"
+  },
+  {
+    "kanji": "丁",
+    "yomi": "ちょう",
+    "english": "block",
+    "romaji": "chou"
+  },
+  {
+    "kanji": "手帳",
+    "yomi": "てちょう",
+    "english": "notebook",
+    "romaji": "techou"
+  },
+  {
+    "kanji": "調べる",
+    "yomi": "しら",
+    "english": "investigate",
+    "romaji": "shira"
+  },
+  {
+    "kanji": "追う",
+    "yomi": "お",
+    "english": "chase",
+    "romaji": "o"
+  },
+  {
+    "kanji": "定める",
+    "yomi": "さだ",
+    "english": "decide",
+    "romaji": "sada"
+  },
+  {
+    "kanji": "庭",
+    "yomi": "にわ",
+    "english": "garden",
+    "romaji": "niwa"
+  },
+  {
+    "kanji": "笛",
+    "yomi": "ふえ",
+    "english": "flute",
+    "romaji": "fue"
+  },
+  {
+    "kanji": "鉄",
+    "yomi": "てつ",
+    "english": "iron",
+    "romaji": "tetsu"
+  },
+  {
+    "kanji": "転ぶ",
+    "yomi": "ころ",
+    "english": "fall",
+    "romaji": "koro"
+  },
+  {
+    "kanji": "都会",
+    "yomi": "とかい",
+    "english": "city",
+    "romaji": "tokai"
+  },
+  {
+    "kanji": "度",
+    "yomi": "ど",
+    "english": "degree",
+    "romaji": "do"
+  },
+  {
+    "kanji": "投げる",
+    "yomi": "な",
+    "english": "throw",
+    "romaji": "na"
+  },
+  {
+    "kanji": "豆",
+    "yomi": "まめ",
+    "english": "bean",
+    "romaji": "mame"
+  },
+  {
+    "kanji": "島",
+    "yomi": "しま",
+    "english": "island",
+    "romaji": "shima"
+  },
+  {
+    "kanji": "お湯",
+    "yomi": "ゆ",
+    "english": "hot water",
+    "romaji": "yu"
+  },
+  {
+    "kanji": "登る",
+    "yomi": "のぼ",
+    "english": "climb",
+    "romaji": "nobo"
+  },
+  {
+    "kanji": "等",
+    "yomi": "とう",
+    "english": "etc",
+    "romaji": "tou"
+  },
+  {
+    "kanji": "動く",
+    "yomi": "うご",
+    "english": "move",
+    "romaji": "ugo"
+  },
+  {
+    "kanji": "子供",
+    "yomi": "こども",
+    "english": "child",
+    "romaji": "kodomo"
+  },
+  {
+    "kanji": "農業",
+    "yomi": "のうぎょう",
+    "english": "agriculture",
+    "romaji": "nougyou"
+  },
+  {
+    "kanji": "波",
+    "yomi": "なみ",
+    "english": "wave",
+    "romaji": "nami"
+  },
+  {
+    "kanji": "配る",
+    "yomi": "くば",
+    "english": "distribute",
+    "romaji": "kuba"
+  },
+  {
+    "kanji": "倍",
+    "yomi": "ばい",
+    "english": "double",
+    "romaji": "bai"
+  },
+  {
+    "kanji": "箱",
+    "yomi": "はこ",
+    "english": "box",
+    "romaji": "hako"
+  },
+  {
+    "kanji": "畑",
+    "yomi": "はたけ",
+    "english": "field",
+    "romaji": "hatake"
+  },
+  {
+    "kanji": "発表",
+    "yomi": "はっぴょう",
+    "english": "presentation",
+    "romaji": "happyou"
+  },
+  {
+    "kanji": "反対",
+    "yomi": "はんたい",
+    "english": "oppose",
+    "romaji": "hantai"
+  },
+  {
+    "kanji": "坂",
+    "yomi": "さか",
+    "english": "slope",
+    "romaji": "saka"
+  },
+  {
+    "kanji": "板",
+    "yomi": "いた",
+    "english": "board",
+    "romaji": "ita"
+  },
+  {
+    "kanji": "皮",
+    "yomi": "かわ",
+    "english": "skin",
+    "romaji": "kawa"
+  },
+  {
+    "kanji": "悲しい",
+    "yomi": "かな",
+    "english": "sad",
+    "romaji": "kana"
+  },
+  {
+    "kanji": "美しい",
+    "yomi": "うつく",
+    "english": "beautiful",
+    "romaji": "utsuku"
+  },
+  {
+    "kanji": "鼻",
+    "yomi": "はな",
+    "english": "nose",
+    "romaji": "hana"
+  },
+  {
+    "kanji": "筆",
+    "yomi": "ふで",
+    "english": "brush",
+    "romaji": "fude"
+  },
+  {
+    "kanji": "氷",
+    "yomi": "こおり",
+    "english": "ice",
+    "romaji": "koori"
+  },
+  {
+    "kanji": "表",
+    "yomi": "おもて",
+    "english": "front",
+    "romaji": "omote"
+  },
+  {
+    "kanji": "秒",
+    "yomi": "びょう",
+    "english": "second",
+    "romaji": "byou"
+  },
+  {
+    "kanji": "病気",
+    "yomi": "びょうき",
+    "english": "illness",
+    "romaji": "byouki"
+  },
+  {
+    "kanji": "商品",
+    "yomi": "しょうひん",
+    "english": "product",
+    "romaji": "shouhin"
+  },
+  {
+    "kanji": "負ける",
+    "yomi": "ま",
+    "english": "lose",
+    "romaji": "ma"
+  },
+  {
+    "kanji": "部分",
+    "yomi": "ぶぶん",
+    "english": "part",
+    "romaji": "bubun"
+  },
+  {
+    "kanji": "服",
+    "yomi": "ふく",
+    "english": "clothes",
+    "romaji": "fuku"
+  },
+  {
+    "kanji": "福",
+    "yomi": "ふく",
+    "english": "luck",
+    "romaji": "fuku"
+  },
+  {
+    "kanji": "物",
+    "yomi": "もの",
+    "english": "thing",
+    "romaji": "mono"
+  },
+  {
+    "kanji": "平ら",
+    "yomi": "たい",
+    "english": "flat",
+    "romaji": "tai"
+  },
+  {
+    "kanji": "返す",
+    "yomi": "かえ",
+    "english": "return",
+    "romaji": "kae"
+  },
+  {
+    "kanji": "勉強",
+    "yomi": "べんきょう",
+    "english": "study",
+    "romaji": "benkyou"
+  },
+  {
+    "kanji": "放す",
+    "yomi": "はな",
+    "english": "release",
+    "romaji": "hana"
+  },
+  {
+    "kanji": "味",
+    "yomi": "あじ",
+    "english": "taste",
+    "romaji": "aji"
+  },
+  {
+    "kanji": "命",
+    "yomi": "いのち",
+    "english": "life",
+    "romaji": "inochi"
+  },
+  {
+    "kanji": "面",
+    "yomi": "めん",
+    "english": "face",
+    "romaji": "men"
+  },
+  {
+    "kanji": "問題",
+    "yomi": "もんだい",
+    "english": "problem",
+    "romaji": "mondai"
+  },
+  {
+    "kanji": "役",
+    "yomi": "やく",
+    "english": "role",
+    "romaji": "yaku"
+  },
+  {
+    "kanji": "薬",
+    "yomi": "くすり",
+    "english": "medicine",
+    "romaji": "kusuri"
+  },
+  {
+    "kanji": "理由",
+    "yomi": "りゆう",
+    "english": "reason",
+    "romaji": "riyuu"
+  },
+  {
+    "kanji": "油",
+    "yomi": "あぶら",
+    "english": "oil",
+    "romaji": "abura"
+  },
+  {
+    "kanji": "有名",
+    "yomi": "ゆうめい",
+    "english": "famous",
+    "romaji": "yuumei"
+  },
+  {
+    "kanji": "遊ぶ",
+    "yomi": "あそ",
+    "english": "play",
+    "romaji": "aso"
+  },
+  {
+    "kanji": "予定",
+    "yomi": "よてい",
+    "english": "plan",
+    "romaji": "yotei"
+  },
+  {
+    "kanji": "羊",
+    "yomi": "ひつじ",
+    "english": "sheep",
+    "romaji": "hitsuji"
+  },
+  {
+    "kanji": "洋服",
+    "yomi": "ようふく",
+    "english": "western clothes",
+    "romaji": "youfuku"
+  },
+  {
+    "kanji": "葉",
+    "yomi": "は",
+    "english": "leaf",
+    "romaji": "ha"
+  },
+  {
+    "kanji": "太陽",
+    "yomi": "たいよう",
+    "english": "sun",
+    "romaji": "taiyou"
+  },
+  {
+    "kanji": "様",
+    "yomi": "さま",
+    "english": "sir",
+    "romaji": "sama"
+  },
+  {
+    "kanji": "落ちる",
+    "yomi": "お",
+    "english": "fall",
+    "romaji": "o"
+  },
+  {
+    "kanji": "流れる",
+    "yomi": "なが",
+    "english": "flow",
+    "romaji": "naga"
+  },
+  {
+    "kanji": "旅行",
+    "yomi": "りょこう",
+    "english": "travel",
+    "romaji": "ryokou"
+  },
+  {
+    "kanji": "両方",
+    "yomi": "りょうほう",
+    "english": "both",
+    "romaji": "ryouhou"
+  },
+  {
+    "kanji": "緑",
+    "yomi": "みどり",
+    "english": "green",
+    "romaji": "midori"
+  },
+  {
+    "kanji": "礼",
+    "yomi": "れい",
+    "english": "thanks",
+    "romaji": "rei"
+  },
+  {
+    "kanji": "列",
+    "yomi": "れつ",
+    "english": "line",
+    "romaji": "retsu"
+  },
+  {
+    "kanji": "練習",
+    "yomi": "れんしゅう",
+    "english": "practice",
+    "romaji": "renshuu"
+  },
+  {
+    "kanji": "道路",
+    "yomi": "どうろ",
+    "english": "road",
+    "romaji": "douro"
+  },
+  {
+    "kanji": "和",
+    "yomi": "わ",
+    "english": "peace",
+    "romaji": "wa"
+  }
+]

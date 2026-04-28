@@ -1,0 +1,245 @@
+
+  /* ==========================================================================
+   1. 基本設定 (Base)
+   ========================================================================== */
+  
+   body {
+    font-family: sans-serif;/* 文字の形をスッキリしたゴシック体（サンセリフ）にする */
+    margin: 0;/* ブラウザが勝手に作る外側のスキマを 0 にする */
+    padding: 0;/* ブラウザが勝手に作る内側のスキマを 0 にする */
+    background-color: #1f1f1f;/* 背景の色を濃いグレー（ほぼ黒）にする */
+    color: #ffffff;  /* 文字の色を白にする */
+    overflow: hidden;/* 画面からはみ出た部分を隠す（＝スクロールできないようにする） */
+    height: 100vh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
+    width: 100vw;/* 横幅を、今見ている画面の横幅いっぱい（100%）にする */
+    user-select: none;/* スマホでのテキスト選択を禁止（連打対策） */
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;/* タップ時のハイライトを消す */
+  }
+  
+  /* ==========================================================================
+   2. ローディング & スタート画面
+   ========================================================================== */
+  
+  #loadingArea {
+    font-family: monospace;/* 文字を「等幅フォント」にする（すべての文字が同じ横幅になる） */
+    justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
+    align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
+    text-align: center;
+  }
+
+  #uiWrapper {
+    position: fixed;/* 画面の決まった位置に固定する（スクロールしても動かない） */
+    top: 0;/* 画面の上（0,0）を基準点にする */
+    left: 0;/* 画面の左（0,0）を基準点にする */
+    width: 100%;/* 画面の横幅いっぱいに広げる */
+    height: 100vh;/* 画面の高さいっぱい（100vh）に広げる */
+    display: flex;/* 中身を並べるための「入れ物」のルールを適用（Flexbox） */
+    justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
+    align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
+    text-align: center;/* 中身のテキストを中央揃えにする */
+    z-index: 9998;/* 重なりの順番を高くする（他の画像などより手前に表示させる） */
+    background: rgba(0, 0, 0, 0.5); /* 背景を少し暗くすると文字が見やすい */
+  }
+
+  #startBtn {
+    pointer-events: auto !important;/* 「透明で見えない壁」があっても、このボタンだけは反応するようにする */
+    cursor: pointer !important;/* 指マークを確実に出す */
+    width: auto !important;/* 横幅を自動調整（中身の文字に合わせる） */
+    min-width: 280px;/* ただし、最低でも280pxの幅は確保して存在感を出す */
+    padding: 20 40px;/* 左右にたっぷり40pxの余白を作る */
+    display: flex;/* 文字を上下左右の真ん中にきっちり配置する */
+    justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
+    align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
+    text-align: center;/* 中身のテキストを中央揃えにする */
+    line-height: 1;/* 行の高さを最小限にして文字のズレを防ぐ */
+    font-size: 20px;/* 文字のサイズを決める*/
+    font-weight: bold;/* 文字を太くして目立たせる */
+    position: relative;/* 重なりの順番を一番手前にする（最強レベル） */
+    z-index: 9999;
+  }
+
+  #startBtn:active {
+  transform: scale(0.95); /* 押した時に少し凹む演出 */
+  }
+
+  /* ==========================================================================
+   3. バトル・メイン画面
+   ========================================================================== */
+  
+   #battleScreen {
+    position: relative;/* 中に「自由に配置したい要素（absolute）」を入れるための基準になる */
+    width: 100%;/* 横幅は基本的にいっぱい（100%）に広がる */
+    max-width: 800px; /* ただし、PCなどの大きな画面でも800px以上には広がらないようにする（見やすさのため） */
+    height: 100%;/* 高さはいっぱい（100%）使う */
+    margin: 0 auto;/* 画面が800pxより広い時、この箱を真ん中に寄せる */
+    display: flex;/* 中身を並べるルール（Flexbox）を適用 */
+    flex-direction: column;/* 中身を「上から下へ」順番に並べる設定（これがないと横に並んでしまう） */
+  }
+   
+   #statusArea {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 横方向の真ん中 */
+    padding: 10px 0;
+    height: 50px; /* アイコン(40px)が入る高さ */
+  }
+
+  /* ==========================================================================
+   4. クイズUI (Quiz Area)
+   ========================================================================== */
+  
+  #quizArea {
+    position: absolute;/* 画面（または親要素）の「一番下」に張り付くように配置 */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;/* 内側に20pxの余白を作り、文字が端に寄りすぎないようにする */
+    background: linear-gradient(transparent, rgba(0,0,0,0.8) 20%);/* 上側は透明(transparent)で、下に向かって20%の地点から黒(rgba(0,0,0,0.8))が濃くなる */
+    box-sizing: border-box;/* パディングを含めて横幅を計算する（はみ出し防止） */
+    text-align: center/* 中身のテキストやボタンを中央に寄せる */
+  }
+
+  button {
+    width: 100%;/* 親要素（入れ物）の横幅いっぱいに広げる */
+    height: 80px;/* ボタンの高さを80pxに固定する */
+    padding: 10px;/* 内側の余白を10px作る（文字と端の距離） */
+    border-radius: 10px;/* 角を5px分、少しだけ丸くする */
+    background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
+    color: white;/* 文字の色を白にする */
+    border: 5px solid rgb(65, 65, 65); /* 指定したpxの太さの、まっすぐな白い線 */
+    cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
+  }
+
+  button:active {
+  transform: scale(0.95) !important; /* 0.95倍に縮小 */
+  }
+
+  button:hover {/* 背景を濃いグレー（#333）にする */
+    background-color: #333;
+    border-color: #ffffff !important;   /* 枠線も白く光らせると分かりやすい */
+    transition: background-color 0.2s;  /* 色の変化をふわっとさせる */
+  }
+
+  #kiwami-container {  /* 「極」アイコンを表示するコンテナ */
+  display: none;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;/* 真ん中寄せ */
+  overflow: hidden; /* 1フレーム分だけ見せる */
+  position: relative;
+  }
+ 
+  #kiwami-image,#kiwami-bg {
+  height: 48px;     /* 高さを 1.2倍 */
+  width: 624px;     /* 横幅を 48 * 13枚 = 624px */
+  max-width: none;  /* 他のCSSの干渉を確実に防ぐ */
+  position: absolute;
+  top: 0;
+  }
+
+  #kiwami-bg {/* 背景は1フレーム目（0px）で動かさない */
+  left: 0;
+  z-index: 1; /* 後ろ */
+  }
+
+  #kiwami-image {
+  z-index: 2; /* 前 */
+  }
+
+  .wrong-answer-list {
+  list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
+  }
+
+  .button-container {/* --- 選択肢ボタンを包む箱 --- */
+    display: grid;/* グリッド（網目状）に並べる設定 */
+    grid-template-columns: 1fr 1fr;/* 横に2つ、同じ幅（1fr）で並べる */
+    gap: 10px;/* ボタン同士の隙間を10pxあける */
+    width: 100%;
+    max-width: 600px;/* 広がりすぎないように制限 */
+    margin: 0 auto;/* 中央に寄せる */
+  }
+
+  .question-container h2 {/* --- 問題文（漢字）のテキスト --- */
+    font-size: clamp(0.8rem, 8w, 1rem);/* 文字サイズを画面に合わせて調整 */
+    margin: 0;
+    text-align: center;
+  }
+  
+  .question-container {
+  text-align: center;/* 中身を真ん中に寄せる */
+  }
+  
+  .correct-answer {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border-color: #388E3C;
+    transform: scale(1.05);
+  }
+
+   .wrong-answer {
+    background-color: #ff4d4d !important;
+    color: white !important;
+    border-color: #cc0000 !important;
+    transform: scale(1.05) !important;
+  }
+
+  /* ==========================================================================
+   5. アニメーション & 特殊効果
+   ========================================================================== */
+  
+  @keyframes flash-animation {/* ピカピカ光るアニメーションの定義 */
+    0% { 
+    filter: brightness(1); /* 通常の明るさ */
+  }
+    50% { 
+    filter: brightness(2.5); /* 2.5倍の明るさ（ピカッと光る） */
+    /* もし白っぽく光らせたいなら以下を追加 */
+    /* transform: scale(1.05); 少し大きくするとより光ってる感が出ます */
+  }
+    100% { 
+    filter: brightness(1); /* 元に戻る */
+  }
+  }
+  /* このクラスがつくとピカピカ光る */
+  .is-flashing {
+  animation: flash-animation 0.5s infinite; /* 0.5秒ごとにループ */
+  }
+
+  /* ==========================================================================
+   6. レスポンシブ (スマホ・横向き対応)
+   ========================================================================== */
+  @media screen and (orientation: landscape) and (max-height: 500px) {
+  #quizArea { padding: 5px; }
+  .question-container { margin-bottom: 5px; }
+  .question-container h2 { font-size: 1.8rem; }
+  .button-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 横一列に */
+    max-width: 95%;
+  }
+  button { height: 60px; }
+  }
+
+  /* ==========================================================================
+   7. 結果表示
+   ========================================================================== */
+
+  hr {
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 20px 0;
+  }
+
+  .wrong-answer-list li {
+    margin: 6px 0;
+    font-size: 1.25rem;
+    color: #ff4d4d; 
+  }
+
+  .wrong-answer {/* --- 間違えたボタンに付けるスタイル --- */
+    background-color: #ff4d4d !important;
+    color: white !important;
+    border-color: #cc0000 !important;
+  }
