@@ -211,21 +211,23 @@
   /* ==========================================================================
    6. レスポンシブ (スマホ・横向き対応)
    ========================================================================== */
-  @media screen and (orientation: landscape) and (max-height: 500px) {
-  #quizArea { padding: 5px; }
-  .question-container { margin-bottom: 5px; }
-  .question-container h2 { font-size: 1.8rem; }
-  .button-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* 横一列に */
-    max-width: 95%;
-  }
-  button { height: 60px; }
+  
+  @media (max-width: 600px) {
   #startBtn {
-    font-size: 24px;
-    min-width: 80%;
+    font-size: clamp(22px, 6vw, 32px);
+    min-width: 85%;
     padding: 20px;
-    }
   }
+
+  .question-container h2 {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+
+  button {
+    height: 70px;
+    font-size: 18px;
+  }
+}
 
   /* ==========================================================================
    7. 結果表示
