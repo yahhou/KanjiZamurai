@@ -6,12 +6,7 @@
    body {
     font-family: sans-serif;/* 文字の形をスッキリしたゴシック体（サンセリフ）にする */
     margin: 0;/* ブラウザが勝手に作る外側のスキマを 0 にする */
-    padding: 4vh 6vw;/* ブラウザが勝手に作る内側のスキマを 0 にする */
     background-color: #1f1f1f;/* 背景の色を濃いグレー（ほぼ黒）にする */
-    color: #ffffff;  /* 文字の色を白にする */
-    overflow: hidden;/* 画面からはみ出た部分を隠す（＝スクロールできないようにする） */
-    height: 100vh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
-    width: 100vw;/* 横幅を、今見ている画面の横幅いっぱい（100%）にする */
     user-select: none;/* スマホでのテキスト選択を禁止（連打対策） */
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;/* タップ時のハイライトを消す */
@@ -77,38 +72,26 @@
     flex-direction: column;/* 中身を「上から下へ」順番に並べる設定（これがないと横に並んでしまう） */
   }
    
-   #statusArea {
-    width: 100%;
-    display: flex;
-    justify-content: center; /* 横方向の真ん中 */
-    padding: 4vh 6vw;
-    height: 50px; /* アイコン(40px)が入る高さ */
+  #statusArea {
+    position: static; /* ← これが重要 */
+    padding: 2vh 0;
+    background: none;
   }
 
   /* ==========================================================================
    4. クイズUI (Quiz Area)
    ========================================================================== */
-  
+
   #quizArea {
-    position: absolute;/* 画面（または親要素）の「一番下」に張り付くように配置 */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 4vh 6vw;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8) 20%);/* 上側は透明(transparent)で、下に向かって20%の地点から黒(rgba(0,0,0,0.8))が濃くなる */
-    box-sizing: border-box;/* パディングを含めて横幅を計算する（はみ出し防止） */
-    text-align: center/* 中身のテキストやボタンを中央に寄せる */
+    position: static; /* ← これが重要 */
+    padding: 2vh 0;
+    background: none;
   }
 
   button {
-    width: 100%;/* 親要素（入れ物）の横幅いっぱいに広げる */
-    height: 80px;/* ボタンの高さを80pxに固定する */
-    padding: 4vh 6vw;
-    border-radius: 10px;/* 角を5px分、少しだけ丸くする */
-    background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
-    color: white;/* 文字の色を白にする */
-    border: 5px solid rgb(65, 65, 65); /* 指定したpxの太さの、まっすぐな白い線 */
-    cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
+   width: 100%;
+   height: clamp(60px, 10vh, 90px);
+   font-size: clamp(16px, 4vw, 20px);
   }
 
   button:active {
@@ -122,12 +105,9 @@
   }
 
   #kiwami-container {  /* 「極」アイコンを表示するコンテナ */
-  display: none;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto;/* 真ん中寄せ */
-  overflow: hidden; /* 1フレーム分だけ見せる */
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }
  
   #kiwami-image,#kiwami-bg {
@@ -154,12 +134,8 @@
   }
 
   .button-container {/* --- 選択肢ボタンを包む箱 --- */
-    display: grid;/* グリッド（網目状）に並べる設定 */
-    grid-template-columns: 1fr 1fr;/* 横に2つ、同じ幅（1fr）で並べる */
-    gap: 10px;/* ボタン同士の隙間を10pxあける */
-    width: 100%;
-    max-width: 600px;/* 広がりすぎないように制限 */
-    margin: 0 auto;/* 中央に寄せる */
+    grid-template-columns: 1fr 1fr;
+    gap: 3vw;
   }
 
   .question-container h2 {/* --- 問題文（漢字）のテキスト --- */
@@ -211,38 +187,11 @@
   /* ==========================================================================
    6. レスポンシブ (スマホ・横向き対応)
    ========================================================================== */
-  @media screen and (orientation: landscape) and (max-height: 500px) {
-  #quizArea { padding: 5px; }
-  .question-container { margin-bottom: 5px; }
-  .question-container h2 { font-size: 1.8rem; }
-  .button-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* 横一列に */
-    max-width: 95%;
+  @media (max-width: 600px) {
+    .button-container {
+    grid-template-columns: 1fr;
   }
-  button { height: 60px; }
-  #startBtn {
-    font-size: 24px;
-    min-width: 80%;
-    padding: 20px;
-    }
-  }
-
-  @media (orientation: portrait) {
-  #startBtn {
-    font-size: 28px;
-    min-width: 85%;
-    padding: 24px;
-  }
-
-  .question-container h2 {
-    font-size: 2rem;
-  }
-
-  button {
-    height: 80px;
-    font-size: 20px;
-  }
-  }
+}
 
   /* ==========================================================================
    7. 結果表示
