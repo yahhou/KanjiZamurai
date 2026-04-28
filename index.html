@@ -23,5 +23,15 @@
     
       <div id="quizArea"></div>
       <script src="screenManager.js"></script>
+
+      <script>
+      // HTMLがすべて読み込まれたら、アセットを初期化する
+      window.addEventListener('load', () => {
+        if (typeof loadAssets === 'function') {
+          loadAssets();
+          console.log("Assets loaded.");
+        }
+      });
+    </script>
     </body>
 </html>

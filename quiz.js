@@ -262,10 +262,20 @@ function updateKiwamiIcon() {
 }
 
 function victory() {
-  if (assets.sounds.bgm_victory) {
-    assets.sounds.bgm_victory.currentTime = 0;
-    assets.sounds.bgm_victory.play().catch(e => console.error("再生エラー:", e));
+  const sound = assets.sounds.bgm_victory;
+  if (assets.sounds.bgm_Battle) {
+    assets.sounds.bgm_Battle.pause();
   }
+  // 再生処理
+  if (sound && sound.src) {
+    sound.currentTime = 0;
+    // エラーが出てもゲームが止まらないように catch する
+    sound.play().catch(error => {
+      console.error("再生に失敗しました。パスを確認してください:", sound.src);
+      console.error("エラー詳細:", error);
+    });
+  }
+
   // クイズエリアをクリアして勝利メッセージを表示
   const quizArea = document.getElementById("quizArea");
   quizArea.innerHTML = `
