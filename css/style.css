@@ -6,7 +6,7 @@
    body {
     font-family: sans-serif;/* 文字の形をスッキリしたゴシック体（サンセリフ）にする */
     margin: 0;/* ブラウザが勝手に作る外側のスキマを 0 にする */
-    padding: 0;/* ブラウザが勝手に作る内側のスキマを 0 にする */
+    padding: 4vh 6vw;/* ブラウザが勝手に作る内側のスキマを 0 にする */
     background-color: #1f1f1f;/* 背景の色を濃いグレー（ほぼ黒）にする */
     color: #ffffff;  /* 文字の色を白にする */
     overflow: hidden;/* 画面からはみ出た部分を隠す（＝スクロールできないようにする） */
@@ -46,14 +46,14 @@
     pointer-events: auto !important;/* 「透明で見えない壁」があっても、このボタンだけは反応するようにする */
     cursor: pointer !important;/* 指マークを確実に出す */
     width: auto !important;/* 横幅を自動調整（中身の文字に合わせる） */
-    min-width: 280px;/* ただし、最低でも280pxの幅は確保して存在感を出す */
-    padding: 20 40px;/* 左右にたっぷり40pxの余白を作る */
+    min-width: 70%;
+    padding: 4vh 6vw;/* 左右にたっぷり40pxの余白を作る */
     display: flex;/* 文字を上下左右の真ん中にきっちり配置する */
     justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
     align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
     text-align: center;/* 中身のテキストを中央揃えにする */
     line-height: 1;/* 行の高さを最小限にして文字のズレを防ぐ */
-    font-size: 20px;/* 文字のサイズを決める*/
+    font-size: clamp(18px, 5vw, 28px);/* 文字のサイズを決める*/
     font-weight: bold;/* 文字を太くして目立たせる */
     position: relative;/* 重なりの順番を一番手前にする（最強レベル） */
     z-index: 9999;
@@ -81,7 +81,7 @@
     width: 100%;
     display: flex;
     justify-content: center; /* 横方向の真ん中 */
-    padding: 10px 0;
+    padding: 4vh 6vw;
     height: 50px; /* アイコン(40px)が入る高さ */
   }
 
@@ -94,7 +94,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 10px;/* 内側に20pxの余白を作り、文字が端に寄りすぎないようにする */
+    padding: 4vh 6vw;
     background: linear-gradient(transparent, rgba(0,0,0,0.8) 20%);/* 上側は透明(transparent)で、下に向かって20%の地点から黒(rgba(0,0,0,0.8))が濃くなる */
     box-sizing: border-box;/* パディングを含めて横幅を計算する（はみ出し防止） */
     text-align: center/* 中身のテキストやボタンを中央に寄せる */
@@ -103,7 +103,7 @@
   button {
     width: 100%;/* 親要素（入れ物）の横幅いっぱいに広げる */
     height: 80px;/* ボタンの高さを80pxに固定する */
-    padding: 10px;/* 内側の余白を10px作る（文字と端の距離） */
+    padding: 4vh 6vw;
     border-radius: 10px;/* 角を5px分、少しだけ丸くする */
     background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
     color: white;/* 文字の色を白にする */
@@ -149,7 +149,7 @@
 
   .wrong-answer-list {
   list-style: none;
-    padding: 0;
+    padding: 4vh 6vw;
     margin: 0 0 16px;
   }
 
@@ -163,7 +163,7 @@
   }
 
   .question-container h2 {/* --- 問題文（漢字）のテキスト --- */
-    font-size: clamp(0.8rem, 8w, 1rem);/* 文字サイズを画面に合わせて調整 */
+    font-size: clamp(18px, 5vw, 28px);/* 文字サイズを画面に合わせて調整 */
     margin: 0;
     text-align: center;
   }
@@ -220,6 +220,11 @@
     max-width: 95%;
   }
   button { height: 60px; }
+  #startBtn {
+    font-size: 24px;
+    min-width: 80%;
+    padding: 20px;
+    }
   }
 
   /* ==========================================================================
