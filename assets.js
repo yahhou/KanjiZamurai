@@ -40,7 +40,7 @@ function loadAssets() {
   
   // --- Sounds (new Audio を使用) ---
   assets.sounds.bgm_Battle = new Audio('assets/sounds/battle1.mp3');
-  assets.sounds.bgm_Victory = new Audio('assets/sounds/victory.mp3');
+  assets.sounds.bgm_victory = new Audio('assets/sounds/victory.mp3');
   assets.sounds.bgm_GameOver = new Audio('assets/sounds/gameover.mp3');
   
   // --- SE ---

@@ -35,7 +35,7 @@
   function randomQuestion() {
   // 1. 勝利判定
   if (correctQuestionCount >= MAX_QUESTIONS) {
-    if (assets.sounds.bgm_Victory) assets.sounds.bgm_Victory.play();
+    if (assets.sounds.bgm_victory) assets.sounds.bgm_victory.play();
     // ここで retryBattle(); を呼ぶと全てリセットされるので、
     // ステージ継続なら呼ばないか、内容を調整した方が良いです。
     return; // 勝利画面を出したら、以下の処理（問題作成）は中断する
@@ -95,7 +95,7 @@ function renderQuestion(correct, options) {
       <div id="optionArea" class="button-container">
         ${options.map(o => `
         <button onclick="answer('${o.yomi}')">
-          <div margin-bottom: 5px;>${o.yomi}</div>
+          <div style=margin-bottom: 5px;>${o.yomi}</div>
           <div style="font-size: 0.75em; opacity: 0.6; color: #aaa; margin-top: 2.5px; ">${o.romaji}</div>
         </button>
       `).join("")}
@@ -137,10 +137,6 @@ function renderQuestion(correct, options) {
 
             }// バトル中のBGMを止める
         // --- 勝利BGMを再生する処理 ---
-            if (assets.sounds.bgm_Victory) {
-                assets.sounds.bgm_Victory.currentTime = 0; // 念のため最初から
-                assets.sounds.bgm_Victory.play();          // 再生
-            }
            victory(); 
     }, 1000);
     return;
@@ -266,6 +262,10 @@ function updateKiwamiIcon() {
 }
 
 function victory() {
+  if (assets.sounds.bgm_victory) {
+    assets.sounds.bgm_victory.currentTime = 0;
+    assets.sounds.bgm_victory.play().catch(e => console.error("再生エラー:", e));
+  }
   // クイズエリアをクリアして勝利メッセージを表示
   const quizArea = document.getElementById("quizArea");
   quizArea.innerHTML = `
@@ -273,7 +273,9 @@ function victory() {
       <h2>Stage ${currentStage + 1} Clear!</h2>
       <button onclick="goToNextStage()">Go to next stage</button>
     </div>
-  `;}
+  `;
+  
+}
 
 function goToNextStage() {
   currentStage++; // ステージ番号を増やす
