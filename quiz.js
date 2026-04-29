@@ -87,16 +87,15 @@ function renderQuestion(correct, options) {
     
     //quizArea という箱の中身を、新しい問題のHTMLに書き換える
     document.getElementById("quizArea").innerHTML = `
-
-      <div class="question-container">
-        <h2 style="font-size: 2.5rem; margin-bottom: 5px;">${kanji}</h2>
-        <p style="font-size: 1em; opacity: 0.6; color: #aaa; margin-top: 2.5px;">${english}</p>
-      </div>
-      <div id="optionArea" class="button-container">
-        ${options.map(o => `
-        <button onclick="answer('${o.yomi}')">
-          <div style=margin-bottom: 5px;>${o.yomi}</div>
-          <div style="font-size: 0.75em; opacity: 0.6; color: #aaa; margin-top: 2.5px; ">${o.romaji}</div>
+    <div class="question-container">
+      <h2>${kanji}</h2>
+      <p>${english}</p>
+    </div>
+    <div id="optionArea" class="button-container">
+      ${options.map(o => `
+        <button class="quiz-button" onclick="answer('${o.yomi}')">
+          <div class="yomi-text">${o.yomi}</div>
+          <div class="romaji-text">${o.romaji}</div>
         </button>
       `).join("")}
     </div>
@@ -247,7 +246,7 @@ function updateKiwamiIcon() {
   if (!img || !bg) return;
 
   // 「前の画像」だけを動かす
-  const xPosition = correctQuestionCount * 48;
+  const xPosition = correctQuestionCount * 60;
   img.style.left = `-${xPosition}px`; 
 
   // 「後ろの画像」は 0px のまま動かさない！
@@ -279,9 +278,9 @@ function victory() {
   // クイズエリアをクリアして勝利メッセージを表示
   const quizArea = document.getElementById("quizArea");
   quizArea.innerHTML = `
-    <div class="victory-message">
+    <div class="victory-message-area">
       <h2>Stage ${currentStage + 1} Clear!</h2>
-      <button onclick="goToNextStage()">Go to next stage</button>
+      <button class="next-stage-btn" onclick="goToNextStage()">Go to next stage</button>
     </div>
   `;
   

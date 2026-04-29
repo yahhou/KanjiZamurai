@@ -45,7 +45,7 @@
   #startBtn {
     pointer-events: auto !important;/* 「透明で見えない壁」があっても、このボタンだけは反応するようにする */
     cursor: pointer !important;/* 指マークを確実に出す */
-    width: auto !important;/* 横幅を自動調整（中身の文字に合わせる） */
+    width: 80%;
     min-width: 280px;/* ただし、最低でも280pxの幅は確保して存在感を出す */
     padding: 20 40px;/* 左右にたっぷり40pxの余白を作る */
     display: flex;/* 文字を上下左右の真ん中にきっちり配置する */
@@ -75,14 +75,22 @@
     margin: 0 auto;/* 画面が800pxより広い時、この箱を真ん中に寄せる */
     display: flex;/* 中身を並べるルール（Flexbox）を適用 */
     flex-direction: column;/* 中身を「上から下へ」順番に並べる設定（これがないと横に並んでしまう） */
+    overflow: hidden;
   }
    
    #statusArea {
+    height: 20%;
     width: 100%;
     display: flex;
     justify-content: center; /* 横方向の真ん中 */
-    padding: 10px 0;
-    height: 50px; /* アイコン(40px)が入る高さ */
+    background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 50%);
+  }
+
+  /* 中央 50% */
+  #actionArea {
+  height: 40%;
+  flex-grow: 1; /* 残りのスペースを埋める（または height: 50%;） */
+  position: relative;
   }
 
   /* ==========================================================================
@@ -90,25 +98,26 @@
    ========================================================================== */
   
   #quizArea {
-    position: absolute;/* 画面（または親要素）の「一番下」に張り付くように配置 */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px;/* 内側に20pxの余白を作り、文字が端に寄りすぎないようにする */
-    background: linear-gradient(transparent, rgba(0,0,0,0.8) 20%);/* 上側は透明(transparent)で、下に向かって20%の地点から黒(rgba(0,0,0,0.8))が濃くなる */
-    box-sizing: border-box;/* パディングを含めて横幅を計算する（はみ出し防止） */
+    height: 40%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8) 50%);/* 上側は透明(transparent)で、下に向かって20%の地点から黒(rgba(0,0,0,0.8))が濃くなる */
     text-align: center/* 中身のテキストやボタンを中央に寄せる */
+    box-sizing border-box;  /* パディングを含めて40%の中に収める設定 */
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
   }
 
   button {
     width: 100%;/* 親要素（入れ物）の横幅いっぱいに広げる */
     height: 80px;/* ボタンの高さを80pxに固定する */
     padding: 10px;/* 内側の余白を10px作る（文字と端の距離） */
-    border-radius: 10px;/* 角を5px分、少しだけ丸くする */
+    border-radius: 0px;/* 角を5px分、少しだけ丸くする */
     background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
     color: white;/* 文字の色を白にする */
-    border: 5px solid rgb(65, 65, 65); /* 指定したpxの太さの、まっすぐな白い線 */
     cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
+    padding: 5px 5px 5px 5px;
   }
 
   button:hover {/* 背景を濃いグレー（#333）にする */
@@ -119,16 +128,16 @@
 
   #kiwami-container {  /* 「極」アイコンを表示するコンテナ */
   display: none;
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   margin: 0 auto;/* 真ん中寄せ */
   overflow: hidden; /* 1フレーム分だけ見せる */
   position: relative;
   }
  
   #kiwami-image,#kiwami-bg {
-  height: 48px;     /* 高さを 1.2倍 */
-  width: 624px;     /* 横幅を 48 * 13枚 = 624px */
+  height: 60px;     /* 高さを 1.2倍 */
+  width: 780px;     /* 横幅を 48 * 13枚 = 624px */
   max-width: none;  /* 他のCSSの干渉を確実に防ぐ */
   position: absolute;
   top: 0;
@@ -149,24 +158,59 @@
     margin: 0 0 16px;
   }
 
-  .button-container {/* --- 選択肢ボタンを包む箱 --- */
-    display: grid;/* グリッド（網目状）に並べる設定 */
-    grid-template-columns: 1fr 1fr;/* 横に2つ、同じ幅（1fr）で並べる */
-    gap: 10px;/* ボタン同士の隙間を10pxあける */
-    width: 100%;
-    max-width: 600px;/* 広がりすぎないように制限 */
-    margin: 0 auto;/* 中央に寄せる */
-  }
+ .question-container {
+  text-align: center;
+  height: 35%; /* クイズエリア内の35%を問題文に使う */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  .question-container h2 {/* --- 問題文（漢字）のテキスト --- */
-    font-size: clamp(0.8rem, 8w, 1rem);/* 文字サイズを画面に合わせて調整 */
-    margin: 0;
-    text-align: center;
-  }
+.question-container h2 {
+  /* clampの数値を修正：最小2rem、推奨値8vw、最大3.5rem */
+  font-size: clamp(2rem, 10vh, 3rem); 
+  line-height: 1.1;
+  margin: 0; 
   
-  .question-container {
-  text-align: center;/* 中身を真ん中に寄せる */
-  }
+}
+.question-container p {
+    margin: 2px 0 0 0;   /* 上にだけ「2px」の隙間を作り、他は0にする */
+    font-size: 0.9rem;   /* 英語のサイズ */
+    opacity: 0.8;        /* 少し薄くすると漢字が引き立ちます */
+    color: #90ff2f;     
+}
+
+.button-container {
+  height: 68%; /* ボタンエリアを約7割に固定 */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;    /* ★ここが重要：縦2行に強制分割 */
+  gap: 5px; /* 隙間を最小限に */
+  box-sizing: border-box;
+  padding: 5px 5px 5px 5px;
+}
+
+#optionArea button {
+  font-size: 1rem; /* 読みのサイズ */
+  height: 100%; /* グリッドの高さに合わせる */
+  width: 100%;
+  padding: 0;   /* 余計な内白をカット */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;  /* 万が一の文字溢れを防ぐ */
+}
+
+.romaji-text {
+  font-size: 0.8rem;    /* 読み(yomi-text)より一回り小さく */
+  color: #90ff2f;       /* 文字色は白 */
+  opacity: 0.6;         /* 少し透明にして「補助情報」感を出す */
+  margin-top: 2px;      /* 読みの文字との間に少しだけ隙間を作る */
+  font-weight: normal;  /* 読みより細くするとさらにスッキリします */
+  line-height: 1;       /* 行の高さを最小限にしてボタン内に収めやすくする */
+}
   
   .correct-answer {
     background-color: #4CAF50 !important;
@@ -181,6 +225,43 @@
     border-color: #cc0000 !important;
     transform: scale(1.05) !important;
   }
+  
+  .victory-message-area {
+  height: 100%;          /* クイズエリアいっぱいに広げる */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;/* 上下中央 */
+  align-items: center;    /* 左右中央 */
+  gap: 5px;             /* 文字とボタンの間隔 */
+  padding-bottom: 5vh; 
+    /* これを忘れると、paddingの分だけ外側にはみ出して見切れます */
+  box-sizing: border-box;
+
+}
+
+.victory-message-area h2 {
+  line-height: 1.5;    /* 行の高さを文字ぴったりにする */
+  margin: 0;
+  font-size: clamp(1rem, 6vw, 2rem);
+  color: #ffd700;        /* クリアっぽい金色 */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* 光らせる */  
+}
+
+.next-stage-btn {
+  font-size: clamp(0.8rem, 3vw, 1.6rem);
+  width: 80%;/* 親要素（入れ物）の横幅いっぱいに広げる */
+    padding: 10px;/* 内側の余白を10px作る（文字と端の距離） */
+    border-radius: 0px;/* 角を5px分、少しだけ丸くする */
+    background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
+    color: white;/* 文字の色を白にする */
+    cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
+    padding: 5px 5px 5px 5px;
+  
+}
+
+.next-stage-btn:active {
+  transform: scale(0.95);    /* 押した時に少し小さくなる */
+}
 
   /* ==========================================================================
    5. アニメーション & 特殊効果
@@ -208,15 +289,19 @@
    6. レスポンシブ (スマホ・横向き対応)
    ========================================================================== */
   @media screen and (orientation: landscape) and (max-height: 500px) {
-  #quizArea { padding: 5px; }
   .question-container { margin-bottom: 5px; }
   .question-container h2 { font-size: 1.8rem; }
   .button-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr; /* 横一列に */
-    max-width: 95%;
+   grid-template-columns: repeat(4, 1fr) !important; 
+    grid-template-rows: 1fr !important;
+    max-width: 100%;
+    max-height: 200px; /* ボタンが縦に伸びすぎないように制限 */
   }
+
   button { height: 60px; }
+
   }
+  
 
   /* ==========================================================================
    7. 結果表示

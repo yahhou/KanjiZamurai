@@ -13,15 +13,25 @@
       <div id="uiWrapper"></div>
 
       <div id="battleScreen">
+      <!-- 1. 上部：ステータスエリア (20%) -->
         <div id="statusArea">
           <div id="kiwami-container">
-           <img id="kiwami-bg">
-           <img id="kiwami-image">
+            <img id="kiwami-bg">
+            <img id="kiwami-image">
           </div>
         </div>
-      </div>
+
+      <!-- 2. 中央：キャラ演出エリア (50%) -->
+        <div id="actionArea">
+        <!-- ここに侍や敵の画像が表示されるイメージ -->
+        </div>
+
+      <!-- 3. 下部：クイズエリア (30%) -->
+        <div id="quizArea">
+           <!-- JavaScriptでここに問題やボタンが作られる -->
+        </div>
+    </div>
     
-      <div id="quizArea"></div>
       <script src="screenManager.js"></script>
 
       <script>
