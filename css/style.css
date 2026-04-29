@@ -8,7 +8,7 @@
     background-color: #1f1f1f;/* 背景の色を濃いグレー（ほぼ黒）にする */
     color: #ffffff;  /* 文字の色を白にする */
     overflow: hidden;/* 画面からはみ出た部分を隠す（＝スクロールできないようにする） */
-    height: 100vh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
+    height: 100dvh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
     width: 100vw;/* 横幅を、今見ている画面の横幅いっぱい（100%）にする */
     user-select: none;/* スマホでのテキスト選択を禁止（連打対策） */
     -webkit-user-select: none;
@@ -47,7 +47,6 @@
     pointer-events: auto !important;/* 「透明で見えない壁」があっても、このボタンだけは反応するようにする */
     cursor: pointer !important;/* 指マークを確実に出す */
     height: auto;
-    max-width: 1000px;
     width: 80cqw;
     min-height:120px;
     display: flex;/* 文字を上下左右の真ん中にきっちり配置する */
@@ -75,7 +74,7 @@
   box-sizing: border-box;
   height: 100dvh;
   width: auto;
-  max-width: 100dvw;
+  max-width: 100dvh;
   margin: 0 auto;
   position: relative;
   background-color: #1f1f1f;
@@ -226,12 +225,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.romaji-text {
-  font-size: 4cqw;
-  color: #90ff2f;       /* 文字色は白 */
-  opacity: 0.6;         /* 少し透明にして「補助情報」感を出す */   /* 読みの文字との間に少しだけ隙間を作る */    /* 行の高さを最小限にしてボタン内に収めやすくする */
 }
   
   .correct-answer {

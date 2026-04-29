@@ -37,7 +37,6 @@ window.onload = function() {/* ブラウザが画面（HTMLなど）をすべて
       // resultsは [ {words1のデータ}, {words2のデータ}, ... ] という配列になる
       wordList = results;
       
-      console.log("全ステージ読み込み完了:", wordList);
       stopLoadingAnimation();
       showStartMessage();
     })

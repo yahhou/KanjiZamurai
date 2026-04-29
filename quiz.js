@@ -63,7 +63,7 @@
   while (options.length < 4) {
     // 誤選択肢も「現在のステージ」から選ぶように変更
     const rand = currentStageWords[Math.floor(Math.random() * currentStageWords.length)];
-    const isDuplicate = options.some(opt => opt.yomi === rand.yomi);// 【修正ポイント】
+    const isDuplicate = options.some(opt => opt.yomi === rand.romaji);// 【修正ポイント】
     // すでに options の中に、同じ「yomi（読み）」を持っているものがいないか確認する
 
     if (!isDuplicate) {
@@ -83,19 +83,20 @@
 function renderQuestion(correct, options) {
 
     const kanji = correct.kanji;//問題データから「日本語の意味」を取り出す
-    const english = correct.english || ""; //問題データから「英語の意味」を取り出す
+    const yomi = correct.yomi || "";
+    const romaji = correct.romaji || ""; //問題データから「英語の意味」を取り出す
+
     
     //quizArea という箱の中身を、新しい問題のHTMLに書き換える
     document.getElementById("quizArea").innerHTML = `
     <div class="question-container">
       <h2>${kanji}</h2>
-      <p>${english}</p>
+      <p>${yomi} / ${romaji}</p>
     </div>
     <div id="optionArea" class="button-container">
       ${options.map(o => `
-        <button class="quiz-button" onclick="answer('${o.yomi}')">
-          <div class="yomi-text">${o.yomi}</div>
-          <div class="romaji-text">${o.romaji}</div>
+        <button class="quiz-button" onclick="answer('${o.english}')">
+          <div class="yomi-text">${o.english}</div>
         </button>
       `).join("")}
     </div>
@@ -107,7 +108,7 @@ function renderQuestion(correct, options) {
     const buttons = document.querySelectorAll("#optionArea button");//全てのボタンを操作対象にする
     disableOptionButtons(buttons);//3連打を防止する
 
-    if (selected === currentQuestion.yomi) {//正解かどうかのジャッジ
+    if (selected === currentQuestion.english) {//正解かどうかのジャッジ
       handleCorrectAnswer(buttons);//一致した場合
     } else {
       handleWrongAnswer(buttons);//ハズレの場合
@@ -124,6 +125,7 @@ function renderQuestion(correct, options) {
   // 正解した時の処理
   function handleCorrectAnswer(buttons) { // 正解した時の処理をまとめた関数
     correctQuestionCount++;// 正解コンボを1増やす
+    console.log("現在の正解数:", correctQuestionCount);
     updateKiwamiIcon();
     highlightCorrectButton(buttons);// 正解のボタンを光らせる（緑色にするなど）演出を実行  
     
@@ -143,7 +145,7 @@ function renderQuestion(correct, options) {
 
 setTimeout(() => {
       randomQuestion(); 
-      console.log("現在の正解数:", correctQuestionCount);
+      console.log(correctQuestionCount);
     }, 1000);
 }
 
