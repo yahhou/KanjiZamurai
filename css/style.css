@@ -6,7 +6,7 @@
    body {
     font-family: sans-serif;/* 文字の形をスッキリしたゴシック体（サンセリフ）にする */
     margin: 0;/* ブラウザが勝手に作る外側のスキマを 0 にする */
-    padding: 0;/* ブラウザが勝手に作る内側のスキマを 0 にする */
+    padding: 1dvh 1dvh 1dvh 1dvh;
     background-color: #1f1f1f;/* 背景の色を濃いグレー（ほぼ黒）にする */
     color: #ffffff;  /* 文字の色を白にする */
     overflow: hidden;/* 画面からはみ出た部分を隠す（＝スクロールできないようにする） */
@@ -70,12 +70,12 @@
    #battleScreen {
     position: relative;/* 中に「自由に配置したい要素（absolute）」を入れるための基準になる */
     width: 100%;/* 横幅は基本的にいっぱい（100%）に広がる */
-    max-width: 800px; /* ただし、PCなどの大きな画面でも800px以上には広がらないようにする（見やすさのため） */
+
     height: 100%;/* 高さはいっぱい（100%）使う */
-    margin: 0 auto;/* 画面が800pxより広い時、この箱を真ん中に寄せる */
     display: flex;/* 中身を並べるルール（Flexbox）を適用 */
     flex-direction: column;/* 中身を「上から下へ」順番に並べる設定（これがないと横に並んでしまう） */
     overflow: hidden;
+
   }
    
    #statusArea {
@@ -102,7 +102,6 @@
     background: linear-gradient(transparent, rgba(0,0,0,0.8) 50%);/* 上側は透明(transparent)で、下に向かって20%の地点から黒(rgba(0,0,0,0.8))が濃くなる */
     text-align: center/* 中身のテキストやボタンを中央に寄せる */
     box-sizing border-box;  /* パディングを含めて40%の中に収める設定 */
-    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -117,7 +116,6 @@
     background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
     color: white;/* 文字の色を白にする */
     cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
-    padding: 5px 5px 5px 5px;
   }
 
   button:hover {/* 背景を濃いグレー（#333）にする */
@@ -187,7 +185,6 @@
   grid-template-rows: 1fr 1fr;    /* ★ここが重要：縦2行に強制分割 */
   gap: 5px; /* 隙間を最小限に */
   box-sizing: border-box;
-  padding: 5px 5px 5px 5px;
 }
 
 #optionArea button {
@@ -233,9 +230,6 @@
   justify-content: center;/* 上下中央 */
   align-items: center;    /* 左右中央 */
   gap: 5px;             /* 文字とボタンの間隔 */
-  padding-bottom: 5vh; 
-    /* これを忘れると、paddingの分だけ外側にはみ出して見切れます */
-  box-sizing: border-box;
 
 }
 
@@ -255,7 +249,6 @@
     background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
     color: white;/* 文字の色を白にする */
     cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
-    padding: 5px 5px 5px 5px;
   
 }
 
@@ -288,19 +281,7 @@
   /* ==========================================================================
    6. レスポンシブ (スマホ・横向き対応)
    ========================================================================== */
-  @media screen and (orientation: landscape) and (max-height: 500px) {
-  .question-container { margin-bottom: 5px; }
-  .question-container h2 { font-size: 1.8rem; }
-  .button-container {
-   grid-template-columns: repeat(4, 1fr) !important; 
-    grid-template-rows: 1fr !important;
-    max-width: 100%;
-    max-height: 200px; /* ボタンが縦に伸びすぎないように制限 */
-  }
 
-  button { height: 60px; }
-
-  }
   
 
   /* ==========================================================================
