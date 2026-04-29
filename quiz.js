@@ -63,7 +63,7 @@
   while (options.length < 4) {
     // 誤選択肢も「現在のステージ」から選ぶように変更
     const rand = currentStageWords[Math.floor(Math.random() * currentStageWords.length)];
-    const isDuplicate = options.some(opt => opt.yomi === rand.romaji);// 【修正ポイント】
+    const isDuplicate = options.some(opt => opt.english === rand.english);// 【修正ポイント】
     // すでに options の中に、同じ「yomi（読み）」を持っているものがいないか確認する
 
     if (!isDuplicate) {
@@ -109,6 +109,7 @@ function renderQuestion(correct, options) {
     disableOptionButtons(buttons);//3連打を防止する
 
     if (selected === currentQuestion.english) {//正解かどうかのジャッジ
+      console.log();
       handleCorrectAnswer(buttons);//一致した場合
     } else {
       handleWrongAnswer(buttons);//ハズレの場合
@@ -152,7 +153,7 @@ setTimeout(() => {
     //正解のボタンを強調
     function highlightCorrectButton(buttons) {// 正解のボタンを強調（ハイライト）する関数
     buttons.forEach(btn => {// 画面にある全てのボタン（buttons）を一つずつ「btn」としてチェックする
-      if (btn.innerText.includes(currentQuestion.yomi)) {// もしボタンに書いてある文字（innerText）が、今の問題の正解（yomi）と同じなら
+      if (btn.innerText.includes(currentQuestion.english)) {// もしボタンに書いてある文字（innerText）が、今の問題の正解（yomi）と同じなら
         btn.classList.add("correct-answer");// そのボタンに「correct-answer」というCSSクラスを追加する
         // （これにより、CSSで設定した緑色などのスタイルが適用される）
       }
@@ -166,7 +167,7 @@ setTimeout(() => {
     highlightWrongButton(buttons);// 間違えたボタンを赤くするなどの演出を実行
   
     if (!wrongAnswers.some(item => item[0] === currentQuestion.kanji)) {// 今回間違えた問題が、まだ「間違えたリスト（wrongAnswers）」に入っていないか確認
-      wrongAnswers.push([currentQuestion.kanji, currentQuestion.yomi]);// リストになければ、問題の漢字(currentQuestion[0])と答え(currentQuestion[yomi])を保存
+      wrongAnswers.push([currentQuestion.kanji, currentQuestion.english]);// リストになければ、問題の漢字(currentQuestion[0])と答え(currentQuestion[yomi])を保存
 
       // --- ここを追加：1.5秒後に次の問題へ進む ---
     setTimeout(() => {
@@ -178,7 +179,7 @@ setTimeout(() => {
   //不正解のボタンを強調
     function highlightWrongButton(buttons) {//不正解のボタンを強調（ハイライト）する関数
     buttons.forEach(btn => {// 画面にある全てのボタン（buttons）を一つずつ「btn」としてチェックする
-      if (btn.innerText.includes(currentQuestion.yomi)) {// もしボタンに書いてある文字（innerText）が、不正解と同じなら
+      if (btn.innerText.includes(currentQuestion.english)) {// もしボタンに書いてある文字（innerText）が、不正解と同じなら
         btn.classList.add("wrong-answer");// リストになければ、問題の漢字(currentQuestion[0]))を保存
       }
     });

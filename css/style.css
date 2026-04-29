@@ -8,8 +8,8 @@
     background-color: #1f1f1f;/* 背景の色を濃いグレー（ほぼ黒）にする */
     color: #ffffff;  /* 文字の色を白にする */
     overflow: hidden;/* 画面からはみ出た部分を隠す（＝スクロールできないようにする） */
-    height: 100dvh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
-    width: 100vw;/* 横幅を、今見ている画面の横幅いっぱい（100%）にする */
+    height: cqh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
+    width: cqw;/* 横幅を、今見ている画面の横幅いっぱい（100%）にする */
     user-select: none;/* スマホでのテキスト選択を禁止（連打対策） */
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;/* タップ時のハイライトを消す */
@@ -68,11 +68,11 @@
   /* ==========================================================================
    基準となるキャンバスの設定
    ========================================================================== */
-  #gameCanvas {
-  aspect-ratio: 9 / 16;
-  padding: 8cqh 0cqw;
+  #gameCanvas { 
+  aspect-ratio: 9/ 20;
+  padding: 4cqh 0cqw;
   box-sizing: border-box;
-  height: 100dvh;
+  height: 100cqh;
   width: auto;
   max-width: 100dvh;
   margin: 0 auto;
@@ -122,6 +122,7 @@
    ========================================================================== */
   
   #quizArea {
+    
     height: 40%;
     background: linear-gradient(transparent, rgba(0,0,0,0.8) 50%);/* 上側は透明(transparent)で、下に向かって20%の地点から黒(rgba(0,0,0,0.8))が濃くなる */
     flex-direction: column;
@@ -191,7 +192,6 @@
 
  .question-container {
   flex-shrink: 0; 
-  margin-bottom: 1cqh; /* ボタンとの距離を微調整 */
   
 }
 
@@ -209,15 +209,16 @@
 }
 
 .button-container {
-  height: 60%; /* クイズエリアの高さの7割を占領 */
+  height: 65%; /* クイズエリアの高さの7割を占領 */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
+  gap: 5cqw;
+  width: 92%;
+  margin: 0 auto;
 }
 
 #optionArea button {
-  font-size: 6cqw;
+  font-size: 5cqw;
   height: 100%; /* グリッドの高さに合わせる */
   width: 100%;
   padding: 0;   /* 余計な内白をカット */
@@ -225,6 +226,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
 }
   
   .correct-answer {

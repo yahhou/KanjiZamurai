@@ -7,15 +7,15 @@
   },
   {
     "kanji": "囲",
-    "yomi": "い",
-    "english": "surround",
-    "romaji": "i"
+    "yomi": "かこむ",
+    "english": "to surround",
+    "romaji": "kakomu"
   },
   {
     "kanji": "移る",
-    "yomi": "うつ",
-    "english": "move",
-    "romaji": "utsu"
+    "yomi": "うつる",
+    "english": "to move / transfer",
+    "romaji": "utsuru"
   },
   {
     "kanji": "原因",
@@ -43,9 +43,9 @@
   },
   {
     "kanji": "易しい",
-    "yomi": "やさ",
+    "yomi": "やさしい",
     "english": "easy",
-    "romaji": "yasa"
+    "romaji": "yasashii"
   },
   {
     "kanji": "利益",
@@ -67,9 +67,9 @@
   },
   {
     "kanji": "応じる",
-    "yomi": "おう",
-    "english": "respond",
-    "romaji": "ou"
+    "yomi": "おうじる",
+    "english": "to respond",
+    "romaji": "oujiru"
   },
   {
     "kanji": "往復",
@@ -122,25 +122,25 @@
   {
     "kanji": "解決",
     "yomi": "かいけつ",
-    "english": "solve",
+    "english": "solution",
     "romaji": "kaiketsu"
   },
   {
     "kanji": "格",
     "yomi": "かく",
-    "english": "status",
+    "english": "status / rank",
     "romaji": "kaku"
   },
   {
     "kanji": "確認",
     "yomi": "かくにん",
-    "english": "confirm",
+    "english": "confirmation",
     "romaji": "kakunin"
   },
   {
     "kanji": "額",
     "yomi": "がく",
-    "english": "amount",
+    "english": "amount / forehead",
     "romaji": "gaku"
   },
   {
@@ -157,9 +157,9 @@
   },
   {
     "kanji": "慣れる",
-    "yomi": "な",
-    "english": "get used to",
-    "romaji": "na"
+    "yomi": "なれる",
+    "english": "to get used to",
+    "romaji": "nareru"
   },
   {
     "kanji": "眼",
@@ -181,9 +181,9 @@
   },
   {
     "kanji": "寄る",
-    "yomi": "よ",
-    "english": "approach",
-    "romaji": "yo"
+    "yomi": "よる",
+    "english": "to approach",
+    "romaji": "yoru"
   },
   {
     "kanji": "規則",
@@ -193,9 +193,9 @@
   },
   {
     "kanji": "喜ぶ",
-    "yomi": "よろこ",
-    "english": "be glad",
-    "romaji": "yoroko"
+    "yomi": "よろこぶ",
+    "english": "to be glad",
+    "romaji": "yorokobu"
   },
   {
     "kanji": "技術",
@@ -217,9 +217,9 @@
   },
   {
     "kanji": "久しい",
-    "yomi": "ひさ",
+    "yomi": "ひさしい",
     "english": "long time",
-    "romaji": "hisa"
+    "romaji": "hisashii"
   },
   {
     "kanji": "旧",
@@ -229,21 +229,21 @@
   },
   {
     "kanji": "救う",
-    "yomi": "すく",
-    "english": "save",
-    "romaji": "suku"
+    "yomi": "すくう",
+    "english": "to save",
+    "romaji": "sukuu"
   },
   {
     "kanji": "居る",
-    "yomi": "い",
-    "english": "exist",
-    "romaji": "i"
+    "yomi": "いる",
+    "english": "to exist (animate)",
+    "romaji": "iru"
   },
   {
     "kanji": "許す",
-    "yomi": "ゆる",
-    "english": "forgive",
-    "romaji": "yuru"
+    "yomi": "ゆるす",
+    "english": "to forgive",
+    "romaji": "yurusu"
   },
   {
     "kanji": "環境",
@@ -260,7 +260,7 @@
   {
     "kanji": "禁止",
     "yomi": "きんし",
-    "english": "prohibit",
+    "english": "prohibition",
     "romaji": "kinshi"
   },
   {
@@ -319,15 +319,15 @@
   },
   {
     "kanji": "減る",
-    "yomi": "へ",
-    "english": "decrease",
-    "romaji": "he"
+    "yomi": "へる",
+    "english": "to decrease",
+    "romaji": "heru"
   },
   {
     "kanji": "故",
-    "yomi": "こ",
+    "yomi": "ゆえ",
     "english": "reason",
-    "romaji": "ko"
+    "romaji": "yue"
   },
   {
     "kanji": "個",
@@ -349,15 +349,15 @@
   },
   {
     "kanji": "厚い",
-    "yomi": "あつ",
+    "yomi": "あつい",
     "english": "thick",
-    "romaji": "atsu"
+    "romaji": "atsui"
   },
   {
     "kanji": "耕す",
-    "yomi": "たがや",
-    "english": "cultivate",
-    "romaji": "tagaya"
+    "yomi": "たがやす",
+    "english": "to cultivate",
+    "romaji": "tagayasu"
   },
   {
     "kanji": "航海",
@@ -397,9 +397,9 @@
   },
   {
     "kanji": "混ざる",
-    "yomi": "ま",
-    "english": "mix",
-    "romaji": "ma"
+    "yomi": "まざる",
+    "english": "to mix",
+    "romaji": "mazaru"
   },
   {
     "kanji": "調査",
@@ -409,9 +409,9 @@
   },
   {
     "kanji": "再び",
-    "yomi": "ふたた",
+    "yomi": "ふたたび",
     "english": "again",
-    "romaji": "futata"
+    "romaji": "futatabi"
   },
   {
     "kanji": "災害",
@@ -428,7 +428,7 @@
   {
     "kanji": "採用",
     "yomi": "さいよう",
-    "english": "hire",
+    "english": "employment",
     "romaji": "saiyou"
   },
   {
@@ -457,9 +457,9 @@
   },
   {
     "kanji": "殺す",
-    "yomi": "ころ",
-    "english": "kill",
-    "romaji": "koro"
+    "yomi": "ころす",
+    "english": "to kill",
+    "romaji": "korosu"
   },
   {
     "kanji": "雑誌",
@@ -476,20 +476,20 @@
   {
     "kanji": "賛成",
     "yomi": "さんせい",
-    "english": "agree",
+    "english": "agreement",
     "romaji": "sansei"
   },
   {
     "kanji": "士",
     "yomi": "し",
-    "english": "warrior",
+    "english": "warrior / professional",
     "romaji": "shi"
   },
   {
     "kanji": "支える",
-    "yomi": "ささ",
-    "english": "support",
-    "romaji": "sasa"
+    "yomi": "ささえる",
+    "english": "to support",
+    "romaji": "sasaeru"
   },
   {
     "kanji": "歴史",
@@ -500,7 +500,7 @@
   {
     "kanji": "志",
     "yomi": "こころざし",
-    "english": "will",
+    "english": "ambition",
     "romaji": "kokorozashi"
   },
   {
@@ -523,21 +523,21 @@
   },
   {
     "kanji": "飼う",
-    "yomi": "か",
-    "english": "raise",
-    "romaji": "ka"
+    "yomi": "かう",
+    "english": "to keep (animal)",
+    "romaji": "kau"
   },
   {
     "kanji": "示す",
-    "yomi": "しめ",
-    "english": "show",
-    "romaji": "shime"
+    "yomi": "しめす",
+    "english": "to show",
+    "romaji": "shimesu"
   },
   {
     "kanji": "似る",
-    "yomi": "に",
-    "english": "resemble",
-    "romaji": "ni"
+    "yomi": "にる",
+    "english": "to resemble",
+    "romaji": "niru"
   },
   {
     "kanji": "意識",
@@ -560,7 +560,7 @@
   {
     "kanji": "感謝",
     "yomi": "かんしゃ",
-    "english": "thanks",
+    "english": "gratitude",
     "romaji": "kansha"
   },
   {
@@ -577,20 +577,14 @@
   },
   {
     "kanji": "述べる",
-    "yomi": "のべ",
-    "english": "state",
-    "romaji": "nobe"
-  },
-  {
-    "kanji": "技術",
-    "yomi": "ぎじゅつ",
-    "english": "technology",
-    "romaji": "gijutsu"
+    "yomi": "のべる",
+    "english": "to state",
+    "romaji": "noberu"
   },
   {
     "kanji": "準備",
     "yomi": "じゅんび",
-    "english": "prepare",
+    "english": "preparation",
     "romaji": "junbi"
   },
   {
@@ -601,9 +595,9 @@
   },
   {
     "kanji": "招く",
-    "yomi": "まね",
-    "english": "invite",
-    "romaji": "mane"
+    "yomi": "まねく",
+    "english": "to invite",
+    "romaji": "maneku"
   },
   {
     "kanji": "証明",
@@ -656,7 +650,7 @@
   {
     "kanji": "職業",
     "yomi": "しょくぎょう",
-    "english": "job",
+    "english": "occupation",
     "romaji": "shokugyou"
   },
   {
@@ -668,7 +662,7 @@
   {
     "kanji": "性",
     "yomi": "せい",
-    "english": "gender",
+    "english": "nature / gender",
     "romaji": "sei"
   },
   {
@@ -679,9 +673,9 @@
   },
   {
     "kanji": "勢い",
-    "yomi": "いきお",
-    "english": "force",
-    "romaji": "ikio"
+    "yomi": "いきおい",
+    "english": "momentum",
+    "romaji": "ikioi"
   },
   {
     "kanji": "精密",
@@ -710,19 +704,19 @@
   {
     "kanji": "成績",
     "yomi": "せいせき",
-    "english": "grade",
+    "english": "grades",
     "romaji": "seiseki"
   },
   {
     "kanji": "接する",
-    "yomi": "せっ",
-    "english": "touch",
-    "romaji": "se"
+    "yomi": "せっする",
+    "english": "to touch / contact",
+    "romaji": "sessuru"
   },
   {
     "kanji": "設備",
     "yomi": "せつび",
-    "english": "equipment",
+    "english": "facility",
     "romaji": "setsubi"
   },
   {
@@ -746,43 +740,37 @@
   {
     "kanji": "総合",
     "yomi": "そうごう",
-    "english": "overall",
+    "english": "comprehensive",
     "romaji": "sougou"
   },
   {
     "kanji": "製造",
     "yomi": "せいぞう",
-    "english": "manufacture",
+    "english": "manufacturing",
     "romaji": "seizou"
   },
   {
     "kanji": "想像",
     "yomi": "そうぞう",
-    "english": "imagine",
+    "english": "imagination",
     "romaji": "souzou"
   },
   {
     "kanji": "増える",
-    "yomi": "ふ",
-    "english": "increase",
-    "romaji": "fu"
-  },
-  {
-    "kanji": "規則",
-    "yomi": "きそく",
-    "english": "rule",
-    "romaji": "kisoku"
+    "yomi": "ふえる",
+    "english": "to increase",
+    "romaji": "fueru"
   },
   {
     "kanji": "測る",
-    "yomi": "はか",
-    "english": "measure",
-    "romaji": "haka"
+    "yomi": "はかる",
+    "english": "to measure",
+    "romaji": "hakaru"
   },
   {
     "kanji": "所属",
     "yomi": "しょぞく",
-    "english": "belong",
+    "english": "belonging",
     "romaji": "shozoku"
   },
   {
@@ -793,21 +781,15 @@
   },
   {
     "kanji": "損する",
-    "yomi": "そん",
-    "english": "lose",
-    "romaji": "son"
+    "yomi": "そんする",
+    "english": "to lose",
+    "romaji": "son suru"
   },
   {
     "kanji": "貸す",
-    "yomi": "か",
-    "english": "lend",
-    "romaji": "ka"
-  },
-  {
-    "kanji": "状態",
-    "yomi": "じょうたい",
-    "english": "state",
-    "romaji": "joutai"
+    "yomi": "かす",
+    "english": "to lend",
+    "romaji": "kasu"
   },
   {
     "kanji": "団体",
@@ -818,7 +800,7 @@
   {
     "kanji": "判断",
     "yomi": "はんだん",
-    "english": "judge",
+    "english": "judgment",
     "romaji": "handan"
   },
   {
@@ -830,14 +812,14 @@
   {
     "kanji": "貯金",
     "yomi": "ちょきん",
-    "english": "saving",
+    "english": "savings",
     "romaji": "chokin"
   },
   {
     "kanji": "張る",
-    "yomi": "は",
-    "english": "stretch",
-    "romaji": "ha"
+    "yomi": "はる",
+    "english": "to stretch",
+    "romaji": "haru"
   },
   {
     "kanji": "停止",
@@ -848,7 +830,7 @@
   {
     "kanji": "提出",
     "yomi": "ていしゅつ",
-    "english": "submit",
+    "english": "submission",
     "romaji": "teishutsu"
   },
   {
@@ -889,9 +871,9 @@
   },
   {
     "kanji": "得る",
-    "yomi": "え",
-    "english": "obtain",
-    "romaji": "e"
+    "yomi": "える",
+    "english": "to obtain",
+    "romaji": "eru"
   },
   {
     "kanji": "毒",
@@ -906,16 +888,10 @@
     "romaji": "dokuritsu"
   },
   {
-    "kanji": "責任",
-    "yomi": "せきにん",
-    "english": "responsibility",
-    "romaji": "sekinin"
-  },
-  {
     "kanji": "燃える",
-    "yomi": "も",
-    "english": "burn",
-    "romaji": "mo"
+    "yomi": "もえる",
+    "english": "to burn",
+    "romaji": "moeru"
   },
   {
     "kanji": "能力",
@@ -925,32 +901,20 @@
   },
   {
     "kanji": "破る",
-    "yomi": "やぶ",
-    "english": "tear",
-    "romaji": "yabu"
-  },
-  {
-    "kanji": "犯罪",
-    "yomi": "はんざい",
-    "english": "crime",
-    "romaji": "hanzai"
-  },
-  {
-    "kanji": "判断",
-    "yomi": "はんだん",
-    "english": "judge",
-    "romaji": "handan"
+    "yomi": "やぶる",
+    "english": "to break",
+    "romaji": "yaburu"
   },
   {
     "kanji": "出版",
     "yomi": "しゅっぱん",
-    "english": "publish",
+    "english": "publishing",
     "romaji": "shuppan"
   },
   {
     "kanji": "比較",
     "yomi": "ひかく",
-    "english": "compare",
+    "english": "comparison",
     "romaji": "hikaku"
   },
   {
@@ -972,22 +936,16 @@
     "romaji": "hiyou"
   },
   {
-    "kanji": "準備",
-    "yomi": "じゅんび",
-    "english": "prepare",
-    "romaji": "junbi"
-  },
-  {
     "kanji": "評価",
     "yomi": "ひょうか",
-    "english": "evaluate",
+    "english": "evaluation",
     "romaji": "hyouka"
   },
   {
     "kanji": "貧しい",
-    "yomi": "まず",
+    "yomi": "まずしい",
     "english": "poor",
-    "romaji": "mazu"
+    "romaji": "mazushii"
   },
   {
     "kanji": "布",
@@ -998,7 +956,7 @@
   {
     "kanji": "夫婦",
     "yomi": "ふうふ",
-    "english": "couple",
+    "english": "married couple",
     "romaji": "fuufu"
   },
   {
@@ -1034,13 +992,13 @@
   {
     "kanji": "編集",
     "yomi": "へんしゅう",
-    "english": "edit",
+    "english": "editing",
     "romaji": "henshuu"
   },
   {
     "kanji": "弁当",
     "yomi": "べんとう",
-    "english": "lunch box",
+    "english": "bento",
     "romaji": "bentou"
   },
   {
@@ -1063,15 +1021,15 @@
   },
   {
     "kanji": "豊か",
-    "yomi": "ゆた",
-    "english": "rich",
-    "romaji": "yuta"
+    "yomi": "ゆたか",
+    "english": "rich / abundant",
+    "romaji": "yutaka"
   },
   {
     "kanji": "防ぐ",
-    "yomi": "ふせ",
-    "english": "prevent",
-    "romaji": "fuse"
+    "yomi": "ふせぐ",
+    "english": "to prevent",
+    "romaji": "fusegu"
   },
   {
     "kanji": "貿易",
@@ -1094,7 +1052,7 @@
   {
     "kanji": "勤務",
     "yomi": "きんむ",
-    "english": "work",
+    "english": "work duty",
     "romaji": "kinmu"
   },
   {
@@ -1105,15 +1063,57 @@
   },
   {
     "kanji": "迷う",
-    "yomi": "まよ",
-    "english": "get lost",
-    "romaji": "mayo"
+    "yomi": "まよう",
+    "english": "to get lost",
+    "romaji": "mayou"
   },
   {
     "kanji": "綿",
     "yomi": "わた",
     "english": "cotton",
     "romaji": "wata"
+  },
+  {
+    "kanji": "輸入",
+    "yomi": "ゆにゅう",
+    "english": "import",
+    "romaji": "yunyuu"
+  },
+  {
+    "kanji": "余る",
+    "yomi": "あまる",
+    "english": "to remain",
+    "romaji": "amaru"
+  },
+  {
+    "kanji": "内容",
+    "yomi": "ないよう",
+    "english": "content",
+    "romaji": "naiyou"
+  },
+  {
+    "kanji": "省略",
+    "yomi": "しょうりゃく",
+    "english": "omission",
+    "romaji": "shouryaku"
+  },
+  {
+    "kanji": "留学",
+    "yomi": "りゅうがく",
+    "english": "study abroad",
+    "romaji": "ryuugaku"
+  },
+  {
+    "kanji": "領土",
+    "yomi": "りょうど",
+    "english": "territory",
+    "romaji": "ryoudo"
+  },
+  {
+    "kanji": "歴史",
+    "yomi": "れきし",
+    "english": "history",
+    "romaji": "rekishi"
   },
   {
     "kanji": "輸入",

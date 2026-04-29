@@ -1,21 +1,21 @@
 [
   {
     "kanji": "悪い",
-    "yomi": "わる",
+    "yomi": "わるい",
     "english": "bad",
-    "romaji": "waru"
+    "romaji": "warui"
   },
   {
     "kanji": "安い",
-    "yomi": "やす",
+    "yomi": "やすい",
     "english": "cheap",
-    "romaji": "yasu"
+    "romaji": "yasui"
   },
   {
     "kanji": "暗い",
-    "yomi": "くら",
+    "yomi": "くらい",
     "english": "dark",
-    "romaji": "kura"
+    "romaji": "kurai"
   },
   {
     "kanji": "医者",
@@ -37,14 +37,14 @@
   },
   {
     "kanji": "育つ",
-    "yomi": "そだ",
-    "english": "grow",
-    "romaji": "soda"
+    "yomi": "そだつ",
+    "english": "to grow",
+    "romaji": "sodatsu"
   },
   {
     "kanji": "社員",
     "yomi": "しゃいん",
-    "english": "employee",
+    "english": "company employee",
     "romaji": "shain"
   },
   {
@@ -55,21 +55,21 @@
   },
   {
     "kanji": "飲む",
-    "yomi": "の",
-    "english": "drink",
-    "romaji": "no"
+    "yomi": "のむ",
+    "english": "to drink",
+    "romaji": "nomu"
   },
   {
     "kanji": "運ぶ",
-    "yomi": "はこ",
-    "english": "carry",
-    "romaji": "hako"
+    "yomi": "はこぶ",
+    "english": "to carry",
+    "romaji": "hakobu"
   },
   {
     "kanji": "泳ぐ",
-    "yomi": "およ",
-    "english": "swim",
-    "romaji": "oyo"
+    "yomi": "およぐ",
+    "english": "to swim",
+    "romaji": "oyogu"
   },
   {
     "kanji": "駅",
@@ -92,20 +92,20 @@
   {
     "kanji": "屋",
     "yomi": "や",
-    "english": "shop",
+    "english": "shop / roof",
     "romaji": "ya"
   },
   {
     "kanji": "温かい",
-    "yomi": "あたた",
+    "yomi": "あたたかい",
     "english": "warm",
-    "romaji": "atatada"
+    "romaji": "atatakai"
   },
   {
     "kanji": "化ける",
-    "yomi": "ば",
-    "english": "transform",
-    "romaji": "ba"
+    "yomi": "ばける",
+    "english": "to transform",
+    "romaji": "bakeru"
   },
   {
     "kanji": "荷物",
@@ -121,9 +121,9 @@
   },
   {
     "kanji": "開く",
-    "yomi": "ひら",
-    "english": "open",
-    "romaji": "hira"
+    "yomi": "あく / ひらく",
+    "english": "to open",
+    "romaji": "aku / hiraku"
   },
   {
     "kanji": "階",
@@ -133,15 +133,15 @@
   },
   {
     "kanji": "寒い",
-    "yomi": "さむ",
+    "yomi": "さむい",
     "english": "cold",
-    "romaji": "samu"
+    "romaji": "samui"
   },
   {
     "kanji": "感じる",
-    "yomi": "かん",
-    "english": "feel",
-    "romaji": "kan"
+    "yomi": "かんじる",
+    "english": "to feel",
+    "romaji": "kanjiru"
   },
   {
     "kanji": "漢字",
@@ -163,9 +163,9 @@
   },
   {
     "kanji": "起きる",
-    "yomi": "お",
-    "english": "wake up",
-    "romaji": "o"
+    "yomi": "おきる",
+    "english": "to wake up",
+    "romaji": "okiru"
   },
   {
     "kanji": "期間",
@@ -187,14 +187,14 @@
   },
   {
     "kanji": "急ぐ",
-    "yomi": "いそ",
-    "english": "hurry",
-    "romaji": "iso"
+    "yomi": "いそぐ",
+    "english": "to hurry",
+    "romaji": "isogu"
   },
   {
     "kanji": "級",
     "yomi": "きゅう",
-    "english": "grade",
+    "english": "grade / level",
     "romaji": "kyuu"
   },
   {
@@ -211,9 +211,9 @@
   },
   {
     "kanji": "去る",
-    "yomi": "さ",
-    "english": "leave",
-    "romaji": "sa"
+    "yomi": "さる",
+    "english": "to leave",
+    "romaji": "saru"
   },
   {
     "kanji": "橋",
@@ -230,13 +230,13 @@
   {
     "kanji": "曲",
     "yomi": "きょく",
-    "english": "song",
+    "english": "song / piece",
     "romaji": "kyoku"
   },
   {
     "kanji": "局",
     "yomi": "きょく",
-    "english": "office",
+    "english": "office / bureau",
     "romaji": "kyoku"
   },
   {
@@ -253,9 +253,9 @@
   },
   {
     "kanji": "苦しい",
-    "yomi": "くる",
+    "yomi": "くるしい",
     "english": "painful",
-    "romaji": "kuru"
+    "romaji": "kurushii"
   },
   {
     "kanji": "道具",
@@ -277,9 +277,9 @@
   },
   {
     "kanji": "軽い",
-    "yomi": "かる",
+    "yomi": "かるい",
     "english": "light",
-    "romaji": "karu"
+    "romaji": "karui"
   },
   {
     "kanji": "血",
@@ -289,15 +289,9 @@
   },
   {
     "kanji": "決める",
-    "yomi": "き",
-    "english": "decide",
-    "romaji": "ki"
-  },
-  {
-    "kanji": "研究",
-    "yomi": "けんきゅう",
-    "english": "research",
-    "romaji": "kenkyuu"
+    "yomi": "きめる",
+    "english": "to decide",
+    "romaji": "kimeru"
   },
   {
     "kanji": "県",
@@ -308,26 +302,26 @@
   {
     "kanji": "冷蔵庫",
     "yomi": "れいぞうこ",
-    "english": "fridge",
+    "english": "refrigerator",
     "romaji": "reizouko"
   },
   {
     "kanji": "湖",
     "yomi": "みずうみ",
     "english": "lake",
-    "romaji": "mizuumI"
+    "romaji": "mizuumi"
   },
   {
     "kanji": "向く",
-    "yomi": "む",
-    "english": "face",
-    "romaji": "mu"
+    "yomi": "むく",
+    "english": "to face",
+    "romaji": "muku"
   },
   {
     "kanji": "幸せ",
-    "yomi": "しあわ",
-    "english": "happy",
-    "romaji": "shiawa"
+    "yomi": "しあわせ",
+    "english": "happiness",
+    "romaji": "shiawase"
   },
   {
     "kanji": "港",
@@ -349,9 +343,9 @@
   },
   {
     "kanji": "祭り",
-    "yomi": "まつ",
+    "yomi": "まつり",
     "english": "festival",
-    "romaji": "matsu"
+    "romaji": "matsuri"
   },
   {
     "kanji": "皿",
@@ -367,21 +361,21 @@
   },
   {
     "kanji": "死ぬ",
-    "yomi": "し",
-    "english": "die",
-    "romaji": "shi"
+    "yomi": "しぬ",
+    "english": "to die",
+    "romaji": "shinu"
   },
   {
     "kanji": "使う",
-    "yomi": "つか",
-    "english": "use",
-    "romaji": "tsuka"
+    "yomi": "つかう",
+    "english": "to use",
+    "romaji": "tsukau"
   },
   {
     "kanji": "始める",
-    "yomi": "はじ",
-    "english": "start",
-    "romaji": "haji"
+    "yomi": "はじめる",
+    "english": "to start",
+    "romaji": "hajimeru"
   },
   {
     "kanji": "指",
@@ -415,9 +409,9 @@
   },
   {
     "kanji": "持つ",
-    "yomi": "も",
-    "english": "hold",
-    "romaji": "mo"
+    "yomi": "もつ",
+    "english": "to hold",
+    "romaji": "motsu"
   },
   {
     "kanji": "式",
@@ -428,7 +422,7 @@
   {
     "kanji": "実",
     "yomi": "み",
-    "english": "fruit",
+    "english": "fruit / truth",
     "romaji": "mi"
   },
   {
@@ -451,15 +445,15 @@
   },
   {
     "kanji": "守る",
-    "yomi": "まも",
-    "english": "protect",
-    "romaji": "mamo"
+    "yomi": "まもる",
+    "english": "to protect",
+    "romaji": "mamoru"
   },
   {
     "kanji": "取る",
-    "yomi": "と",
-    "english": "take",
-    "romaji": "to"
+    "yomi": "とる",
+    "english": "to take",
+    "romaji": "toru"
   },
   {
     "kanji": "酒",
@@ -469,9 +463,9 @@
   },
   {
     "kanji": "受ける",
-    "yomi": "う",
-    "english": "receive",
-    "romaji": "u"
+    "yomi": "うける",
+    "english": "to receive",
+    "romaji": "ukeru"
   },
   {
     "kanji": "州",
@@ -481,39 +475,39 @@
   },
   {
     "kanji": "拾う",
-    "yomi": "ひろ",
-    "english": "pick up",
-    "romaji": "hiro"
+    "yomi": "ひろう",
+    "english": "to pick up",
+    "romaji": "hirou"
   },
   {
     "kanji": "終わる",
-    "yomi": "お",
-    "english": "finish",
-    "romaji": "o"
+    "yomi": "おわる",
+    "english": "to finish",
+    "romaji": "owaru"
   },
   {
     "kanji": "習う",
-    "yomi": "なら",
-    "english": "learn",
-    "romaji": "nara"
+    "yomi": "ならう",
+    "english": "to learn",
+    "romaji": "narau"
   },
   {
     "kanji": "集まる",
-    "yomi": "あつ",
-    "english": "gather",
-    "romaji": "atsu"
+    "yomi": "あつまる",
+    "english": "to gather",
+    "romaji": "atsumaru"
   },
   {
     "kanji": "住む",
-    "yomi": "す",
-    "english": "live",
-    "romaji": "su"
+    "yomi": "すむ",
+    "english": "to live",
+    "romaji": "sumu"
   },
   {
     "kanji": "重い",
-    "yomi": "おも",
+    "yomi": "おもい",
     "english": "heavy",
-    "romaji": "omo"
+    "romaji": "omoi"
   },
   {
     "kanji": "宿",
@@ -529,27 +523,27 @@
   },
   {
     "kanji": "暑い",
-    "yomi": "あつ",
+    "yomi": "あつい",
     "english": "hot",
-    "romaji": "atsu"
+    "romaji": "atsui"
   },
   {
     "kanji": "助ける",
-    "yomi": "たす",
-    "english": "help",
-    "romaji": "tasu"
+    "yomi": "たすける",
+    "english": "to help",
+    "romaji": "tasukeru"
   },
   {
     "kanji": "昭和",
     "yomi": "しょうわ",
-    "english": "Showa",
+    "english": "Showa era",
     "romaji": "shouwa"
   },
   {
     "kanji": "消える",
-    "yomi": "き",
-    "english": "disappear",
-    "romaji": "ki"
+    "yomi": "きえる",
+    "english": "to disappear",
+    "romaji": "kieru"
   },
   {
     "kanji": "商品",
@@ -565,15 +559,15 @@
   },
   {
     "kanji": "勝つ",
-    "yomi": "か",
-    "english": "win",
-    "romaji": "ka"
+    "yomi": "かつ",
+    "english": "to win",
+    "romaji": "katsu"
   },
   {
     "kanji": "乗る",
-    "yomi": "の",
-    "english": "ride",
-    "romaji": "no"
+    "yomi": "のる",
+    "english": "to ride",
+    "romaji": "noru"
   },
   {
     "kanji": "植物",
@@ -583,9 +577,9 @@
   },
   {
     "kanji": "申す",
-    "yomi": "もう",
-    "english": "say (humble)",
-    "romaji": "mou"
+    "yomi": "もうす",
+    "english": "to say (humble)",
+    "romaji": "mousu"
   },
   {
     "kanji": "体",
@@ -601,27 +595,21 @@
   },
   {
     "kanji": "真",
-    "yomi": "ま",
-    "english": "TRUE",
-    "romaji": "ma"
+    "yomi": "しん",
+    "english": "truth",
+    "romaji": "shin"
   },
   {
     "kanji": "深い",
-    "yomi": "ふか",
+    "yomi": "ふかい",
     "english": "deep",
-    "romaji": "fuka"
+    "romaji": "fukai"
   },
   {
     "kanji": "進む",
-    "yomi": "すす",
-    "english": "advance",
-    "romaji": "susu"
-  },
-  {
-    "kanji": "世界",
-    "yomi": "せかい",
-    "english": "world",
-    "romaji": "sekai"
+    "yomi": "すすむ",
+    "english": "to go forward",
+    "romaji": "susumu"
   },
   {
     "kanji": "整理",
@@ -632,7 +620,7 @@
   {
     "kanji": "昔",
     "yomi": "むかし",
-    "english": "past",
+    "english": "long ago",
     "romaji": "mukashi"
   },
   {
@@ -649,15 +637,15 @@
   },
   {
     "kanji": "送る",
-    "yomi": "おく",
-    "english": "send",
-    "romaji": "oku"
+    "yomi": "おくる",
+    "english": "to send",
+    "romaji": "okuru"
   },
   {
     "kanji": "想う",
-    "yomi": "おも",
-    "english": "think",
-    "romaji": "omo"
+    "yomi": "おもう",
+    "english": "to feel / think",
+    "romaji": "omou"
   },
   {
     "kanji": "息",
@@ -667,9 +655,9 @@
   },
   {
     "kanji": "速い",
-    "yomi": "はや",
+    "yomi": "はやい",
     "english": "fast",
-    "romaji": "haya"
+    "romaji": "hayai"
   },
   {
     "kanji": "家族",
@@ -685,21 +673,21 @@
   },
   {
     "kanji": "打つ",
-    "yomi": "う",
-    "english": "hit",
-    "romaji": "u"
+    "yomi": "うつ",
+    "english": "to hit",
+    "romaji": "utsu"
   },
   {
     "kanji": "対する",
-    "yomi": "たい",
-    "english": "oppose",
-    "romaji": "tai"
+    "yomi": "たいする",
+    "english": "to face / oppose",
+    "romaji": "taisuru"
   },
   {
     "kanji": "待つ",
-    "yomi": "ま",
-    "english": "wait",
-    "romaji": "ma"
+    "yomi": "まつ",
+    "english": "to wait",
+    "romaji": "matsu"
   },
   {
     "kanji": "代",
@@ -727,9 +715,9 @@
   },
   {
     "kanji": "短い",
-    "yomi": "みじか",
+    "yomi": "みじかい",
     "english": "short",
-    "romaji": "mijika"
+    "romaji": "mijikai"
   },
   {
     "kanji": "談話",
@@ -739,14 +727,14 @@
   },
   {
     "kanji": "着る",
-    "yomi": "き",
-    "english": "wear",
-    "romaji": "ki"
+    "yomi": "きる",
+    "english": "to wear",
+    "romaji": "kiru"
   },
   {
     "kanji": "注意",
     "yomi": "ちゅうい",
-    "english": "attention",
+    "english": "caution",
     "romaji": "chuui"
   },
   {
@@ -758,7 +746,7 @@
   {
     "kanji": "丁",
     "yomi": "ちょう",
-    "english": "block",
+    "english": "block / counter",
     "romaji": "chou"
   },
   {
@@ -769,21 +757,21 @@
   },
   {
     "kanji": "調べる",
-    "yomi": "しら",
-    "english": "investigate",
-    "romaji": "shira"
+    "yomi": "しらべる",
+    "english": "to investigate",
+    "romaji": "shiraberu"
   },
   {
     "kanji": "追う",
-    "yomi": "お",
-    "english": "chase",
-    "romaji": "o"
+    "yomi": "おう",
+    "english": "to chase",
+    "romaji": "ou"
   },
   {
     "kanji": "定める",
-    "yomi": "さだ",
-    "english": "decide",
-    "romaji": "sada"
+    "yomi": "さだめる",
+    "english": "to decide",
+    "romaji": "sadameru"
   },
   {
     "kanji": "庭",
@@ -805,9 +793,9 @@
   },
   {
     "kanji": "転ぶ",
-    "yomi": "ころ",
-    "english": "fall",
-    "romaji": "koro"
+    "yomi": "ころぶ",
+    "english": "to fall",
+    "romaji": "korobu"
   },
   {
     "kanji": "都会",
@@ -818,14 +806,14 @@
   {
     "kanji": "度",
     "yomi": "ど",
-    "english": "degree",
+    "english": "degree / time",
     "romaji": "do"
   },
   {
     "kanji": "投げる",
-    "yomi": "な",
-    "english": "throw",
-    "romaji": "na"
+    "yomi": "なげる",
+    "english": "to throw",
+    "romaji": "nageru"
   },
   {
     "kanji": "豆",
@@ -841,27 +829,27 @@
   },
   {
     "kanji": "お湯",
-    "yomi": "ゆ",
+    "yomi": "おゆ",
     "english": "hot water",
-    "romaji": "yu"
+    "romaji": "oyu"
   },
   {
     "kanji": "登る",
-    "yomi": "のぼ",
-    "english": "climb",
-    "romaji": "nobo"
+    "yomi": "のぼる",
+    "english": "to climb",
+    "romaji": "noboru"
   },
   {
     "kanji": "等",
-    "yomi": "とう",
-    "english": "etc",
-    "romaji": "tou"
+    "yomi": "など",
+    "english": "etc.",
+    "romaji": "nado"
   },
   {
     "kanji": "動く",
-    "yomi": "うご",
-    "english": "move",
-    "romaji": "ugo"
+    "yomi": "うごく",
+    "english": "to move",
+    "romaji": "ugoku"
   },
   {
     "kanji": "子供",
@@ -883,9 +871,9 @@
   },
   {
     "kanji": "配る",
-    "yomi": "くば",
-    "english": "distribute",
-    "romaji": "kuba"
+    "yomi": "くばる",
+    "english": "to distribute",
+    "romaji": "kubaru"
   },
   {
     "kanji": "倍",
@@ -914,7 +902,7 @@
   {
     "kanji": "反対",
     "yomi": "はんたい",
-    "english": "oppose",
+    "english": "opposite",
     "romaji": "hantai"
   },
   {
@@ -937,15 +925,15 @@
   },
   {
     "kanji": "悲しい",
-    "yomi": "かな",
+    "yomi": "かなしい",
     "english": "sad",
-    "romaji": "kana"
+    "romaji": "kanashii"
   },
   {
     "kanji": "美しい",
-    "yomi": "うつく",
+    "yomi": "うつくしい",
     "english": "beautiful",
-    "romaji": "utsuku"
+    "romaji": "utsukushii"
   },
   {
     "kanji": "鼻",
@@ -984,16 +972,10 @@
     "romaji": "byouki"
   },
   {
-    "kanji": "商品",
-    "yomi": "しょうひん",
-    "english": "product",
-    "romaji": "shouhin"
-  },
-  {
     "kanji": "負ける",
-    "yomi": "ま",
-    "english": "lose",
-    "romaji": "ma"
+    "yomi": "まける",
+    "english": "to lose",
+    "romaji": "makeru"
   },
   {
     "kanji": "部分",
@@ -1010,7 +992,7 @@
   {
     "kanji": "福",
     "yomi": "ふく",
-    "english": "luck",
+    "english": "fortune",
     "romaji": "fuku"
   },
   {
@@ -1021,15 +1003,15 @@
   },
   {
     "kanji": "平ら",
-    "yomi": "たい",
+    "yomi": "たいら",
     "english": "flat",
-    "romaji": "tai"
+    "romaji": "taira"
   },
   {
     "kanji": "返す",
-    "yomi": "かえ",
-    "english": "return",
-    "romaji": "kae"
+    "yomi": "かえす",
+    "english": "to return",
+    "romaji": "kaesu"
   },
   {
     "kanji": "勉強",
@@ -1039,9 +1021,9 @@
   },
   {
     "kanji": "放す",
-    "yomi": "はな",
-    "english": "release",
-    "romaji": "hana"
+    "yomi": "はなす",
+    "english": "to release",
+    "romaji": "hanasu"
   },
   {
     "kanji": "味",
@@ -1058,14 +1040,8 @@
   {
     "kanji": "面",
     "yomi": "めん",
-    "english": "face",
+    "english": "face / surface",
     "romaji": "men"
-  },
-  {
-    "kanji": "問題",
-    "yomi": "もんだい",
-    "english": "problem",
-    "romaji": "mondai"
   },
   {
     "kanji": "役",
@@ -1099,9 +1075,9 @@
   },
   {
     "kanji": "遊ぶ",
-    "yomi": "あそ",
-    "english": "play",
-    "romaji": "aso"
+    "yomi": "あそぶ",
+    "english": "to play",
+    "romaji": "asobu"
   },
   {
     "kanji": "予定",
@@ -1136,20 +1112,20 @@
   {
     "kanji": "様",
     "yomi": "さま",
-    "english": "sir",
+    "english": "polite suffix",
     "romaji": "sama"
   },
   {
     "kanji": "落ちる",
-    "yomi": "お",
-    "english": "fall",
-    "romaji": "o"
+    "yomi": "おちる",
+    "english": "to fall",
+    "romaji": "ochiru"
   },
   {
     "kanji": "流れる",
-    "yomi": "なが",
-    "english": "flow",
-    "romaji": "naga"
+    "yomi": "ながれる",
+    "english": "to flow",
+    "romaji": "nagareru"
   },
   {
     "kanji": "旅行",
@@ -1172,8 +1148,32 @@
   {
     "kanji": "礼",
     "yomi": "れい",
-    "english": "thanks",
+    "english": "thanks / bow",
     "romaji": "rei"
+  },
+  {
+    "kanji": "列",
+    "yomi": "れつ",
+    "english": "line",
+    "romaji": "retsu"
+  },
+  {
+    "kanji": "練習",
+    "yomi": "れんしゅう",
+    "english": "practice",
+    "romaji": "renshuu"
+  },
+  {
+    "kanji": "道路",
+    "yomi": "どうろ",
+    "english": "road",
+    "romaji": "douoro"
+  },
+  {
+    "kanji": "和",
+    "yomi": "わ",
+    "english": "harmony / Japan",
+    "romaji": "wa"
   },
   {
     "kanji": "列",
