@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8"> <!-- 文字化けを防ぐための設定 -->
-    <link rel="stylesheet" href="css/style.css"> <!--style.cssファイルを読み込む -->
+      <meta charset="UTF-8"> <!-- 文字化けを防ぐための設定 -->
+      <link rel="stylesheet" href="css/style.css"> <!--style.cssファイルを読み込む -->
   </head>
     
     <body>
-      <div id="loadingArea">loading</div>  <!-- JavaScriptが文字を書き換える場所 -->
-      <script src="assets.js"></script>
-      <script src="quiz.js"></script>   
-      <script src="character.js"></script>  
-      <div id="uiWrapper"></div>
+      <div id="gameCanvas"> <!-- これが cqw の基準になります -->
+        <div id="loadingArea">loading</div>  <!-- JavaScriptが文字を書き換える場所 -->
+        <script src="assets.js"></script>
+        <script src="quiz.js"></script>   
+        <script src="character.js"></script>  
+        <div id="uiWrapper"></div>
 
-      <div id="battleScreen">
+        <div id="battleScreen">
       <!-- 1. 上部：ステータスエリア (20%) -->
         <div id="statusArea">
           <div id="kiwami-container">

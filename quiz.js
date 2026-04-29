@@ -2,7 +2,7 @@
   let wordList = [];//JSONから読み込んだ、すべての単語データが入る巨大な倉庫。
   let currentStage = 0; //今「第何ステージ」にいるかを記録。クリアするたびに増える。
   let correctQuestionCount = 0; //今のバトルで「何問解いたか」を数える。
-  const MAX_QUESTIONS = 2; //この数に達するとバトル終了（勝利）になる。
+  const MAX_QUESTIONS = 13; //この数に達するとバトル終了（勝利）になる。
   let usedWords = [];//同じ問題が何度も出ないように、一度出した単語をメモしておく。
   let currentQuestion = {};//今、画面に出ている「たった一つの問題」のデータ。
   let streak = 0;//コンボ数。ミスせずに連続で正解すると増えていく。
@@ -246,8 +246,8 @@ function updateKiwamiIcon() {
   if (!img || !bg) return;
 
   // 「前の画像」だけを動かす
-  const xPosition = correctQuestionCount * 60;
-  img.style.left = `-${xPosition}px`; 
+  const xPosition = correctQuestionCount * 15;
+  img.style.left = `-${xPosition}cqw`; 
 
   // 「後ろの画像」は 0px のまま動かさない！
   bg.style.left = `0px`; 
