@@ -1,109 +1,117 @@
 
   /* ==========================================================================
-   1. 基本設定 (Base)
+    基本設定 (Base)
    ========================================================================== */
-
    body {
     box-sizing: border-box;
-    background-color: #1f1f1f;/* 背景の色を濃いグレー（ほぼ黒）にする */
-    color: #ffffff;  /* 文字の色を白にする */
+    background-color: #1f1f1f;
+    color: #ffffff;  
     overflow: hidden;/* 画面からはみ出た部分を隠す（＝スクロールできないようにする） */
-    height: cqh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
-    width: cqw;/* 横幅を、今見ている画面の横幅いっぱい（100%）にする */
+    height: 100dvh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
+    width: 100%;/* 横幅を、今見ている画面の横幅いっぱい（100%）にする */
+    margin: 0;
+    padding: 0;
+    /* 連打・選択対策 */
     user-select: none;/* スマホでのテキスト選択を禁止（連打対策） */
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;/* タップ時のハイライトを消す */
+    /* 見た目の調整 */
+    font-family: "Arials";
+  }
+
+  /* ==========================================================================
+   基準となるキャンバスの設定
+  ========================================================================== */
+  #gameCanvas { 
+    aspect-ratio: 9/ 20;
+    /* 画面にフィットさせる（高さ優先） */
+    height: 100dvh;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+    padding: 20% 0;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    /* 5. コンテナクエリを使うための設定 */
+    container-type: size;
+    /* 6. 中身のレイアウト */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   /* ==========================================================================
-   2. ローディング & スタート画面
-   ========================================================================== */
-  
+   ローディング & スタート画面
+  ========================================================================== */
   #loadingArea {
+    /* 必須：これがないと中央寄せが効きません */
+    display: flex;
     justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
     align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
-    text-align: center;
+    /* 画面全体を覆う設定 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 見た目の調整 */
+    background-color: #1f1f1f;
+    color: #ffffff;
+    font-size: 24px;
+    z-index: 1; /* 一番手前に表示 */
+    pointer-events: none
   }
 
   #uiWrapper {
     position: fixed;/* 画面の決まった位置に固定する（スクロールしても動かない） */
     top: 0;/* 画面の上（0,0）を基準点にする */
     left: 0;/* 画面の左（0,0）を基準点にする */
+    z-index: 2;
     width: 100%;/* 画面の横幅いっぱいに広げる */
     height: 100vh;/* 画面の高さいっぱい（100vh）に広げる */
+    background: rgba(0, 0, 0, 0.5); /* ここで暗くする */
     display: flex;/* 中身を並べるための「入れ物」のルールを適用（Flexbox） */
     justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
     align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
-    text-align: center;/* 中身のテキストを中央揃えにする */
-    z-index: 9998;/* 重なりの順番を高くする（他の画像などより手前に表示させる） */
-    background: rgba(0, 0, 0, 0.5); /* 背景を少し暗くすると文字が見やすい */
+    pointer-events: auto;/* ここで入力を受け付ける */
   }
 
   #startBtn {
-    background-color: #000000;
-    color: #ffffff;
-    position: absolute;
-    bottom: -30vh;
-    pointer-events: auto !important;/* 「透明で見えない壁」があっても、このボタンだけは反応するようにする */
-    cursor: pointer !important;/* 指マークを確実に出す */
+    /* 1. 画面固定と表示順 */
+    width: 70%;
     height: 10%;
-    width: 80cqw;
-    display: flex;/* 文字を上下左右の真ん中にきっちり配置する */
-    justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
-    align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
-    text-align: center;/* 中身のテキストを中央揃えにする */
-    line-height: 1;/* 行の高さを最小限にして文字のズレを防ぐ */
-    font-size: 8cqw;
-    font-weight: bold;/* 文字を太くして目立たせる */
-    position: relative;/* 重なりの順番を一番手前にする（最強レベル） */
-    z-index: 9999;
-    cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
+    padding: 15px 30px; /* ボタンらしい大きさにする */
+    background: #1f1f1f; /* ボタンの色 */
+    color: #ffffff;
+    font-size: 5cqw;
+    font-weight: bold;
     box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
     border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
-  }
+  } 
 
   #startBtn:active {
-  transform: scale(0.95); /* 押した時に少し凹む演出 */
+    transform: scale(0.95); /* 押した時に少し凹む演出 */
   }
+ 
   /* ==========================================================================
-   基準となるキャンバスの設定
-   ========================================================================== */
-  #gameCanvas { 
-  aspect-ratio: 9/ 20;
-  padding: 4cqh 0cqw;
-  box-sizing: border-box;
-  height: 100cqh;
-  width: auto;
-  max-width: 100dvh;
-  margin: 0 auto;
-  position: relative;
-  background-color: #1f1f1f;
-  overflow: hidden;
-  /* ★重要：ここを書かないと cqw が効きません */
-  container-type: inline-size; 
-  /* ★追加：中身を真ん中に配置するための設定 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  }
-
-   /* ==========================================================================
    3. バトル・メイン画面
-   ========================================================================== */
+  ========================================================================== */
   
    #battleScreen {
     position: relative;/* 中に「自由に配置したい要素（absolute）」を入れるための基準になる */
-    width: 100%;/* 横幅は基本的にいっぱい（100%）に広がる */
-
-    height: 100%;/* 高さはいっぱい（100%）使う */
+    width: 100%;
+    height: 100%;
     display: flex;/* 中身を並べるルール（Flexbox）を適用 */
     flex-direction: column;/* 中身を「上から下へ」順番に並べる設定（これがないと横に並んでしまう） */
     overflow: hidden;
-    padding: 1cqw;
+    box-sizing: border-box;
   }
    
-   #statusArea {
-    position: absolute;
+  #statusArea {
+    position: relative;
     height: 20%;
     width: 100%;
     display: flex;
@@ -111,52 +119,129 @@
     background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 50%);
   }
 
-  /* 中央 50% */
+   /* ==========================================================================
+   3. キャラクター・敵の表示エリア
+  ========================================================================== */
   #actionArea {
-  height: 40%;
-  flex-grow: 1; /* 残りのスペースを埋める（または height: 50%;） */
-  position: relative;
+    position: relative;
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around; /* プレイヤーと敵を離して配置 */
+    align-items: flex-end;        /* 地面に立たせるように下に揃える */
+    padding-bottom: 10%;         /* 足元に少し余裕を持たせる */
+    overflow: visible;
+    box-sizing: border-box;
   }
+  
+  #player {
+  width: 15cqw;  /* コンテナと同じサイズにする */
+  height: 15cqw;
+  /* position: absolute; を使うと、actionArea内で自由に動かせます */
+  position: absolute; 
+  bottom: 0;     /* 足元を地面に合わせる */
+  left: 20%;    /* プレイヤーの位置 */
+}
 
   /* ==========================================================================
    4. クイズUI (Quiz Area)
    ========================================================================== */
   
   #quizArea {
-    
+    position: relative;
     height: 40%;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8) 50%);/* 上側は透明(transparent)で、下に向かって20%の地点から黒(rgba(0,0,0,0.8))が濃くなる */
+    width: 100%;
+    display: flex;
     flex-direction: column;
-  /* ★重要：中身をすべて「下」に押し下げる */
-  justify-content: flex-end;
-
-  /* ボタンと漢字エリアの間に少し隙間が欲しい場合は gap を使う */
-  gap: 2cqh; 
+    justify-content: space-between; /* 上に問題、下にボタンを振り分ける */
+    align-items: center;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+  }
   
-  background: linear-gradient(transparent, rgba(0,0,0,0.8) 50%);
-  text-align: center;
-  box-sizing: border-box;
-  
-  /* 地面（画面最下部）から少しだけ浮かせたいなら padding-bottom */
-  padding-bottom: 2cqh;
+  /* ==========================================================================
+   問題文エリア（漢字と読み）
+  ========================================================================== */
+  .question-container {
+    flex-shrink: 0; 
+    height: 30%; /* クイズエリアの約3割を使用 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
-  button {
-    font-family: inherit;
-    width: 100%;/* 親要素（入れ物）の横幅いっぱいに広げる */
-    height: 80px;/* ボタンの高さを80pxに固定する */
-    padding: 10px;/* 内側の余白を10px作る（文字と端の距離） */
-    border-radius: 0px;/* 角を5px分、少しだけ丸くする */
-    background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
-    color: white;/* 文字の色を白にする */
-    cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
+  .question-container h2 {
+    /* 漢字の大きさ：キャンバス幅の18% */
+    font-size: 10cqw;
+    line-height: 1;
+    margin: 0; 
+  }
+  
+  .question-container p {
+    font-size: 6cqw;
+    opacity: 0.8;        /* 少し薄くすると漢字が引き立ちます */
+    color: #90ff2f;   
+    margin: 5px 0 0 0;   
+  }
+  
+  /* ==========================================================================
+   回答ボタンエリア（グリッド配置）
+   ========================================================================== */
+  .button-container {
+    height: 65%; /* クイズエリアの高さの7割を占領 */
+    width: 90%;
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 1fr 1fr; /* 2カラム */
+    grid-template-rows: 1fr 1fr;    /* 2段 */
+    gap: 5cqw;
+  }  
+
+  #optionArea button {
+    height: 100%; /* グリッドの高さに合わせる */
+    width: 100%;
+    padding: 10px;
+    color: white;
+    font-size: 5cqw;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
+    border: 1px solid #ffffff; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  button:hover {/* 背景を濃いグレー（#333）にする */
+  /* マウスを乗せた時（PC用） */
+  #optionArea button:hover {
     background-color: #333;
-    border-color: #ffffff !important;   /* 枠線も白く光らせると分かりやすい */
-    transition: background-color 0.2s;  /* 色の変化をふわっとさせる */
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6);
   }
+
+  /* 押し心地の演出 */
+  #optionArea button:active {
+    transform: scale(0.96);
+    box-shadow: 0px 0px 2px rgba(255, 255, 255, 0.2);
+  }
+
+  .correct-answer {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    border-color: #388E3C;
+    transform: scale(1.05);
+  }
+
+  .wrong-answer {
+    background-color: #ff4d4d !important;
+    color: white !important;
+    border-color: #cc0000 !important;
+    transform: scale(1.05) !important;
+  }
+
+  /* ==========================================================================
+   『極』アイコン
+  ========================================================================== */
 
   #kiwami-container {  /* 「極」アイコンを表示するコンテナ */
   display: none;
@@ -177,74 +262,17 @@
   }
 
   #kiwami-bg {/* 背景は1フレーム目（0px）で動かさない */
-  left: 0;
-  z-index: 1; /* 後ろ */
+    left: 0;
+    z-index: 1; /* 後ろ */
   }
 
   #kiwami-image {
-  z-index: 2; /* 前 */
+    z-index: 2; /* 前 */
   }
 
-  .wrong-answer-list {
-  list-style: none;
-    padding: 0;
-    margin: 0 0 16px;
-  }
-
- .question-container {
-  flex-shrink: 0; 
-  
-}
-
-.question-container h2 {
-  /* 漢字の大きさ：キャンバス幅の18% */
-  font-size: 10cqw;
-  line-height: 1;
-  margin: 0; 
-}
-.question-container p {
-    font-size: 6cqw;
-    opacity: 0.8;        /* 少し薄くすると漢字が引き立ちます */
-    color: #90ff2f;   
-    margin-top: 15px;     
-}
-
-.button-container {
-  height: 65%; /* クイズエリアの高さの7割を占領 */
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5cqw;
-  width: 92%;
-  margin: 0 auto;
-}
-
-#optionArea button {
-  font-size: 5cqw;
-  height: 100%; /* グリッドの高さに合わせる */
-  width: 100%;
-  padding: 0;   /* 余計な内白をカット */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-   box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
-    border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
-}
-  
-  .correct-answer {
-    background-color: #4CAF50 !important;
-    color: white !important;
-    border-color: #388E3C;
-    transform: scale(1.05);
-  }
-
-   .wrong-answer {
-    background-color: #ff4d4d !important;
-    color: white !important;
-    border-color: #cc0000 !important;
-    transform: scale(1.05) !important;
-  }
-  
+  /* ==========================================================================
+  　ステージクリア
+  ========================================================================== */
   .victory-message-area {
   height: 100%;          /* クイズエリアいっぱいに広げる */
   display: flex;
@@ -253,7 +281,7 @@
   align-items: center;    /* 左右中央 */
 }
 
-.victory-message-area h2 {
+  .victory-message-area h2 {
   line-height: 2;    /* 行の高さを文字ぴったりにする */
   margin: 0;
   font-size: 8cqw;
@@ -261,7 +289,7 @@
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* 光らせる */  
 }
 
-.next-stage-btn {
+  .next-stage-btn {
   height: 20%;
   width: 80cqw;
   font-size: 5cqw;
@@ -276,13 +304,13 @@
   
 }
 
-.next-stage-btn:active {
+  .next-stage-btn:active {
   transform: scale(0.95);    /* 押した時に少し小さくなる */
 }
 
-  /* ==========================================================================
+/* ==========================================================================
    5. アニメーション & 特殊効果
-   ========================================================================== */
+========================================================================== */
   
   @keyframes flash-animation {/* ピカピカ光るアニメーションの定義 */
     0% { 
@@ -333,6 +361,12 @@
     border: 0;
     border-top: 1px solid #333;
     margin: 20px 0;
+  }
+  
+  .wrong-answer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px;
   }
 
   .wrong-answer-list li {

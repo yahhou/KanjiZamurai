@@ -66,7 +66,11 @@ export const gameManager = {
 
     const startBtn = document.getElementById("startBtn");
     // this.startBattle.bind(this) で「このオブジェクトの関数だよ」と正しく伝える
-    startBtn.addEventListener("click", () => this.startBattle());
+    if (startBtn) {
+      startBtn.addEventListener("click", () => {
+        this.startBattle();
+      });
+    }
   },
   /* ==========================================================================
   5.　バトル開始処理

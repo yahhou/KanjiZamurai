@@ -12,6 +12,8 @@ export class Player {
     this.mdf = mdf;
     this.spd = spd;
     this.frameCount = frameCount;
+    this.currentFrame = 0; // 追加：初期フレーム
+    this.frameInterval = 200; // 追加：アニメ速度（ミリ秒）
     this.el = document.getElementById(id);
     this.init();
   }
@@ -39,7 +41,7 @@ export class Player {
   startIdle() {
     this.idleInterval = setInterval(() => {
       this.currentFrame = (this.currentFrame + 1) % this.frameCount;
-      const xShift = this.currentFrame * (100 / (this.frameCount - 1 || 1));
+      const xShift = this.currentFrame * 100;
       this.el.style.backgroundPosition = `${xShift}% 0px`;
     }, this.frameInterval);
   }
