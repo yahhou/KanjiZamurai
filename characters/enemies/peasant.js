@@ -13,7 +13,7 @@ import { Enemy } from './enemy.js';
         spd: 4,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
-        sizeRatio: 50,
+        sizeRatio: 47,
         frameCount: 2,
         idleFrameCount: 2
       });

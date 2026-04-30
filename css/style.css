@@ -17,21 +17,29 @@
     -webkit-tap-highlight-color: transparent;/* タップ時のハイライトを消す */
     /* 見た目の調整 */
     font-family: "Arials";
-  }
+
+    /* 画面全体を中央寄せの箱にする */
+    display: flex;
+    justify-content: center; /* 左右中央 */
+    align-items: center;     /* 上下中央（これが重要！） */
+  
+    /* body自体の高さを画面いっぱいにする */
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; /* 画面全体のスクロールを防ぐ */
+    }
 
   /* ==========================================================================
    基準となるキャンバスの設定
   ========================================================================== */
   #gameCanvas { 
-    aspect-ratio: 9/ 20;
-    /* 画面にフィットさせる（高さ優先） */
-    height: 100dvh;
-    width: auto;
-    max-width: 100%;
+    aspect-ratio: 9 / 16;
+    width: min(100vw, calc(100vh * 9 / 16));
+    height: auto;
     margin: 0 auto;
     position: relative;
     box-sizing: border-box;
-    padding: 20% 0;
+    padding: 0;
     background-color: #1f1f1f;
     overflow: hidden;
     /* 5. コンテナクエリを使うための設定 */
@@ -148,7 +156,7 @@
   bottom: 20%;     /* 足元を地面に合わせる */
   right: 0%;    /* プレイヤーの位置 */
   }
-  
+
   /* ==========================================================================
    4. クイズUI (Quiz Area)
    ========================================================================== */
