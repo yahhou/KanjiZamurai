@@ -73,12 +73,12 @@
   }
 
   #uiWrapper {
-    position: fixed;/* 画面の決まった位置に固定する（スクロールしても動かない） */
+    position: absolute;/* 画面の決まった位置に固定する（スクロールしても動かない） */
     top: 0;/* 画面の上（0,0）を基準点にする */
     left: 0;/* 画面の左（0,0）を基準点にする */
     z-index: 1;
     width: 100%;/* 画面の横幅いっぱいに広げる */
-    height: 100vh;/* 画面の高さいっぱい（100vh）に広げる */
+    height: 100%;/* 画面の高さいっぱい（100vh）に広げる */
     background: rgba(0, 0, 0, 0.5); /* ここで暗くする */
     display: flex;/* 中身を並べるための「入れ物」のルールを適用（Flexbox） */
     justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
@@ -92,6 +92,7 @@
     height: 10%;
     padding: 15px 30px; /* ボタンらしい大きさにする */
     border-radius: 10cqw;
+    padding: 0;
     background: #1f1f1f; /* ボタンの色 */
     color: #ffffff;
     font-size: 5cqw;
