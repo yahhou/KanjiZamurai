@@ -264,7 +264,7 @@
   overflow: hidden; /* 1フレーム分だけ見せる */
   position: relative;
   margin-top: 5cqw;
-  
+
   }
  
   #kiwami-image,#kiwami-bg {
@@ -273,6 +273,7 @@
   max-width: none;  /* 他のCSSの干渉を確実に防ぐ */
   position: absolute;
   top: 0;
+  image-rendering: pixelated;
   }
 
   #kiwami-bg {/* 背景は1フレーム目（0px）で動かさない */
