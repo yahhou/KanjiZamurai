@@ -46,20 +46,20 @@
     bottom: -30vh;
     pointer-events: auto !important;/* 「透明で見えない壁」があっても、このボタンだけは反応するようにする */
     cursor: pointer !important;/* 指マークを確実に出す */
-    height: auto;
+    height: 10%;
     width: 80cqw;
-    min-height:120px;
     display: flex;/* 文字を上下左右の真ん中にきっちり配置する */
     justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
     align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
     text-align: center;/* 中身のテキストを中央揃えにする */
     line-height: 1;/* 行の高さを最小限にして文字のズレを防ぐ */
-    font-size: clamp(1rem, 10vw, 3rem);
+    font-size: 8cqw;
     font-weight: bold;/* 文字を太くして目立たせる */
     position: relative;/* 重なりの順番を一番手前にする（最強レベル） */
     z-index: 9999;
     cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
-    box-shadow: 0 0 10px 1px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
+    border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
   }
 
   #startBtn:active {
@@ -103,6 +103,7 @@
   }
    
    #statusArea {
+    position: absolute;
     height: 20%;
     width: 100%;
     display: flex;
@@ -226,7 +227,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-   box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.5);
+   box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
+    border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
 }
   
   .correct-answer {
@@ -254,13 +256,13 @@
 .victory-message-area h2 {
   line-height: 2;    /* 行の高さを文字ぴったりにする */
   margin: 0;
-  font-size: 10cqw;
+  font-size: 8cqw;
   color: #ffd700;        /* クリアっぽい金色 */
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* 光らせる */  
 }
 
 .next-stage-btn {
-  font-size: clamp(0.8rem, 3vw, 1.6rem);
+  height: 20%;
   width: 80cqw;
   font-size: 5cqw;
     padding: 10px;/* 内側の余白を10px作る（文字と端の距離） */
@@ -268,6 +270,9 @@
     background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
     color: white;/* 文字の色を白にする */
     cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
+     border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
+     box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
+  
   
 }
 
@@ -298,10 +303,27 @@
   }
 
   /* ==========================================================================
-   6. レスポンシブ (スマホ・横向き対応)
+   6. キャラクター
    ========================================================================== */
 
-  
+  /* キャラクターを並べるための横長の箱 */
+  #characterArea {
+  display: flex;
+  justify-content: space-between; /* 左右に振り分ける */
+  align-items: flex-end;         /* 地面に立たせる */
+  width: 100%;
+  height: 100%;                  /* 親（actionArea）いっぱいに広げる */
+  padding: 0 5%;
+  box-sizing: border-box;
+  pointer-events: none;
+  }
+
+  /* プレイヤーと敵の共通設定 */
+  #player, #enemy {
+  width: 45%;                   /* 横幅を少し余裕持たせる */
+  height: 80%;                  /* actionAreaの高さの8割くらいにする */
+  object-fit: contain;          /* 画像がはみ出ないように収める */
+  }
 
   /* ==========================================================================
    7. 結果表示
