@@ -1,5 +1,5 @@
 
-export const thisassets = {
+export const assets = {
   images: {},
   sounds: {}, 
 

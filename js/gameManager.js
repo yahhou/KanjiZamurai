@@ -1,7 +1,8 @@
 
-import { battleManager } from './battleManager.js';
 import { assets } from './assets.js';
+import { battleManager } from './battleManager.js';
 import { quizManager } from './quizManager.js';
+import { Player } from './characterManager.js';
 
 export const gameManager = {
 
@@ -106,4 +107,4 @@ export const gameManager = {
   /* ==========================================================================
   8.　ゲーム起動
   ========================================================================== */ 
-  battleManager.init();
+  gameManager.init();

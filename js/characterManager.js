@@ -1,4 +1,6 @@
-class Player {
+
+
+export class Player {
   constructor({ id, imgSrc, hp, mp, atk, def, mdf, spd, frameCount }) {
     this.id = id;
     this.imgSrc = imgSrc;

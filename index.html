@@ -8,17 +8,10 @@
 
 <body>
   <div id="gameCanvas">
-
-    <!-- ローディング -->
     <div id="loadingArea">Loading...</div>
-
-    <!-- UI -->
     <div id="uiWrapper"></div>
 
-    <!-- バトル画面 -->
-    <div id="battleScreen">
-
-      <!-- 上部：ステータス -->
+    <div id="battleScreen" style="display: none;"> <!-- 最初は隠しておく -->
       <div id="statusArea">
         <div id="kiwami-container">
           <img id="kiwami-bg" alt="">
@@ -26,33 +19,17 @@
         </div>
       </div>
 
-      <!-- 中央：キャラ -->
       <div id="actionArea">
-        <img id="player" src="samurai-Sheet.png" alt="Samurai">
+        <!-- Playerクラスが背景画像として描画するため、divでOK -->
+        <div id="player"></div>
+        <div id="enemy"></div>
       </div>
 
-      <!-- 下部：クイズ -->
       <div id="quizArea"></div>
-
     </div>
   </div>
 
-  <!-- 🔻 JSは最後にまとめる -->
-  <script type="module" src="assets.js"></script>
-  <script type="module" src="quizManager.js"></script>
-  <script type="module" src="battleManager.js"></script>
-  <script type="module" src="character.js"></script>
-  <script type="module" src="screenManager.js"></script>
-  <script type="module" src="gameManager.js"></script>
-
-  <script>
-    window.addEventListener('load', () => {
-      if (typeof loadAssets === 'function') {
-        loadAssets();
-        console.log("Assets loaded.");
-      }
-    });
-  </script>
-
+  <!-- 🔻 監督役のJSを1本だけ読み込む -->
+  <script type="module" src="js/gameManager.js"></script>
 </body>
 </html>

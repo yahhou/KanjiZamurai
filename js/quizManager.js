@@ -1,4 +1,4 @@
-  // 外から呼べるように export をつける
+
 export const quizManager = {
   // --- 管理するデータ（プロパティ） ---
   wordList: [],
