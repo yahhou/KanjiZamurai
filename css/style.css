@@ -60,8 +60,7 @@
     /* 見た目の調整 */
     background-color: #1f1f1f;
     color: #ffffff;
-    font-size: 24px;
-    z-index: 1; /* 一番手前に表示 */
+    font-size: 8cqw;
     pointer-events: none
   }
 
@@ -69,7 +68,7 @@
     position: fixed;/* 画面の決まった位置に固定する（スクロールしても動かない） */
     top: 0;/* 画面の上（0,0）を基準点にする */
     left: 0;/* 画面の左（0,0）を基準点にする */
-    z-index: 2;
+    z-index: 1;
     width: 100%;/* 画面の横幅いっぱいに広げる */
     height: 100vh;/* 画面の高さいっぱい（100vh）に広げる */
     background: rgba(0, 0, 0, 0.5); /* ここで暗くする */
@@ -84,6 +83,7 @@
     width: 70%;
     height: 10%;
     padding: 15px 30px; /* ボタンらしい大きさにする */
+    border-radius: 10cqw;
     background: #1f1f1f; /* ボタンの色 */
     color: #ffffff;
     font-size: 5cqw;
@@ -129,20 +129,26 @@
     display: flex;
     justify-content: space-around; /* プレイヤーと敵を離して配置 */
     align-items: flex-end;        /* 地面に立たせるように下に揃える */
-    padding-bottom: 10%;         /* 足元に少し余裕を持たせる */
     overflow: visible;
     box-sizing: border-box;
   }
-  
-  #player {
+
+  #player{
+  position: absolute; 
   width: 15cqw;  /* コンテナと同じサイズにする */
   height: 15cqw;
-  /* position: absolute; を使うと、actionArea内で自由に動かせます */
-  position: absolute; 
-  bottom: 0;     /* 足元を地面に合わせる */
-  left: 20%;    /* プレイヤーの位置 */
-}
+  bottom: 20%;     /* 足元を地面に合わせる */
+  left: 0%;    /* プレイヤーの位置 */
+  }
 
+  #enemy{
+  position: absolute; 
+  width: 15cqw;  /* コンテナと同じサイズにする */
+  height: 15cqw;
+  bottom: 20%;     /* 足元を地面に合わせる */
+  right: 0%;    /* プレイヤーの位置 */
+  }
+  
   /* ==========================================================================
    4. クイズUI (Quiz Area)
    ========================================================================== */
@@ -175,7 +181,7 @@
   .question-container h2 {
     /* 漢字の大きさ：キャンバス幅の18% */
     font-size: 10cqw;
-    line-height: 1;
+    line-height: 1.5;
     margin: 0; 
   }
   
@@ -196,13 +202,17 @@
     margin: 0 auto;
     grid-template-columns: 1fr 1fr; /* 2カラム */
     grid-template-rows: 1fr 1fr;    /* 2段 */
-    gap: 5cqw;
+    gap: 5cqw 5cqw;
+    margin-bottom: 5%;
+    margin-top: 5%;
   }  
 
   #optionArea button {
     height: 100%; /* グリッドの高さに合わせる */
     width: 100%;
     padding: 10px;
+    background-color: #222222;
+    border-radius: 10cqw;
     color: white;
     font-size: 5cqw;
     cursor: pointer;
@@ -211,12 +221,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  /* マウスを乗せた時（PC用） */
-  #optionArea button:hover {
-    background-color: #333;
-    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6);
   }
 
   /* 押し心地の演出 */
@@ -243,19 +247,20 @@
    『極』アイコン
   ========================================================================== */
 
-  #kiwami-container {  /* 「極」アイコンを表示するコンテナ */
+  #kiwami-container{  /* 「極」アイコンを表示するコンテナ */
   display: none;
-  width: 15cqw;       /* コンテナも1枚分の幅に合わせる */
-  height: 15cqw;
+  width: 20cqw;       /* コンテナも1枚分の幅に合わせる */
+  height: 20cqw;
   margin: 0 auto;/* 真ん中寄せ */
   overflow: hidden; /* 1フレーム分だけ見せる */
   position: relative;
   margin-top: 5cqw;
+  
   }
  
   #kiwami-image,#kiwami-bg {
-  height: 15cqw;      /* 画面幅の15%の高さにする */
-  width: calc(15cqw * 13); /* 高さ1枚分 × 13枚分の横幅を自動計算 */
+  height: 20cqw;      /* 画面幅の15%の高さにする */
+  width: calc(20cqw * 13); /* 高さ1枚分 × 13枚分の横幅を自動計算 */
   max-width: none;  /* 他のCSSの干渉を確実に防ぐ */
   position: absolute;
   top: 0;
@@ -293,14 +298,13 @@
   height: 20%;
   width: 80cqw;
   font-size: 5cqw;
-    padding: 10px;/* 内側の余白を10px作る（文字と端の距離） */
-    border-radius: 0px;/* 角を5px分、少しだけ丸くする */
-    background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
-    color: white;/* 文字の色を白にする */
-    cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
-     border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
-     box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
-  
+  padding: 10px;/* 内側の余白を10px作る（文字と端の距離） */
+  border-radius: 10cqw;
+  background-color: transparent;/* 背景を透明にする（後ろの画像や色が見える） */
+  color: white;/* 文字の色を白にする */
+  cursor: pointer;/* マウスを乗せた時に指マーク（ポインター）に変える */
+  border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
+  box-shadow: 0px 0px 10px 3px rgba(255, 255, 255, 0.5);
   
 }
 

@@ -4,11 +4,12 @@ export const quizManager = {
   wordList: [],
   currentStage: 0,
   correctQuestionCount: 0,
-  MAX_QUESTIONS: 1,
+  MAX_QUESTIONS: 13,
   usedWords: [],
   currentQuestion: {},
   streak: 0,
   wrongAnswers: [],
+  images: {}, 
   
   /* ==========================================================================
   クイズ自体のスタート
@@ -19,9 +20,7 @@ export const quizManager = {
       alert("Spells not loaded yet!");
       return;
     }
-    // HTML要素の表示切り替えなど
-    const container = document.getElementById("kiwami-container");
-    if (container) container.style.display = "block";
+    this.setupKiwami();
 
     this.randomQuestion();
   },
@@ -31,10 +30,6 @@ export const quizManager = {
   ========================================================================== */
 
   randomQuestion() {
-    if (this.correctQuestionCount >= this.MAX_QUESTIONS) {
-      this.victory();
-      return;
-    }
 
     const currentStageWords = this.wordList[this.currentStage];
     const availableWords = currentStageWords.filter(item => !this.usedWords.includes(item.kanji));
@@ -76,7 +71,7 @@ export const quizManager = {
       </div>
       <div id="optionArea" class="button-container">
         ${options.map(o => `
-          <button class="quiz-button" onclick="import('./quizManager.js').then(m => m.quizManager.answer('${o.english}'))">
+          <button class="quiz-button" onclick="quizManager.answer('${o.english}')">
             <div class="yomi-text">${o.english}</div>
           </button>
         `).join("")}
@@ -91,12 +86,13 @@ export const quizManager = {
   
   answer(selected) {
     const buttons = document.querySelectorAll("#optionArea button");
-    this.disableOptionButtons(buttons);
 
     if (selected === this.currentQuestion.english) {
+      this.disableOptionButtons(buttons);
       this.handleCorrectAnswer(buttons);
     } else {
-      this.handleWrongAnswer(buttons);
+      // 不正解の処理をメソッドに集約
+      this.handleWrongAnswer(buttons, selected);
     }
   },
   
@@ -111,18 +107,25 @@ export const quizManager = {
   /* ==========================================================================
   正解後の処理まとめ
   ========================================================================== */
-  
   handleCorrectAnswer(buttons) {
     this.correctQuestionCount++;
     this.updateKiwamiIcon();
-    this.highlightCorrectButton(buttons);
     
+    // 正解ボタンを光らせる
+    buttons.forEach(btn => {
+      if (btn.innerText.trim() === this.currentQuestion.english) {
+        btn.classList.add("correct-answer");
+      }
+    });
+    
+    // --- ここで分岐！ ---
     if (this.correctQuestionCount >= this.MAX_QUESTIONS) {
+      // 規定数に達したら、1秒後に勝利画面へ
       setTimeout(() => this.victory(), 1000);
-      return;
+    } else {
+      // まだなら、1秒後に次の問題へ
+      setTimeout(() => this.randomQuestion(), 1000);
     }
-
-    setTimeout(() => this.randomQuestion(), 1000);
   },
   
   /* ==========================================================================
@@ -140,29 +143,53 @@ export const quizManager = {
   /* ==========================================================================
   不正解後の処理まとめ
   ========================================================================== */
-
-  handleWrongAnswer(buttons) {
+  handleWrongAnswer(buttons, selected) {
     this.streak = 0;
-    this.highlightWrongButton(buttons);
-  
+    
+    // 間違えたボタンを赤くして無効化
+    buttons.forEach(btn => {
+      if (btn.innerText.trim() === selected) {
+        btn.classList.add("wrong-answer");
+        btn.disabled = true;
+      }
+    });
+
+    // 誤答リストへの追加
     if (!this.wrongAnswers.some(item => item[0] === this.currentQuestion.kanji)) {
       this.wrongAnswers.push([this.currentQuestion.kanji, this.currentQuestion.english]);
     }
-    setTimeout(() => this.randomQuestion(), 1500);
   },
-  
+
   /* ==========================================================================
-  不正解時の正解ボタン点灯
+  極みのセットアップ
   ========================================================================== */
-  
-  highlightWrongButton(buttons) {
-    buttons.forEach(btn => {
-      if (btn.innerText.includes(this.currentQuestion.english)) {
-        btn.classList.add("wrong-answer");
-      }
-    });
+  setupKiwami() {
+    const container = document.getElementById("kiwami-container");
+    const bg = document.getElementById("kiwami-bg");
+    const img = document.getElementById("kiwami-image");
+
+    // 1. まずコンテナ（窓枠）を表示
+    if (container) {
+      container.style.display = "block";
+    }
+
+    // 2. 背景画像をセット（動かさない固定画像）
+    if (bg && this.images.ui_Kiwami_BG) {
+      bg.src = this.images.ui_Kiwami_BG.src;
+      bg.style.display = "block";
+    }
+
+    // 3. アニメーション用画像をセット
+    if (img && this.images.ui_Kiwami) {
+      img.src = this.images.ui_Kiwami.src;
+      img.style.display = "block";
+    
+      // 最初の位置（0枚目）にリセット
+      img.style.left = "0cqw";
+      img.classList.remove("is-flashing");
+    }
   },
-  
+
   /* ==========================================================================
   極アイコンの更新
   ========================================================================== */
@@ -170,7 +197,7 @@ export const quizManager = {
   updateKiwamiIcon() {
     const img = document.getElementById("kiwami-image");
     if (!img) return;
-    const xPosition = this.correctQuestionCount * 15;
+    const xPosition = this.correctQuestionCount * 20;
     img.style.left = `-${xPosition}cqw`; 
     if (this.correctQuestionCount >= 1) {
       img.classList.add("is-flashing");
@@ -189,7 +216,7 @@ export const quizManager = {
     quizArea.innerHTML = `
       <div class="victory-message-area">
         <h2>Stage ${this.currentStage + 1} Clear!</h2>
-        <button class="next-stage-btn" onclick="import('./quizManager.js').then(m => m.quizManager.goToNextStage())">Go to next stage</button>
+        <button class="next-stage-btn" onclick="quizManager.goToNextStage()">Go to next stage</button>
       </div>
     `;
   },
@@ -210,3 +237,5 @@ export const quizManager = {
     }
   }
 };
+
+window.quizManager = quizManager;

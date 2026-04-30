@@ -1,5 +1,7 @@
   //他のファイルから Samurai クラスを読み込む
-  import { Samurai } from './characterManager.js';
+  import { Samurai } from '../characters/players/samurai.js';
+  import { Peasant } from '../characters/enemies/peasant.js';
+
 
   export const battleManager = {
   player: null,
@@ -12,6 +14,6 @@
   init() {
     // ここでさっき作った子クラスを呼び出す
     this.player = new Samurai(); 
-    //this.enemy = new Peasant();
+    this.enemy = new Peasant();
   }
 }

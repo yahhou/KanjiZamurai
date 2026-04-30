@@ -2,8 +2,8 @@
 import { assets } from './assets.js';
 import { battleManager } from './battleManager.js';
 import { quizManager } from './quizManager.js';
-import { Player } from './characterManager.js';
-
+import { Samurai } from '../characters/players/samurai.js';
+import { Peasant } from '../characters/enemies/peasant.js';
 export const gameManager = {
 
   /* ==========================================================================
@@ -32,7 +32,7 @@ export const gameManager = {
   stopLoadingAnimation() {
     clearInterval(this.loadingInterval);
     const loadingArea = document.getElementById("loadingArea");
-    if (loadingArea) loadingArea.innerText = "";
+    if (loadingArea) loadingArea.style.display = "none";
   },
   /* ==========================================================================
   4.　データ呼び込み
@@ -52,6 +52,13 @@ export const gameManager = {
         // クイズマネージャーにデータを渡す
         quizManager.wordList = results;
         
+        // 2. クイズマネージャーに「画像データ」を渡す（ここが重要！）
+        // assets.images.ui_Kiwami に画像パスが入っている想定
+        quizManager.images = {
+          ui_Kiwami: assets.images.ui_Kiwami,
+          ui_Kiwami_BG: assets.images.ui_Kiwami
+        };
+
         this.stopLoadingAnimation();
         this.showStartMessage();
       })
@@ -63,11 +70,14 @@ export const gameManager = {
   showStartMessage() {
     const container = document.getElementById("uiWrapper");
     container.innerHTML = `<button id="startBtn"> QUIZ & BATTLE </button>`;
-
+   
     const startBtn = document.getElementById("startBtn");
+
     // this.startBattle.bind(this) で「このオブジェクトの関数だよ」と正しく伝える
     if (startBtn) {
       startBtn.addEventListener("click", () => {
+        
+        container.style.display = "none";
         this.startBattle();
       });
     }

@@ -63,6 +63,5 @@ export const assets = {
   this.sounds.sE_Samurai_Damage = new Audio('assets/sounds/samuraiDamage.mp3');
   this.sounds.sE_Evade = new Audio('assets/sounds/evade1.mp3');
   this.sounds.sE_Onmyoji_Spell = new Audio('assets/sounds/onmyouji_cast_spell.mp3');
-  console.log("素材の読み込みを開始しました");
   }
 };
