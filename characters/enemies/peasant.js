@@ -5,12 +5,12 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/peasant-Sheet.png", 
-        hp: 12,
+        hp: 15,
         mp: 0,
-        atk: 4,
-        def: 2,
-        mdf: 1,
-        spd: 4,
+        atk: 20,
+        def: 4,
+        mdf: 3,
+        spd: 5,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 47,

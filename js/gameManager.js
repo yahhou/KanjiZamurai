@@ -6,13 +6,27 @@ import { Samurai } from '../characters/players/samurai.js';
 import { Peasant } from '../characters/enemies/peasant.js';
 export const gameManager = {
 
+   isLoaded: false, // 追加：ロード完了フラグ
   /* ==========================================================================
   1　.初期化（起動）
   ========================================================================== */
   init() {
+    if (this.isLoaded) {
+      this.showStartMessage();
+      return;
+    }
+
     this.startLoadingAnimation();
     assets.loadAssets();
     this.loadAllWordData();
+
+    // --- ここで「ルール」を1回だけ決めてしまう ---
+    quizManager.onCorrect = () => {
+      battleManager.playerAttack();
+    };
+    quizManager.onWrong = () => {
+      battleManager.enemyAttack();
+    };
   },
 /* ==========================================================================
   2.　ローディング演出
@@ -58,7 +72,8 @@ export const gameManager = {
           ui_Kiwami: assets.images.ui_Kiwami,
           ui_Kiwami_BG: assets.images.ui_Kiwami
         };
-
+        
+        this.isLoaded = true; // ロード完了！
         this.stopLoadingAnimation();
         this.showStartMessage();
       })
@@ -87,21 +102,19 @@ export const gameManager = {
   ========================================================================== */
   startBattle() {
     // ステータスパネルの表示
-    const pPanel = document.getElementById('playerStatusPanel');
-    const ePanel = document.getElementById('enemyStatusPanel');
-    if (pPanel) pPanel.style.display = 'flex';
-    if (ePanel) ePanel.style.display = 'flex';
     
     this.hideStartScreen();
     this.showBattleScreen();
 
     // 他のマネージャーを起動
     battleManager.init(); // 侍たちを登場させる
-    quizManager.start();  // クイズを開始する
+
 
     if (assets.sounds.bgm_Battle) {
       assets.sounds.bgm_Battle.play();
     }
+
+    quizManager.start();
   },
   /* ==========================================================================
   6. 開始画面の非表示
@@ -116,9 +129,64 @@ export const gameManager = {
   showBattleScreen() {
     const battle = document.getElementById("battleScreen");
     if (battle) battle.style.display = "block";
+  },
+  /* ==========================================================================
+  ゲームオーバー
+  ========================================================================== */ 
+  handleGameOver() {
+    // BGMを止めるなどの演出
+    if (assets.sounds.bgm_Battle) assets.sounds.bgm_Battle.pause();
+
+    const container = document.getElementById("quizArea");
+    container.style.display = "flex";
+    container.innerHTML = `
+      
+      <div class="announcement-area">
+        <div class="game-over-area">
+          <h2>Game Over</h2>
+        </div>
+        <button id="retryBtn" class="retry-btn">RETRY</button>
+    </div>
+    `;
+
+    // 2. ボタンを捕まえて、クリックイベントを登録する
+    const retryBtn = document.getElementById("retryBtn");
+    if (retryBtn) {
+      retryBtn.addEventListener("click", () => {
+        this.retry(); // this は gameManager 自身を指します
+      });
+    }
+  },
+
+  /* ==========================================================================
+  リトライ
+  ========================================================================== */
+  retry() {
+    // --- BGMのリセット処理 ---
+    if (assets.sounds.bgm_Battle) {
+      assets.sounds.bgm_Battle.pause();      // 一旦止める
+      assets.sounds.bgm_Battle.currentTime = 0; // 再生位置を最初に戻す
+    }
+    
+    const quizContainer = document.getElementById("quizArea");
+    if (quizContainer) quizContainer.innerHTML = "";
+
+    const battle = document.getElementById("battleScreen");
+    if (battle) battle.style.display = "none";
+
+    // 再び初期化処理へ（isLoadedがtrueなので、ロードを飛ばしてスタートボタンへ戻る）
+    this.init();
+
+    // ★重要：スタートボタンがある「uiWrapper」を再び表示させる
+    const wrapper = document.getElementById("uiWrapper");
+    if (wrapper) {
+      wrapper.style.display = "flex"; // ここが none のままだと何も映らなくなります
+    }
+
   }
-};
   /* ==========================================================================
   8.　ゲーム起動
   ========================================================================== */ 
+  };
+  
   gameManager.init();

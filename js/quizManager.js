@@ -4,7 +4,7 @@ export const quizManager = {
   wordList: [],
   currentStage: 0,
   correctQuestionCount: 0,
-  MAX_QUESTIONS: 13,
+  MAX_QUESTIONS: 3,
   usedWords: [],
   currentQuestion: {},
   streak: 0,
@@ -20,6 +20,7 @@ export const quizManager = {
       alert("Spells not loaded yet!");
       return;
     }
+    this.reset();
     this.setupKiwami();
 
     this.randomQuestion();
@@ -111,6 +112,8 @@ export const quizManager = {
     this.correctQuestionCount++;
     this.updateKiwamiIcon();
     
+    if (this.onCorrect) this.onCorrect();
+      
     // 正解ボタンを光らせる
     buttons.forEach(btn => {
       if (btn.innerText.trim() === this.currentQuestion.english) {
@@ -123,6 +126,7 @@ export const quizManager = {
       // 規定数に達したら、1秒後に勝利画面へ
       setTimeout(() => this.victory(), 1000);
     } else {
+      
       // まだなら、1秒後に次の問題へ
       setTimeout(() => this.randomQuestion(), 1000);
     }
@@ -146,6 +150,8 @@ export const quizManager = {
   handleWrongAnswer(buttons, selected) {
     this.streak = 0;
     
+    if (this.onWrong) this.onWrong();
+
     // 間違えたボタンを赤くして無効化
     buttons.forEach(btn => {
       if (btn.innerText.trim() === selected) {
@@ -212,11 +218,14 @@ export const quizManager = {
 
   victory() {
     // 勝利演出のコード（中身はそのまま）
-    const quizArea = document.getElementById("quizArea");
-    quizArea.innerHTML = `
-      <div class="victory-message-area">
-        <h2>Stage ${this.currentStage + 1} Clear!</h2>
-        <button class="next-stage-btn" onclick="quizManager.goToNextStage()">Go to next stage</button>
+    const container = document.getElementById("quizArea");
+    container.style.display = "flex";
+    container.innerHTML = `
+      <div class="announcement-area">
+        <div class="victory-message-area">
+          <h2>Stage ${this.currentStage + 1} Clear!</h2>
+        </div>
+        <button class="next-stage-btn"onclick="quizManager.goToNextStage()">Go to next stage</button>
       </div>
     `;
   },
@@ -235,6 +244,17 @@ export const quizManager = {
     } else {
       alert("You've completed all the stages!");
     }
+  },
+
+  /* ==========================================================================
+  ゲームオーバー時のデータリセット
+  ========================================================================== */
+  reset(){
+
+    this.currentStage = 0;           // 何問目かを最初に戻す
+    this.currentQuestion = 0;           // 念のためスイッチも空に（gameManagerで再設定するため）
+    this.correctQuestionCount = 0;
+    this.updateKiwamiIcon();
   }
 };
 

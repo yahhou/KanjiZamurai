@@ -10,17 +10,21 @@
   <div id="gameCanvas">
     <div id="loadingArea">Loading...</div>
     <div id="uiWrapper"></div>
-    
+ 
     <div id="battleScreen" style="display: none;"> <!-- 最初は隠しておく -->
-      <div id="statusArea">
-        <div id="kiwami-container">
-          <img id="kiwami-bg" alt="">
-          <img id="kiwami-image" alt="">
+    <div id="statusArea">
+      <div id="kiwami-container">
+        <img id="kiwami-bg" alt="">         <img id="kiwami-image" alt="">
         </div>
       </div>
 
       <div id="actionArea">
-        <div id="player"></div>
+        <div id="player">
+          <div class="player-hp-bar-container">
+            <div class="player-hp-bar-inner"></div>
+          </div>
+        </div>
+        
         <div id="enemy"></div>
       </div>
 

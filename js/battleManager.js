@@ -12,8 +12,37 @@
   ========================================================================== */ 
 
   init() {
-    // ここでさっき作った子クラスを呼び出す
+    this.clearCharacters();
     this.player = new Samurai(); 
     this.enemy = new Peasant();
-  }
+  // 敵のHPバーはどこにも appendChild しなければ画面に出ない
+  },
+
+   /* ==========================================================================
+  プレイヤー攻撃
+  ========================================================================== */ 
+
+  playerAttack() {
+    if (this.player && this.enemy) {
+   this.player.attack(this.enemy);
+  }},
+
+  /* ==========================================================================
+  敵の攻撃
+  ========================================================================== */ 
+
+  enemyAttack() {
+    if (this.enemy && this.player) {
+    this.enemy.attack(this.player);
+    }
+  },
+
+// ★追加：お掃除窓口
+  clearCharacters() {
+    if (this.player) this.player.destroy();
+    if (this.enemy) this.enemy.destroy();
+    this.player = null;
+    this.enemy = null;
+
+}
 }

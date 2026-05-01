@@ -1,4 +1,5 @@
 import { Character } from '../../js/characterManager.js';
+import { gameManager } from '../../js/gameManager.js';
 
 export class Player extends Character {
   constructor(config) {
@@ -6,19 +7,9 @@ export class Player extends Character {
     // プレイヤー共通の初期化（例：現在のレベルなど）
     this.level = 1;
   }
-
-  // 攻撃メソッド
-  attack(target) {
-    console.log(`${this.name}の攻撃！`);
-    const damage = Math.max(1, this.atk - target.def);
-    target.takeDamage(damage);
-  }
-
-  // ダメージを受ける処理（Characterに入れてもOK）
-  takeDamage(amount) {
-    this.hp -= amount;
-    if (this.hp < 0) this.hp = 0;
-    console.log(`${this.name}は${amount}のダメージを受けた！残りHP: ${this.hp}`);
-    // ここでHPバーの更新などを呼ぶと便利
+  die() {
+    super.die(); // 親クラスの「倒れた...」ログも一応出す
+    console.log("ゲームオーバー画面へ移行します");
+    gameManager.handleGameOver();
   }
 }

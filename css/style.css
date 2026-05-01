@@ -52,7 +52,7 @@
   }
   
   /* ==========================================================================
-   ローディング & スタート画面
+   ローディング & スタート　&　ゲームオーバー画面
   ========================================================================== */
   #loadingArea {
     /* 必須：これがないと中央寄せが効きません */
@@ -86,7 +86,7 @@
     pointer-events: auto;/* ここで入力を受け付ける */
   }
 
-  #startBtn {
+  #startBtn{
     /* 1. 画面固定と表示順 */
     width: 70%;
     height: 10%;
@@ -101,7 +101,7 @@
     border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
   } 
 
-  #startBtn:active {
+  #startBtn:active, gameOver:active {
     transform: scale(0.95); /* 押した時に少し凹む演出 */
   }
  
@@ -136,7 +136,6 @@
     height: 40%;
     width: 100%;
     display: flex;
-    justify-content: space-around; /* プレイヤーと敵を離して配置 */
     align-items: flex-end;        /* 地面に立たせるように下に揃える */
     overflow: visible;
     box-sizing: border-box;
@@ -148,6 +147,10 @@
   height: 15cqw;
   bottom: 20%;     /* 足元を地面に合わせる */
   left: 0%;    /* プレイヤーの位置 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   }
 
   #enemy{
@@ -157,7 +160,69 @@
   bottom: 20%;     /* 足元を地面に合わせる */
   right: 0%;    /* プレイヤーの位置 */
   }
+  
 
+  /*HPの表示*/
+  .player-hp-bar-container {
+  width: 50%;           /* バーの長さ */
+  height: 2%;          /* バーの太さ */
+  margin-bottom: -20%; /* ★さらに下げたい場合はマイナスのmarginを使う*/
+  background-color: #4d4d4d; /* 背景を黒っぽくする */
+  overflow: hidden;       /* 中身がはみ出さないように */
+  }
+
+  /* HPバーの中身（緑色の部分） */
+  .player-hp-bar-inner {
+  width: 100%;            /* 最初は満タン */
+  height: 100%;
+  background-color: #2ecc71; /* 体力の色（緑） */
+  transition: width 0.3s ease-out; /* ダメージ時にアニメーションさせる */
+  }
+
+/* ダメージを受けて体力が減った時の色変化（お好みで） */
+.hp-low {
+  background-color: #e74c3c; /* 赤色 */
+}
+  
+/* ダメージ数字の基本スタイル */
+.damage-popup {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffffff; /* ダメージ色（赤系） */
+  font-size: 2rem;
+  font-weight: bold;
+  -webkit-text-stroke: 0.05em #000000;
+  pointer-events: none; /* クリックを邪魔しない */
+  z-index: 100;
+  font-family: 'Arial Black', sans-serif; 
+  
+  /* アニメーション指定：2秒かけて実行 */
+  animation: damageJump 1.5s ease-out forwards;
+}
+
+/* 「ちょこんと上がって戻って消える」アニメーション */
+@keyframes damageJump {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -40px); /* 上に跳ねる */
+  }
+  30% {
+    transform: translate(-50%, -20px); /* 少し戻る */
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -20px); /* 最後は少し上に消える */
+  }
+}
   /* ==========================================================================
    4. クイズUI (Quiz Area)
    ========================================================================== */
@@ -286,9 +351,9 @@
   }
 
   /* ==========================================================================
-  　ステージクリア
+  クリア・ゲームオーバー画面
   ========================================================================== */
-  .victory-message-area {
+  .announcement-area {
   height: 100%;          /* クイズエリアいっぱいに広げる */
   display: flex;
   flex-direction: column;
@@ -296,7 +361,7 @@
   align-items: center;    /* 左右中央 */
 }
 
-  .victory-message-area h2 {
+  .victory-message-area h2, .game-over-area h2 {
   line-height: 2;    /* 行の高さを文字ぴったりにする */
   margin: 0;
   font-size: 8cqw;
@@ -304,7 +369,7 @@
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* 光らせる */  
 }
 
-  .next-stage-btn {
+  .next-stage-btn, .retry-btn {
   height: 20%;
   width: 80cqw;
   font-size: 5cqw;
@@ -318,7 +383,7 @@
   
 }
 
-  .next-stage-btn:active {
+  .next-stage-btn:active, .retry-btn:active {
   transform: scale(0.95);    /* 押した時に少し小さくなる */
 }
 
