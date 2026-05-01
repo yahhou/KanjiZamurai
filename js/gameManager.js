@@ -6,6 +6,9 @@ import { Samurai } from '../characters/players/samurai.js';
 import { Peasant } from '../characters/enemies/peasant.js';
 export const gameManager = {
 
+
+   startBtnSE: new Audio('assets/sounds/StartButton.mp3'),
+   gameOverSE: new Audio('assets/sounds/gameOver.mp3'),
    isLoaded: false, // 追加：ロード完了フラグ
   /* ==========================================================================
   1　.初期化（起動）
@@ -92,8 +95,16 @@ export const gameManager = {
     if (startBtn) {
       startBtn.addEventListener("click", () => {
         
-        container.style.display = "none";
-        this.startBattle();
+        gameManager.playStartBtnSE();
+        // 2. 演出：ボタンを消して画面を少し暗くする（あるいは非表示にする）
+        startBtn.style.pointerEvents = "none"; // 連打防止
+        container.style.backgroundColor = "black"; // 1秒間の暗転演出
+        startBtn.style.opacity = "0"; // ボタンだけ先に消す
+
+        setTimeout(() => {
+          container.style.display = "none";
+          this.startBattle();
+        }, 1000); // 1000ミリ秒 = 1秒
       });
     }
   },
@@ -136,7 +147,7 @@ export const gameManager = {
   handleGameOver() {
     // BGMを止めるなどの演出
     if (assets.sounds.bgm_Battle) assets.sounds.bgm_Battle.pause();
-
+    gameManager.playGameOverSE();
     const container = document.getElementById("quizArea");
     container.style.display = "flex";
     container.innerHTML = `
@@ -183,10 +194,33 @@ export const gameManager = {
       wrapper.style.display = "flex"; // ここが none のままだと何も映らなくなります
     }
 
+  },
+  /* ==========================================================================
+  スタート音
+  ========================================================================== */ 
+   playStartBtnSE(){
+     
+     if (this.startBtnSE) {
+      this.startBtnSE.currentTime = 0;
+      this.startBtnSE.play();
+
+   }
+  },
+   /* ==========================================================================
+  スタート音
+  ========================================================================== */ 
+   
+  playGameOverSE(){
+     
+     if (this.gameOverSE) {
+      this.gameOverSE.currentTime = 0;
+      this.gameOverSE.play();
+
+   }
   }
+
   /* ==========================================================================
   8.　ゲーム起動
   ========================================================================== */ 
-  };
-  
+   };
   gameManager.init();

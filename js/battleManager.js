@@ -1,6 +1,7 @@
   //他のファイルから Samurai クラスを読み込む
   import { Samurai } from '../characters/players/samurai.js';
   import { Peasant } from '../characters/enemies/peasant.js';
+ import { Enemy } from '../characters/enemies/enemy.js';
 
 
   export const battleManager = {
@@ -18,7 +19,7 @@
   // 敵のHPバーはどこにも appendChild しなければ画面に出ない
   },
 
-   /* ==========================================================================
+  /* ==========================================================================
   プレイヤー攻撃
   ========================================================================== */ 
 
@@ -33,9 +34,14 @@
 
   enemyAttack() {
     if (this.enemy && this.player) {
-    this.enemy.attack(this.player);
-    }
+      this.enemy.attack(this.player);
+      this.enemy.playAttackSE();
+      } 
   },
+
+  /* ==========================================================================
+  敵の攻撃
+  ========================================================================== */ 
 
 // ★追加：お掃除窓口
   clearCharacters() {

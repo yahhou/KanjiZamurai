@@ -53,15 +53,17 @@ export const assets = {
 
   this.sounds.bgm_Battle = new Audio('assets/sounds/battle1.mp3');
   this.sounds.bgm_victory = new Audio('assets/sounds/victory.mp3');
-  this.sounds.bgm_GameOver = new Audio('assets/sounds/gameover.mp3');
   
   /* ==========================================================================
   SE
   ========================================================================== */
 
   this.sounds.sE_Samurai_AttakSound = new Audio('assets/sounds/attack1.mp3');
+  this.sounds.sE_Enemy_AttakSound1 = new Audio('assets/sounds/enemyAttack1.mp3');
   this.sounds.sE_Samurai_Damage = new Audio('assets/sounds/samuraiDamage.mp3');
   this.sounds.sE_Evade = new Audio('assets/sounds/evade1.mp3');
   this.sounds.sE_Onmyoji_Spell = new Audio('assets/sounds/onmyouji_cast_spell.mp3');
+  this.sounds.sE_Start_Button = new Audio('assets/sounds/StartButton.mp3');
+  this.sounds.sE_Game_Over = new Audio('assets/sounds/gameOver.mp3');
   }
 };

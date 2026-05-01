@@ -2,7 +2,7 @@
 
 export class Character {
   constructor({ id, imgSrc, hp, mp, atk, def, mdf, spd, width, height,
-              frameCount, sizeRatio, idleFrameCount}) {
+              frameCount, sizeRatio,idleFrameCount, deathFrame}) {
     this.id = id;
     this.imgSrc = imgSrc;
     this.hp = hp;
@@ -16,12 +16,21 @@ export class Character {
     this.height = height || 80; // デフォルト値
     this.frameCount = frameCount;
     this.sizeRatio = sizeRatio || 50;
-    this.idleFrameCount = idleFrameCount || frameCount;
     this.currentFrame = 0; // 追加：初期フレーム
     this.frameInterval = 500; // 追加：アニメ速度（ミリ秒）
-    this.activeTimeouts = [];
+    this.idleFrameCount = idleFrameCount || frameCount;
+    this.deathFrame = deathFrame || 0;
+
     this.el = document.getElementById(id);
+    if (!this.el) return; // 要素がない場合は中断
+    
+    this.sprite = document.createElement('div');
+    this.sprite.className = 'character-sprite';
+    this.el.appendChild(this.sprite); // 親要素の中に入れる
+
     this.init();
+    this.isAttacking = false; // 今攻撃中かどうかのフラグ
+    this.activeTimeouts = [];
   }
 
   /* ==========================================================================
@@ -30,12 +39,36 @@ export class Character {
 
   init() {
     if (!this.el) return;
+    this.el.innerHTML = "";
+
+    // --- 再びスプライトとHPバーを作成して入れ直す ---
+    this.sprite = document.createElement('div');
+    this.sprite.className = 'character-sprite';
+    this.el.appendChild(this.sprite);
+
+    // HPバーのコンテナ作成（ここも init の中で行うと確実です）
+    const hpCont = document.createElement('div');
+    hpCont.className = 'player-hp-bar-container';
+    hpCont.innerHTML = `<div class="player-hp-bar-inner"></div>`;
+    this.el.appendChild(hpCont);
+    // --------------------------------------------------
+
     this.hp = this.maxHp;
     this.updateHPBar();
+
     const displaySize = `${this.sizeRatio}cqw`;
+
+    // 親(this.el)の設定：サイズと位置だけ決める
     Object.assign(this.el.style, {
       width: displaySize,
       height: displaySize,
+      position: "absolute" // 絶対配置を確実にする
+      });
+
+      // 子(this.sprite)の設定：見た目（画像）をこっちに引っ越し！
+      Object.assign(this.sprite.style, {
+      width: "100%",
+      height: "100%",
       backgroundImage: `url('${this.imgSrc}')`,
       backgroundSize: `${this.frameCount * 100}% 100%`, // アニメ用シートの幅
       backgroundRepeat: "no-repeat",
@@ -59,11 +92,22 @@ export class Character {
 
 
     const xShift = (this.currentFrame / (this.frameCount - 1)) * 100;
-    this.el.style.backgroundPosition = `${xShift}% 0px`;
+    this.sprite.style.backgroundPosition = `${xShift}% 0px`;
     },
     this.frameInterval); 
 
     
+  }
+
+  /* ==========================================================================
+　　停止アニメーション
+  ========================================================================== */
+  
+  stopIdle() {
+    if (this.idleInterval) {
+      clearInterval(this.idleInterval);
+      this.idleInterval = null;
+    }
   }
 
   /* ==========================================================================
@@ -93,39 +137,47 @@ export class Character {
   攻撃ロジック
   ========================================================================== */
   attack(target) {
-    // ダメージ計算（ここで一括管理！）
-    const baseDamage = this.atk - Math.floor(target.def / 2);
-    const variation = 0.7 + (Math.random() * 0.2);
-    const finalDamage = Math.floor(Math.max(1, baseDamage * variation));
-
-    console.log(`${this.name}の攻撃！`);
-    target.takeDamage(finalDamage);
+    // 1. ダメージ計算だけ先に行う
+    const damage = this.calculateDamage(target);
+    
+    // 2. アニメーションを開始する
+    // その際、(相手, 与えるダメージ) をセットで渡す
+    this.playAttackAnimation(target, damage);
   }
-  /* ==========================================================================
-  ダメージロジック
+   /* ==========================================================================
+  ダメージ
   ========================================================================== */
-  // 共通の被ダメージロジック
+
   takeDamage(amount) {
     this.hp = Math.max(0, this.hp - amount);
-    console.log(`${this.name}は ${amount} のダメージを受けた！残りHP: ${this.hp}`);
-    
     this.updateHPBar();
-    // ★演出を呼び出す
     this.showDamageEffect(amount);
-    if (this.hp <= 0) {
-      this.die(); // 0になったら共通の「死亡メソッド」を呼ぶ
+      if (this.hp <= 0) {
+    this.die();
     }
   }
 
+  /* ==========================================================================
+  ダメージ計算
+  ========================================================================== */
+  // 共通の被ダメージロジック
+  calculateDamage(target) {
+    const baseDamage = this.atk - Math.floor(target.def / 2);
+    const variation = 0.7 + (Math.random() * 0.2);
+    return Math.floor(Math.max(1, baseDamage * variation));
+  }
+  /* ==========================================================================
+   死亡
+  ========================================================================== */
+
   die() {
-  // ここは空っぽ、あるいは共通の消滅エフェクトなど
-    console.log(`${this.name}は倒れた...`);
+    this.stopIdle();
   }
 
 /* ==========================================================================
-ダメージ数字の演出表示
+　　ダメージ数字の演出表示
 ========================================================================== */
-showDamageEffect(amount) {
+  showDamageEffect(amount) {
     if (!this.el) return;
 
     const damageEl = document.createElement("div");
@@ -142,6 +194,29 @@ showDamageEffect(amount) {
 
     this.activeTimeouts.push(timeoutId);
   }
+
+/* ==========================================================================
+  共通攻撃アニメーション
+========================================================================== */
+playAttackAnimation(target, damage) {
+
+    const targetEl = target.el;
+    this.playEnemyAttackAnimation();
+    target.takeDamage(damage); // これで動く
+  }
+
+/* ==========================================================================
+ 攻撃アニメーションがないキャラ（敵）
+========================================================================== */
+
+playEnemyAttackAnimation() {
+    this.sprite.animate([
+      { transform: 'translateX(0)' },
+      { transform: 'translateX(-50px)' }, // グイッと前に出る
+      { transform: 'translateX(0)' }
+    ], { duration: 150 });
+  }
+
 /* ==========================================================================
 掃除用
 ========================================================================== */

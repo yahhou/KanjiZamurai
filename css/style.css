@@ -151,6 +151,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  z-index: 10;
+  }
+  
+  /* 実際にアニメーションさせるのはこっち */
+  .character-sprite {
+  width: 100%;
+  height: 100%;
+  /* background-image はここには書かない！ */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom center;
   }
 
   #enemy{
@@ -159,18 +170,30 @@
   height: 15cqw;
   bottom: 20%;     /* 足元を地面に合わせる */
   right: 0%;    /* プレイヤーの位置 */
+  z-index: 9;
   }
   
 
   /*HPの表示*/
   .player-hp-bar-container {
+  position: absolute;   /* 親（#player や #enemy）を基準に動かす */
+  bottom: -20%;
   width: 50%;           /* バーの長さ */
   height: 2%;          /* バーの太さ */
-  margin-bottom: -20%; /* ★さらに下げたい場合はマイナスのmarginを使う*/
   background-color: #4d4d4d; /* 背景を黒っぽくする */
   overflow: hidden;       /* 中身がはみ出さないように */
   }
+  
+  /* --- プレイヤー固有の設定 --- */
+  #player .player-hp-bar-container {
+  left: 25%; /* 左側に寄せる、あるいは中央なら left: 25% など */
+  }
 
+/* --- 敵固有の設定 --- */
+  #enemy .player-hp-bar-container {
+  right: 25%; /* 敵は右側にバーを寄せる */
+  }
+  
   /* HPバーの中身（緑色の部分） */
   .player-hp-bar-inner {
   width: 100%;            /* 最初は満タン */
@@ -178,6 +201,10 @@
   background-color: #2ecc71; /* 体力の色（緑） */
   transition: width 0.3s ease-out; /* ダメージ時にアニメーションさせる */
   }
+
+  #enemy .player-hp-bar-inner {
+  background-color: #e74c3c; /* 敵のHPは赤っぽくして「敵感」を出す */
+}
 
 /* ダメージを受けて体力が減った時の色変化（お好みで） */
 .hp-low {
@@ -187,11 +214,11 @@
 /* ダメージ数字の基本スタイル */
 .damage-popup {
   position: absolute;
-  bottom: 5%;
+  bottom: -20%;
   left: 50%;
   transform: translateX(-50%);
   color: #ffffff; /* ダメージ色（赤系） */
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
   -webkit-text-stroke: 0.05em #000000;
   pointer-events: none; /* クリックを邪魔しない */
@@ -369,6 +396,12 @@
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* 光らせる */  
 }
 
+  /* ★ゲームオーバーの色だけ変える：青紫や赤など */
+.game-over-area h2 {
+  color: #ff0000; /* ロイヤルブルー（絶望感のある青） */
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* 光らせる */  
+}
+ 
   .next-stage-btn, .retry-btn {
   height: 20%;
   width: 80cqw;
