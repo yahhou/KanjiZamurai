@@ -4,7 +4,7 @@ export const quizManager = {
   wordList: [],
   currentStage: 0,
   correctQuestionCount: 0,
-  MAX_QUESTIONS: 3,
+  MAX_QUESTIONS: 13,
   usedWords: [],
   currentQuestion: {},
   streak: 0,
@@ -149,7 +149,9 @@ export const quizManager = {
   ========================================================================== */
   handleWrongAnswer(buttons, selected) {
     this.streak = 0;
-    
+    this.correctQuestionCount--;
+    this.updateKiwamiIcon(); // ★ここでアイコンの位置を更新
+
     if (this.onWrong) this.onWrong();
 
     // 間違えたボタンを赤くして無効化
@@ -203,12 +205,23 @@ export const quizManager = {
   updateKiwamiIcon() {
     const img = document.getElementById("kiwami-image");
     if (!img) return;
+
+    const count = Math.max(0, this.correctQuestionCount);
+        console.log(count);
     const xPosition = this.correctQuestionCount * 20;
     img.style.left = `-${xPosition}cqw`; 
-    if (this.correctQuestionCount >= 1) {
+
+    if (count >= 1) {
       img.classList.add("is-flashing");
     } else {
       img.classList.remove("is-flashing");
+    }
+
+    if(count >= 12) {
+      img.classList.add("is-rainbow");
+        console.log("rainbow ON");
+    } else{
+      img.classList.remove("is-rainbow");
     }
   },
   

@@ -56,7 +56,7 @@
   ========================================================================== */
   #loadingArea {
     /* 必須：これがないと中央寄せが効きません */
-    display: flex;
+    display: none;
     justify-content: center;/* 中身を水平方向（左右）の真ん中に寄せる */
     align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
     /* 画面全体を覆う設定 */
@@ -73,6 +73,7 @@
   }
 
   #uiWrapper {
+    display: none;
     position: absolute;/* 画面の決まった位置に固定する（スクロールしても動かない） */
     top: 0;/* 画面の上（0,0）を基準点にする */
     left: 0;/* 画面の左（0,0）を基準点にする */
@@ -85,26 +86,39 @@
     align-items: center;/* 中身を垂直方向（上下）の真ん中に寄せる */
     pointer-events: auto;/* ここで入力を受け付ける */
   }
+  
+  .menu-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
 
-  #startBtn{
-    /* 1. 画面固定と表示順 */
+  .mode-btn{
     width: 70%;
-    height: 10%;
-    padding: 15px 30px; /* ボタンらしい大きさにする */
+    min-height: 60px;
+    padding: 15px 30px;
     border-radius: 10cqw;
-    padding: 0;
-    background: #1f1f1f; /* ボタンの色 */
+    background: #1f1f1f;
     color: #ffffff;
     font-size: 5cqw;
     font-weight: bold;
     box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
-    border: 1px solid #ffffff; /* 枠線も白くすると、より光が強調されます */
-  } 
-
-  #startBtn:active, gameOver:active {
-    transform: scale(0.95); /* 押した時に少し凹む演出 */
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    transition: transform 0.1s;
   }
- 
+
+  .mode-btn:active{
+    transform: scale(0.95);/* 押した時に少し凹む演出 */
+  }
+  
+  .mode-btn:hover {
+    background: #333333;
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.7);
+  }
+  
   /* ==========================================================================
    3. バトル・メイン画面
   ========================================================================== */
@@ -229,6 +243,15 @@
   animation: damageJump 1.5s ease-out forwards;
 }
 
+.damage-popup.critical {
+  color: #ffd700;
+  font-weight: 900; /*太く*/
+  text-shadow:
+  0 0 5px #fff,
+  0 0 15px #ffa500;
+  z-index: 100;
+}
+
 /* 「ちょこんと上がって戻って消える」アニメーション */
 @keyframes damageJump {
   0% {
@@ -250,6 +273,30 @@
     transform: translate(-50%, -20px); /* 最後は少し上に消える */
   }
 }
+
+  /* ==========================================================================
+  会心の一撃エフェクト
+   ========================================================================== */
+  #flash-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:  white;
+    opacity: 0;
+    pointer-events: none;/* クリックを邪魔しない */
+    z-index: 9999;        /* 一番手前に */
+  }
+  
+   .flash-active {
+    animation: flash-anime 0.2s ease-out;
+   }
+    @keyframes flash-anime {
+      0% { opacity: 0.8;}
+      100%{ opacity: 0;}
+    }
+
   /* ==========================================================================
    4. クイズUI (Quiz Area)
    ========================================================================== */
@@ -376,6 +423,14 @@
   #kiwami-image {
     z-index: 2; /* 前 */
   }
+  
+  #kiwami-image.is-rainbow{
+    animation: rainbowShift 1s linear infinite;
+  }
+  @keyframes rainbowShift {
+    0% { filter: hue-rotate(0deg);}
+    100% { filter: hue-rotate(360deg) ;}
+  }  
 
   /* ==========================================================================
   クリア・ゲームオーバー画面

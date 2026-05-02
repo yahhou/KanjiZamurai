@@ -52,6 +52,9 @@ export const assets = {
   ========================================================================== */
 
   this.sounds.bgm_Battle = new Audio('assets/sounds/battle1.mp3');
+  this.sounds.bgm_Battle.load();
+  this.sounds.bgm_Battle.loop = true;
+  
   this.sounds.bgm_victory = new Audio('assets/sounds/victory.mp3');
   
   /* ==========================================================================
@@ -65,5 +68,6 @@ export const assets = {
   this.sounds.sE_Onmyoji_Spell = new Audio('assets/sounds/onmyouji_cast_spell.mp3');
   this.sounds.sE_Start_Button = new Audio('assets/sounds/StartButton.mp3');
   this.sounds.sE_Game_Over = new Audio('assets/sounds/gameOver.mp3');
+   this.sounds.sE_CriticalHit = new Audio('assets/sounds/criticalHit.mp3');
   }
 };

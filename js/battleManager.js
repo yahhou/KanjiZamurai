@@ -35,7 +35,6 @@
   enemyAttack() {
     if (this.enemy && this.player) {
       this.enemy.attack(this.player);
-      this.enemy.playAttackSE();
       } 
   },
 

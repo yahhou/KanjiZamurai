@@ -1,7 +1,7 @@
 
 
 export class Character {
-  constructor({ id, imgSrc, hp, mp, atk, def, mdf, spd, width, height,
+  constructor({ id, imgSrc, hp, mp, atk, def, mdf, spd, critRate, width, height,
               frameCount, sizeRatio,idleFrameCount, deathFrame}) {
     this.id = id;
     this.imgSrc = imgSrc;
@@ -12,6 +12,7 @@ export class Character {
     this.def = def;
     this.mdf = mdf;
     this.spd = spd;
+    this.critRate = critRate || 5;
     this.width = width || 80;  // デフォルト値
     this.height = height || 80; // デフォルト値
     this.frameCount = frameCount;
@@ -31,6 +32,8 @@ export class Character {
     this.init();
     this.isAttacking = false; // 今攻撃中かどうかのフラグ
     this.activeTimeouts = [];
+
+     this.criticalSound = new Audio('assets/sounds/criticalHit.mp3');
   }
 
   /* ==========================================================================
@@ -137,34 +140,46 @@ export class Character {
   攻撃ロジック
   ========================================================================== */
   attack(target) {
-    // 1. ダメージ計算だけ先に行う
-    const damage = this.calculateDamage(target);
     
-    // 2. アニメーションを開始する
-    // その際、(相手, 与えるダメージ) をセットで渡す
-    this.playAttackAnimation(target, damage);
+    const { amount, isCritical }= this.calculateDamage(target);
+
+    this.playAttackAnimation(target, amount, isCritical)
   }
    /* ==========================================================================
-  ダメージ
+  ダメージを受ける
   ========================================================================== */
 
-  takeDamage(amount) {
+  takeDamage(amount, isCritical = false) {
     this.hp = Math.max(0, this.hp - amount);
     this.updateHPBar();
-    this.showDamageEffect(amount);
-      if (this.hp <= 0) {
+
+    this.showDamageEffect(amount, isCritical);
+
+    if(this.hp <= 0){
     this.die();
     }
   }
 
   /* ==========================================================================
-  ダメージ計算
+  ダメージ計算(会心の一撃含む)
   ========================================================================== */
   // 共通の被ダメージロジック
   calculateDamage(target) {
     const baseDamage = this.atk - Math.floor(target.def / 2);
-    const variation = 0.7 + (Math.random() * 0.2);
-    return Math.floor(Math.max(1, baseDamage * variation));
+    const variation = 0.7 + (Math.random() * 0.2); 
+    let finalDamage = Math.floor(Math.max(1, baseDamage * variation));
+
+    const isCritical = Math.random() * 100 < this.critRate;
+
+    if(isCritical){
+
+      finalDamage = Math.floor(finalDamage * 1.7);
+    }
+  return{
+    amount: finalDamage,
+    isCritical: isCritical
+  };
+
   }
   /* ==========================================================================
    死亡
@@ -177,12 +192,23 @@ export class Character {
 /* ==========================================================================
 　　ダメージ数字の演出表示
 ========================================================================== */
-  showDamageEffect(amount) {
+  showDamageEffect(amount, isCritical) {
     if (!this.el) return;
 
     const damageEl = document.createElement("div");
     damageEl.className = "damage-popup";
-    damageEl.innerText = amount;
+
+    if(isCritical){
+
+      damageEl.classList.add("critical");
+      damageEl.innerText = `✨${amount}✨`;
+      this.playCriticalHitSE();
+      if(isCritical) this.triggerFlash();
+       
+    }else {
+      damageEl.innerText = amount; // 通常時も数字を出す
+    }
+  
     this.el.appendChild(damageEl);
 
     // ★setTimeoutの戻り値（ID）を保存する
@@ -198,11 +224,23 @@ export class Character {
 /* ==========================================================================
   共通攻撃アニメーション
 ========================================================================== */
-playAttackAnimation(target, damage) {
+playAttackAnimation(target, damage, isCritical) {
+  this.isAttacking = true;
 
-    const targetEl = target.el;
+  if (isCritical){
+    console.log(`%c💀 敵の会心の一撃！ ダメージ: ${damage}`, "color: #8e44ad; font-weight: bold;");
+    this.triggerFlash();
+    this.playCriticalHitSE();
+  }else{
+     this.playAttackSE();
+  }
+    
     this.playEnemyAttackAnimation();
-    target.takeDamage(damage); // これで動く
+    target.takeDamage(damage, isCritical); // これで動く
+
+    setTimeout(() => {
+      this.isAttacking = false;
+    }, 150);
   }
 
 /* ==========================================================================
@@ -216,7 +254,34 @@ playEnemyAttackAnimation() {
       { transform: 'translateX(0)' }
     ], { duration: 150 });
   }
+/* ==========================================================================
+　　会心の一撃
+========================================================================== */
+triggerFlash() {
+ const layer = document.getElementById('flash-layer');
+ if(!layer) {
+  console.error("flash-layerが}見つかりません。HTMLにIDがあるか確認してください。");
+    return;
+}
+ // クラスを一度消して、付け直すことでアニメーションを再実行
+ layer.classList.remove('flash-active');
+ void layer.offsetWidth;// おまじない（再描画を強制）
+ layer.classList.add('flash-active');
 
+console.log("✨ 画面フラッシュ実行"); // これでコンソールでも確認可能
+}
+
+/* ==========================================================================
+クリティカルヒットサウンド
+========================================================================== */
+playCriticalHitSE(){
+     
+     if (this.criticalSound) {
+      this.criticalSound.currentTime = 0;
+      this.criticalSound.play();
+
+   }
+  }
 /* ==========================================================================
 掃除用
 ========================================================================== */

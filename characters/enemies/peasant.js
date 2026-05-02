@@ -7,10 +7,11 @@ import { Enemy } from './enemy.js';
         imgSrc: "assets/images/peasant-Sheet.png", 
         hp: 15,
         mp: 0,
-        atk: 20,
-        def: 4,
-        mdf: 3,
-        spd: 5,
+        atk: 10,
+        def: 5,
+        mdf: 10,
+        spd: 10,
+        critRate: 10,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 47,

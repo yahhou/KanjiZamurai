@@ -4,125 +4,174 @@ import { battleManager } from './battleManager.js';
 import { quizManager } from './quizManager.js';
 import { Samurai } from '../characters/players/samurai.js';
 import { Peasant } from '../characters/enemies/peasant.js';
+
 export const gameManager = {
 
+   stageConfigs:[
+    {id: 1, name:"Legendary Samurai", files:['word_list_7.json']},
+    {id: 2, name:"Novice Samurai", files:['word_list_1.json', 'word_list_2.json', 'word_list_3.json', 'word_list_4.json', 'word_list_5.json', 'word_list_6.json']},
+    // 今後ここに行を追加するだけでボタンが増える
+  ],
 
    startBtnSE: new Audio('assets/sounds/StartButton.mp3'),
    gameOverSE: new Audio('assets/sounds/gameOver.mp3'),
    isLoaded: false, // 追加：ロード完了フラグ
+   loadingInterval: null,
+
   /* ==========================================================================
   1　.初期化（起動）
   ========================================================================== */
   init() {
-    if (this.isLoaded) {
-      this.showStartMessage();
-      return;
-    }
-
     this.startLoadingAnimation();
-    assets.loadAssets();
-    this.loadAllWordData();
+
+    if (!this.isLoaded) {
+      assets.loadAssets();
+
+    setTimeout(() => {
+    this.isLoaded = true;
+    this.stopLoadingAnimation();
+    this.showStartMessage();
+    },2000);
+  } else {
+    this.stopLoadingAnimation();
+    this.showStartMessage();
+  }
 
     // --- ここで「ルール」を1回だけ決めてしまう ---
-    quizManager.onCorrect = () => {
-      battleManager.playerAttack();
-    };
-    quizManager.onWrong = () => {
-      battleManager.enemyAttack();
-    };
+    quizManager.onCorrect = () => battleManager.playerAttack();
+    quizManager.onWrong = () => battleManager.enemyAttack();
+
   },
 /* ==========================================================================
   2.　ローディング演出
   ========================================================================== */
   startLoadingAnimation() {
     const loadingArea = document.getElementById("loadingArea");
+    if(!loadingArea) return;
+    loadingArea.style.display = "flex";
     let dots = 0;
-    // windowに保存せず、このオブジェクト内で管理するのが綺麗
     this.loadingInterval = setInterval(() => {
       dots = (dots + 1) % 4;
-      loadingArea.innerText = "loading" + ".".repeat(dots);
+      loadingArea.innerText = "Loading" + ".".repeat(dots);
     }, 500);
   },
   /* ==========================================================================
   3.　ロード終了演出
   ========================================================================== */
   stopLoadingAnimation() {
-    clearInterval(this.loadingInterval);
+    if(this.loadingInterval){
+      clearInterval(this.loadingInterval);
+      this.loadingInterval = null;
+    }
+
     const loadingArea = document.getElementById("loadingArea");
-    if (loadingArea) loadingArea.style.display = "none";
+    if (loadingArea) {
+      loadingArea.style.display = "none";
+      loadingArea.innerText = "";
+    }
   },
   /* ==========================================================================
-  4.　データ呼び込み
+  4.　データ呼び込み（選択されたファイルをフェッチ）
   ========================================================================== */
-  loadAllWordData() {
-    const stages = [
-      'word_list_1.json', 'word_list_2.json', 'word_list_3.json',
-      'word_list_4.json', 'word_list_5.json', 'word_list_6.json'
-    ];
+  loadSelectedStageData(files) {
+    this.startLoadingAnimation();
 
-    const fetchPromises = stages.map(stage => 
-      fetch(`assets/words/${stage}`).then(res => res.json())
+    // 修正：files（配列）の中身を一つずつfetchする
+    const fetchPromises = files.map(fileName => 
+      fetch(`assets/words/${fileName}`).then(res => {
+        if (!res.ok) throw new Error(`Fetch error: ${fileName}`);
+        return res.json();
+      })
     );
 
     Promise.all(fetchPromises)
       .then(results => {
-        // クイズマネージャーにデータを渡す
-        quizManager.wordList = results;
+        quizManager.wordList = results; 
+        this.stopLoadingAnimation();
         
-        // 2. クイズマネージャーに「画像データ」を渡す（ここが重要！）
-        // assets.images.ui_Kiwami に画像パスが入っている想定
         quizManager.images = {
-          ui_Kiwami: assets.images.ui_Kiwami,
+          ui_Kiwami: assets.images.ui_Kiwami,    // 実際のファイルパスを直接書く
           ui_Kiwami_BG: assets.images.ui_Kiwami
         };
         
-        this.isLoaded = true; // ロード完了！
+        this.isLoaded = true;
         this.stopLoadingAnimation();
-        this.showStartMessage();
+        this.startBattle();
       })
-      .catch(error => console.error("読み込みエラー:", error));
+      .catch(error => {
+        console.error("読み込みエラー:", error);
+        this.stopLoadingAnimation();
+      });
   },
+
   /* ==========================================================================
   4. 画面の切り替え
   ========================================================================== */ 
   showStartMessage() {
     const container = document.getElementById("uiWrapper");
-    container.innerHTML = `<button id="startBtn"> QUIZ & BATTLE </button>`;
-   
-    const startBtn = document.getElementById("startBtn");
+    if(!container) return;
 
-    // this.startBattle.bind(this) で「このオブジェクトの関数だよ」と正しく伝える
-    if (startBtn) {
-      startBtn.addEventListener("click", () => {
+    container.style.display = "flex";// リトライ時などのために表示を確実にする
+    container.style.backgroundColor = "transparent"; // 暗転リセット
+    container.style.opacity = "1";
+
+    // ボタンの自動生成
+    let buttonsHtml = `<div class="menu-container">`;
+    this.stageConfigs.forEach(stage => {
+      buttonsHtml += `<button class = "mode-btn" data-stage-id="${stage.id}">${stage.name}</button>`;
+    });
+    buttonsHtml += `</div>`;
+    container.innerHTML = buttonsHtml;
+
+    // 全てのボタンにイベントを設定
+    const buttons = container.querySelectorAll(".mode-btn");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        this.playStartBtnSE();
+        if(assets.sounds.bgm_Battle){
+          assets.sounds.bgm_Battle.play().then(() => {
+            assets.sounds.bgm_Battle.pause();
+          }).catch(e => console.log("Audio play blocked"));
+        }
+
+        const stageId = parseInt(e.currentTarget.dataset.stageId);
+        const selectedStage = this.stageConfigs.find(s => s.id === stageId);
         
-        gameManager.playStartBtnSE();
-        // 2. 演出：ボタンを消して画面を少し暗くする（あるいは非表示にする）
-        startBtn.style.pointerEvents = "none"; // 連打防止
-        container.style.backgroundColor = "black"; // 1秒間の暗転演出
-        startBtn.style.opacity = "0"; // ボタンだけ先に消す
+        container.style.transition = "1s";
+        container.style.backgroundColor = "black";
+        btn.parentElement.style.opacity = "0";
 
         setTimeout(() => {
           container.style.display = "none";
-          this.startBattle();
-        }, 1000); // 1000ミリ秒 = 1秒
+         // 選択されたステージのファイルを読み込む
+          this.loadSelectedStageData(selectedStage.files);
+        },1000);
       });
-    }
+    });
   },
+
   /* ==========================================================================
   5.　バトル開始処理
   ========================================================================== */
-  startBattle() {
-    // ステータスパネルの表示
-    
+  startBattle() {  
     this.hideStartScreen();
     this.showBattleScreen();
-
-    // 他のマネージャーを起動
-    battleManager.init(); // 侍たちを登場させる
-
+    battleManager.init(); 
 
     if (assets.sounds.bgm_Battle) {
-      assets.sounds.bgm_Battle.play();
+      // 一度 pause してから再生し直すと、ブラウザの再生制限を突破しやすいです
+      assets.sounds.bgm_Battle.pause();
+      assets.sounds.bgm_Battle.currentTime = 0;
+
+      // play() は Promise を返すので、エラーをキャッチできるようにします
+      const playPromise = assets.sounds.bgm_Battle.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.error("BGM再生に失敗しました:", error);
+          // 失敗した場合は、画面のどこかをクリックしたら流れるように仕込むのも手です
+        });
+      }
     }
 
     quizManager.start();
@@ -147,26 +196,21 @@ export const gameManager = {
   handleGameOver() {
     // BGMを止めるなどの演出
     if (assets.sounds.bgm_Battle) assets.sounds.bgm_Battle.pause();
-    gameManager.playGameOverSE();
+    this.playGameOverSE();
+
     const container = document.getElementById("quizArea");
+    if(!container) return;
     container.style.display = "flex";
     container.innerHTML = `
       
       <div class="announcement-area">
         <div class="game-over-area">
-          <h2>Game Over</h2>
-        </div>
+          <h2>Game Over</h2></div>
         <button id="retryBtn" class="retry-btn">RETRY</button>
-    </div>
+      </div>
     `;
 
-    // 2. ボタンを捕まえて、クリックイベントを登録する
-    const retryBtn = document.getElementById("retryBtn");
-    if (retryBtn) {
-      retryBtn.addEventListener("click", () => {
-        this.retry(); // this は gameManager 自身を指します
-      });
-    }
+    document.getElementById("retryBtn")?.addEventListener("click", () => this.retry());
   },
 
   /* ==========================================================================
@@ -187,40 +231,32 @@ export const gameManager = {
 
     // 再び初期化処理へ（isLoadedがtrueなので、ロードを飛ばしてスタートボタンへ戻る）
     this.init();
-
-    // ★重要：スタートボタンがある「uiWrapper」を再び表示させる
-    const wrapper = document.getElementById("uiWrapper");
-    if (wrapper) {
-      wrapper.style.display = "flex"; // ここが none のままだと何も映らなくなります
-    }
-
   },
+
   /* ==========================================================================
   スタート音
   ========================================================================== */ 
-   playStartBtnSE(){
+  playStartBtnSE(){
      
-     if (this.startBtnSE) {
+    if (this.startBtnSE) {
       this.startBtnSE.currentTime = 0;
       this.startBtnSE.play();
-
-   }
+    }
   },
+
    /* ==========================================================================
   スタート音
   ========================================================================== */ 
-   
   playGameOverSE(){
      
-     if (this.gameOverSE) {
+    if (this.gameOverSE) {
       this.gameOverSE.currentTime = 0;
       this.gameOverSE.play();
-
-   }
+    }
   }
 
   /* ==========================================================================
   8.　ゲーム起動
   ========================================================================== */ 
-   };
+};
   gameManager.init();
