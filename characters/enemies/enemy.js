@@ -1,4 +1,6 @@
 import { Character } from '../../js/characterManager.js';
+import { battleManager } from '../../js/battleManager.js';
+
 
 export class Enemy extends Character {
     constructor(config) {
@@ -22,12 +24,28 @@ export class Enemy extends Character {
   }
 
   /* ==========================================================================
-  死亡
+  死んだ時の処理
   ========================================================================== */ 
- 
-    die() {
-      super.die();
-      console.log("敵を倒した！勝利演出へ");
-    // ここで quizManager.victory() などを呼ぶ
-}
+  die() {
+    if(this.isDead) return;
+    this.isDead = true;
+
+    super.die()
+
+    battleManager.checkBattleStatus();
+
+    if(this.el){
+        this.el.classList.add('fade-out');
+
+        setTimeout(() => {
+
+          if(this.el){
+            this.el.remove();
+            this.el = null;
+          }
+           if (battleManager.enemy === this) {
+      battleManager.enemy = null;}
+       }, 1000);
+      }
+  }
 }

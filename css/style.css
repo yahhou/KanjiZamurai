@@ -1,33 +1,38 @@
 
   /* ==========================================================================
-    基本設定 (Base)
+      基本設定(base)
+  ==========================================================================
+  */
+
+  html,
+  body,
+  button,
+  input,
+  select,
+  textarea { font-family: "DotGothic16", sans-serif;
+  }
+
+
+  /* ==========================================================================
+    基本設定
    ========================================================================== */
-   body {
+    body {
     box-sizing: border-box;
     background-color: #1f1f1f;
-    color: #ffffff;  
-    overflow: hidden;/* 画面からはみ出た部分を隠す（＝スクロールできないようにする） */
-    height: 100dvh;/* 高さを、今見ている画面の縦幅いっぱい（100%）にする */
-    width: 100%;/* 横幅を、今見ている画面の横幅いっぱい（100%）にする */
+    color: #ffffff;
     margin: 0;
     padding: 0;
-    /* 連打・選択対策 */
-    user-select: none;/* スマホでのテキスト選択を禁止（連打対策） */
-    -webkit-user-select: none;
-    -webkit-tap-highlight-color: transparent;/* タップ時のハイライトを消す */
-    /* 見た目の調整 */
-    font-family: "Arials";
-
-    /* 画面全体を中央寄せの箱にする */
-    display: flex;
-    justify-content: center; /* 左右中央 */
-    align-items: center;     /* 上下中央（これが重要！） */
-  
-    /* body自体の高さを画面いっぱいにする */
-    height: 100vh;
     width: 100vw;
-    overflow: hidden; /* 画面全体のスクロールを防ぐ */
-    }
+    height: 100dvh;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 
   /* ==========================================================================
    基準となるキャンバスの設定
@@ -91,7 +96,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 45px;
     width: 100%;
   }
 
@@ -108,6 +113,7 @@
     border: 1px solid #ffffff;
     cursor: pointer;
     transition: transform 0.1s;
+     font-family: inherit;
   }
 
   .mode-btn:active{
@@ -145,15 +151,62 @@
    /* ==========================================================================
    3. キャラクター・敵の表示エリア
   ========================================================================== */
-  #actionArea {
+   #actionArea {
     position: relative;
     height: 40%;
     width: 100%;
-    display: flex;
-    align-items: flex-end;        /* 地面に立たせるように下に揃える */
     overflow: visible;
     box-sizing: border-box;
   }
+
+   .battle-status-ui {
+    position: absolute;
+    bottom: 4%;
+    width: 32%;
+    z-index: 30;
+    pointer-events: none;
+  }
+  
+
+  #player-ui {
+    left: 6%;
+  }
+
+  #enemy-ui {
+    right: 6%;
+  }
+  
+  .battle-status-ui .hp-bar-container,
+  .battle-status-ui .exp-bar-container {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 100%;
+    height: 6px;
+    background-color: #4d4d4d;
+    overflow: hidden;
+    border: 1px solid #111;
+  }
+
+  .battle-status-ui .exp-bar-container {
+    margin-bottom: 4px;
+  }
+
+  .hp-bar-inner {
+    width: 100%;
+    height: 100%;
+    background-color: #2ecc71;
+    transition: width 0.3s ease-out;
+  }
+
+  .level-text {
+    position: absolute;
+    left: 0;
+    top: -1.4em;
+    font-size: 3cqw;
+    color: #ffffff;
+  }
+
 
   #player{
   position: absolute; 
@@ -168,6 +221,10 @@
   z-index: 10;
   }
   
+  .character-container {
+    position: absolute;
+  }
+
   /* 実際にアニメーションさせるのはこっち */
   .character-sprite {
   width: 100%;
@@ -185,40 +242,48 @@
   bottom: 20%;     /* 足元を地面に合わせる */
   right: 0%;    /* プレイヤーの位置 */
   z-index: 9;
+  transition: opacity 0.5s ease, transofrom 1s ease !important;
+  opacity: 1;
+  }
+
+  .fade-out{
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
   
 
-  /*HPの表示*/
-  .player-hp-bar-container {
-  position: absolute;   /* 親（#player や #enemy）を基準に動かす */
-  bottom: -20%;
-  width: 50%;           /* バーの長さ */
-  height: 2%;          /* バーの太さ */
-  background-color: #4d4d4d; /* 背景を黒っぽくする */
-  overflow: hidden;       /* 中身がはみ出さないように */
-  }
-  
-  /* --- プレイヤー固有の設定 --- */
-  #player .player-hp-bar-container {
-  left: 25%; /* 左側に寄せる、あるいは中央なら left: 25% など */
+  /* HPバーの外枠 */
+  .hp-bar-container {
+    position: absolute;
+    left: 25%;
+    bottom: -12%;
+    width: 50%;
+    height: 6px;
+    background-color: #4d4d4d;
+    overflow: hidden;
+    z-index: 10;
+    border: 1px solid #111;
   }
 
-/* --- 敵固有の設定 --- */
-  #enemy .player-hp-bar-container {
-  right: 25%; /* 敵は右側にバーを寄せる */
-  }
   
-  /* HPバーの中身（緑色の部分） */
-  .player-hp-bar-inner {
-  width: 100%;            /* 最初は満タン */
-  height: 100%;
-  background-color: #2ecc71; /* 体力の色（緑） */
-  transition: width 0.3s ease-out; /* ダメージ時にアニメーションさせる */
+   /* プレイヤーのHPバー位置 */
+  #player .hp-bar-container {
+    left: 25%;
   }
 
-  #enemy .player-hp-bar-inner {
-  background-color: #e74c3c; /* 敵のHPは赤っぽくして「敵感」を出す */
-}
+
+  /* 敵のHPバー位置 */
+  #enemy .hp-bar-container {
+    left: 25%;
+  }
+  
+  /* HPバーの中身 */
+  .hp-bar-inner {
+    width: 100%;
+    height: 100%;
+    background-color: #2ecc71;
+    transition: width 0.3s ease-out;
+  }
 
 /* ダメージを受けて体力が減った時の色変化（お好みで） */
 .hp-low {
@@ -228,28 +293,42 @@
 /* ダメージ数字の基本スタイル */
 .damage-popup {
   position: absolute;
-  bottom: -20%;
+  bottom: 110%;
   left: 50%;
   transform: translateX(-50%);
-  color: #ffffff; /* ダメージ色（赤系） */
+
   font-size: 3rem;
-  font-weight: bold;
-  -webkit-text-stroke: 0.05em #000000;
+  font-family: inherit;
   pointer-events: none; /* クリックを邪魔しない */
   z-index: 100;
-  font-family: 'Arial Black', sans-serif; 
+    text-shadow:
+  0 0 5px #fff,
+  0 0 15px #000000;
   
   /* アニメーション指定：2秒かけて実行 */
   animation: damageJump 1.5s ease-out forwards;
 }
 
+.battle-status-ui .damage-popup {
+  bottom: 100%;
+  font-size: 5cqw;
+}
+
 .damage-popup.critical {
   color: #ffd700;
   font-weight: 900; /*太く*/
+  font-family: inherit;
   text-shadow:
-  0 0 5px #fff,
   0 0 15px #ffa500;
-  z-index: 100;
+  z-index: 3;
+}
+
+.damage-popup.evade-popup {
+  color: #8fd3ff;
+  font-weight: 900;
+  text-shadow:
+    0 0 6px #ffffff,
+    0 0 14px #2aa8ff;
 }
 
 /* 「ちょこんと上がって戻って消える」アニメーション */
@@ -273,6 +352,44 @@
     transform: translate(-50%, -20px); /* 最後は少し上に消える */
   }
 }
+
+  /* ==========================================================================
+   レベルアップ関連
+  ========================================================================== */
+
+    .level-text {
+    position: absolute;
+    left: 0;
+    top: -1.4em;
+    width: 100%;
+    height: auto;
+    line-height: 1;
+    font-size: 3cqw;
+    color: #ffffff;
+    text-align: left;
+    z-index: 11;
+  }
+
+  .exp-bar-container {
+    position: absolute;
+    left: 25%;
+    bottom: -22%;
+    width: 50%;
+    height: 6px;
+    background-color: #4d4d4d;
+    overflow: hidden;
+    z-index: 10;
+    border: 1px solid #111;
+  }
+
+  .level-up-popup {
+    bottom: 85%;
+    color: #f1c40f;
+    font-size: 5cqw;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 12px #f1c40f;
+  }
 
   /* ==========================================================================
   会心の一撃エフェクト
@@ -331,6 +448,7 @@
     font-size: 10cqw;
     line-height: 1.5;
     margin: 0; 
+     font-family: inherit;
   }
   
   .question-container p {
@@ -338,6 +456,7 @@
     opacity: 0.8;        /* 少し薄くすると漢字が引き立ちます */
     color: #90ff2f;   
     margin: 5px 0 0 0;   
+     font-family: inherit;
   }
   
   /* ==========================================================================
@@ -521,29 +640,82 @@
   }
 
   /* ==========================================================================
-   7. 結果表示
-   ========================================================================== */
-
-  hr {
-    border: 0;
-    border-top: 1px solid #333;
-    margin: 20px 0;
-  }
-  
-  .wrong-answer-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 16px;
-  }
-
-  .wrong-answer-list li {
-    margin: 6px 0;
-    font-size: 1.25rem;
-    color: #ff4d4d; 
+  スキル
+  ========================================================================== */
+  #skill-panel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: auto;
   }
 
-  .wrong-answer {/* --- 間違えたボタンに付けるスタイル --- */
-    background-color: #ff4d4d !important;
-    color: white !important;
-    border-color: #cc0000 !important;
+  .panel-content {
+    position: absolute;
+    bottom: 25dvh;
+    background: #2c2c2c;
+    border-radius: 10cqw;
+    width: 70%;
+    height: 30%;
+    padding: 10%;
+    text-align: center;
+    z-index: 10000;
+  }
+
+  #actionArea .battle-status-ui {
+    position: absolute;
+    bottom: 4%;
+    width: 32%;
+    z-index: 30;
+    pointer-events: none;
+  }
+
+  #actionArea #player-ui {
+    left: 6%;
+  }
+
+  #actionArea #enemy-ui {
+    right: 6%;
+  }
+
+  #actionArea .battle-status-ui .hp-bar-container,
+  #actionArea .battle-status-ui .exp-bar-container {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    display: block;
+    width: 100%;
+    height: 6px;
+    background-color: #4d4d4d;
+    border: 1px solid #111;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  #actionArea #player-ui .exp-bar-container {
+    margin-bottom: 4px;
+  }
+
+  #actionArea #player-ui .exp-bar-inner {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background-color: #0f69f1;
+    transition: width 0.3s ease-out;
+  }
+
+  #actionArea .battle-status-ui .level-text {
+    position: absolute;
+    left: 0;
+    top: -1.4em;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    line-height: 1;
+    text-align: left;
   }

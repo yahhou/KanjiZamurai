@@ -1,4 +1,3 @@
-
 export const quizManager = {
   // --- 管理するデータ（プロパティ） ---
   wordList: [],
@@ -10,6 +9,7 @@ export const quizManager = {
   streak: 0,
   wrongAnswers: [],
   images: {}, 
+  isVictoryActive: false,
   
   /* ==========================================================================
   クイズ自体のスタート
@@ -36,8 +36,7 @@ export const quizManager = {
     const availableWords = currentStageWords.filter(item => !this.usedWords.includes(item.kanji));
 
     if (availableWords.length === 0) {
-      this.usedWords = [];
-      this.randomQuestion();
+      this.victory();
       return;
     }
 
@@ -120,16 +119,12 @@ export const quizManager = {
         btn.classList.add("correct-answer");
       }
     });
-    
-    // --- ここで分岐！ ---
+
     if (this.correctQuestionCount >= this.MAX_QUESTIONS) {
-      // 規定数に達したら、1秒後に勝利画面へ
-      setTimeout(() => this.victory(), 1000);
-    } else {
-      
-      // まだなら、1秒後に次の問題へ
-      setTimeout(() => this.randomQuestion(), 1000);
+      return;
     }
+    
+    setTimeout(() => this.randomQuestion(), 1000);
   },
   
   /* ==========================================================================
@@ -207,8 +202,7 @@ export const quizManager = {
     if (!img) return;
 
     const count = Math.max(0, this.correctQuestionCount);
-        console.log(count);
-    const xPosition = this.correctQuestionCount * 20;
+    const xPosition = Math.min(count, this.MAX_QUESTIONS) * 20;
     img.style.left = `-${xPosition}cqw`; 
 
     if (count >= 1) {
@@ -219,10 +213,14 @@ export const quizManager = {
 
     if(count >= 12) {
       img.classList.add("is-rainbow");
-        console.log("rainbow ON");
     } else{
       img.classList.remove("is-rainbow");
     }
+
+    if (count >= this.MAX_QUESTIONS && !this.isVictoryActive) {
+      window.gameManager?.showSkillPanel();
+    }
+
   },
   
   /* ==========================================================================
@@ -231,6 +229,9 @@ export const quizManager = {
 
   victory() {
     // 勝利演出のコード（中身はそのまま）
+    this.isVictoryActive = true;
+    window.gameManager?.hideSkillPanel();
+
     const container = document.getElementById("quizArea");
     container.style.display = "flex";
     container.innerHTML = `
@@ -238,9 +239,13 @@ export const quizManager = {
         <div class="victory-message-area">
           <h2>Stage ${this.currentStage + 1} Clear!</h2>
         </div>
-        <button class="next-stage-btn"onclick="quizManager.goToNextStage()">Go to next stage</button>
+        <button id="retryBtn" class="retry-btn">RETRY</button>
       </div>
     `;
+
+    document.getElementById("retryBtn")?.addEventListener("click", () => {
+      window.gameManager?.retry();
+    });
   },
   
   /* ==========================================================================
@@ -252,6 +257,7 @@ export const quizManager = {
     if (this.currentStage < this.wordList.length) {
       this.usedWords = [];
       this.correctQuestionCount = 0;
+      this.isVictoryActive = false;
       this.updateKiwamiIcon();
       this.randomQuestion();
     } else {
@@ -267,6 +273,10 @@ export const quizManager = {
     this.currentStage = 0;           // 何問目かを最初に戻す
     this.currentQuestion = 0;           // 念のためスイッチも空に（gameManagerで再設定するため）
     this.correctQuestionCount = 0;
+    this.usedWords = [];
+    this.wrongAnswers = [];
+    this.streak = 0;
+    this.isVictoryActive = false;
     this.updateKiwamiIcon();
   }
 };

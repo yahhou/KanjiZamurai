@@ -7,7 +7,7 @@ import { Player } from './player.js';
         imgSrc: "assets/images/Samurai-Sheet.png", 
         hp: 25,
         mp: 0,
-        atk: 10,
+        atk: 15,
         def: 10,
         mdf: 10,
         spd: 10,
@@ -28,20 +28,16 @@ import { Player } from './player.js';
   通常攻撃
   ========================================================================== */ 
 
-  playAttackAnimation(target, damage, isCritical) { // 引数をオブジェクトとダメージに変更
+  playAttackAnimation(target, damage, isCritical, isEvaded = false) { // 引数をオブジェクトとダメージに変更
+  if (!this.el || !target || !target.el) return;
+
   this.isAttacking = true;
   this.stopIdle();
-  
-  // --- コンソールで会心を確認 ---
-  if(isCritical){
-    console.log(`%c🔥 会心の一撃！ ダメージ: ${damage}`, "color: #ff4500; font-weight: bold; font-size: 1.2em;");
-  } else {
-    console.log(`⚔️ 通常攻撃 ダメージ: ${damage}`);
-  }
 
   // ★ここで target.el を使うことでエラーを回避
   const targetEl = target.el; 
   const selfRect = this.el.getBoundingClientRect();
+
   const targetRect = targetEl.getBoundingClientRect();
 
   const distanceX = targetRect.left - selfRect.left - 50; 
@@ -71,7 +67,9 @@ import { Player } from './player.js';
         this.attackSound.play();
       }
 
-      if (target.takeDamage) {
+      if (isEvaded && target.showEvadeEffect) {
+        target.showEvadeEffect();
+      } else if (target.takeDamage) {
         target.takeDamage(damage, isCritical);
       }
 

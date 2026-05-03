@@ -1,39 +1,66 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Kanji Samurai</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
+    <meta charset="UTF-8">
+    <title>Kanji Samurai</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
 
 <body>
   <div id="gameCanvas">
-    <div id="loadingArea">Loading...</div>
-    <div id="uiWrapper"></div>
+  <div id="loadingArea">Loading...</div>
+  <div id="uiWrapper"></div>
  
-    <div id="battleScreen" style="display: none;"> <!-- 最初は隠しておく -->
+  <div id="battleScreen" style="display: none;">
+    <!-- 1. ステータスエリア -->
     <div id="statusArea">
       <div id="kiwami-container">
-        <img id="kiwami-bg" alt="">         <img id="kiwami-image" alt="">
-        </div>
+        <img id="kiwami-bg" alt="">
+        <img id="kiwami-image" alt="">
       </div>
-
-      <div id="actionArea">
-        <div id="player">
-          <div class="player-hp-bar-container">
-            <div class="player-hp-bar-inner"></div>
-          </div>
-        </div>
-        
-        <div id="enemy"></div>
-      </div>
-
-      <div id="quizArea"></div>
     </div>
-    <did id = "flash-layer"></did>
-  </div>
 
-  <!-- 🔻 監督役のJSを1本だけ読み込む -->
+    <!-- 2. アクションエリア -->
+    <div id="actionArea">
+      <div id="player-ui" class="battle-status-ui">
+        <div class="level-text">Lv.1</div>
+        <div class="exp-bar-container">
+          <div class="exp-bar-inner"></div>
+        </div>
+        <div class="hp-bar-container">
+          <div class="hp-bar-inner"></div>
+        </div>
+      </div>
+
+      <div id="enemy-ui" class="battle-status-ui">
+        <div class="hp-bar-container">
+          <div class="hp-bar-inner"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. クイズエリア (独立) -->
+    <div id="quizArea"></div>
+
+    <!-- 4. フラッシュレイヤー (独立) -->
+    <div id="flash-layer"></div>
+      
+    <!-- 5. スキルパネル (独立) -->
+    <div id="skill-panel" style="display: none;">
+    <div class="panel-content">
+      <h2>Choose one</h2>
+      <button onclick="gameManager.selectSkill('attack')">ATK UP</button>
+      <button onclick="gameManager.selectSkill('hp')">HP UP</button>
+    </div>
+  </div>
+  </div> <!-- battleScreen の閉じ -->
+</div> <!-- gameCanvas の閉じ -->
+
   <script type="module" src="js/gameManager.js"></script>
 </body>
 </html>

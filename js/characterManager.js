@@ -2,7 +2,7 @@
 
 export class Character {
   constructor({ id, imgSrc, hp, mp, atk, def, mdf, spd, critRate, width, height,
-              frameCount, sizeRatio,idleFrameCount, deathFrame}) {
+              frameCount, sizeRatio, frameInterval, idleFrameCount, idleFrames, deathFrame}) {
     this.id = id;
     this.imgSrc = imgSrc;
     this.hp = hp;
@@ -18,22 +18,24 @@ export class Character {
     this.frameCount = frameCount;
     this.sizeRatio = sizeRatio || 50;
     this.currentFrame = 0; // 追加：初期フレーム
-    this.frameInterval = 500; // 追加：アニメ速度（ミリ秒）
+    this.frameInterval = frameInterval || 500; // アニメ速度（ミリ秒）
     this.idleFrameCount = idleFrameCount || frameCount;
+    this.idleFrames = idleFrames || null;
+    this.idleFrameIndex = 0;
     this.deathFrame = deathFrame || 0;
+    this.hpBarCreated = false; // ★追加
 
-    this.el = document.getElementById(id);
-    if (!this.el) return; // 要素がない場合は中断
-    
-    this.sprite = document.createElement('div');
-    this.sprite.className = 'character-sprite';
-    this.el.appendChild(this.sprite); // 親要素の中に入れる
+    this.el = document.createElement('div');
+    this.el.id = id;
+    this.el.className = 'character-container';
 
     this.init();
+
     this.isAttacking = false; // 今攻撃中かどうかのフラグ
     this.activeTimeouts = [];
 
      this.criticalSound = new Audio('assets/sounds/criticalHit.mp3');
+     this.evadeSound = new Audio('assets/sounds/evade1.mp3');
   }
 
   /* ==========================================================================
@@ -42,44 +44,40 @@ export class Character {
 
   init() {
     if (!this.el) return;
-    this.el.innerHTML = "";
 
-    // --- 再びスプライトとHPバーを作成して入れ直す ---
-    this.sprite = document.createElement('div');
-    this.sprite.className = 'character-sprite';
-    this.el.appendChild(this.sprite);
-
-    // HPバーのコンテナ作成（ここも init の中で行うと確実です）
-    const hpCont = document.createElement('div');
-    hpCont.className = 'player-hp-bar-container';
-    hpCont.innerHTML = `<div class="player-hp-bar-inner"></div>`;
-    this.el.appendChild(hpCont);
-    // --------------------------------------------------
+    this.sprite = this.el.querySelector('.character-sprite');
+    if (!this.sprite) {
+      this.sprite = document.createElement('div');
+      this.sprite.className = 'character-sprite';
+      this.el.appendChild(this.sprite);
+    }
 
     this.hp = this.maxHp;
     this.updateHPBar();
 
     const displaySize = `${this.sizeRatio}cqw`;
-
-    // 親(this.el)の設定：サイズと位置だけ決める
     Object.assign(this.el.style, {
       width: displaySize,
       height: displaySize,
-      position: "absolute" // 絶対配置を確実にする
-      });
+      position: "absolute",
+      opacity: "1",
+      display: "block",
+      visibility: "visible"
+    });
 
-      // 子(this.sprite)の設定：見た目（画像）をこっちに引っ越し！
-      Object.assign(this.sprite.style, {
+    Object.assign(this.sprite.style, {
       width: "100%",
       height: "100%",
       backgroundImage: `url('${this.imgSrc}')`,
-      backgroundSize: `${this.frameCount * 100}% 100%`, // アニメ用シートの幅
+      backgroundSize: `${this.frameCount * 100}% 100%`,
       backgroundRepeat: "no-repeat",
-      imageRendering: "pixelated", // ドット絵をクッキリさせる
-      backgroundPosition: "0% 0px" // 初期位置（1枚目
+      imageRendering: "pixelated",
+      backgroundPosition: "0% 0px"
     });
+
     this.startIdle();
   }
+
 
   /* ==========================================================================
   待機アニメーション
@@ -88,18 +86,30 @@ export class Character {
   startIdle() {
   // 待機アニメーション（パラパラ漫画）
   if (this.idleInterval) clearInterval(this.idleInterval);
+  this.idleFrameIndex = 0;
+  if (this.idleFrames) {
+    this.currentFrame = this.idleFrames[this.idleFrameIndex];
+    this.setSpriteFrame(this.currentFrame);
+  }
   
   this.idleInterval = setInterval(() => {
-    this.currentFrame = (this.currentFrame + 1) % this.idleFrameCount;
-    // パーセント指定の場合は (100 / (枚数 - 1)) * 現在の枚数
-
-
-    const xShift = (this.currentFrame / (this.frameCount - 1)) * 100;
-    this.sprite.style.backgroundPosition = `${xShift}% 0px`;
+    if (this.idleFrames) {
+      this.idleFrameIndex = (this.idleFrameIndex + 1) % this.idleFrames.length;
+      this.currentFrame = this.idleFrames[this.idleFrameIndex];
+    } else {
+      this.currentFrame = (this.currentFrame + 1) % this.idleFrameCount;
+    }
+    this.setSpriteFrame(this.currentFrame);
     },
     this.frameInterval); 
 
     
+  }
+
+  setSpriteFrame(frame) {
+    if (!this.sprite) return;
+    const xShift = this.frameCount <= 1 ? 0 : (frame / (this.frameCount - 1)) * 100;
+    this.sprite.style.backgroundPosition = `${xShift}% 0px`;
   }
 
   /* ==========================================================================
@@ -119,31 +129,48 @@ export class Character {
   updateHPBar() {
     const pct = (this.hp / this.maxHp) * 100;
 
-    // キャラクター自身の要素(this.el)の中から、指定したクラス名のバーを探す
-    const innerBar = this.el.querySelector('.player-hp-bar-inner');
+    let innerBar = null;
+
+    if (this.id === 'player') {
+      innerBar = document.querySelector('#player-ui .hp-bar-inner');
+    } else if (this.id === 'enemy') {
+      innerBar = document.querySelector('#enemy-ui .hp-bar-inner');
+    } else if (this.el) {
+      innerBar = this.el.querySelector('.hp-bar-inner');
+    }
 
     if (innerBar) {
+      // 幅を更新（これで動くようになります）
       innerBar.style.width = `${pct}%`;
 
-    if (pct < 20) {
-      innerBar.style.backgroundColor = "#e74c3c"; // 赤
-    } else if (pct < 50) {
-      // 50%未満なら黄色（20%以上50%未満）
-        innerBar.style.backgroundColor = "#f1c40f";
-    } else {
+      // 色の管理
+      if (pct < 20) {
+        innerBar.style.backgroundColor = "#e74c3c"; // 赤
+      } else if (pct < 50) {
+        innerBar.style.backgroundColor = "#f1c40f"; // 黄
+      } else {
         innerBar.style.backgroundColor = "#2ecc71"; // 緑
       }
     }
   }
-
   /* ==========================================================================
   攻撃ロジック
   ========================================================================== */
   attack(target) {
-    
+    const isEvaded = target.checkEvade(this);
     const { amount, isCritical }= this.calculateDamage(target);
 
-    this.playAttackAnimation(target, amount, isCritical)
+    this.playAttackAnimation(target, amount, isCritical, isEvaded)
+  }
+
+  /* ==========================================================================
+  回避判定
+  ========================================================================== */
+  checkEvade(attacker) {
+    const spdDiff = this.spd - attacker.spd;
+    const evadeRate = Math.min(35, Math.max(5, 10 + (spdDiff * 0.3)));
+
+    return Math.random() * 100 < evadeRate;
   }
    /* ==========================================================================
   ダメージを受ける
@@ -209,7 +236,8 @@ export class Character {
       damageEl.innerText = amount; // 通常時も数字を出す
     }
   
-    this.el.appendChild(damageEl);
+    const popupRoot = this.getDamagePopupRoot();
+    popupRoot.appendChild(damageEl);
 
     // ★setTimeoutの戻り値（ID）を保存する
     const timeoutId = setTimeout(() => {
@@ -221,14 +249,43 @@ export class Character {
     this.activeTimeouts.push(timeoutId);
   }
 
+  showEvadeEffect() {
+    if (!this.el) return;
+
+    const evadeEl = document.createElement("div");
+    evadeEl.className = "damage-popup evade-popup";
+    evadeEl.innerText = "MISS";
+
+    this.getDamagePopupRoot().appendChild(evadeEl);
+    this.playEvadeSE();
+
+    const timeoutId = setTimeout(() => {
+      evadeEl.remove();
+      this.activeTimeouts = this.activeTimeouts.filter(id => id !== timeoutId);
+    }, 1500);
+
+    this.activeTimeouts.push(timeoutId);
+  }
+
+  getDamagePopupRoot() {
+    if (this.id === 'player') {
+      return document.getElementById('player-ui') || this.el;
+    }
+
+    if (this.id === 'enemy') {
+      return document.getElementById('enemy-ui') || this.el;
+    }
+
+    return this.el;
+  }
+
 /* ==========================================================================
   共通攻撃アニメーション
 ========================================================================== */
-playAttackAnimation(target, damage, isCritical) {
+playAttackAnimation(target, damage, isCritical, isEvaded = false) {
   this.isAttacking = true;
 
   if (isCritical){
-    console.log(`%c💀 敵の会心の一撃！ ダメージ: ${damage}`, "color: #8e44ad; font-weight: bold;");
     this.triggerFlash();
     this.playCriticalHitSE();
   }else{
@@ -236,7 +293,11 @@ playAttackAnimation(target, damage, isCritical) {
   }
     
     this.playEnemyAttackAnimation();
-    target.takeDamage(damage, isCritical); // これで動く
+    if (isEvaded) {
+      target.showEvadeEffect();
+    } else {
+      target.takeDamage(damage, isCritical);
+    }
 
     setTimeout(() => {
       this.isAttacking = false;
@@ -260,15 +321,12 @@ playEnemyAttackAnimation() {
 triggerFlash() {
  const layer = document.getElementById('flash-layer');
  if(!layer) {
-  console.error("flash-layerが}見つかりません。HTMLにIDがあるか確認してください。");
-    return;
+      return;
 }
  // クラスを一度消して、付け直すことでアニメーションを再実行
  layer.classList.remove('flash-active');
  void layer.offsetWidth;// おまじない（再描画を強制）
  layer.classList.add('flash-active');
-
-console.log("✨ 画面フラッシュ実行"); // これでコンソールでも確認可能
 }
 
 /* ==========================================================================
@@ -282,19 +340,26 @@ playCriticalHitSE(){
 
    }
   }
+
+playEvadeSE(){
+     
+     if (this.evadeSound) {
+      this.evadeSound.currentTime = 0;
+      this.evadeSound.play();
+
+   }
+  }
 /* ==========================================================================
 掃除用
 ========================================================================== */
 destroy() {
     // 1. 全てのダメージ表示タイマーをキャンセル
     this.activeTimeouts.forEach(id => clearTimeout(id));
-    this.activeTimeouts = [];
+    this.activeTimeouts = []
+    if(this.idleInterval) clearInterval(this.idleInterval);
 
-    // 2. 待機アニメーションを止める
-    if (this.idleInterval) clearInterval(this.idleInterval);
-
-    // 3. 画面に残っているダメージ数字を物理的に消す
-    const popups = this.el.querySelectorAll('.damage-popup');
-    popups.forEach(p => p.remove());
+    if(this.el && this.el.parentNode){
+      this.el.parentNode.removeChild(this.el);
+    }
   }
 }

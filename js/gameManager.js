@@ -2,15 +2,17 @@
 import { assets } from './assets.js';
 import { battleManager } from './battleManager.js';
 import { quizManager } from './quizManager.js';
-import { Samurai } from '../characters/players/samurai.js';
-import { Peasant } from '../characters/enemies/peasant.js';
 
 export const gameManager = {
 
    stageConfigs:[
     {id: 1, name:"Legendary Samurai", files:['word_list_7.json']},
-    {id: 2, name:"Novice Samurai", files:['word_list_1.json', 'word_list_2.json', 'word_list_3.json', 'word_list_4.json', 'word_list_5.json', 'word_list_6.json']},
-    // 今後ここに行を追加するだけでボタンが増える
+    {id: 2, name:"Novice Samurai 6", files:['word_list_6.json']},
+    {id: 3, name:"Novice Samurai 5", files:['word_list_5.json']},
+    {id: 4, name:"Novice Samurai 4", files:['word_list_4.json']},
+    {id: 5, name:"Novice Samurai 3", files:['word_list_3.json']},
+    {id: 6, name:"Novice Samurai 2", files:['word_list_2.json']},
+    {id: 7, name:"Novice Samurai 1", files:['word_list_1.json']},
   ],
 
    startBtnSE: new Audio('assets/sounds/StartButton.mp3'),
@@ -99,7 +101,6 @@ export const gameManager = {
         this.startBattle();
       })
       .catch(error => {
-        console.error("読み込みエラー:", error);
         this.stopLoadingAnimation();
       });
   },
@@ -168,7 +169,6 @@ export const gameManager = {
       
       if (playPromise !== undefined) {
         playPromise.catch(error => {
-          console.error("BGM再生に失敗しました:", error);
           // 失敗した場合は、画面のどこかをクリックしたら流れるように仕込むのも手です
         });
       }
@@ -188,7 +188,7 @@ export const gameManager = {
   ========================================================================== */ 
   showBattleScreen() {
     const battle = document.getElementById("battleScreen");
-    if (battle) battle.style.display = "block";
+    if (battle) battle.style.display = "flex";
   },
   /* ==========================================================================
   ゲームオーバー
@@ -217,6 +217,8 @@ export const gameManager = {
   リトライ
   ========================================================================== */
   retry() {
+    this.hideSkillPanel();
+
     // --- BGMのリセット処理 ---
     if (assets.sounds.bgm_Battle) {
       assets.sounds.bgm_Battle.pause();      // 一旦止める
@@ -253,6 +255,46 @@ export const gameManager = {
       this.gameOverSE.currentTime = 0;
       this.gameOverSE.play();
     }
+  },
+  /* ==========================================================================
+  スキルパネルh表示
+  ========================================================================== */ 
+  
+  showSkillPanel(){
+    if (quizManager.isVictoryActive) return;
+
+    const panel = document.getElementById('skill-panel');
+    if(panel){
+      panel.style.display = 'flex';
+    }
+  },
+
+  hideSkillPanel(){
+    const panel = document.getElementById('skill-panel');
+    if(panel){
+      panel.style.display = 'none';
+    }
+  },
+  
+  /* ==========================================================================
+  スキルパネルh表示
+  ============================================================================*/
+
+  selectSkill(type){
+    if(type === 'attack'){
+      battleManager.player.atk += 5;
+    }else if(type === 'hp'){
+    battleManager.player.maxHp += 20;
+    battleManager.player.hp += 20;
+    battleManager.player.updateHPBar();
+    }
+
+
+    document.getElementById('skill-panel').style.display = "none";
+
+    quizManager.correctQuestionCount = 0;
+    quizManager.updateKiwamiIcon();
+    quizManager.randomQuestion();
   }
 
   /* ==========================================================================
@@ -260,3 +302,4 @@ export const gameManager = {
   ========================================================================== */ 
 };
   gameManager.init();
+  window.gameManager = gameManager;

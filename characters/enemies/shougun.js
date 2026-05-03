@@ -1,26 +1,25 @@
 import { Enemy } from './enemy.js';
 
-  export class Peasant extends Enemy {
+  export class Shougun extends Enemy {
     constructor() {
       super({
         id: "enemy",          
-        imgSrc: "assets/images/peasant-Sheet.png", 
-        hp: 15,
+        imgSrc: "assets/images/Shougun-Sheet.png", 
+        hp: 20,
         mp: 0,
-        atk: 10,
-        def: 5,
-        mdf: 10,
-        spd: 10,
+        atk: 25,
+        def: 10,
+        mdf: 5,
+        spd: 20,
         critRate: 10,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
-        sizeRatio: 47,
+        sizeRatio: 55,
         frameCount: 2,
         idleFrameCount: 2
       });
-      this.name = "Peasant";
-      this.expReward = 5;
-      
+      this.name = "Shougun";
+      this.expReward = 12;
     }
 
   // 専用のスキルを作りたくなったらここに追加
