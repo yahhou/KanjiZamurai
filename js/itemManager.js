@@ -1,0 +1,138 @@
+import { assets } from './assets.js';
+
+export class Item {
+  constructor({ id, name, description, frame, rarity, weight, apply }) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.frame = frame;
+    this.rarity = rarity;
+    this.weight = weight;
+    this.apply = apply;
+  }
+}
+
+export const itemManager = {
+  rarities: {
+    common: { label: 'Common', weight: 60 },
+    uncommon: { label: 'Uncommon', weight: 40 },
+    rare: { label: 'Rare', weight: 25 },
+    legendary: { label: 'Legendary', weight: 10 },
+    mythic: { label: 'Mythic', weight: 3 }
+  },
+
+  items: [
+    new Item({
+      id: 'onigiri',
+      name: 'Onigiri',
+      description: 'HP 50 Restore',
+      frame: 0,
+      rarity: 'common',
+      apply(player) {
+        player.hp = Math.min(player.maxHp, player.hp + 50);
+        player.updateHPBar();
+      }
+    }),
+    new Item({
+      id: 'whetstone',
+      name: 'Whetstone',
+      description: 'ATK +5',
+      frame: 1,
+      rarity: 'rare',
+      apply(player) {
+        player.atk += 5;
+      }
+    }),
+    new Item({
+      id: 'guard_charm',
+      name: 'Guard Charm',
+      description: 'DEF / MDF +4',
+      frame: 2,
+      rarity: 'uncommon',
+      apply(player) {
+        player.def += 4;
+        player.mdf += 4;
+      }
+    })
+  ],
+
+  getItem(id) {
+    return this.items.find(item => item.id === id);
+  },
+
+  getRarity(item) {
+    return this.rarities[item.rarity] || this.rarities.common;
+  },
+
+  getItemWeight(item) {
+    return item.weight || this.getRarity(item).weight;
+  },
+
+  pickItems(count) {
+    const pool = [...this.items];
+    const choices = [];
+
+    while (choices.length < count && pool.length > 0) {
+      const totalWeight = pool.reduce((sum, item) => sum + this.getItemWeight(item), 0);
+      let roll = Math.random() * totalWeight;
+      const index = pool.findIndex(item => {
+        roll -= this.getItemWeight(item);
+        return roll <= 0;
+      });
+
+      choices.push(...pool.splice(Math.max(0, index), 1));
+    }
+
+    return choices;
+  },
+
+  renderOptions(container, count = 2) {
+    if (!container) return;
+
+    const choices = this.pickItems(count);
+    const frameCount = this.getFrameCount();
+
+    container.innerHTML = `
+      <h2>Choose one</h2>
+      <div class="item-choice-list">
+        ${choices.map(item => this.renderItemButton(item, frameCount)).join("")}
+      </div>
+    `;
+  },
+
+  renderItemButton(item, frameCount) {
+    const rarity = this.getRarity(item);
+
+    return `
+      <button class="item-choice rarity-${item.rarity}" onclick="gameManager.selectItem('${item.id}')">
+        <span
+          class="item-icon"
+          style="
+            background-image: url('assets/images/items-Sheet-Sheet.png');
+            background-size: ${frameCount * 100}% 100%;
+            background-position: ${this.getFramePosition(item.frame, frameCount)}% 0;
+          "
+        ></span>
+        <span class="item-name">${item.name}</span>
+        <span class="item-rarity">${rarity.label}</span>
+        <span class="item-description">${item.description}</span>
+      </button>
+    `;
+  },
+
+  getFrameCount() {
+    const image = assets.images.ui_Items;
+    return image?.naturalWidth ? Math.max(1, Math.floor(image.naturalWidth / 32)) : 3;
+  },
+
+  getFramePosition(frame, frameCount) {
+    return frameCount <= 1 ? 0 : (frame / (frameCount - 1)) * 100;
+  },
+
+  applyItem(itemId, player) {
+    const item = this.getItem(itemId);
+    if (!item || !player) return;
+
+    item.apply(player);
+  }
+};

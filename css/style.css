@@ -148,6 +148,22 @@
     background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 50%);
   }
 
+  #question-progress {
+    position: absolute;
+    top: 3cqw;
+    right: 4cqw;
+    z-index: 20;
+    min-width: 18cqw;
+    padding: 1cqw 2cqw;
+    text-align: center;
+    font-size: 3.5cqw;
+    line-height: 1;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 2cqw;
+  }
+
    /* ==========================================================================
    3. キャラクター・敵の表示エリア
   ========================================================================== */
@@ -661,10 +677,116 @@
     background: #2c2c2c;
     border-radius: 10cqw;
     width: 70%;
-    height: 30%;
-    padding: 10%;
+    min-height: 30%;
+    padding: 8%;
     text-align: center;
     z-index: 10000;
+  }
+
+  .panel-content h2 {
+    margin: 0 0 5cqw;
+    font-size: 5cqw;
+    line-height: 1;
+  }
+
+  .item-choice-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4cqw;
+  }
+
+  .item-choice {
+    min-width: 0;
+    min-height: 28cqw;
+    padding: 3cqw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5cqw;
+    background: #1f1f1f;
+    color: #ffffff;
+    border: 2px solid #777777;
+    border-radius: 4cqw;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+  }
+
+  .item-choice:active {
+    transform: scale(0.96);
+  }
+
+  .item-icon {
+    width: 12cqw;
+    height: 12cqw;
+    flex: 0 0 auto;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+  }
+
+  .item-name {
+    font-size: 3.5cqw;
+    line-height: 1;
+  }
+
+  .item-rarity {
+    font-size: 2.5cqw;
+    line-height: 1;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .item-description {
+    font-size: 3cqw;
+    line-height: 1.2;
+  }
+
+  .item-choice.rarity-common {
+    border-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+
+  .item-choice.rarity-uncommon {
+    border-color: #ffd84a;
+    box-shadow: 0 0 10px rgba(255, 216, 74, 0.45);
+  }
+
+  .item-choice.rarity-rare {
+    border-color: #2aa8ff;
+    box-shadow: 0 0 10px rgba(42, 168, 255, 0.45);
+  }
+
+  .item-choice.rarity-legendary {
+    border-color: #ff3b30;
+    box-shadow: 0 0 12px rgba(255, 59, 48, 0.55);
+  }
+
+  .item-choice.rarity-mythic {
+    border-color: #ffffff;
+    animation: item-rainbow-border 1.2s linear infinite;
+  }
+
+  @keyframes item-rainbow-border {
+    0% {
+      border-color: #ff3b30;
+      box-shadow: 0 0 12px rgba(255, 59, 48, 0.55);
+    }
+    25% {
+      border-color: #ffd84a;
+      box-shadow: 0 0 12px rgba(255, 216, 74, 0.55);
+    }
+    50% {
+      border-color: #2aa8ff;
+      box-shadow: 0 0 12px rgba(42, 168, 255, 0.55);
+    }
+    75% {
+      border-color: #d36bff;
+      box-shadow: 0 0 12px rgba(211, 107, 255, 0.55);
+    }
+    100% {
+      border-color: #ff3b30;
+      box-shadow: 0 0 12px rgba(255, 59, 48, 0.55);
+    }
   }
 
   #actionArea .battle-status-ui {

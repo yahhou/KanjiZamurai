@@ -2,6 +2,7 @@
 import { assets } from './assets.js';
 import { battleManager } from './battleManager.js';
 import { quizManager } from './quizManager.js';
+import { itemManager } from './itemManager.js';
 
 export const gameManager = {
 
@@ -265,6 +266,7 @@ export const gameManager = {
 
     const panel = document.getElementById('skill-panel');
     if(panel){
+      this.renderSkillOptions();
       panel.style.display = 'flex';
     }
   },
@@ -277,24 +279,30 @@ export const gameManager = {
   },
   
   /* ==========================================================================
-  スキルパネルh表示
+  アイテム選択肢の表示
   ============================================================================*/
 
-  selectSkill(type){
-    if(type === 'attack'){
-      battleManager.player.atk += 5;
-    }else if(type === 'hp'){
-    battleManager.player.maxHp += 20;
-    battleManager.player.hp += 20;
-    battleManager.player.updateHPBar();
-    }
+  renderSkillOptions(){
+    const content = document.querySelector('#skill-panel .panel-content');
+    itemManager.renderOptions(content, 2);
+  },
 
+  selectItem(itemId){
+    itemManager.applyItem(itemId, battleManager.player);
 
-    document.getElementById('skill-panel').style.display = "none";
+    this.hideSkillPanel();
 
     quizManager.correctQuestionCount = 0;
     quizManager.updateKiwamiIcon();
     quizManager.randomQuestion();
+  },
+
+  selectSkill(type){
+    if(type === 'attack'){
+      this.selectItem('whetstone');
+    }else if(type === 'hp'){
+      this.selectItem('onigiri');
+    }
   }
 
   /* ==========================================================================

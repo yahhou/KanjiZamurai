@@ -19,6 +19,7 @@
   <div id="battleScreen" style="display: none;">
     <!-- 1. ステータスエリア -->
     <div id="statusArea">
+      <div id="question-progress">0 / 0</div>
       <div id="kiwami-container">
         <img id="kiwami-bg" alt="">
         <img id="kiwami-image" alt="">
@@ -52,12 +53,8 @@
       
     <!-- 5. スキルパネル (独立) -->
     <div id="skill-panel" style="display: none;">
-    <div class="panel-content">
-      <h2>Choose one</h2>
-      <button onclick="gameManager.selectSkill('attack')">ATK UP</button>
-      <button onclick="gameManager.selectSkill('hp')">HP UP</button>
+      <div class="panel-content"></div>
     </div>
-  </div>
   </div> <!-- battleScreen の閉じ -->
 </div> <!-- gameCanvas の閉じ -->
 

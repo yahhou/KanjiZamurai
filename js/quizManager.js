@@ -10,6 +10,7 @@ export const quizManager = {
   wrongAnswers: [],
   images: {}, 
   isVictoryActive: false,
+  stageCorrectCount: 0,
   
   /* ==========================================================================
   クイズ自体のスタート
@@ -55,6 +56,7 @@ export const quizManager = {
     this.currentQuestion = correct;
 
     this.renderQuestion(correct, options);
+    this.updateQuestionProgress();
   }, 
 
   /* ==========================================================================
@@ -109,7 +111,9 @@ export const quizManager = {
   ========================================================================== */
   handleCorrectAnswer(buttons) {
     this.correctQuestionCount++;
+    this.stageCorrectCount++;
     this.updateKiwamiIcon();
+    this.updateQuestionProgress();
     
     if (this.onCorrect) this.onCorrect();
       
@@ -257,8 +261,10 @@ export const quizManager = {
     if (this.currentStage < this.wordList.length) {
       this.usedWords = [];
       this.correctQuestionCount = 0;
+      this.stageCorrectCount = 0;
       this.isVictoryActive = false;
       this.updateKiwamiIcon();
+      this.updateQuestionProgress();
       this.randomQuestion();
     } else {
       alert("You've completed all the stages!");
@@ -273,11 +279,21 @@ export const quizManager = {
     this.currentStage = 0;           // 何問目かを最初に戻す
     this.currentQuestion = 0;           // 念のためスイッチも空に（gameManagerで再設定するため）
     this.correctQuestionCount = 0;
+    this.stageCorrectCount = 0;
     this.usedWords = [];
     this.wrongAnswers = [];
     this.streak = 0;
     this.isVictoryActive = false;
     this.updateKiwamiIcon();
+    this.updateQuestionProgress();
+  },
+
+  updateQuestionProgress() {
+    const progressEl = document.getElementById("question-progress");
+    if (!progressEl) return;
+
+    const total = this.wordList[this.currentStage]?.length || 0;
+    progressEl.innerText = `${this.stageCorrectCount} / ${total}`;
   }
 };
 
