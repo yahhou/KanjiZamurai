@@ -43,8 +43,20 @@ export const gameManager = {
 
     // --- ここで「ルール」を1回だけ決めてしまう ---
     quizManager.onCorrect = () => battleManager.playerAttack();
-    quizManager.onWrong = () => battleManager.enemyAttack();
+    quizManager.onWrong = () => battleManager.enemyAttack(); 
 
+  document.addEventListener("click", () => {
+  // BGMの再生準備（一度 play してすぐ pause することで、以降自由に鳴らせるようになる）
+  if (assets.sounds.bgm_Battle && assets.sounds.bgm_Battle.paused) {
+    assets.sounds.bgm_Battle.play()
+      .then(() => {
+        assets.sounds.bgm_Battle.pause();
+        assets.sounds.bgm_Battle.currentTime = 0;
+      })
+      .catch(e => console.log("Audio unlock failed:", e));
+  }
+}, { once: true }); // 最初の1回だけ実行
+// -
   },
 /* ==========================================================================
   2.　ローディング演出
