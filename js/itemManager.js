@@ -39,7 +39,7 @@ export const itemManager = {
       name: 'Green tea',
       description: 'HP +3%',
       frame: 1,
-      rarity: 'uncommon',
+      rarity: 'Uncommon',
       apply(player) {
         player.isRegenerating = true; // 自動回復フラグをON
       }
@@ -49,10 +49,10 @@ export const itemManager = {
       name: 'Dango',
       description: 'HP Full Restore',
       frame: 2,
-      rarity: 'rare',
+      rarity: 'Rare',
       apply(player) {
-        player.def += 4;
-        player.mdf += 4;
+        player.hp = player.maxHp;
+        player.updateHPBar()
       }
     })
   ],
@@ -105,7 +105,7 @@ export const itemManager = {
   const rarity = this.getRarity(item);
 
   return `
-    <button class="item-choice rarity-${item.rarity}" onclick="gameManager.selectItem('${item.id}')">
+    <button class="item-choice rarity-${item.rarity.toLowerCase()}" onclick="gameManager.selectItem('${item.id}')">
       <!-- アイコンを上に配置 -->
       <div class="item-icon-wrapper">
         <span

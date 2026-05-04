@@ -542,14 +542,15 @@
 
   .panel-content {
     position: absolute;
-    bottom: 25dvh;
+    bottom: 25%;
     background: #2c2c2c;
-    border-radius: 10cqw;
+    border-radius: 5cqw;
     width: 70%;
-    min-height: 30%;
-    padding: 8%;
+    min-height: 25%;
+    padding: 5cqw;
     text-align: center;
     z-index: 10000;
+    container-type: inline-size;
   }
 
   .panel-content h2 {
@@ -559,71 +560,68 @@
   }
 
   .item-choice-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4cqw;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4cqw;
+  justify-items: center; /* ★横方向の中央寄せ */
+  align-items: center;   /* ★縦方向の中央寄せ */
+  width: 100%;
+}
 
-  .item-choice {
+ /* ボタンの設定 */
+.item-choice {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* 上下の中央寄せではなく、上詰めにすることで位置を安定させる */
-  justify-content: flex-start; 
+  align-items: center;      /* ★中身の横中央寄せ */
+  justify-content: flex-start;
   
   background: rgba(0, 0, 0, 0.7);
-  border: 2px solid #d4af37;
+  border: 0.5cqw solid #d4af37;
   color: white;
   width: 100%;
-  max-width: 200px;
-  /* 高さを統一する（中身が増えてもズレないように） */
-  min-height: 250px; 
+  aspect-ratio: 4 / 5;  /* ★ボタンの縦横比を固定（歪み防止の決定打） */
   
-  padding: 15px;
+  padding: 3cqw;
   box-sizing: border-box;
-  text-align: center;
-}
+  border-radius: 2cqw;
+} 
 
   .item-choice:active {
     transform: scale(0.96);
   }
 
-  /* アイコンのサイズを固定 */
+ /* アイコン自体のサイズ */
 .item-icon {
-  display: block;
-  width: 80px;
-  height: 80px;
+  aspect-ratio: 1 / 1;
+  width: auto;
+  height: 100%;
   image-rendering: pixelated;
 }
 
-  /* アイコンを包む枠も、大きさに合わせて調整 */
+/* アイコンを包む枠（独立して記述する） */
 .item-icon-wrapper {
   width: 100%;
-  height: 90px; /* アイコン(80px)より少し大きく固定 */
+  height: 45%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0; /* 潰れないように固定 */
-  margin-bottom: 10px;
+  justify-content: center; /* ★アイコンの横中央寄せ */
+  align-items: center;     /* ★アイコンの縦中央寄せ */
+  flex-shrink: 0;
+  margin-bottom: 2cqw;
 }
 
-/* テキストエリア */
+/* テキスト情報 */
 .item-info {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* 名前と説明の開始位置を揃える */
+  align-items: center; /* ★テキストの横中央寄せ */
   justify-content: flex-start;
-  flex-grow: 1; 
+  gap: 1cqw;
 }
 
   .item-name {
   font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-  /* 名前が長くても2行までに制限するなど（お好みで） */
-  min-height: 1.4em; 
+  font-size: 3.5cqw;
 }
 
 .item-rarity {
@@ -633,11 +631,8 @@
 
   /* クラス名の頭にドット（.）が抜けていたので修正 */
 .item-description {
-  font-size: 0.75rem;
+  font-size: 2.8cqw;
   line-height: 1.2;
-  /* 説明文のエリア */
-  text-align: center;
-  word-break: break-all; /* 長い単語で突き抜けないように */
 }
 
   .item-choice.rarity-common {
@@ -646,18 +641,18 @@
   }
 
   .item-choice.rarity-uncommon {
-    border-color: #ffd84a;
-    box-shadow: 0 0 10px rgba(255, 216, 74, 0.45);
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(74, 228, 255, 0.45);
   }
 
   .item-choice.rarity-rare {
-    border-color: #2aa8ff;
-    box-shadow: 0 0 10px rgba(42, 168, 255, 0.45);
+    border-color: #ff2a2a;
+    box-shadow: 0 0 10px rgba(255, 42, 42, 0.45);
   }
 
   .item-choice.rarity-legendary {
-    border-color: #ff3b30;
-    box-shadow: 0 0 12px rgba(255, 59, 48, 0.55);
+    border-color: #fbff00;
+    box-shadow: 0 0 12px rgba(255, 255, 48, 0.55);
   }
 
   .item-choice.rarity-mythic {

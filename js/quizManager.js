@@ -201,6 +201,7 @@ export const quizManager = {
     img.style.left = `-${xPosition}cqw`; 
 
     if (count >= 1) {
+         window.gameManager?.showSkillPanel();
       img.classList.add("is-flashing");
     } else {
       img.classList.remove("is-flashing");
