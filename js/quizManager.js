@@ -32,7 +32,7 @@ export const quizManager = {
   ========================================================================== */
 
   randomQuestion() {
-
+  
     const currentStageWords = this.wordList[this.currentStage];
     const availableWords = currentStageWords.filter(item => !this.usedWords.includes(item.kanji));
 
@@ -117,7 +117,11 @@ export const quizManager = {
     this.stageCorrectCount++;
     this.updateKiwamiIcon();
     this.updateQuestionProgress();
-    
+
+    if (window.battleManager?.player?.isRegenerating) {
+     window.battleManager.player.applyRegeneration();
+    }
+
     if (this.onCorrect) this.onCorrect();
       
     // 正解ボタンを光らせる
@@ -140,6 +144,7 @@ export const quizManager = {
   handleWrongAnswer(buttons, selected) {
     this.correctQuestionCount--;
     this.updateKiwamiIcon(); // ★ここでアイコンの位置を更新
+    window.battleManager.player.isRegenerating = false;
 
     if (this.onWrong) this.onWrong();
 
@@ -187,6 +192,7 @@ export const quizManager = {
   ========================================================================== */
 
   updateKiwamiIcon() {
+
     const img = document.getElementById("kiwami-image");
     if (!img) return;
 

@@ -263,24 +263,16 @@ export const gameManager = {
   ========================================================================== */ 
   
   showSkillPanel(){
-    
-    if (quizManager.isVictoryActive) return;
-    
-    this.itemBonusSE.play();
+  if (quizManager.isVictoryActive) return;
 
-    const panel = document.getElementById('skill-panel');
-    if(panel){
-      this.renderSkillOptions();
-      panel.style.display = 'flex';
-    }
-  },
+  this.itemBonusSE.play();
 
-  hideSkillPanel(){
-    const panel = document.getElementById('skill-panel');
-    if(panel){
-      panel.style.display = 'none';
-    }
-  },
+  const panel = document.getElementById('skill-panel');
+  if(!panel) return;
+
+  this.renderSkillOptions();
+  panel.style.display = 'flex';
+},
   
   /* ==========================================================================
   アイテム選択肢の表示
@@ -288,22 +280,37 @@ export const gameManager = {
 
   renderSkillOptions(){
     const content = document.querySelector('#skill-panel .panel-content');
+    
+     content.innerHTML = '';
     itemManager.renderOptions(content, 2);
   },
 
   selectItem(itemId){
-    itemManager.applyItem(itemId, battleManager.player);
+  itemManager.applyItem(itemId, battleManager.player);
 
-    this.hideSkillPanel();
+  this.hideSkillPanel();
 
-    quizManager.correctQuestionCount = 0;
-    quizManager.updateKiwamiIcon();
-    quizManager.randomQuestion();
-  },
+  quizManager.correctQuestionCount = 0;
+  quizManager.updateKiwamiIcon();
+  quizManager.randomQuestion();
+},
 
+hideSkillPanel(){
+  const panel = document.getElementById('skill-panel');
+  if(panel){
+    panel.style.display = 'none';
+  }
+},
   /* ==========================================================================
   8.　ゲーム起動
   ========================================================================== */ 
 };
   gameManager.init();
   window.gameManager = gameManager;
+
+  document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".item-choice");
+  if (!btn) return;
+
+  window.gameManager.selectItem(btn.dataset.id);
+});

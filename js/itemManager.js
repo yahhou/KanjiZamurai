@@ -41,7 +41,7 @@ export const itemManager = {
       frame: 1,
       rarity: 'uncommon',
       apply(player) {
-        console.log("aa"); 
+        player.isRegenerating = true; // 自動回復フラグをON
       }
     }),
     new Item({
@@ -102,10 +102,12 @@ export const itemManager = {
   },
 
   renderItemButton(item, frameCount) {
-    const rarity = this.getRarity(item);
+  const rarity = this.getRarity(item);
 
-    return `
-      <button class="item-choice rarity-${item.rarity}" onclick="gameManager.selectItem('${item.id}')">
+  return `
+    <button class="item-choice rarity-${item.rarity}" onclick="gameManager.selectItem('${item.id}')">
+      <!-- アイコンを上に配置 -->
+      <div class="item-icon-wrapper">
         <span
           class="item-icon"
           style="
@@ -114,12 +116,16 @@ export const itemManager = {
             background-position: ${this.getFramePosition(item.frame, frameCount)}% 0;
           "
         ></span>
-        <span class="item-name">${item.name}</span>
-        <span class="item-rarity">${rarity.label}</span>
-        <span class="item-description">${item.description}</span>
-      </button>
-    `;
-  },
+      </div>
+      
+      <!-- テキスト情報を下に配置 -->
+      <div class="item-info">
+        <div class="item-name">${item.name}</div>
+        <div class="item-description">${item.description}</div>
+      </div>
+    </button>
+  `;
+},
 
   getFrameCount() {
     const image = assets.images.ui_Items;

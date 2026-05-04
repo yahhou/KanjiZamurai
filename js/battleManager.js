@@ -132,3 +132,5 @@
     }
   }
 }
+
+window.battleManager = battleManager;

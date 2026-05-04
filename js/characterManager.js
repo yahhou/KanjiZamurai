@@ -32,6 +32,8 @@ export class Character {
     this.init();
 
     this.isAttacking = false; // 今攻撃中かどうかのフラグ
+    this.isRegenerating = false;// 今リジェネ中かフラグ
+
     this.activeTimeouts = [];
 
      this.criticalSound = new Audio('assets/sounds/criticalHit.mp3');
@@ -349,6 +351,22 @@ playEvadeSE(){
       this.evadeSound.play();
 
    }
+  }
+
+/* ==========================================================================
+// 自動回復
+========================================================================== */
+  applyRegeneration() {  
+
+    if (!this.isRegenerating) return;
+
+    const heal = Math.max(1, Math.floor(this.maxHp * 0.05));
+    this.hp = Math.min(this.maxHp, this.hp + heal);
+    this.updateHPBar();
+  }
+
+  updateHPBar() {
+    // HPバー更新の処理
   }
 /* ==========================================================================
 掃除用
