@@ -129,32 +129,48 @@ export class Character {
   HPの処理
   ========================================================================== */
   updateHPBar() {
-    const pct = (this.hp / this.maxHp) * 100;
+  const pct = (this.hp / this.maxHp) * 100;
+  let uiContainer = null;
 
-    let innerBar = null;
-
-    if (this.id === 'player') {
-      innerBar = document.querySelector('#player-ui .hp-bar-inner');
-    } else if (this.id === 'enemy') {
-      innerBar = document.querySelector('#enemy-ui .hp-bar-inner');
-    } else if (this.el) {
-      innerBar = this.el.querySelector('.hp-bar-inner');
-    }
-
-    if (innerBar) {
-      // 幅を更新（これで動くようになります）
-      innerBar.style.width = `${pct}%`;
-
-      // 色の管理
-      if (pct < 20) {
-        innerBar.style.backgroundColor = "#e74c3c"; // 赤
-      } else if (pct < 50) {
-        innerBar.style.backgroundColor = "#f1c40f"; // 黄
-      } else {
-        innerBar.style.backgroundColor = "#2ecc71"; // 緑
-      }
-    }
+  if (this.id === 'player') {
+    uiContainer = document.querySelector('#player-ui');
+  } else if (this.id === 'enemy') {
+    uiContainer = document.querySelector('#enemy-ui');
   }
+
+  // 1. バーの更新
+  if (uiContainer) {
+    const innerBar = uiContainer.querySelector('.hp-bar-inner');
+    if (innerBar) {
+      innerBar.style.width = `${pct}%`;
+      // 色の変更
+      if (pct < 20) innerBar.style.backgroundColor = "#e74c3c";
+      else if (pct < 50) innerBar.style.backgroundColor = "#f1c40f";
+      else innerBar.style.backgroundColor = "#2ecc71";
+    }
+
+    // 2. テキストの更新
+    let textDisplay = uiContainer.querySelector('.hp-text');
+    if (!textDisplay) {
+      // HTMLに無い場合は新しく作る
+      textDisplay = document.createElement('div');
+      textDisplay.className = 'hp-text';
+      uiContainer.appendChild(textDisplay);
+    }
+    // 文字を上書き
+    textDisplay.innerText = `${Math.ceil(this.hp)} / ${this.maxHp}`;
+
+    if (this.level !== undefined) {
+      let levelDisplay = uiContainer.querySelector('.level-text');
+      if (!levelDisplay) {
+        levelDisplay = document.createElement('div');
+        levelDisplay.className = 'level-text';
+        // HTMLの構造に合わせて挿入位置を調整（一番上にするなど）
+        uiContainer.insertBefore(levelDisplay, uiContainer.firstChild);
+      }
+      levelDisplay.innerText = `Lv.${this.level}`;
+  }
+}}
   /* ==========================================================================
   攻撃ロジック
   ========================================================================== */
@@ -373,7 +389,7 @@ playEvadeSE(){
     this.hp = Math.min(this.maxHp, this.hp + heal);
     this.updateHPBar();
   }
-  
+
 /* ==========================================================================
 掃除用
 ========================================================================== */

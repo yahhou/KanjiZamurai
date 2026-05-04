@@ -112,6 +112,8 @@ export class Player extends Character {
   ========================================================================== */ 
  
     updateHPBar() {
+      
+    super.updateHPBar();
     const pct = (this.hp / this.maxHp) * 100;
 
     let innerBar = null;

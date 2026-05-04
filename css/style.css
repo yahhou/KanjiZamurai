@@ -179,7 +179,7 @@
   position: absolute; 
   width: 15cqw;  /* コンテナと同じサイズにする */
   height: 15cqw;
-  bottom: 20%;     /* 足元を地面に合わせる */
+  bottom: 30%;     /* 足元を地面に合わせる */
   left: 0%;    /* プレイヤーの位置 */
   display: flex;
   flex-direction: column;
@@ -206,7 +206,7 @@
   position: absolute; 
   width: 15cqw;  /* コンテナと同じサイズにする */
   height: 15cqw;
-  bottom: 20%;     /* 足元を地面に合わせる */
+  bottom: 30%;     /* 足元を地面に合わせる */
   right: 0%;    /* プレイヤーの位置 */
   z-index: 9;
   transition: opacity 0.5s ease, transform 1s ease !important;
@@ -218,6 +218,14 @@
     pointer-events: none !important;
   }
   
+  .hp-text {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #000;
+  margin-top: 2px;
+}
 
   /* HPバーの中身 */
   .hp-bar-inner {
@@ -246,9 +254,10 @@
   animation: damageJump 1.5s ease-out forwards;
 }
 
-.battle-status-ui .damage-popup {
-  bottom: 100%;
-  font-size: 5cqw;
+.battle-status-ui {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .damage-popup.critical {
@@ -735,3 +744,7 @@
     line-height: 1;
     text-align: left;
   }
+
+  #actionArea #enemy-ui .level-text {
+  top: -2em; /* -1.4em より小さな値（マイナスを大きく）にすると上がります */
+}

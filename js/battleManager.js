@@ -95,6 +95,7 @@
     if (!enemy || !this.player) return;
 
     const level = Math.max(1, this.player.level || 1);
+    enemy.level = level;
     const hpScale = 1 + ((level - 1) * 0.25);
     const statScale = 1 + ((level - 1) * 0.15);
     const expScale = 1 + ((level - 1) * 0.1);
