@@ -336,6 +336,7 @@ playCriticalHitSE(){
      
      if (this.criticalSound) {
       this.criticalSound.currentTime = 0;
+      this.criticalSound.volume = 0.5;
       this.criticalSound.play();
 
    }

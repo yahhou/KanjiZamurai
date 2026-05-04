@@ -12,6 +12,8 @@ export class Player extends Character {
     this.isAnimatingExp = false;
     this.createExpBar();
     this.updateExpBar();
+
+    this.levelUpSound = new Audio('assets/sounds/levelUp.mp3');
   }
 
  /* ==========================================================================
@@ -101,6 +103,8 @@ export class Player extends Character {
 
       this.updateHPBar();
       this.showLevelUpEffect();
+      this.levelUpSound.play();
+      
     }
     
   /* ==========================================================================

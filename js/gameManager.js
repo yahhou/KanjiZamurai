@@ -18,6 +18,7 @@ export const gameManager = {
 
    startBtnSE: new Audio('assets/sounds/StartButton.mp3'),
    gameOverSE: new Audio('assets/sounds/gameOver.mp3'),
+   itemBonusSE: new Audio('assets/sounds/itemBonus.mp3'),
    isLoaded: false, // 追加：ロード完了フラグ
    loadingInterval: null,
 
@@ -101,7 +102,7 @@ export const gameManager = {
         this.stopLoadingAnimation();
         this.startBattle();
       })
-      .catch(error => {
+      .catch(() => {
         this.stopLoadingAnimation();
       });
   },
@@ -135,7 +136,6 @@ export const gameManager = {
             assets.sounds.bgm_Battle.pause();
           }).catch(e => console.log("Audio play blocked"));
         }
-
         const stageId = parseInt(e.currentTarget.dataset.stageId);
         const selectedStage = this.stageConfigs.find(s => s.id === stageId);
         
@@ -164,12 +164,13 @@ export const gameManager = {
       // 一度 pause してから再生し直すと、ブラウザの再生制限を突破しやすいです
       assets.sounds.bgm_Battle.pause();
       assets.sounds.bgm_Battle.currentTime = 0;
+      assets.sounds.bgm_Battle.volume = 0.5;
 
       // play() は Promise を返すので、エラーをキャッチできるようにします
       const playPromise = assets.sounds.bgm_Battle.play();
-      
+
       if (playPromise !== undefined) {
-        playPromise.catch(error => {
+        playPromise.catch(() => {
           // 失敗した場合は、画面のどこかをクリックしたら流れるように仕込むのも手です
         });
       }
@@ -262,7 +263,10 @@ export const gameManager = {
   ========================================================================== */ 
   
   showSkillPanel(){
+    
     if (quizManager.isVictoryActive) return;
+    
+    this.itemBonusSE.play();
 
     const panel = document.getElementById('skill-panel');
     if(panel){
@@ -296,14 +300,6 @@ export const gameManager = {
     quizManager.updateKiwamiIcon();
     quizManager.randomQuestion();
   },
-
-  selectSkill(type){
-    if(type === 'attack'){
-      this.selectItem('whetstone');
-    }else if(type === 'hp'){
-      this.selectItem('onigiri');
-    }
-  }
 
   /* ==========================================================================
   8.　ゲーム起動

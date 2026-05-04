@@ -1,3 +1,5 @@
+import { battleManager } from './battleManager.js';
+
 export const quizManager = {
   // --- 管理するデータ（プロパティ） ---
   wordList: [],
@@ -6,17 +8,15 @@ export const quizManager = {
   MAX_QUESTIONS: 13,
   usedWords: [],
   currentQuestion: {},
-  streak: 0,
-  wrongAnswers: [],
   images: {}, 
   isVictoryActive: false,
   stageCorrectCount: 0,
-  
   /* ==========================================================================
   クイズ自体のスタート
   ========================================================================== */
 
   start() {
+
     if (this.wordList.length === 0) {
       alert("Spells not loaded yet!");
       return;
@@ -64,8 +64,10 @@ export const quizManager = {
   ========================================================================== */
 
   renderQuestion(correct, options) {
-    const { kanji, yomi, romaji } = correct;
     
+    const { kanji, yomi, romaji } = correct;
+    const player = battleManager.player;
+
     document.getElementById("quizArea").innerHTML = `
       <div class="question-container">
         <h2>${kanji}</h2>
@@ -79,6 +81,7 @@ export const quizManager = {
         `).join("")}
       </div>
     `;
+  
     this.updateKiwamiIcon();
   },
   
@@ -132,22 +135,9 @@ export const quizManager = {
   },
   
   /* ==========================================================================
-  正解ボタン点灯（緑）
-  ========================================================================== */
-  
-  highlightCorrectButton(buttons) {
-    buttons.forEach(btn => {
-      if (btn.innerText.includes(this.currentQuestion.english)) {
-        btn.classList.add("correct-answer");
-      }
-    });
-  },  
-
-  /* ==========================================================================
   不正解後の処理まとめ
   ========================================================================== */
   handleWrongAnswer(buttons, selected) {
-    this.streak = 0;
     this.correctQuestionCount--;
     this.updateKiwamiIcon(); // ★ここでアイコンの位置を更新
 
@@ -160,11 +150,6 @@ export const quizManager = {
         btn.disabled = true;
       }
     });
-
-    // 誤答リストへの追加
-    if (!this.wrongAnswers.some(item => item[0] === this.currentQuestion.kanji)) {
-      this.wrongAnswers.push([this.currentQuestion.kanji, this.currentQuestion.english]);
-    }
   },
 
   /* ==========================================================================
@@ -253,25 +238,6 @@ export const quizManager = {
   },
   
   /* ==========================================================================
-  次ステージ移行
-  ========================================================================== */
-
-  goToNextStage() {
-    this.currentStage++;
-    if (this.currentStage < this.wordList.length) {
-      this.usedWords = [];
-      this.correctQuestionCount = 0;
-      this.stageCorrectCount = 0;
-      this.isVictoryActive = false;
-      this.updateKiwamiIcon();
-      this.updateQuestionProgress();
-      this.randomQuestion();
-    } else {
-      alert("You've completed all the stages!");
-    }
-  },
-
-  /* ==========================================================================
   ゲームオーバー時のデータリセット
   ========================================================================== */
   reset(){
@@ -281,8 +247,6 @@ export const quizManager = {
     this.correctQuestionCount = 0;
     this.stageCorrectCount = 0;
     this.usedWords = [];
-    this.wrongAnswers = [];
-    this.streak = 0;
     this.isVictoryActive = false;
     this.updateKiwamiIcon();
     this.updateQuestionProgress();

@@ -9,7 +9,7 @@
   button,
   input,
   select,
-  textarea { font-family: "DotGothic16", sans-serif;
+  textarea { font-family: "Zen Kaku Gothic New", sans-serif;
   }
 
 
@@ -175,55 +175,6 @@
     box-sizing: border-box;
   }
 
-   .battle-status-ui {
-    position: absolute;
-    bottom: 4%;
-    width: 32%;
-    z-index: 30;
-    pointer-events: none;
-  }
-  
-
-  #player-ui {
-    left: 6%;
-  }
-
-  #enemy-ui {
-    right: 6%;
-  }
-  
-  .battle-status-ui .hp-bar-container,
-  .battle-status-ui .exp-bar-container {
-    position: relative;
-    left: auto;
-    bottom: auto;
-    width: 100%;
-    height: 6px;
-    background-color: #4d4d4d;
-    overflow: hidden;
-    border: 1px solid #111;
-  }
-
-  .battle-status-ui .exp-bar-container {
-    margin-bottom: 4px;
-  }
-
-  .hp-bar-inner {
-    width: 100%;
-    height: 100%;
-    background-color: #2ecc71;
-    transition: width 0.3s ease-out;
-  }
-
-  .level-text {
-    position: absolute;
-    left: 0;
-    top: -1.4em;
-    font-size: 3cqw;
-    color: #ffffff;
-  }
-
-
   #player{
   position: absolute; 
   width: 15cqw;  /* コンテナと同じサイズにする */
@@ -258,7 +209,7 @@
   bottom: 20%;     /* 足元を地面に合わせる */
   right: 0%;    /* プレイヤーの位置 */
   z-index: 9;
-  transition: opacity 0.5s ease, transofrom 1s ease !important;
+  transition: opacity 0.5s ease, transform 1s ease !important;
   opacity: 1;
   }
 
@@ -268,31 +219,6 @@
   }
   
 
-  /* HPバーの外枠 */
-  .hp-bar-container {
-    position: absolute;
-    left: 25%;
-    bottom: -12%;
-    width: 50%;
-    height: 6px;
-    background-color: #4d4d4d;
-    overflow: hidden;
-    z-index: 10;
-    border: 1px solid #111;
-  }
-
-  
-   /* プレイヤーのHPバー位置 */
-  #player .hp-bar-container {
-    left: 25%;
-  }
-
-
-  /* 敵のHPバー位置 */
-  #enemy .hp-bar-container {
-    left: 25%;
-  }
-  
   /* HPバーの中身 */
   .hp-bar-inner {
     width: 100%;
@@ -301,11 +227,6 @@
     transition: width 0.3s ease-out;
   }
 
-/* ダメージを受けて体力が減った時の色変化（お好みで） */
-.hp-low {
-  background-color: #e74c3c; /* 赤色 */
-}
-  
 /* ダメージ数字の基本スタイル */
 .damage-popup {
   position: absolute;
@@ -368,35 +289,6 @@
     transform: translate(-50%, -20px); /* 最後は少し上に消える */
   }
 }
-
-  /* ==========================================================================
-   レベルアップ関連
-  ========================================================================== */
-
-    .level-text {
-    position: absolute;
-    left: 0;
-    top: -1.4em;
-    width: 100%;
-    height: auto;
-    line-height: 1;
-    font-size: 3cqw;
-    color: #ffffff;
-    text-align: left;
-    z-index: 11;
-  }
-
-  .exp-bar-container {
-    position: absolute;
-    left: 25%;
-    bottom: -22%;
-    width: 50%;
-    height: 6px;
-    background-color: #4d4d4d;
-    overflow: hidden;
-    z-index: 10;
-    border: 1px solid #111;
-  }
 
   .level-up-popup {
     bottom: 85%;
@@ -461,7 +353,7 @@
 
   .question-container h2 {
     /* 漢字の大きさ：キャンバス幅の18% */
-    font-size: 10cqw;
+    font-size: 8cqw;
     line-height: 1.5;
     margin: 0; 
      font-family: inherit;
@@ -592,7 +484,7 @@
   text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* 光らせる */  
 }
  
-  .next-stage-btn, .retry-btn {
+  .retry-btn {
   height: 20%;
   width: 80cqw;
   font-size: 5cqw;
@@ -606,7 +498,7 @@
   
 }
 
-  .next-stage-btn:active, .retry-btn:active {
+  .retry-btn:active {
   transform: scale(0.95);    /* 押した時に少し小さくなる */
 }
 
@@ -630,29 +522,6 @@
   /* このクラスがつくとピカピカ光る */
   .is-flashing {
   animation: flash-animation 0.5s infinite; /* 0.5秒ごとにループ */
-  }
-
-  /* ==========================================================================
-   6. キャラクター
-   ========================================================================== */
-
-  /* キャラクターを並べるための横長の箱 */
-  #characterArea {
-  display: flex;
-  justify-content: space-between; /* 左右に振り分ける */
-  align-items: flex-end;         /* 地面に立たせる */
-  width: 100%;
-  height: 100%;                  /* 親（actionArea）いっぱいに広げる */
-  padding: 0 5%;
-  box-sizing: border-box;
-  pointer-events: none;
-  }
-
-  /* プレイヤーと敵の共通設定 */
-  #player, #enemy {
-  width: 45%;                   /* 横幅を少し余裕持たせる */
-  height: 80%;                  /* actionAreaの高さの8割くらいにする */
-  object-fit: contain;          /* 画像がはみ出ないように収める */
   }
 
   /* ==========================================================================
@@ -827,7 +696,7 @@
     display: block;
     width: 0%;
     height: 100%;
-    background-color: #0f69f1;
+    background-color: #2592ff;
     transition: width 0.3s ease-out;
   }
 

@@ -25,30 +25,31 @@ export const itemManager = {
     new Item({
       id: 'onigiri',
       name: 'Onigiri',
-      description: 'HP 50 Restore',
+      description: 'HP 50% Restore',
       frame: 0,
       rarity: 'common',
       apply(player) {
-        player.hp = Math.min(player.maxHp, player.hp + 50);
+        const restoreAmount = Math.floor(player.maxHp * 0.5);
+        player.hp = Math.min(player.maxHp, player.hp + restoreAmount);
         player.updateHPBar();
       }
     }),
     new Item({
-      id: 'whetstone',
-      name: 'Whetstone',
-      description: 'ATK +5',
+      id: 'green tea',
+      name: 'Green tea',
+      description: 'HP +3%',
       frame: 1,
-      rarity: 'rare',
+      rarity: 'uncommon',
       apply(player) {
-        player.atk += 5;
+        console.log("aa"); 
       }
     }),
     new Item({
-      id: 'guard_charm',
-      name: 'Guard Charm',
-      description: 'DEF / MDF +4',
+      id: 'dango',
+      name: 'Dango',
+      description: 'HP Full Restore',
       frame: 2,
-      rarity: 'uncommon',
+      rarity: 'rare',
       apply(player) {
         player.def += 4;
         player.mdf += 4;
