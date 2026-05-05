@@ -10,8 +10,9 @@ const INITIAL_LOAD_MS = 2000;
  * 単語 JSON のURLを「このファイル（js/gameManager.js）」基準で決める。
  * index.html の置き場所や <base> に依存せず、コピーしたフォルダでも assets/words/ を探しにいける。
  */
-function stageWordUrl(fileName) {
-  return new URL(`../assets/words/${fileName}`, import.meta.url);
+function stageWordUrl(category, fileName) {
+  // words/ の後にカテゴリ名（N5やN6）を動的にはさむ
+  return new URL(`../assets/words/${category}/${fileName}`, import.meta.url);
 }
 
 export const gameManager = {
@@ -132,12 +133,11 @@ export const gameManager = {
   //////////////////////////////
   //   ステージデータの読み込み
   //////////////////////////////
-
-  loadSelectedStageData(files) {
+  loadSelectedStageData(category, files) {
     this.startLoadingAnimation();
 
     const fetchPromises = files.map((fileName) => {
-      const url = stageWordUrl(fileName);
+      const url = stageWordUrl(category, fileName);
       return fetch(url).then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP ${res.status} ${fileName} (${url})`);
@@ -296,7 +296,7 @@ export const gameManager = {
 
         setTimeout(() => {
           container.style.display = "none";
-          this.loadSelectedStageData(selectedStage.files);
+          this.loadSelectedStageData(category, selectedStage.files);
         }, 1000);
       });
     });
