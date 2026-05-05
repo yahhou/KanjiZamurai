@@ -424,19 +424,14 @@
 /* ダメージ数字の基本スタイル */
 .damage-popup {
   position: absolute;
-  bottom: -200% !important;
+  bottom: -20%;
   left: 50%;
   transform: translateX(-50%);
-
   font-size: 6cqw;
   font-family: inherit;
-  pointer-events: none; /* クリックを邪魔しない */
+  pointer-events: none;
   z-index: 100;
-    text-shadow:
-  0 0 5px #fff,
-  0 0 15px #000000;
-  
-  /* アニメーション指定：2秒かけて実行 */
+  text-shadow: 0 0 5px #fff, 0 0 15px #000000;
   animation: damageJump 1.5s ease-out forwards;
 }
 

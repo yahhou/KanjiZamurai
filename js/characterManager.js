@@ -240,56 +240,51 @@ updateHPBar() {
 　　ダメージ数字の演出表示
 ========================================================================== */
   showDamageEffect(amount, isCritical) {
-    if (!this.el) return;
+  if (!this.el) return;
 
-    const damageEl = document.createElement("div");
-    damageEl.className = "damage-popup";
+  const damageEl = document.createElement("div");
+  damageEl.className = "damage-popup";
 
-    if(isCritical){
-
-      damageEl.classList.add("critical");
-      damageEl.innerText = `✨${amount}✨`;
-      this.playCriticalHitSE();
-      if(isCritical) this.triggerFlash();
-       
-    }else {
-      damageEl.innerText = amount; // 通常時も数字を出す
-    }
-  
-    const popupRoot = this.getDamagePopupRoot();
-    popupRoot.appendChild(damageEl);
-
-    // ★setTimeoutの戻り値（ID）を保存する
-    const timeoutId = setTimeout(() => {
-      damageEl.remove();
-      // 終わったらリストから削除
-      this.activeTimeouts = this.activeTimeouts.filter(id => id !== timeoutId);
-    }, 2000);
-
-    this.activeTimeouts.push(timeoutId);
+  if(isCritical){
+    damageEl.classList.add("critical");
+    damageEl.innerText = `✨${amount}✨`;
+    this.playCriticalHitSE();
+    if(isCritical) this.triggerFlash();
+  } else {
+    damageEl.innerText = amount;
   }
+
+  this.el.appendChild(damageEl);  // ← 修正: getDamagePopupRoot() から this.el に変更
+
+  const timeoutId = setTimeout(() => {
+    damageEl.remove();
+    this.activeTimeouts = this.activeTimeouts.filter(id => id !== timeoutId);
+  }, 2000);
+
+  this.activeTimeouts.push(timeoutId);
+}
 
 /* ==========================================================================
 　　回避時の表示
 ========================================================================== */
 
   showEvadeEffect() {
-    if (!this.el) return;
+  if (!this.el) return;
 
-    const evadeEl = document.createElement("div");
-    evadeEl.className = "damage-popup evade-popup";
-    evadeEl.innerText = "MISS";
+  const evadeEl = document.createElement("div");
+  evadeEl.className = "damage-popup evade-popup";
+  evadeEl.innerText = "MISS";
 
-    this.getDamagePopupRoot().appendChild(evadeEl);
-    this.playEvadeSE();
+  this.el.appendChild(evadeEl);  // ← 修正: getDamagePopupRoot() から this.el に変更
+  this.playEvadeSE();
 
-    const timeoutId = setTimeout(() => {
-      evadeEl.remove();
-      this.activeTimeouts = this.activeTimeouts.filter(id => id !== timeoutId);
-    }, 1500);
+  const timeoutId = setTimeout(() => {
+    evadeEl.remove();
+    this.activeTimeouts = this.activeTimeouts.filter(id => id !== timeoutId);
+  }, 1500);
 
-    this.activeTimeouts.push(timeoutId);
-  }
+  this.activeTimeouts.push(timeoutId);
+}
 
 
 /* ==========================================================================
