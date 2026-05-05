@@ -25,6 +25,7 @@ export const quizManager = {
   wrongAnswersLog: [],
   onCorrect: null,
   onWrong: null,
+  streak: 0,
 
   start() {
     if (this.wordList.length === 0) {
@@ -127,11 +128,16 @@ export const quizManager = {
   handleCorrectAnswer(buttons) {
     this.correctQuestionCount++;
     this.stageCorrectCount++;
+    this.streak++;
     this.updateKiwamiIcon();
     this.updateQuestionProgress();
 
     if (battleManager.player?.isRegenerating) {
       battleManager.player.applyRegeneration();
+    }
+     // プレイヤーの攻撃力にstreakを反映
+    if (battleManager.player) {
+      this.applyStreakBonus(battleManager.player);
     }
 
     if (this.onCorrect) this.onCorrect();
@@ -148,10 +154,21 @@ export const quizManager = {
 
     setTimeout(() => this.randomQuestion(), 1000);
   },
+  
+  /////////////////////////
+  //streakボーナスを計算・適用
+  /////////////////////////
+  applyStreakBonus(player) {
+    const newBonus = Math.floor(this.streak * 0.5);
+    player.atk = player.baseAtk + newBonus;//レベルアップした分も追加。不正解ならバフだけ消えて、レベルアップの攻撃力は残る。
+    player.updateHPBar();
+},
+
 
   handleWrongAnswer(buttons, selected) {
     this.correctQuestionCount--;
     this.updateKiwamiIcon();
+    this.streak = 0;  // ← 追加: 不正解でストリークリセット
 
     const q = this.currentQuestion;
     if (q && q.kanji) {
@@ -255,6 +272,7 @@ export const quizManager = {
     this.isVictoryActive = false;
     this.updateKiwamiIcon();
     this.updateQuestionProgress();
+    this.streak = 0;
   },
 
   /**

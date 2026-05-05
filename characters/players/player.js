@@ -96,9 +96,9 @@ export class Player extends Character {
       this.maxHp += 10;
       this.hp += 10;
 
-      this.atk += 3;
-      this.def += 2;
-      this.mdf += 2;
+      this.baseAtk += 3;
+      this.baseDef += 2;
+      this.baseMdf += 2;
 
       this.maxExp = Math.floor(this.maxExp * 1.4);
 

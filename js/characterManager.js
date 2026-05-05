@@ -29,8 +29,8 @@ export class Character {
     this.el.id = id;
     this.el.className = 'character-container';
 
-    this.init();
-
+    this.init();  
+    this.baseAtk = atk;
     this.isAttacking = false; // 今攻撃中かどうかのフラグ
     this.isRegenerating = false;// 今リジェネ中かフラグ
 
