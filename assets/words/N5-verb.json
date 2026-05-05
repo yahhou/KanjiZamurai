@@ -1,0 +1,416 @@
+[
+  {
+    "kanji": "あう",
+    "yomi": "",
+    "english": "meet",
+    "romaji": "au"
+  },
+  {
+    "kanji": "あける",
+    "yomi": "",
+    "english": "open",
+    "romaji": "akeru"
+  },
+  {
+    "kanji": "あげる",
+    "yomi": "",
+    "english": "give",
+    "romaji": "ageru"
+  },
+  {
+    "kanji": "あそぶ",
+    "yomi": "",
+    "english": "play",
+    "romaji": "asobu"
+  },
+  {
+    "kanji": "あらう",
+    "yomi": "",
+    "english": "wash",
+    "romaji": "arau"
+  },
+  {
+    "kanji": "ある",
+    "yomi": "",
+    "english": "exist (things)",
+    "romaji": "aru"
+  },
+  {
+    "kanji": "あるく",
+    "yomi": "",
+    "english": "walk",
+    "romaji": "aruku"
+  },
+  {
+    "kanji": "いう",
+    "yomi": "",
+    "english": "say",
+    "romaji": "iu"
+  },
+  {
+    "kanji": "いく",
+    "yomi": "",
+    "english": "go",
+    "romaji": "iku"
+  },
+  {
+    "kanji": "いる",
+    "yomi": "",
+    "english": "exist (people/animals)",
+    "romaji": "iru"
+  },
+  {
+    "kanji": "うる",
+    "yomi": "",
+    "english": "sell",
+    "romaji": "uru"
+  },
+  {
+    "kanji": "おきる",
+    "yomi": "",
+    "english": "wake up",
+    "romaji": "okiru"
+  },
+  {
+    "kanji": "おくる",
+    "yomi": "",
+    "english": "send",
+    "romaji": "okuru"
+  },
+  {
+    "kanji": "おしえる",
+    "yomi": "",
+    "english": "teach",
+    "romaji": "oshieru"
+  },
+  {
+    "kanji": "おぼえる",
+    "yomi": "",
+    "english": "remember",
+    "romaji": "oboeru"
+  },
+  {
+    "kanji": "およぐ",
+    "yomi": "",
+    "english": "swim",
+    "romaji": "oyogu"
+  },
+  {
+    "kanji": "おりる",
+    "yomi": "",
+    "english": "get off",
+    "romaji": "oriru"
+  },
+  {
+    "kanji": "かう",
+    "yomi": "",
+    "english": "buy",
+    "romaji": "kau"
+  },
+  {
+    "kanji": "かえる",
+    "yomi": "",
+    "english": "return",
+    "romaji": "kaeru"
+  },
+  {
+    "kanji": "かく",
+    "yomi": "",
+    "english": "write",
+    "romaji": "kaku"
+  },
+  {
+    "kanji": "かす",
+    "yomi": "",
+    "english": "lend",
+    "romaji": "kasu"
+  },
+  {
+    "kanji": "かりる",
+    "yomi": "",
+    "english": "borrow",
+    "romaji": "kariru"
+  },
+  {
+    "kanji": "かんがえる",
+    "yomi": "",
+    "english": "think",
+    "romaji": "kangaeru"
+  },
+  {
+    "kanji": "きく",
+    "yomi": "",
+    "english": "hear/ask",
+    "romaji": "kiku"
+  },
+  {
+    "kanji": "くだる",
+    "yomi": "",
+    "english": "go down",
+    "romaji": "kudaru"
+  },
+  {
+    "kanji": "くる",
+    "yomi": "",
+    "english": "come",
+    "romaji": "kuru"
+  },
+  {
+    "kanji": "けす",
+    "yomi": "",
+    "english": "turn off",
+    "romaji": "kesu"
+  },
+  {
+    "kanji": "しぬ",
+    "yomi": "",
+    "english": "die",
+    "romaji": "shinu"
+  },
+  {
+    "kanji": "しめる",
+    "yomi": "",
+    "english": "close",
+    "romaji": "shimeru"
+  },
+  {
+    "kanji": "しる",
+    "yomi": "",
+    "english": "know",
+    "romaji": "shiru"
+  },
+  {
+    "kanji": "する",
+    "yomi": "",
+    "english": "do",
+    "romaji": "suru"
+  },
+  {
+    "kanji": "すわる",
+    "yomi": "",
+    "english": "sit",
+    "romaji": "suwaru"
+  },
+  {
+    "kanji": "せんたくする",
+    "yomi": "",
+    "english": "laundry",
+    "romaji": "sentaku suru"
+  },
+  {
+    "kanji": "そうじする",
+    "yomi": "",
+    "english": "clean",
+    "romaji": "souji suru"
+  },
+  {
+    "kanji": "たすける",
+    "yomi": "",
+    "english": "help",
+    "romaji": "tasukeru"
+  },
+  {
+    "kanji": "たつ",
+    "yomi": "",
+    "english": "stand",
+    "romaji": "tatsu"
+  },
+  {
+    "kanji": "たべる",
+    "yomi": "",
+    "english": "eat",
+    "romaji": "taberu"
+  },
+  {
+    "kanji": "つかう",
+    "yomi": "",
+    "english": "use",
+    "romaji": "tsukau"
+  },
+  {
+    "kanji": "つく",
+    "yomi": "",
+    "english": "arrive",
+    "romaji": "tsuku"
+  },
+  {
+    "kanji": "つくる",
+    "yomi": "",
+    "english": "make",
+    "romaji": "tsukuru"
+  },
+  {
+    "kanji": "つける",
+    "yomi": "",
+    "english": "turn on",
+    "romaji": "tsukeru"
+  },
+  {
+    "kanji": "でかける",
+    "yomi": "",
+    "english": "go out",
+    "romaji": "dekakeru"
+  },
+  {
+    "kanji": "できる",
+    "yomi": "",
+    "english": "can do",
+    "romaji": "dekiru"
+  },
+  {
+    "kanji": "でる",
+    "yomi": "",
+    "english": "go out/leave",
+    "romaji": "deru"
+  },
+  {
+    "kanji": "とぶ",
+    "yomi": "",
+    "english": "fly/jump",
+    "romaji": "tobu"
+  },
+  {
+    "kanji": "とまる",
+    "yomi": "",
+    "english": "stop",
+    "romaji": "tomaru"
+  },
+  {
+    "kanji": "とる",
+    "yomi": "",
+    "english": "take",
+    "romaji": "toru"
+  },
+  {
+    "kanji": "なく",
+    "yomi": "",
+    "english": "cry",
+    "romaji": "naku"
+  },
+  {
+    "kanji": "ならう",
+    "yomi": "",
+    "english": "learn",
+    "romaji": "narau"
+  },
+  {
+    "kanji": "ねる",
+    "yomi": "",
+    "english": "sleep",
+    "romaji": "neru"
+  },
+  {
+    "kanji": "のぼる",
+    "yomi": "",
+    "english": "climb",
+    "romaji": "noboru"
+  },
+  {
+    "kanji": "のむ",
+    "yomi": "",
+    "english": "drink",
+    "romaji": "nomu"
+  },
+  {
+    "kanji": "のる",
+    "yomi": "",
+    "english": "ride",
+    "romaji": "noru"
+  },
+  {
+    "kanji": "はいはる",
+    "yomi": "",
+    "english": "enter",
+    "romaji": "hairu"
+  },
+  {
+    "kanji": "はしる",
+    "yomi": "",
+    "english": "run",
+    "romaji": "hashiru"
+  },
+  {
+    "kanji": "はたらく",
+    "yomi": "",
+    "english": "work",
+    "romaji": "hataraku"
+  },
+  {
+    "kanji": "はなす",
+    "yomi": "",
+    "english": "speak",
+    "romaji": "hanasu"
+  },
+  {
+    "kanji": "べんきょうする",
+    "yomi": "",
+    "english": "study",
+    "romaji": "benkyou suru"
+  },
+  {
+    "kanji": "まがる",
+    "yomi": "",
+    "english": "turn",
+    "romaji": "magaru"
+  },
+  {
+    "kanji": "まつ",
+    "yomi": "",
+    "english": "wait",
+    "romaji": "matsu"
+  },
+  {
+    "kanji": "みせる",
+    "yomi": "",
+    "english": "show",
+    "romaji": "miseru"
+  },
+  {
+    "kanji": "みる",
+    "yomi": "",
+    "english": "see/watch",
+    "romaji": "miru"
+  },
+  {
+    "kanji": "もつ",
+    "yomi": "",
+    "english": "have",
+    "romaji": "motsu"
+  },
+  {
+    "kanji": "もらう",
+    "yomi": "",
+    "english": "receive",
+    "romaji": "morau"
+  },
+  {
+    "kanji": "よむ",
+    "yomi": "",
+    "english": "read",
+    "romaji": "yomu"
+  },
+  {
+    "kanji": "わかる",
+    "yomi": "",
+    "english": "understand",
+    "romaji": "wakaru"
+  },
+  {
+    "kanji": "わすれる",
+    "yomi": "",
+    "english": "forget",
+    "romaji": "wasureru"
+  },
+  {
+    "kanji": "わたる",
+    "yomi": "",
+    "english": "cross",
+    "romaji": "wataru"
+  },
+  {
+    "kanji": "わらう",
+    "yomi": "",
+    "english": "laugh",
+    "romaji": "warau"
+  }
+]

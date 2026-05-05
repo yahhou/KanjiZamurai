@@ -7,11 +7,11 @@ import { Player } from './player.js';
         imgSrc: "assets/images/Samurai-Sheet.png", 
         hp: 25,
         mp: 0,
-        atk: 15,
-        def: 10,
-        mdf: 10,
-        spd: 10,
-        critRate: 10,
+        atk: 5,
+        def: 5,
+        mdf: 5,
+        eva: 5,
+        critRate: 5,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 45,

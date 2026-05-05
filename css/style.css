@@ -124,6 +124,46 @@
     box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.7);
   }
   
+    .category-title {
+  font-size: 6cqw;
+  font-weight: bold;
+  margin-bottom: 2cqw;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.back-btn {
+  width: 70%;
+  min-height: 60px;
+  padding: 15px 30px;
+  border-radius: 10cqw;
+  background: #8B0000;
+  color: #ffffff;
+  font-size: 5cqw;
+  font-weight: bold;
+  box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  transition: transform 0.1s;
+  font-family: inherit;
+  margin-top: 2cqw;
+}
+
+.back-btn:active {
+  transform: scale(0.95);
+}
+
+.back-btn:hover {
+  background: #A52A2A;
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.7);
+}
+
+.empty-message {
+  font-size: 4cqw;
+  color: #999;
+  text-align: center;
+  margin: 3cqw 0;
+}
   /* ==========================================================================
    . バトル・メイン画面
   ========================================================================== */
@@ -375,7 +415,7 @@
 
   /* HPバーの中身 */
   .hp-bar-inner {
-    width: 100%;
+    width: 80%;
     height: 100%;
     background-color: #2ecc71;
     transition: width 0.3s ease-out;
@@ -930,7 +970,7 @@
     left: auto;
     bottom: auto;
     display: block;
-    width: 100%;
+    width: 80%;
     height: var(--stat-bar-height, 1.5cqw);
     min-height: var(--stat-bar-min-height, 6px);
     background-color: #4d4d4d;

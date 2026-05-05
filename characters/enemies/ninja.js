@@ -10,11 +10,11 @@ import { Enemy } from './enemy.js';
         atk: 10,
         def: 10,
         mdf: 5,
-        spd: 99,
+        eva: 99,
         critRate: 50,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
-        sizeRatio: 48,
+        sizeRatio: 50,
         frameCount: 3,
         frameInterval: 50,
         idleFrameCount: 3,

@@ -15,15 +15,26 @@ function stageWordUrl(fileName) {
 }
 
 export const gameManager = {
-  stageConfigs: [
-    { id: 1, name: "Legendary Samurai", files: ["word_list_7.json"] },
-    { id: 2, name: "Novice Samurai 6", files: ["word_list_6.json"] },
-    { id: 3, name: "Novice Samurai 5", files: ["word_list_5.json"] },
-    { id: 4, name: "Novice Samurai 4", files: ["word_list_4.json"] },
-    { id: 5, name: "Novice Samurai 3", files: ["word_list_3.json"] },
-    { id: 6, name: "Novice Samurai 2", files: ["word_list_2.json"] },
-    { id: 7, name: "Novice Samurai 1", files: ["word_list_1.json"] },
-  ],
+  stageConfigs: {
+    N1: [],
+    N2: [],
+    N3: [
+      { id: 10, name: "Advanced Samurai", files: ["word_list_7.json"] },
+    ],
+    N4: [],
+    N5: [
+      { id: 3, name: "Noun", files: ["N5-Noun.json"] },
+      { id: 4, name: "Adjective", files: ["N5-adjective.json"] },
+      { id: 5, name: "Verb", files: ["N5-verb.json"] },
+      { id: 6, name: "Particle", files: ["N5-particle.json"] },
+      { id: 7, name: "AuxiliaryVerb", files: ["N5-auxiliaryVerb.json"] },
+
+    ],
+    N6: [
+      { id: 1, name: "Hiragana", files: ["hiragana.json"] },
+      { id: 2, name: "Katakana", files: ["katakana.json"] },
+  ]
+  },
 
   startBtnSE: new Audio("assets/sounds/StartButton.mp3"),
   gameOverSE: new Audio("assets/sounds/gameOver.mp3"),
@@ -151,56 +162,115 @@ export const gameManager = {
   },
 
   showStartMessage() {
-    const container = document.getElementById("uiWrapper");
-    if (!container) return;
+  const container = document.getElementById("uiWrapper");
+  if (!container) return;
 
-    container.style.display = "flex";
-    container.style.backgroundColor = "transparent";
-    container.style.opacity = "1";
+  container.style.display = "flex";
+  container.style.backgroundColor = "transparent";
+  container.style.opacity = "1";
 
+  this.showCategoryMenu();
+},
+
+showCategoryMenu() {
+  const container = document.getElementById("uiWrapper");
+  if (!container) return;
+
+  const categories = Object.keys(this.stageConfigs).reverse(); // 逆順で表示（上から下）
+  
+  const buttonsHtml =
+    `<div class="menu-container">` +
+    categories
+      .map(
+        (category) =>
+          `<button type="button" class="mode-btn" data-category="${category}">${category}</button>`
+      )
+      .join("") +
+    `</div>`;
+
+  container.innerHTML = buttonsHtml;
+
+  container.querySelectorAll(".mode-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      this.playStartBtnSE();
+      const category = e.currentTarget.dataset.category;
+      this.showStageMenu(category);
+    });
+  });
+},
+
+showStageMenu(category) {
+  const container = document.getElementById("uiWrapper");
+  if (!container) return;
+
+  const stages = this.stageConfigs[category];
+
+  if (!stages || stages.length === 0) {
     const buttonsHtml =
       `<div class="menu-container">` +
-      this.stageConfigs
-        .map(
-          (stage) =>
-            `<button type="button" class="mode-btn" data-stage-id="${stage.id}">${stage.name}</button>`
-        )
-        .join("") +
+      `<p class="empty-message"> Coming Soon </p>` +
+      `<button type="button" class="back-btn">Back</button>` +
       `</div>`;
-
+    
     container.innerHTML = buttonsHtml;
-
-    container.querySelectorAll(".mode-btn").forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        this.playStartBtnSE();
-
-        const bgm = assets.sounds.bgm_Battle;
-        if (bgm) {
-          bgm
-            .play()
-            .then(() => {
-              bgm.pause();
-            })
-            .catch(() => {});
-        }
-
-        const stageId = parseInt(e.currentTarget.dataset.stageId, 10);
-        const selectedStage = this.stageConfigs.find((s) => s.id === stageId);
-        if (!selectedStage) return;
-
-        container.style.transition = "1s";
-        container.style.backgroundColor = "black";
-        const menu = e.currentTarget.parentElement;
-        if (menu) menu.style.opacity = "0";
-
-        setTimeout(() => {
-          container.style.display = "none";
-          this.loadSelectedStageData(selectedStage.files);
-        }, 1000);
-      });
+    container.querySelector(".back-btn").addEventListener("click", () => {
+      this.showCategoryMenu();
     });
-  },
+    return;
+  }
 
+  const buttonsHtml =
+    `<div class="menu-container">` +
+    `<h3 class="category-title">${category}</h3>` +
+    stages
+      .map(
+        (stage) =>
+          `<button type="button" class="mode-btn" data-stage-id="${stage.id}">${stage.name}</button>`
+      )
+      .join("") +
+    `<button type="button" class="back-btn">Back</button>` +
+    `</div>`;
+
+  container.innerHTML = buttonsHtml;
+
+  container.querySelectorAll(".mode-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      this.playStartBtnSE();
+
+      const bgm = assets.sounds.bgm_Battle;
+      if (bgm) {
+        bgm
+          .play()
+          .then(() => {
+            bgm.pause();
+          })
+          .catch(() => {});
+      }
+
+      const stageId = parseInt(e.currentTarget.dataset.stageId, 10);
+      const selectedStage = stages.find((s) => s.id === stageId);
+      if (!selectedStage) return;
+
+      container.style.transition = "1s";
+      container.style.backgroundColor = "black";
+      const menu = e.currentTarget.parentElement;
+      if (menu) menu.style.opacity = "0";
+
+      setTimeout(() => {
+        container.style.display = "none";
+        this.loadSelectedStageData(selectedStage.files);
+      }, 1000);
+    });
+  });
+
+  container.querySelector(".back-btn").addEventListener("click", () => {
+    this.showCategoryMenu();
+  });
+},
+
+  //--------------------
+  //ステージ選択後の処理
+  //-------------------- 
   startBattle() {
     this.hideStartScreen();
     this.showBattleScreen();
@@ -246,7 +316,7 @@ export const gameManager = {
           <h2>Game Over</h2>
         </div>
         ${reviewHtml}
-        <button type="button" id="retryBtn" class="retry-btn">メニューへ</button>
+        <button type="button" id="retryBtn" class="retry-btn">Back to menu</button>
       </div>
     `;
 

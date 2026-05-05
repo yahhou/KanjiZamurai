@@ -1,7 +1,7 @@
 
 
 export class Character {
-  constructor({ id, imgSrc, hp, mp, atk, def, mdf, spd, critRate, width, height,
+  constructor({ id, imgSrc, hp, mp, atk, def, mdf, eva, critRate, width, height,
               frameCount, sizeRatio, frameInterval, idleFrameCount, idleFrames, deathFrame}) {
     this.id = id;
     this.imgSrc = imgSrc;
@@ -11,7 +11,7 @@ export class Character {
     this.atk = atk;
     this.def = def;
     this.mdf = mdf;
-    this.spd = spd;
+    this.eva = eva;
     this.critRate = critRate || 5;
     this.width = width || 80;  // デフォルト値
     this.height = height || 80; // デフォルト値
@@ -167,7 +167,7 @@ updateHPBar() {
   updateParam('.val-atk', this.atk);
   updateParam('.val-def', this.def);
   updateParam('.val-mdf', this.mdf);
-  updateParam('.val-spd', this.spd);
+  updateParam('.val-eva', this.eva);
   // クリティカル率が定義されていれば表示
   if (this.critRate !== undefined) {
     updateParam('.val-cri', `${this.critRate}%`);
@@ -187,8 +187,8 @@ updateHPBar() {
   回避判定
   ========================================================================== */
   checkEvade(attacker) {
-    const spdDiff = this.spd - attacker.spd;
-    const evadeRate = Math.min(35, Math.max(5, 10 + (spdDiff * 0.3)));
+    const evaDiff = this.eva - attacker.eva;
+    const evadeRate = Math.min(35, Math.max(5, 10 + (evaDiff * 0.3)));
 
     return Math.random() * 100 < evadeRate;
   }

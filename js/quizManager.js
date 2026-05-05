@@ -273,7 +273,7 @@ export const quizManager = {
         <div class="game-over-review-meta">${escapeHtml(row.yomi)}${
           row.romaji ? ` · ${escapeHtml(row.romaji)}` : ""
         }</div>
-        <div class="game-over-review-answer"><span class="game-over-review-label">答え</span> ${escapeHtml(
+        <div class="game-over-review-answer"><span class="game-over-review-label">Answer</span> ${escapeHtml(
           row.correctEnglish
         )}</div>
       </li>`
@@ -282,7 +282,7 @@ export const quizManager = {
 
     return `
       <div class="game-over-review">
-        <p class="game-over-review-title">間違えた問題 · 正解</p>
+        <p class="game-over-review-title">Wrong ansers</p>
         <ol class="game-over-review-list">${items}</ol>
       </div>
     `;

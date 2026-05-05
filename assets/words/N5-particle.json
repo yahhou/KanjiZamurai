@@ -1,0 +1,104 @@
+[
+  {
+    "kanji": "は",
+    "yomi": "",
+    "english": "topic marker",
+    "romaji": "wa"
+  },
+  {
+    "kanji": "が",
+    "yomi": "",
+    "english": "subject marker",
+    "romaji": "ga"
+  },
+  {
+    "kanji": "を",
+    "yomi": "",
+    "english": "object marker",
+    "romaji": "wo"
+  },
+  {
+    "kanji": "に",
+    "yomi": "",
+    "english": "direction / time",
+    "romaji": "ni"
+  },
+  {
+    "kanji": "で",
+    "yomi": "",
+    "english": "location / means",
+    "romaji": "de"
+  },
+  {
+    "kanji": "と",
+    "yomi": "",
+    "english": "and / with",
+    "romaji": "to"
+  },
+  {
+    "kanji": "も",
+    "yomi": "",
+    "english": "also",
+    "romaji": "mo"
+  },
+  {
+    "kanji": "へ",
+    "yomi": "",
+    "english": "to (direction)",
+    "romaji": "e"
+  },
+  {
+    "kanji": "から",
+    "yomi": "",
+    "english": "from",
+    "romaji": "kara"
+  },
+  {
+    "kanji": "まで",
+    "yomi": "",
+    "english": "until / to",
+    "romaji": "made"
+  },
+  {
+    "kanji": "の",
+    "yomi": "",
+    "english": "possessive",
+    "romaji": "no"
+  },
+  {
+    "kanji": "や",
+    "yomi": "",
+    "english": "and (list, partial)",
+    "romaji": "ya"
+  },
+  {
+    "kanji": "だけ",
+    "yomi": "",
+    "english": "only",
+    "romaji": "dake"
+  },
+  {
+    "kanji": "くらい",
+    "yomi": "",
+    "english": "about / approximately",
+    "romaji": "kurai"
+  },
+  {
+    "kanji": "ほど",
+    "yomi": "",
+    "english": "about (degree)",
+    "romaji": "hodo"
+  },
+  {
+    "kanji": "でも",
+    "yomi": "",
+    "english": "but / even",
+    "romaji": "demo"
+  },
+  {
+    "kanji": "そして",
+    "yomi": "",
+    "english": "and then",
+    "romaji": "soshite"
+  }
+]

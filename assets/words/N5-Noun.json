@@ -1,0 +1,1448 @@
+[
+  {
+    "kanji": "あさ",
+    "yomi": "",
+    "english": "morning",
+    "romaji": "asa"
+  },
+  {
+    "kanji": "あし",
+    "yomi": "",
+    "english": "leg",
+    "romaji": "ashi"
+  },
+  {
+    "kanji": "あした",
+    "yomi": "",
+    "english": "tomorrow",
+    "romaji": "ashita"
+  },
+  {
+    "kanji": "あたま",
+    "yomi": "",
+    "english": "head",
+    "romaji": "atama"
+  },
+  {
+    "kanji": "あに",
+    "yomi": "",
+    "english": "older brother",
+    "romaji": "ani"
+  },
+  {
+    "kanji": "あね",
+    "yomi": "",
+    "english": "older sister",
+    "romaji": "ane"
+  },
+  {
+    "kanji": "あめ",
+    "yomi": "",
+    "english": "rain",
+    "romaji": "ame"
+  },
+  {
+    "kanji": "いえ",
+    "yomi": "",
+    "english": "house",
+    "romaji": "ie"
+  },
+  {
+    "kanji": "いくつ",
+    "yomi": "",
+    "english": "how many",
+    "romaji": "ikutsu"
+  },
+  {
+    "kanji": "いしゃ",
+    "yomi": "",
+    "english": "doctor",
+    "romaji": "isha"
+  },
+  {
+    "kanji": "いす",
+    "yomi": "",
+    "english": "chair",
+    "romaji": "isu"
+  },
+  {
+    "kanji": "いち",
+    "yomi": "",
+    "english": "one",
+    "romaji": "ichi"
+  },
+  {
+    "kanji": "いちご",
+    "yomi": "",
+    "english": "strawberry",
+    "romaji": "ichigo"
+  },
+  {
+    "kanji": "いぬ",
+    "yomi": "",
+    "english": "dog",
+    "romaji": "inu"
+  },
+  {
+    "kanji": "いま",
+    "yomi": "",
+    "english": "now",
+    "romaji": "ima"
+  },
+  {
+    "kanji": "いみ",
+    "yomi": "",
+    "english": "meaning",
+    "romaji": "imi"
+  },
+  {
+    "kanji": "いもうと",
+    "yomi": "",
+    "english": "younger sister",
+    "romaji": "imouto"
+  },
+  {
+    "kanji": "いろ",
+    "yomi": "",
+    "english": "color",
+    "romaji": "iro"
+  },
+  {
+    "kanji": "うえ",
+    "yomi": "",
+    "english": "up",
+    "romaji": "ue"
+  },
+  {
+    "kanji": "うしろ",
+    "yomi": "",
+    "english": "back",
+    "romaji": "ushiro"
+  },
+  {
+    "kanji": "うみ",
+    "yomi": "",
+    "english": "sea",
+    "romaji": "umi"
+  },
+  {
+    "kanji": "うんてんしゅ",
+    "yomi": "",
+    "english": "driver",
+    "romaji": "untenshu"
+  },
+  {
+    "kanji": "エアコン",
+    "yomi": "",
+    "english": "air conditioner",
+    "romaji": "eakon"
+  },
+  {
+    "kanji": "えいが",
+    "yomi": "",
+    "english": "movie",
+    "romaji": "eiga"
+  },
+  {
+    "kanji": "えいご",
+    "yomi": "",
+    "english": "English",
+    "romaji": "eigo"
+  },
+  {
+    "kanji": "えき",
+    "yomi": "",
+    "english": "station",
+    "romaji": "eki"
+  },
+  {
+    "kanji": "えきいん",
+    "yomi": "",
+    "english": "station staff",
+    "romaji": "ekiin"
+  },
+  {
+    "kanji": "えん",
+    "yomi": "",
+    "english": "yen",
+    "romaji": "en"
+  },
+  {
+    "kanji": "えんぴつ",
+    "yomi": "",
+    "english": "pencil",
+    "romaji": "enpitsu"
+  },
+  {
+    "kanji": "おかね",
+    "yomi": "",
+    "english": "money",
+    "romaji": "okane"
+  },
+  {
+    "kanji": "おちゃ",
+    "yomi": "",
+    "english": "tea",
+    "romaji": "ocha"
+  },
+  {
+    "kanji": "おっと",
+    "yomi": "",
+    "english": "husband",
+    "romaji": "otto"
+  },
+  {
+    "kanji": "おつり",
+    "yomi": "",
+    "english": "change",
+    "romaji": "otsuri"
+  },
+  {
+    "kanji": "おと",
+    "yomi": "",
+    "english": "sound",
+    "romaji": "oto"
+  },
+  {
+    "kanji": "おとうと",
+    "yomi": "",
+    "english": "younger brother",
+    "romaji": "otouto"
+  },
+  {
+    "kanji": "おとこ",
+    "yomi": "",
+    "english": "man",
+    "romaji": "otoko"
+  },
+  {
+    "kanji": "おんがく",
+    "yomi": "",
+    "english": "music",
+    "romaji": "ongaku"
+  },
+  {
+    "kanji": "おんな",
+    "yomi": "",
+    "english": "woman",
+    "romaji": "onna"
+  },
+  {
+    "kanji": "かいしゃ",
+    "yomi": "",
+    "english": "company",
+    "romaji": "kaisha"
+  },
+  {
+    "kanji": "かいしゃいん",
+    "yomi": "",
+    "english": "office worker",
+    "romaji": "kaishain"
+  },
+  {
+    "kanji": "かいもの",
+    "yomi": "",
+    "english": "shopping",
+    "romaji": "kaimono"
+  },
+  {
+    "kanji": "かお",
+    "yomi": "",
+    "english": "face",
+    "romaji": "kao"
+  },
+  {
+    "kanji": "かぎ",
+    "yomi": "",
+    "english": "key",
+    "romaji": "kagi"
+  },
+  {
+    "kanji": "がくせい",
+    "yomi": "",
+    "english": "student",
+    "romaji": "gakusei"
+  },
+  {
+    "kanji": "かさ",
+    "yomi": "",
+    "english": "umbrella",
+    "romaji": "kasa"
+  },
+  {
+    "kanji": "ガス",
+    "yomi": "",
+    "english": "gas",
+    "romaji": "gasu"
+  },
+  {
+    "kanji": "かず",
+    "yomi": "",
+    "english": "number",
+    "romaji": "kazu"
+  },
+  {
+    "kanji": "かぜ",
+    "yomi": "",
+    "english": "wind",
+    "romaji": "kaze"
+  },
+  {
+    "kanji": "かぞく",
+    "yomi": "",
+    "english": "family",
+    "romaji": "kazoku"
+  },
+  {
+    "kanji": "かたち",
+    "yomi": "",
+    "english": "shape",
+    "romaji": "katachi"
+  },
+  {
+    "kanji": "がっこう",
+    "yomi": "",
+    "english": "school",
+    "romaji": "gakkou"
+  },
+  {
+    "kanji": "かばん",
+    "yomi": "",
+    "english": "bag",
+    "romaji": "kaban"
+  },
+  {
+    "kanji": "カメラ",
+    "yomi": "",
+    "english": "camera",
+    "romaji": "kamera"
+  },
+  {
+    "kanji": "カレー",
+    "yomi": "",
+    "english": "curry",
+    "romaji": "karee"
+  },
+  {
+    "kanji": "かわ",
+    "yomi": "",
+    "english": "river",
+    "romaji": "kawa"
+  },
+  {
+    "kanji": "かんごし",
+    "yomi": "",
+    "english": "nurse",
+    "romaji": "kangoshi"
+  },
+  {
+    "kanji": "き",
+    "yomi": "",
+    "english": "tree",
+    "romaji": "ki"
+  },
+  {
+    "kanji": "キッチン",
+    "yomi": "",
+    "english": "kitchen",
+    "romaji": "kicchin"
+  },
+  {
+    "kanji": "きっぷ",
+    "yomi": "",
+    "english": "ticket",
+    "romaji": "kippu"
+  },
+  {
+    "kanji": "きのう",
+    "yomi": "",
+    "english": "yesterday",
+    "romaji": "kinou"
+  },
+  {
+    "kanji": "きゅう",
+    "yomi": "",
+    "english": "nine",
+    "romaji": "kyuu"
+  },
+  {
+    "kanji": "ぎゅうにゅう",
+    "yomi": "",
+    "english": "milk",
+    "romaji": "gyuunyuu"
+  },
+  {
+    "kanji": "きゅうりょう",
+    "yomi": "",
+    "english": "salary",
+    "romaji": "kyuuryou"
+  },
+  {
+    "kanji": "きょう",
+    "yomi": "",
+    "english": "today",
+    "romaji": "kyou"
+  },
+  {
+    "kanji": "きょうかしょ",
+    "yomi": "",
+    "english": "textbook",
+    "romaji": "kyoukasho"
+  },
+  {
+    "kanji": "きょうしつ",
+    "yomi": "",
+    "english": "classroom",
+    "romaji": "kyoushitsu"
+  },
+  {
+    "kanji": "きょねん",
+    "yomi": "",
+    "english": "last year",
+    "romaji": "kyonen"
+  },
+  {
+    "kanji": "くうき",
+    "yomi": "",
+    "english": "air",
+    "romaji": "kuuki"
+  },
+  {
+    "kanji": "くうこう",
+    "yomi": "",
+    "english": "airport",
+    "romaji": "kuukou"
+  },
+  {
+    "kanji": "くち",
+    "yomi": "",
+    "english": "mouth",
+    "romaji": "kuchi"
+  },
+  {
+    "kanji": "くつ",
+    "yomi": "",
+    "english": "shoes",
+    "romaji": "kutsu"
+  },
+  {
+    "kanji": "くもり",
+    "yomi": "",
+    "english": "cloudy weather",
+    "romaji": "kumori"
+  },
+  {
+    "kanji": "クラス",
+    "yomi": "",
+    "english": "class",
+    "romaji": "kurasu"
+  },
+  {
+    "kanji": "くるま",
+    "yomi": "",
+    "english": "car",
+    "romaji": "kuruma"
+  },
+  {
+    "kanji": "クレジットカード",
+    "yomi": "",
+    "english": "credit card",
+    "romaji": "kurejitto kaado"
+  },
+  {
+    "kanji": "ゲーム",
+    "yomi": "",
+    "english": "game",
+    "romaji": "geemu"
+  },
+  {
+    "kanji": "けいけん",
+    "yomi": "",
+    "english": "experience",
+    "romaji": "keiken"
+  },
+  {
+    "kanji": "けしゴム",
+    "yomi": "",
+    "english": "eraser",
+    "romaji": "keshigomu"
+  },
+  {
+    "kanji": "けっか",
+    "yomi": "",
+    "english": "result",
+    "romaji": "kekka"
+  },
+  {
+    "kanji": "ご",
+    "yomi": "",
+    "english": "five",
+    "romaji": "go"
+  },
+  {
+    "kanji": "コート",
+    "yomi": "",
+    "english": "coat",
+    "romaji": "kooto"
+  },
+  {
+    "kanji": "コーヒー",
+    "yomi": "",
+    "english": "coffee",
+    "romaji": "koohii"
+  },
+  {
+    "kanji": "こうえん",
+    "yomi": "",
+    "english": "park",
+    "romaji": "kouen"
+  },
+  {
+    "kanji": "こうこう",
+    "yomi": "",
+    "english": "high school",
+    "romaji": "koukou"
+  },
+  {
+    "kanji": "こえ",
+    "yomi": "",
+    "english": "voice",
+    "romaji": "koe"
+  },
+  {
+    "kanji": "ごご",
+    "yomi": "",
+    "english": "PM",
+    "romaji": "gogo"
+  },
+  {
+    "kanji": "ごぜん",
+    "yomi": "",
+    "english": "AM",
+    "romaji": "gozen"
+  },
+  {
+    "kanji": "こたえ",
+    "yomi": "",
+    "english": "answer",
+    "romaji": "kotae"
+  },
+  {
+    "kanji": "ことば",
+    "yomi": "",
+    "english": "word",
+    "romaji": "kotoba"
+  },
+  {
+    "kanji": "こども",
+    "yomi": "",
+    "english": "child",
+    "romaji": "kodomo"
+  },
+  {
+    "kanji": "ごはん",
+    "yomi": "",
+    "english": "rice/meal",
+    "romaji": "gohan"
+  },
+  {
+    "kanji": "こんしゅう",
+    "yomi": "",
+    "english": "this week",
+    "romaji": "konshuu"
+  },
+  {
+    "kanji": "さかな",
+    "yomi": "",
+    "english": "fish",
+    "romaji": "sakana"
+  },
+  {
+    "kanji": "さけ",
+    "yomi": "",
+    "english": "alcohol",
+    "romaji": "sake"
+  },
+  {
+    "kanji": "サッカー",
+    "yomi": "",
+    "english": "soccer",
+    "romaji": "sakkaa"
+  },
+  {
+    "kanji": "ざっし",
+    "yomi": "",
+    "english": "magazine",
+    "romaji": "zasshi"
+  },
+  {
+    "kanji": "さん",
+    "yomi": "",
+    "english": "three",
+    "romaji": "san"
+  },
+  {
+    "kanji": "さんじゅう",
+    "yomi": "",
+    "english": "thirty",
+    "romaji": "sanjuu"
+  },
+  {
+    "kanji": "じかん",
+    "yomi": "",
+    "english": "time",
+    "romaji": "jikan"
+  },
+  {
+    "kanji": "じかんわり",
+    "yomi": "",
+    "english": "schedule",
+    "romaji": "jikanwari"
+  },
+  {
+    "kanji": "しけん",
+    "yomi": "",
+    "english": "exam",
+    "romaji": "shiken"
+  },
+  {
+    "kanji": "しごと",
+    "yomi": "",
+    "english": "work",
+    "romaji": "shigoto"
+  },
+  {
+    "kanji": "じしょ",
+    "yomi": "",
+    "english": "dictionary",
+    "romaji": "jisho"
+  },
+  {
+    "kanji": "した",
+    "yomi": "",
+    "english": "down",
+    "romaji": "shita"
+  },
+  {
+    "kanji": "しつもん",
+    "yomi": "",
+    "english": "question",
+    "romaji": "shitsumon"
+  },
+  {
+    "kanji": "じてんしゃ",
+    "yomi": "",
+    "english": "bicycle",
+    "romaji": "jitensha"
+  },
+  {
+    "kanji": "じむしょ",
+    "yomi": "",
+    "english": "office",
+    "romaji": "jimusho"
+  },
+  {
+    "kanji": "しゃちょう",
+    "yomi": "",
+    "english": "company president",
+    "romaji": "shachou"
+  },
+  {
+    "kanji": "シャツ",
+    "yomi": "",
+    "english": "shirt",
+    "romaji": "shatsu"
+  },
+  {
+    "kanji": "ジュース",
+    "yomi": "",
+    "english": "juice",
+    "romaji": "juusu"
+  },
+  {
+    "kanji": "じゅう",
+    "yomi": "",
+    "english": "ten",
+    "romaji": "juu"
+  },
+  {
+    "kanji": "じゅういち",
+    "yomi": "",
+    "english": "eleven",
+    "romaji": "juuichi"
+  },
+  {
+    "kanji": "しゅうまつ",
+    "yomi": "",
+    "english": "weekend",
+    "romaji": "shuumatsu"
+  },
+  {
+    "kanji": "しゅくだい",
+    "yomi": "",
+    "english": "homework",
+    "romaji": "shukudai"
+  },
+  {
+    "kanji": "しゅみ",
+    "yomi": "",
+    "english": "hobby",
+    "romaji": "shumi"
+  },
+  {
+    "kanji": "しんぶん",
+    "yomi": "",
+    "english": "newspaper",
+    "romaji": "shinbun"
+  },
+  {
+    "kanji": "スーパー",
+    "yomi": "",
+    "english": "supermarket",
+    "romaji": "suupaa"
+  },
+  {
+    "kanji": "すうがく",
+    "yomi": "",
+    "english": "math",
+    "romaji": "suugaku"
+  },
+  {
+    "kanji": "スカート",
+    "yomi": "",
+    "english": "skirt",
+    "romaji": "sukaato"
+  },
+  {
+    "kanji": "すこし",
+    "yomi": "",
+    "english": "a little",
+    "romaji": "sukoshi"
+  },
+  {
+    "kanji": "すし",
+    "yomi": "",
+    "english": "sushi",
+    "romaji": "sushi"
+  },
+  {
+    "kanji": "スポーツ",
+    "yomi": "",
+    "english": "sports",
+    "romaji": "supootsu"
+  },
+  {
+    "kanji": "ズボン",
+    "yomi": "",
+    "english": "pants",
+    "romaji": "zubon"
+  },
+  {
+    "kanji": "せき",
+    "yomi": "",
+    "english": "seat",
+    "romaji": "seki"
+  },
+  {
+    "kanji": "せん",
+    "yomi": "",
+    "english": "thousand",
+    "romaji": "sen"
+  },
+  {
+    "kanji": "せんしゅう",
+    "yomi": "",
+    "english": "last week",
+    "romaji": "senshuu"
+  },
+  {
+    "kanji": "せんせい",
+    "yomi": "",
+    "english": "teacher",
+    "romaji": "sensei"
+  },
+  {
+    "kanji": "せんたくき",
+    "yomi": "",
+    "english": "washing machine",
+    "romaji": "sentakuki"
+  },
+  {
+    "kanji": "ぜんぶ",
+    "yomi": "",
+    "english": "all",
+    "romaji": "zenbu"
+  },
+  {
+    "kanji": "そと",
+    "yomi": "",
+    "english": "outside",
+    "romaji": "soto"
+  },
+  {
+    "kanji": "そら",
+    "yomi": "",
+    "english": "sky",
+    "romaji": "sora"
+  },
+  {
+    "kanji": "だいがく",
+    "yomi": "",
+    "english": "university",
+    "romaji": "daigaku"
+  },
+  {
+    "kanji": "たいよう",
+    "yomi": "",
+    "english": "sun",
+    "romaji": "taiyou"
+  },
+  {
+    "kanji": "たくさん",
+    "yomi": "",
+    "english": "many",
+    "romaji": "takusan"
+  },
+  {
+    "kanji": "タクシー",
+    "yomi": "",
+    "english": "taxi",
+    "romaji": "takushii"
+  },
+  {
+    "kanji": "たまご",
+    "yomi": "",
+    "english": "egg",
+    "romaji": "tamago"
+  },
+  {
+    "kanji": "ちかく",
+    "yomi": "",
+    "english": "near",
+    "romaji": "chikaku"
+  },
+  {
+    "kanji": "ちち",
+    "yomi": "",
+    "english": "father",
+    "romaji": "chichi"
+  },
+  {
+    "kanji": "つき",
+    "yomi": "",
+    "english": "moon",
+    "romaji": "tsuki"
+  },
+  {
+    "kanji": "つくえ",
+    "yomi": "",
+    "english": "desk",
+    "romaji": "tsukue"
+  },
+  {
+    "kanji": "つま",
+    "yomi": "",
+    "english": "wife",
+    "romaji": "tsuma"
+  },
+  {
+    "kanji": "て",
+    "yomi": "",
+    "english": "hand",
+    "romaji": "te"
+  },
+  {
+    "kanji": "てがみ",
+    "yomi": "",
+    "english": "letter",
+    "romaji": "tegami"
+  },
+  {
+    "kanji": "テスト",
+    "yomi": "",
+    "english": "test",
+    "romaji": "tesuto"
+  },
+  {
+    "kanji": "デパート",
+    "yomi": "",
+    "english": "department store",
+    "romaji": "depaato"
+  },
+  {
+    "kanji": "テレビ",
+    "yomi": "",
+    "english": "TV",
+    "romaji": "terebi"
+  },
+  {
+    "kanji": "てんいん",
+    "yomi": "",
+    "english": "shop clerk",
+    "romaji": "tenin"
+  },
+  {
+    "kanji": "でんき",
+    "yomi": "",
+    "english": "light",
+    "romaji": "denki"
+  },
+  {
+    "kanji": "てんき",
+    "yomi": "",
+    "english": "weather",
+    "romaji": "tenki"
+  },
+  {
+    "kanji": "でんしゃ",
+    "yomi": "",
+    "english": "train",
+    "romaji": "densha"
+  },
+  {
+    "kanji": "でんわ",
+    "yomi": "",
+    "english": "phone",
+    "romaji": "denwa"
+  },
+  {
+    "kanji": "ドア",
+    "yomi": "",
+    "english": "door",
+    "romaji": "doa"
+  },
+  {
+    "kanji": "トイレ",
+    "yomi": "",
+    "english": "toilet",
+    "romaji": "toire"
+  },
+  {
+    "kanji": "とき",
+    "yomi": "",
+    "english": "time (moment)",
+    "romaji": "toki"
+  },
+  {
+    "kanji": "どくしょ",
+    "yomi": "",
+    "english": "reading",
+    "romaji": "dokusho"
+  },
+  {
+    "kanji": "とけい",
+    "yomi": "",
+    "english": "clock/watch",
+    "romaji": "tokei"
+  },
+  {
+    "kanji": "となり",
+    "yomi": "",
+    "english": "next to",
+    "romaji": "tonari"
+  },
+  {
+    "kanji": "ともだち",
+    "yomi": "",
+    "english": "friend",
+    "romaji": "tomodachi"
+  },
+  {
+    "kanji": "とり",
+    "yomi": "",
+    "english": "bird",
+    "romaji": "tori"
+  },
+  {
+    "kanji": "なか",
+    "yomi": "",
+    "english": "inside",
+    "romaji": "naka"
+  },
+  {
+    "kanji": "なな",
+    "yomi": "",
+    "english": "seven",
+    "romaji": "nana"
+  },
+  {
+    "kanji": "なまえ",
+    "yomi": "",
+    "english": "name",
+    "romaji": "namae"
+  },
+  {
+    "kanji": "に",
+    "yomi": "",
+    "english": "two",
+    "romaji": "ni"
+  },
+  {
+    "kanji": "にく",
+    "yomi": "",
+    "english": "meat",
+    "romaji": "niku"
+  },
+  {
+    "kanji": "にじゅう",
+    "yomi": "",
+    "english": "twenty",
+    "romaji": "nijuu"
+  },
+  {
+    "kanji": "にほんご",
+    "yomi": "",
+    "english": "Japanese",
+    "romaji": "nihongo"
+  },
+  {
+    "kanji": "ニュース",
+    "yomi": "",
+    "english": "news",
+    "romaji": "nyuusu"
+  },
+  {
+    "kanji": "ねこ",
+    "yomi": "",
+    "english": "cat",
+    "romaji": "neko"
+  },
+  {
+    "kanji": "ねだん",
+    "yomi": "",
+    "english": "price",
+    "romaji": "nedan"
+  },
+  {
+    "kanji": "ノート",
+    "yomi": "",
+    "english": "notebook",
+    "romaji": "nooto"
+  },
+  {
+    "kanji": "パーティー",
+    "yomi": "",
+    "english": "party",
+    "romaji": "paatii"
+  },
+  {
+    "kanji": "バス",
+    "yomi": "",
+    "english": "bus",
+    "romaji": "basu"
+  },
+  {
+    "kanji": "パスポート",
+    "yomi": "",
+    "english": "passport",
+    "romaji": "pasupooto"
+  },
+  {
+    "kanji": "パソコン",
+    "yomi": "",
+    "english": "computer",
+    "romaji": "pasokon"
+  },
+  {
+    "kanji": "はち",
+    "yomi": "",
+    "english": "eight",
+    "romaji": "hachi"
+  },
+  {
+    "kanji": "はな",
+    "yomi": "",
+    "english": "flower",
+    "romaji": "hana"
+  },
+  {
+    "kanji": "はな",
+    "yomi": "",
+    "english": "nose",
+    "romaji": "hana"
+  },
+  {
+    "kanji": "はなし",
+    "yomi": "",
+    "english": "story",
+    "romaji": "hanashi"
+  },
+  {
+    "kanji": "バナナ",
+    "yomi": "",
+    "english": "banana",
+    "romaji": "banana"
+  },
+  {
+    "kanji": "はは",
+    "yomi": "",
+    "english": "mother",
+    "romaji": "haha"
+  },
+  {
+    "kanji": "はれ",
+    "yomi": "",
+    "english": "sunny weather",
+    "romaji": "hare"
+  },
+  {
+    "kanji": "パン",
+    "yomi": "",
+    "english": "bread",
+    "romaji": "pan"
+  },
+  {
+    "kanji": "ばんごう",
+    "yomi": "",
+    "english": "number",
+    "romaji": "bangou"
+  },
+  {
+    "kanji": "ビール",
+    "yomi": "",
+    "english": "beer",
+    "romaji": "biiru"
+  },
+  {
+    "kanji": "ひだり",
+    "yomi": "",
+    "english": "left",
+    "romaji": "hidari"
+  },
+  {
+    "kanji": "ひと",
+    "yomi": "",
+    "english": "person",
+    "romaji": "hito"
+  },
+  {
+    "kanji": "ひゃく",
+    "yomi": "",
+    "english": "hundred",
+    "romaji": "hyaku"
+  },
+  {
+    "kanji": "びょういん",
+    "yomi": "",
+    "english": "hospital",
+    "romaji": "byouin"
+  },
+  {
+    "kanji": "ひる",
+    "yomi": "",
+    "english": "noon",
+    "romaji": "hiru"
+  },
+  {
+    "kanji": "ふく",
+    "yomi": "",
+    "english": "clothes",
+    "romaji": "fuku"
+  },
+  {
+    "kanji": "ぶくろ",
+    "yomi": "",
+    "english": "bag",
+    "romaji": "bukuro"
+  },
+  {
+    "kanji": "ふとん",
+    "yomi": "",
+    "english": "futon",
+    "romaji": "futon"
+  },
+  {
+    "kanji": "ぶん",
+    "yomi": "",
+    "english": "sentence",
+    "romaji": "bun"
+  },
+  {
+    "kanji": "へいじつ",
+    "yomi": "",
+    "english": "weekday",
+    "romaji": "heijitsu"
+  },
+  {
+    "kanji": "ベッド",
+    "yomi": "",
+    "english": "bed",
+    "romaji": "beddo"
+  },
+  {
+    "kanji": "へや",
+    "yomi": "",
+    "english": "room",
+    "romaji": "heya"
+  },
+  {
+    "kanji": "ペン",
+    "yomi": "",
+    "english": "pen",
+    "romaji": "pen"
+  },
+  {
+    "kanji": "べんきょう",
+    "yomi": "",
+    "english": "study",
+    "romaji": "benkyou"
+  },
+  {
+    "kanji": "ぼうし",
+    "yomi": "",
+    "english": "hat",
+    "romaji": "boushi"
+  },
+  {
+    "kanji": "ほし",
+    "yomi": "",
+    "english": "star",
+    "romaji": "hoshi"
+  },
+  {
+    "kanji": "ホテル",
+    "yomi": "",
+    "english": "hotel",
+    "romaji": "hoteru"
+  },
+  {
+    "kanji": "ほん",
+    "yomi": "",
+    "english": "book",
+    "romaji": "hon"
+  },
+  {
+    "kanji": "まいしゅう",
+    "yomi": "",
+    "english": "every week",
+    "romaji": "maishuu"
+  },
+  {
+    "kanji": "まいつき",
+    "yomi": "",
+    "english": "every month",
+    "romaji": "maitsuki"
+  },
+  {
+    "kanji": "まいにち",
+    "yomi": "",
+    "english": "every day",
+    "romaji": "mainichi"
+  },
+  {
+    "kanji": "まえ",
+    "yomi": "",
+    "english": "front",
+    "romaji": "mae"
+  },
+  {
+    "kanji": "まど",
+    "yomi": "",
+    "english": "window",
+    "romaji": "mado"
+  },
+  {
+    "kanji": "まん",
+    "yomi": "",
+    "english": "ten thousand",
+    "romaji": "man"
+  },
+  {
+    "kanji": "みかん",
+    "yomi": "",
+    "english": "mandarin orange",
+    "romaji": "mikan"
+  },
+  {
+    "kanji": "みぎ",
+    "yomi": "",
+    "english": "right",
+    "romaji": "migi"
+  },
+  {
+    "kanji": "みず",
+    "yomi": "",
+    "english": "water",
+    "romaji": "mizu"
+  },
+  {
+    "kanji": "みずうみ",
+    "yomi": "",
+    "english": "lake",
+    "romaji": "mizuumi"
+  },
+  {
+    "kanji": "みせ",
+    "yomi": "",
+    "english": "shop",
+    "romaji": "mise"
+  },
+  {
+    "kanji": "みみ",
+    "yomi": "",
+    "english": "ear",
+    "romaji": "mimi"
+  },
+  {
+    "kanji": "みんな",
+    "yomi": "",
+    "english": "everyone",
+    "romaji": "minna"
+  },
+  {
+    "kanji": "むし",
+    "yomi": "",
+    "english": "insect",
+    "romaji": "mushi"
+  },
+  {
+    "kanji": "め",
+    "yomi": "",
+    "english": "eye",
+    "romaji": "me"
+  },
+  {
+    "kanji": "メール",
+    "yomi": "",
+    "english": "email",
+    "romaji": "meeru"
+  },
+  {
+    "kanji": "もり",
+    "yomi": "",
+    "english": "forest",
+    "romaji": "mori"
+  },
+  {
+    "kanji": "もんだい",
+    "yomi": "",
+    "english": "problem",
+    "romaji": "mondai"
+  },
+  {
+    "kanji": "やきゅう",
+    "yomi": "",
+    "english": "baseball",
+    "romaji": "yakyuu"
+  },
+  {
+    "kanji": "やさい",
+    "yomi": "",
+    "english": "vegetables",
+    "romaji": "yasai"
+  },
+  {
+    "kanji": "やすみ",
+    "yomi": "",
+    "english": "holiday",
+    "romaji": "yasumi"
+  },
+  {
+    "kanji": "やま",
+    "yomi": "",
+    "english": "mountain",
+    "romaji": "yama"
+  },
+  {
+    "kanji": "ゆき",
+    "yomi": "",
+    "english": "snow",
+    "romaji": "yuki"
+  },
+  {
+    "kanji": "よてい",
+    "yomi": "",
+    "english": "plan",
+    "romaji": "yotei"
+  },
+  {
+    "kanji": "よやく",
+    "yomi": "",
+    "english": "reservation",
+    "romaji": "yoyaku"
+  },
+  {
+    "kanji": "よる",
+    "yomi": "",
+    "english": "night",
+    "romaji": "yoru"
+  },
+  {
+    "kanji": "よん",
+    "yomi": "",
+    "english": "four",
+    "romaji": "yon"
+  },
+  {
+    "kanji": "ラーメン",
+    "yomi": "",
+    "english": "ramen",
+    "romaji": "raamen"
+  },
+  {
+    "kanji": "らいねん",
+    "yomi": "",
+    "english": "next year",
+    "romaji": "rainen"
+  },
+  {
+    "kanji": "りか",
+    "yomi": "",
+    "english": "science",
+    "romaji": "rika"
+  },
+  {
+    "kanji": "りゆう",
+    "yomi": "",
+    "english": "reason",
+    "romaji": "riyuu"
+  },
+  {
+    "kanji": "りょこう",
+    "yomi": "",
+    "english": "travel",
+    "romaji": "ryokou"
+  },
+  {
+    "kanji": "りんご",
+    "yomi": "",
+    "english": "apple",
+    "romaji": "ringo"
+  },
+  {
+    "kanji": "れい",
+    "yomi": "",
+    "english": "example",
+    "romaji": "rei"
+  },
+  {
+    "kanji": "れいぞうこ",
+    "yomi": "",
+    "english": "refrigerator",
+    "romaji": "reizouko"
+  },
+  {
+    "kanji": "れきし",
+    "yomi": "",
+    "english": "history",
+    "romaji": "rekishi"
+  },
+  {
+    "kanji": "レジ",
+    "yomi": "",
+    "english": "cash register",
+    "romaji": "reji"
+  },
+  {
+    "kanji": "レストラン",
+    "yomi": "",
+    "english": "restaurant",
+    "romaji": "resutoran"
+  },
+  {
+    "kanji": "ろく",
+    "yomi": "",
+    "english": "six",
+    "romaji": "roku"
+  }
+]
