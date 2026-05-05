@@ -2,6 +2,7 @@ import { Samurai } from "../characters/players/samurai.js";
 import { Peasant } from "../characters/enemies/peasant.js";
 import { Shougun } from "../characters/enemies/shougun.js";
 import { Ninja } from "../characters/enemies/ninja.js";
+import { quizManager } from "./quizManager.js";
 
 
 const ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT = 0;
@@ -13,7 +14,6 @@ export const battleManager = {
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
   ///////////////////////////////////
-
   init() {
     this.clearCharacters();
 
@@ -30,7 +30,6 @@ export const battleManager = {
   ///////////////////////////////////
   //   　　プレイヤーの攻撃
   ///////////////////////////////////
-  
   playerAttack() {
     if (!this.player || !this.enemy) return;
     if (!this.player.el || !this.enemy.el) return;
@@ -43,7 +42,6 @@ export const battleManager = {
   ///////////////////////////////////
   //         　 敵の攻撃
   ///////////////////////////////////
-
   enemyAttack() {
     if (!this.enemy || !this.player) return;
     if (!this.enemy.el || !this.player.el) return;
@@ -56,7 +54,6 @@ export const battleManager = {
   ///////////////////////////////////
   //       キャラクターリセット
   ///////////////////////////////////
-
   clearCharacters() {
     if (this.player) this.player.destroy();
     if (this.enemy) this.enemy.destroy();
@@ -67,7 +64,6 @@ export const battleManager = {
   ///////////////////////////////////
   //       　　敵の再生成
   ///////////////////////////////////
-
   enemySpawn() {
     if (this.enemy && this.enemy.el) {
       this.enemy.destroy();
@@ -89,7 +85,6 @@ export const battleManager = {
   ///////////////////////////////////
   //          敵のレベルを調整
   ///////////////////////////////////
-
   scaleEnemyToPlayerLevel(enemy) {
     if (!enemy || !this.player) return;
 
@@ -118,7 +113,6 @@ export const battleManager = {
   ///////////////////////////////////
   //         敵の生存状態を管理
   ///////////////////////////////////
-
   checkBattleStatus() {
     if (this.enemy && this.enemy.hp <= 0 && !this.enemy.ishandled) {
       this.enemy.ishandled = true;
@@ -129,7 +123,6 @@ export const battleManager = {
   ///////////////////////////////////
   //       経験値の獲得処理
   ///////////////////////////////////
-
   defeatEnemy() {
     if (!this.player || !this.enemy) return;
 
@@ -140,6 +133,60 @@ export const battleManager = {
       this.enemySpawn();
     }, 1100);
   },
+
+  ///////////////////////////////////
+  //  Streakボーナスの更新 (追加)
+  ///////////////////////////////////
+  updateStreakBonus(streakCount) {
+    if (!this.player) return;
+
+    // 1. ボーナス値を計算 (2連撃以上で発生)
+    const bonusAtk = streakCount >= 2 ? Math.floor(streakCount * 0.5) : 0;
+    this.refreshStreakDisplay(streakCount);
+    // 2. プレイヤーのステータスに反映
+    // baseAtk(レベル依存の基礎値)に加算することで、レベルアップ分を保持しつつボーナスだけを変動させる
+    this.player.atk = this.player.baseAtk + bonusAtk;
+
+    // 3. バフ状態のフラグ更新
+    this.player.hasStreakBonus = (streakCount >= 2);
+
+    // 4. UI更新
+    this.player.refreshStats();
+    if (typeof refreshPlayerBuffIcons === 'function') {
+      refreshPlayerBuffIcons();
+    }
+  },
+
+  ///////////////////////////////////
+  //  Streakボーナスの設定とHTML
+  ///////////////////////////////////
+  refreshStreakDisplay(streakCount) {
+  const actionArea = document.getElementById("actionArea");
+  if (!actionArea) return;
+
+  // 既存の表示があれば削除
+  let el = document.getElementById("battle-streak");
+  if (el) el.remove();
+
+  // 2以上なら新しく作成
+  if (streakCount >= 2) {
+    const getStreakClass = (s) => {
+      if (s >= 30) return 'rainbow';
+      if (s >= 20) return 'gold';
+      if (s >= 10) return 'red';
+      if (s >= 5) return 'blue';
+      return 'white';
+    };
+
+    el = document.createElement("div");
+    el.id = "battle-streak";
+    el.className = `streak-display ${getStreakClass(streakCount)}`;
+    el.innerHTML = `<div class="streak-number">${streakCount}x</div>`;
+    
+    actionArea.appendChild(el);
+  }
+}
+
 };
 
 window.battleManager = battleManager;

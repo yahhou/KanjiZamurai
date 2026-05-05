@@ -44,7 +44,6 @@ export const quizManager = {
   /////////////////////////
   //   ランダムクイズの準備）
   /////////////////////////
-
   randomQuestion() {
     const currentStageWords = this.wordList[this.currentStage];
     if (!currentStageWords?.length) {
@@ -84,28 +83,24 @@ export const quizManager = {
   /////////////////////////
   //      問題の表示
   /////////////////////////
-
   renderQuestion(correct, options) {
-    const { kanji, yomi, romaji } = correct;
-    const quizArea = document.getElementById("quizArea");
-    if (!quizArea) return;
+  const { kanji, yomi, romaji } = correct;
+  const quizArea = document.getElementById("quizArea");
+  if (!quizArea) return;
 
-    quizArea.innerHTML = `
-      <div class="question-container">
-        <h2>${escapeHtml(kanji)}</h2>
-        <p>${escapeHtml(yomi)} / ${escapeHtml(romaji)}</p>
-      </div>
-      <div id="optionArea" class="button-container">
-        ${options
-          .map(
-            (o) => `
-          <button type="button" class="quiz-button" data-english="${escapeHtml(o.english)}">
-            <div class="yomi-text">${escapeHtml(o.english)}</div>
-          </button>`
-          )
-          .join("")}
-      </div>
-    `;
+  // streakのHTML表示部分をまるごと削除
+  quizArea.innerHTML = `
+    <div class="question-container">
+      <h2>${escapeHtml(kanji)}</h2>
+      <p>${escapeHtml(yomi)} / ${escapeHtml(romaji)}</p>
+    </div>
+    <div id="optionArea" class="button-container">
+      ${options.map(o => `
+        <button type="button" class="quiz-button" data-english="${escapeHtml(o.english)}">
+          <div class="yomi-text">${escapeHtml(o.english)}</div>
+        </button>`).join("")}
+    </div>
+  `;
 
     const optionArea = document.getElementById("optionArea");
     if (optionArea) {
@@ -123,7 +118,6 @@ export const quizManager = {
   /////////////////////////
   //      回答の判定
   /////////////////////////
-
   answer(selected) {
     const buttons = document.querySelectorAll("#optionArea button");
 
@@ -147,22 +141,21 @@ export const quizManager = {
   /////////////////////////
   //　　　　正解処理
   /////////////////////////
-
   handleCorrectAnswer(buttons) {
     this.correctQuestionCount++;
     this.correctAnswerCount++;
-    this.streak ++;
-    if (this.streak >= 2) {battleManager.player.hasStreakBouns = true;}
+    this.streak++;
+
+    // battleManager経由でボーナス計算とステータス更新を一括で行う
+    if (battleManager) {
+      battleManager.updateStreakBonus(this.streak);
+    }
 
     this.updateKiwamiIcon();
     this.updateQuestionProgress();
 
     if (battleManager.player?.isRegenerating) {
       battleManager.player.applyRegeneration();
-    }
-     // プレイヤーの攻撃力にstreakを反映
-    if (battleManager.player) {
-      this.applyStreakBonus(battleManager.player);
     }
 
     if (this.onCorrect) this.onCorrect();
@@ -181,24 +174,18 @@ export const quizManager = {
   },
   
   /////////////////////////
-  //streakボーナスを計算・適用
-  /////////////////////////
-
-  applyStreakBonus(player) {
-    const newBonus = Math.floor(this.streak * 0.5);
-    player.atk = player.baseAtk + newBonus;//レベルアップした分も追加。不正解ならバフだけ消えて、レベルアップの攻撃力は残る。
-    player.refreshStats();
-},
-
-  /////////////////////////
   //　　　不正解処理
   /////////////////////////
-
   handleWrongAnswer(buttons, selected) {
     this.correctQuestionCount--;
     this.updateKiwamiIcon();
-    this.streak = 0;  // ← 追加: 不正解でストリークリセット
-      if (this.streak <= 1) {battleManager.player.hasStreakBouns = false;}
+    
+    this.streak = 0; // ストリークリセット
+    
+    // battleManagerにリセットを伝える
+    if (battleManager) {
+      battleManager.updateStreakBonus(this.streak);
+    }
 
     const q = this.currentQuestion;
     if (q && q.kanji) {
@@ -212,6 +199,7 @@ export const quizManager = {
 
     if (battleManager.player) {
       battleManager.player.isRegenerating = false;
+    }
 
     refreshPlayerBuffIcons();
 
@@ -223,12 +211,11 @@ export const quizManager = {
         btn.disabled = true;
       }
     });
-  }},
+  },
 
   /////////////////////////
   //      極アイコン表示
   /////////////////////////
-
   setupKiwami() {
     const container = document.getElementById("kiwami-container");
     const bg = document.getElementById("kiwami-bg");
@@ -252,7 +239,6 @@ export const quizManager = {
   /////////////////////////
   // 　　　極アップデート
   /////////////////////////
-
   updateKiwamiIcon() {
     const img = document.getElementById("kiwami-image");
     if (!img) return;
@@ -281,7 +267,6 @@ export const quizManager = {
   /////////////////////////
   //　　　　勝利
   /////////////////////////
-
   victory() {
     this.isVictoryActive = true;
     window.gameManager?.hideSkillPanel();
@@ -307,7 +292,6 @@ export const quizManager = {
   /////////////////////////
   //　　　クイズリセット
   /////////////////////////
-
   reset() {
     this.currentStage = 0;
     this.currentQuestion = {};
@@ -320,12 +304,10 @@ export const quizManager = {
     this.updateQuestionProgress();
     this.streak = 0;
   },
-  
 
   /////////////////////////
   //     レビュー画面
   /////////////////////////
-
   buildWrongAnswersReviewHtml() {
     if (!this.wrongAnswersLog.length) {
       return `<p class="game-over-review-empty">このバトルで記録された誤答はありません。</p>`;
@@ -357,7 +339,6 @@ export const quizManager = {
   /////////////////////////
   //   正解数と問題数の表示
   /////////////////////////
-  
   updateQuestionProgress() {
     const progressEl = document.getElementById("question-progress");
     if (!progressEl) return;
