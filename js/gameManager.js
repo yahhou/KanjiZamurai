@@ -16,12 +16,22 @@ function stageWordUrl(fileName) {
 
 export const gameManager = {
   stageConfigs: {
-    N1: [],
-    N2: [],
-    N3: [
-      { id: 10, name: "Advanced Samurai", files: ["word_list_7.json"] },
+    N1: [
+      { },
     ],
-    N4: [],
+
+    N2: [
+      { },
+
+    ],
+    N3: [
+      { },
+    ],
+
+    N4: [ 
+      { },
+    ],
+    
     N5: [
       { id: 3, name: "Noun", files: ["N5-Noun.json"] },
       { id: 4, name: "Adjective", files: ["N5-adjective.json"] },
@@ -43,6 +53,11 @@ export const gameManager = {
   isLoaded: false,
   loadingInterval: null,
 
+
+  //////////////////////////////
+  // 　　　ゲーム起動
+  //////////////////////////////
+
   init() {
     this.startLoadingAnimation();
 
@@ -55,11 +70,11 @@ export const gameManager = {
       setTimeout(() => {
         this.isLoaded = true;
         this.stopLoadingAnimation();
-        this.showStartMessage();
+        this.showStartScreen();
       }, INITIAL_LOAD_MS);
     } else {
       this.stopLoadingAnimation();
-      this.showStartMessage();
+      this.showStartScreen();
     }
 
     // ブラウザの自動再生制限を避ける：最初のクリックで BGM を一度だけ「解錠」する
@@ -81,6 +96,10 @@ export const gameManager = {
     );
   },
 
+  //////////////////////////////
+  //   ロード中アニメーションの開始
+  //////////////////////////////
+
   startLoadingAnimation() {
     const loadingArea = document.getElementById("loadingArea");
     if (!loadingArea) return;
@@ -92,6 +111,10 @@ export const gameManager = {
       loadingArea.innerText = "Loading" + ".".repeat(dots);
     }, 500);
   },
+
+  //////////////////////////////
+  //   ロード中アニメーションの停止
+  //////////////////////////////
 
   stopLoadingAnimation() {
     if (this.loadingInterval) {
@@ -105,6 +128,10 @@ export const gameManager = {
       loadingArea.innerText = "";
     }
   },
+
+  //////////////////////////////
+  //   ステージデータの読み込み
+  //////////////////////////////
 
   loadSelectedStageData(files) {
     this.startLoadingAnimation();
@@ -157,11 +184,15 @@ export const gameManager = {
             ].join("\n");
 
         alert(message);
-        this.showStartMessage();
+        this.showStartScreen();
       });
   },
 
-  showStartMessage() {
+  //////////////////////////////
+  //   ステージ画面の準備
+  //////////////////////////////
+
+  showStartScreen() {
   const container = document.getElementById("uiWrapper");
   if (!container) return;
 
@@ -171,55 +202,62 @@ export const gameManager = {
 
   this.showCategoryMenu();
 },
+  //////////////////////////////
+  //  カテゴリー選択メニューの表示(N5,N4..など)
+  //////////////////////////////
 
-showCategoryMenu() {
-  const container = document.getElementById("uiWrapper");
-  if (!container) return;
+  showCategoryMenu() {
+    const container = document.getElementById("uiWrapper");
+    if (!container) return;
 
-  const categories = Object.keys(this.stageConfigs).reverse(); // 逆順で表示（上から下）
+    const categories = Object.keys(this.stageConfigs).reverse(); // 逆順で表示（上から下）
   
-  const buttonsHtml =
-    `<div class="menu-container">` +
-    categories
-      .map(
-        (category) =>
-          `<button type="button" class="mode-btn" data-category="${category}">${category}</button>`
-      )
-      .join("") +
-    `</div>`;
-
-  container.innerHTML = buttonsHtml;
-
-  container.querySelectorAll(".mode-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      this.playStartBtnSE();
-      const category = e.currentTarget.dataset.category;
-      this.showStageMenu(category);
-    });
-  });
-},
-
-showStageMenu(category) {
-  const container = document.getElementById("uiWrapper");
-  if (!container) return;
-
-  const stages = this.stageConfigs[category];
-
-  if (!stages || stages.length === 0) {
     const buttonsHtml =
-      `<div class="menu-container">` +
+    `<div class="menu-container">` +
+      categories
+        .map(
+          (category) =>
+          `<button type="button" class="mode-btn" data-category="${category}">${category}</button>`
+        )
+        .join("") +
+      `</div>`;
+      
+    container.innerHTML = buttonsHtml;
+
+    container.querySelectorAll(".mode-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        this.playStartBtnSE();
+        const category = e.currentTarget.dataset.category;
+      this.showStageMenu(category);
+      });
+    });
+  },
+
+  //////////////////////////////
+  //  ステージ選択メニューの表示（名詞、動詞など）
+  //////////////////////////////
+
+  showStageMenu(category) {
+    const container = document.getElementById("uiWrapper");
+    if (!container) return;
+
+    const stages = this.stageConfigs[category];
+
+    if (!stages || stages.length === 0) {
+      const buttonsHtml =
+     `<div class="menu-container">` +
       `<p class="empty-message"> Coming Soon </p>` +
       `<button type="button" class="back-btn">Back</button>` +
       `</div>`;
     
-    container.innerHTML = buttonsHtml;
-    container.querySelector(".back-btn").addEventListener("click", () => {
+      container.innerHTML = buttonsHtml;
+      container.querySelector(".back-btn").addEventListener("click", () => {
       this.showCategoryMenu();
-    });
+      });
     return;
-  }
+    }
 
-  const buttonsHtml =
+    const buttonsHtml =
     `<div class="menu-container">` +
     `<h3 class="category-title">${category}</h3>` +
     stages
@@ -231,9 +269,9 @@ showStageMenu(category) {
     `<button type="button" class="back-btn">Back</button>` +
     `</div>`;
 
-  container.innerHTML = buttonsHtml;
+    container.innerHTML = buttonsHtml;
 
-  container.querySelectorAll(".mode-btn").forEach((btn) => {
+    container.querySelectorAll(".mode-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       this.playStartBtnSE();
 
@@ -256,21 +294,22 @@ showStageMenu(category) {
       const menu = e.currentTarget.parentElement;
       if (menu) menu.style.opacity = "0";
 
-      setTimeout(() => {
-        container.style.display = "none";
-        this.loadSelectedStageData(selectedStage.files);
-      }, 1000);
+        setTimeout(() => {
+          container.style.display = "none";
+          this.loadSelectedStageData(selectedStage.files);
+        }, 1000);
+      });
     });
-  });
 
-  container.querySelector(".back-btn").addEventListener("click", () => {
+    container.querySelector(".back-btn").addEventListener("click", () => {
     this.showCategoryMenu();
-  });
-},
+    });
+  },
 
-  //--------------------
-  //ステージ選択後の処理
-  //-------------------- 
+  //////////////////////////////
+  //     バトルスタート
+  //////////////////////////////
+
   startBattle() {
     this.hideStartScreen();
     this.showBattleScreen();
@@ -290,15 +329,27 @@ showStageMenu(category) {
     quizManager.start();
   },
 
+  //////////////////////////////
+  //    スタート画面の非表示
+  //////////////////////////////
+
   hideStartScreen() {
     const wrapper = document.getElementById("uiWrapper");
     if (wrapper) wrapper.style.display = "none";
   },
 
+  //////////////////////////////
+  //    バトル画面の表示
+  //////////////////////////////
+
   showBattleScreen() {
     const battle = document.getElementById("battleScreen");
     if (battle) battle.style.display = "flex";
   },
+
+  //////////////////////////////////
+  //   ゲームオーバー処理と復習画面の表示
+  //////////////////////////////////
 
   handleGameOver() {
     const bgm = assets.sounds.bgm_Battle;
@@ -323,6 +374,10 @@ showStageMenu(category) {
     document.getElementById("retryBtn")?.addEventListener("click", () => this.retry());
   },
 
+  //////////////////////////////
+  //  リトライ（タイトルへ戻る）処理
+  //////////////////////////////
+
   retry() {
     this.hideSkillPanel();
 
@@ -341,6 +396,10 @@ showStageMenu(category) {
     this.init();
   },
 
+  //////////////////////////////
+  //    ボタンクリック効果音の再生
+  //////////////////////////////
+
   playStartBtnSE() {
     if (this.startBtnSE) {
       this.startBtnSE.currentTime = 0;
@@ -348,12 +407,20 @@ showStageMenu(category) {
     }
   },
 
+  //////////////////////////////
+  //    ゲームオーバー効果音の再生
+  //////////////////////////////
+
   playGameOverSE() {
     if (this.gameOverSE) {
       this.gameOverSE.currentTime = 0;
       this.gameOverSE.play();
     }
   },
+
+  //////////////////////////////
+  //    スキル選択パネルの表示
+  //////////////////////////////
 
   showSkillPanel() {
     if (quizManager.isVictoryActive) return;
@@ -367,6 +434,10 @@ showStageMenu(category) {
     panel.style.display = "flex";
   },
 
+  //////////////////////////////
+  //    スキル選択肢の描画
+  //////////////////////////////
+
   renderSkillOptions() {
     const content = document.querySelector("#skill-panel .panel-content");
     if (!content) return;
@@ -374,6 +445,10 @@ showStageMenu(category) {
     content.innerHTML = "";
     itemManager.renderOptions(content, 2);
   },
+
+  //////////////////////////////
+  //    スキルの選択・適用実行
+  //////////////////////////////
 
   selectItem(itemId) {
     itemManager.applyItem(itemId, battleManager.player);
@@ -384,6 +459,10 @@ showStageMenu(category) {
     quizManager.updateKiwamiIcon();
     quizManager.randomQuestion();
   },
+
+  //////////////////////////////
+  //    スキル選択パネルの非表示
+  //////////////////////////////
 
   hideSkillPanel() {
     const panel = document.getElementById("skill-panel");

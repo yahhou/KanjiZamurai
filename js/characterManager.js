@@ -175,9 +175,10 @@ export class Character {
     updateParam('.val-cri', `${this.critRate}%`);
   }
 }
-  /* ==========================================================================
-  攻撃ロジック
-  ========================================================================== */
+  ///////////////////////////////////
+  //      攻撃の処理
+  ///////////////////////////////////
+
   attack(target) {
     const isEvaded = target.checkEvade(this);
     const { amount, isCritical }= this.calculateDamage(target);
@@ -185,18 +186,20 @@ export class Character {
     this.playAttackAnimation(target, amount, isCritical, isEvaded)
   }
 
-  /* ==========================================================================
-  回避判定
-  ========================================================================== */
+  ///////////////////////////////////
+  //      　回避計算
+  ///////////////////////////////////
+
   checkEvade(attacker) {
     const evaDiff = this.eva - attacker.eva;
     const evadeRate = Math.min(35, Math.max(5, 10 + (evaDiff * 0.3)));
 
     return Math.random() * 100 < evadeRate;
   }
-   /* ==========================================================================
-  ダメージを受ける
-  ========================================================================== */
+
+  ///////////////////////////////////
+  //       ダメージの処理
+  ///////////////////////////////////
 
   takeDamage(amount, isCritical = false) {
     this.hp = Math.max(0, this.hp - amount);
@@ -209,9 +212,9 @@ export class Character {
     }
   }
 
-  /* ==========================================================================
-  ダメージ計算(会心の一撃含む)
-  ========================================================================== */
+  ///////////////////////////////////
+  //       ダメージ計算
+  ///////////////////////////////////
   // 共通の被ダメージロジック
   calculateDamage(target) {
     const baseDamage = this.atk - Math.floor(target.def / 2);
@@ -230,17 +233,19 @@ export class Character {
   };
 
   }
-  /* ==========================================================================
-   死亡
-  ========================================================================== */
+
+  ///////////////////////////////////
+  //      死亡時の処理
+  ///////////////////////////////////
 
   die() {
     this.stopIdle();
   }
 
-/* ==========================================================================
-　　ダメージ数字の演出表示
-========================================================================== */
+  ///////////////////////////////////
+  //    ダメージエフェクト表示
+  ///////////////////////////////////
+
   showDamageEffect(amount, isCritical) {
   if (!this.el) return;
 
@@ -266,9 +271,9 @@ export class Character {
   this.activeTimeouts.push(timeoutId);
 }
 
-/* ==========================================================================
-　　回避時の表示
-========================================================================== */
+  ///////////////////////////////////
+  //     回避エフェクト表示
+  ///////////////////////////////////
 
   showEvadeEffect() {
   if (!this.el) return;
@@ -289,9 +294,9 @@ export class Character {
 }
 
 
-/* ==========================================================================
-　　ダメージ表示の場所指定
-========================================================================== */
+  ///////////////////////////////////
+  //   ダメージエフェクト表示場所指定
+  ///////////////////////////////////
 
   getDamagePopupRoot() {
     if (this.id === 'player') {
@@ -305,24 +310,25 @@ export class Character {
     return this.el;
   }
 
-/* ==========================================================================
-  共通攻撃アニメーション
-========================================================================== */
-playAttackAnimation(target, damage, isCritical, isEvaded = false) {
-  this.isAttacking = true;
+  ///////////////////////////////////
+  //    共通攻撃アニメーション
+  ///////////////////////////////////
 
-  if (isCritical){
-    this.triggerFlash();
-    this.playCriticalHitSE();
-  }else{
-     this.playAttackSE();
-  }
+  playAttackAnimation(target, damage, isCritical, isEvaded = false) {
+    this.isAttacking = true;
+
+    if (isCritical){
+      this.triggerFlash();
+      this.playCriticalHitSE();
+    }else{
+        this.playAttackSE();
+      }
     
     this.playEnemyAttackAnimation();
     if (isEvaded) {
       target.showEvadeEffect();
     } else {
-      target.takeDamage(damage, isCritical);
+     target.takeDamage(damage, isCritical);
     }
 
     setTimeout(() => {
@@ -330,45 +336,48 @@ playAttackAnimation(target, damage, isCritical, isEvaded = false) {
     }, 150);
   }
 
-/* ==========================================================================
- 攻撃アニメーションがないキャラ（敵）
-========================================================================== */
-
-playEnemyAttackAnimation() {
+  ///////////////////////////////////
+  //    敵の攻撃アニメーション
+  ///////////////////////////////////
+  
+  playEnemyAttackAnimation() {
     this.sprite.animate([
       { transform: 'translateX(0)' },
       { transform: 'translateX(-50px)' }, // グイッと前に出る
       { transform: 'translateX(0)' }
     ], { duration: 150 });
   }
-/* ==========================================================================
-　　会心の一撃
-========================================================================== */
-triggerFlash() {
- const layer = document.getElementById('flash-layer');
- if(!layer) {
-      return;
-}
- // クラスを一度消して、付け直すことでアニメーションを再実行
- layer.classList.remove('flash-active');
- void layer.offsetWidth;// おまじない（再描画を強制）
- layer.classList.add('flash-active');
-}
 
-/* ==========================================================================
-サウンドエフェクト
-========================================================================== */
-playCriticalHitSE(){
+  ///////////////////////////////////
+  //       会心の一撃
+  ///////////////////////////////////
+
+  triggerFlash() {
+    const layer = document.getElementById('flash-layer');
+    if(!layer) {return;}
+    // クラスを一度消して、付け直すことでアニメーションを再実行
+    layer.classList.remove('flash-active');
+    void layer.offsetWidth;// おまじない（再描画を強制）
+    layer.classList.add('flash-active');
+  }
+
+  ///////////////////////////////////
+  //    会心の一撃サウンド
+  ///////////////////////////////////
+
+  playCriticalHitSE(){
      
      if (this.criticalSound) {
       this.criticalSound.currentTime = 0;
       this.criticalSound.volume = 0.5;
       this.criticalSound.play();
-
-   }
+    }
   }
 
-playEvadeSE(){
+  ///////////////////////////////////
+  //    回避サウンド
+  ///////////////////////////////////
+  playEvadeSE(){
      
      if (this.evadeSound) {
       this.evadeSound.currentTime = 0;
@@ -377,9 +386,10 @@ playEvadeSE(){
    }
   }
 
-/* ==========================================================================
-// 自動回復
-========================================================================== */
+  ///////////////////////////////////
+  //    リジェネ効果発動
+  ///////////////////////////////////
+
   applyRegeneration() {  
 
     if (!this.isRegenerating) return;
@@ -389,10 +399,11 @@ playEvadeSE(){
     this.refreshStats();
   }
 
-/* ==========================================================================
-掃除用
-========================================================================== */
-destroy() {
+  ///////////////////////////////////
+  //    　　　消去処理
+  ///////////////////////////////////
+  
+  destroy() {
     // 1. 全てのダメージ表示タイマーをキャンセル
     this.activeTimeouts.forEach(id => clearTimeout(id));
     this.activeTimeouts = []
