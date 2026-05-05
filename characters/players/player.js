@@ -13,6 +13,7 @@ export class Player extends Character {
     this.isAnimatingExp = false;
     this.createExpBar();
     this.updateExpBar();
+    this.hasStreakBouns = false;
 
     this.levelUpSound = new Audio('assets/sounds/levelUp.mp3');
   }
@@ -102,7 +103,7 @@ export class Player extends Character {
 
       this.maxExp = Math.floor(this.maxExp * 1.4);
 
-      this.updateHPBar();
+      this.refreshStats();
       this.showLevelUpEffect();
       this.levelUpSound.play();
       
@@ -135,8 +136,8 @@ export class Player extends Character {
     if (inner) inner.style.width = "0%";
   }
 
-  updateHPBar() {
-    super.updateHPBar();
+  refreshStats() {
+    super.refreshStats();
     refreshPlayerBuffIcons();
   }
 
@@ -160,6 +161,7 @@ export class Player extends Character {
 
       this.activeTimeouts.push(timeoutId);
     }
+    
 
   /* ==========================================================================
   死亡

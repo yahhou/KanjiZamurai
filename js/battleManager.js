@@ -3,19 +3,16 @@ import { Peasant } from "../characters/enemies/peasant.js";
 import { Shougun } from "../characters/enemies/shougun.js";
 import { Ninja } from "../characters/enemies/ninja.js";
 
-/**
- * 敵の「スケールに使うレベル」の上乗せ（プレイヤー Lv に足す）
- *
- * - 0 のまま → いままでどおり「敵 Lv = プレイヤー Lv」だけ
- * - 例: 15 → `quizManager.stageCorrectCount`（そのバトル中の正解数っぽい累計）が 15 増えるごとに敵 Lv +1
- *
- * 別案（撃破数で強くしたい等）は `defeatEnemy` でカウンタを足して、下の scale 内で使うとよいです。
- */
+
 const ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT = 0;
 
 export const battleManager = {
   player: null,
   enemy: null,
+
+  ///////////////////////////////////
+  //    キャラクター・モンスターの生成
+  ///////////////////////////////////
 
   init() {
     this.clearCharacters();
@@ -30,6 +27,10 @@ export const battleManager = {
     this.enemySpawn();
   },
 
+  ///////////////////////////////////
+  //   　　プレイヤーの攻撃
+  ///////////////////////////////////
+  
   playerAttack() {
     if (!this.player || !this.enemy) return;
     if (!this.player.el || !this.enemy.el) return;
@@ -38,6 +39,10 @@ export const battleManager = {
     this.player.attack(this.enemy);
     this.checkBattleStatus();
   },
+
+  ///////////////////////////////////
+  //         　 敵の攻撃
+  ///////////////////////////////////
 
   enemyAttack() {
     if (!this.enemy || !this.player) return;
@@ -48,12 +53,20 @@ export const battleManager = {
     this.enemy.attack(this.player);
   },
 
+  ///////////////////////////////////
+  //       キャラクターリセット
+  ///////////////////////////////////
+
   clearCharacters() {
     if (this.player) this.player.destroy();
     if (this.enemy) this.enemy.destroy();
     this.player = null;
     this.enemy = null;
   },
+
+  ///////////////////////////////////
+  //       　　敵の再生成
+  ///////////////////////////////////
 
   enemySpawn() {
     if (this.enemy && this.enemy.el) {
@@ -64,7 +77,7 @@ export const battleManager = {
     const EnemyClass = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
     this.enemy = new EnemyClass();
     this.scaleEnemyToPlayerLevel(this.enemy);
-    this.enemy.updateHPBar();
+    this.enemy.refreshStats();
 
     const actionArea = document.getElementById("actionArea");
     if (actionArea && this.enemy.el) {
@@ -72,6 +85,10 @@ export const battleManager = {
       actionArea.appendChild(this.enemy.el);
     }
   },
+
+  ///////////////////////////////////
+  //          敵のレベルを調整
+  ///////////////////////////////////
 
   scaleEnemyToPlayerLevel(enemy) {
     if (!enemy || !this.player) return;
@@ -98,12 +115,20 @@ export const battleManager = {
     enemy.expReward = Math.floor((enemy.expReward || 5) * expScale);
   },
 
+  ///////////////////////////////////
+  //         敵の生存状態を管理
+  ///////////////////////////////////
+
   checkBattleStatus() {
     if (this.enemy && this.enemy.hp <= 0 && !this.enemy.ishandled) {
       this.enemy.ishandled = true;
       this.defeatEnemy();
     }
   },
+  
+  ///////////////////////////////////
+  //       経験値の獲得処理
+  ///////////////////////////////////
 
   defeatEnemy() {
     if (!this.player || !this.enemy) return;

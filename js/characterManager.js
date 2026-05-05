@@ -42,9 +42,9 @@ export class Character {
      this.evadeSound = new Audio('assets/sounds/evade1.mp3');
   }
 
-  /* ==========================================================================
-  // キャラクター描画セットアップ
-  ========================================================================== */
+  ///////////////////////////////////
+  //       キャラクター生成・描画
+  ///////////////////////////////////
 
   init() {
     if (!this.el) return;
@@ -57,7 +57,7 @@ export class Character {
     }
 
     this.hp = this.maxHp;
-    this.updateHPBar();
+    this.refreshStats();
 
     const displaySize = `${this.sizeRatio}cqw`;
     Object.assign(this.el.style, {
@@ -83,9 +83,9 @@ export class Character {
   }
 
 
-  /* ==========================================================================
-  待機アニメーション
-  ========================================================================== */
+  ///////////////////////////////////
+  //       待機モーション
+  ///////////////////////////////////
   
   startIdle() {
   // 待機アニメーション（パラパラ漫画）
@@ -116,9 +116,9 @@ export class Character {
     this.sprite.style.backgroundPosition = `${xShift}% 0px`;
   }
 
-  /* ==========================================================================
-　　停止アニメーション
-  ========================================================================== */
+  ///////////////////////////////////
+  //       停止モーション
+  ///////////////////////////////////
   
   stopIdle() {
     if (this.idleInterval) {
@@ -126,12 +126,12 @@ export class Character {
       this.idleInterval = null;
     }
   }
+  
+  ///////////////////////////////////
+  //       HP等のステータスの処理
+  ///////////////////////////////////
 
-  /* ==========================================================================
-  HPの処理
-  ========================================================================== */
-   /* Characterクラス内の updateHPBar */
-updateHPBar() {
+  refreshStats() {
   const pct = (this.hp / this.maxHp) * 100;
   // 自分のIDに基づいて、対象のコンテナ（#player-ui か #enemy-ui）を絞り込む
   const uiContainer = document.querySelector(this.id === 'player' ? '#player-ui' : '#enemy-ui');
@@ -200,7 +200,7 @@ updateHPBar() {
 
   takeDamage(amount, isCritical = false) {
     this.hp = Math.max(0, this.hp - amount);
-    this.updateHPBar();
+    this.refreshStats();
 
     this.showDamageEffect(amount, isCritical);
 
@@ -386,7 +386,7 @@ playEvadeSE(){
 
     const heal = Math.max(1, Math.floor(this.maxHp * 0.05));
     this.hp = Math.min(this.maxHp, this.hp + heal);
-    this.updateHPBar();
+    this.refreshStats();
   }
 
 /* ==========================================================================

@@ -39,7 +39,7 @@ export const itemManager = {
       apply(player) {
         const restoreAmount = Math.floor(player.maxHp * 0.5);
         player.hp = Math.min(player.maxHp, player.hp + restoreAmount);
-        player.updateHPBar();
+        player.refreshStats();
       },
     }),
     new Item({
@@ -60,7 +60,7 @@ export const itemManager = {
       rarity: "rare",
       apply(player) {
         player.hp = player.maxHp;
-        player.updateHPBar();
+        player.refreshStats();
       },
     }),
   ],

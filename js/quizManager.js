@@ -20,13 +20,17 @@ export const quizManager = {
   currentQuestion: {},
   images: {},
   isVictoryActive: false,
-  stageCorrectCount: 0,
+  correctAnswerCount: 0,
   /** 不正解のたびに追記（ゲームオーバー時の振り返り用） */
   wrongAnswersLog: [],
   onCorrect: null,
   onWrong: null,
   streak: 0,
 
+  
+  /////////////////////////
+  //   クイズ（スタート）
+  /////////////////////////
   start() {
     if (this.wordList.length === 0) {
       alert("単語データがまだ読み込まれていません。");
@@ -36,6 +40,10 @@ export const quizManager = {
     this.setupKiwami();
     this.randomQuestion();
   },
+
+  /////////////////////////
+  //   ランダムクイズの準備）
+  /////////////////////////
 
   randomQuestion() {
     const currentStageWords = this.wordList[this.currentStage];
@@ -73,6 +81,10 @@ export const quizManager = {
     this.updateQuestionProgress();
   },
 
+  /////////////////////////
+  //      問題の表示
+  /////////////////////////
+
   renderQuestion(correct, options) {
     const { kanji, yomi, romaji } = correct;
     const quizArea = document.getElementById("quizArea");
@@ -108,6 +120,10 @@ export const quizManager = {
     this.updateKiwamiIcon();
   },
 
+  /////////////////////////
+  //      回答の判定
+  /////////////////////////
+
   answer(selected) {
     const buttons = document.querySelectorAll("#optionArea button");
 
@@ -118,17 +134,26 @@ export const quizManager = {
       this.handleWrongAnswer(buttons, selected);
     }
   },
-
+  
+  /////////////////////////
+  //    不正解時のボタン停止
+  /////////////////////////
   disableOptionButtons(buttons) {
     buttons.forEach((btn) => {
       btn.disabled = true;
     });
   },
 
+  /////////////////////////
+  //　　　　正解処理
+  /////////////////////////
+
   handleCorrectAnswer(buttons) {
     this.correctQuestionCount++;
-    this.stageCorrectCount++;
-    this.streak++;
+    this.correctAnswerCount++;
+    this.streak ++;
+    if (this.streak >= 2) {battleManager.player.hasStreakBouns = true;}
+
     this.updateKiwamiIcon();
     this.updateQuestionProgress();
 
@@ -158,17 +183,22 @@ export const quizManager = {
   /////////////////////////
   //streakボーナスを計算・適用
   /////////////////////////
+
   applyStreakBonus(player) {
     const newBonus = Math.floor(this.streak * 0.5);
     player.atk = player.baseAtk + newBonus;//レベルアップした分も追加。不正解ならバフだけ消えて、レベルアップの攻撃力は残る。
-    player.updateHPBar();
+    player.refreshStats();
 },
 
+  /////////////////////////
+  //　　　不正解処理
+  /////////////////////////
 
   handleWrongAnswer(buttons, selected) {
     this.correctQuestionCount--;
     this.updateKiwamiIcon();
     this.streak = 0;  // ← 追加: 不正解でストリークリセット
+      if (this.streak <= 1) {battleManager.player.hasStreakBouns = false;}
 
     const q = this.currentQuestion;
     if (q && q.kanji) {
@@ -182,7 +212,7 @@ export const quizManager = {
 
     if (battleManager.player) {
       battleManager.player.isRegenerating = false;
-    }
+
     refreshPlayerBuffIcons();
 
     if (this.onWrong) this.onWrong();
@@ -193,7 +223,11 @@ export const quizManager = {
         btn.disabled = true;
       }
     });
-  },
+  }},
+
+  /////////////////////////
+  //      極アイコン表示
+  /////////////////////////
 
   setupKiwami() {
     const container = document.getElementById("kiwami-container");
@@ -214,6 +248,10 @@ export const quizManager = {
       img.classList.remove("is-flashing");
     }
   },
+  
+  /////////////////////////
+  // 　　　極アップデート
+  /////////////////////////
 
   updateKiwamiIcon() {
     const img = document.getElementById("kiwami-image");
@@ -240,6 +278,10 @@ export const quizManager = {
     }
   },
 
+  /////////////////////////
+  //　　　　勝利
+  /////////////////////////
+
   victory() {
     this.isVictoryActive = true;
     window.gameManager?.hideSkillPanel();
@@ -262,6 +304,10 @@ export const quizManager = {
     });
   },
 
+  /////////////////////////
+  //　　　クイズリセット
+  /////////////////////////
+
   reset() {
     this.currentStage = 0;
     this.currentQuestion = {};
@@ -274,10 +320,12 @@ export const quizManager = {
     this.updateQuestionProgress();
     this.streak = 0;
   },
+  
 
-  /**
-   * ゲームオーバー画面用: 誤答の漢字と正解英語の HTML（エスケープ済み）
-   */
+  /////////////////////////
+  //     レビュー画面
+  /////////////////////////
+
   buildWrongAnswersReviewHtml() {
     if (!this.wrongAnswersLog.length) {
       return `<p class="game-over-review-empty">このバトルで記録された誤答はありません。</p>`;
@@ -305,13 +353,17 @@ export const quizManager = {
       </div>
     `;
   },
-
+  
+  /////////////////////////
+  //   正解数と問題数の表示
+  /////////////////////////
+  
   updateQuestionProgress() {
     const progressEl = document.getElementById("question-progress");
     if (!progressEl) return;
 
     const total = this.wordList[this.currentStage]?.length || 0;
-    progressEl.innerText = `${this.stageCorrectCount} / ${total}`;
+    progressEl.innerText = `${this.correctAnswerCount} / ${total}`;
   },
 };
 
