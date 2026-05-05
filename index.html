@@ -3,61 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Kanji Samurai</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&family=Zen+Kaku+Gothic+New:wght@700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="css/style.css">
-  </head>
+</head>
 
 <body>
   <div id="gameCanvas">
-  <div id="loadingArea">Loading...</div>
-  <div id="uiWrapper"></div>
+    <div id="loadingArea">Loading...</div>
+    <div id="uiWrapper"></div>
  
-  <div id="battleScreen" style="display: none;">
-    <!-- 1. ステータスエリア -->
-    <div id="statusArea">
-      <div id="question-progress">0 / 0</div>
-      <div id="kiwami-container">
-        <img id="kiwami-bg" alt="">
-        <img id="kiwami-image" alt="">
-      </div>
-    </div>
-
-    <!-- 2. アクションエリア -->
-    <div id="actionArea">
-      <div id="player-ui" class="battle-status-ui">
-        <div class="level-text">Lv.1</div>
-        <div class="exp-bar-container">
-          <div class="exp-bar-inner"></div>
+    <div id="battleScreen" style="display: none;">
+      <!-- 1. ステータスエリア -->
+      <div id="statusArea">
+        
+        <!-- プレイヤーUI -->
+        <div id="player-ui" class="battle-status-ui">
+          <div class="level-text">Lv.1</div>
+          <div class="exp-bar-container"><div class="exp-bar-inner"></div></div>
+          <div class="hp-bar-container"><div class="hp-bar-inner"></div></div>
+          <div class="hp-text">0 / 0</div>
+          
+          <div class="param-container">
+            <div class="param-row"><span>ATK</span><span class="val-atk">0</span></div>
+            <div class="param-row"><span>DEF</span><span class="val-def">0</span></div>
+            <div class="param-row"><span>MDF</span><span class="val-mdf">0</span></div>
+            <div class="param-row"><span>SPD</span><span class="val-spd">0</span></div>
+            <div class="param-row"><span>CRI</span><span class="val-cri">0%</span></div>
+          </div>
+          <!-- アクティブなバフ等（リジェネなど）。playerBuffIcons.js が中身を描画 -->
+          <div id="player-buff-icons" class="player-buff-icons" aria-label="ステータスアイコン"></div>
         </div>
-        <div class="hp-bar-container">
-          <div class="hp-bar-inner"></div>
+
+        <!-- 中央UI -->
+        <div id="center-ui">
+          <div id="question-progress">0 / 0</div>
+          <div id="kiwami-container">
+            <img id="kiwami-bg" alt="">
+            <img id="kiwami-image" alt="">
+          </div>
         </div>
-        <div class="hp-text"></div>
-      </div>
 
-      <div id="enemy-ui" class="battle-status-ui">
-        <div class="hp-bar-container">
-          <div class="hp-bar-inner"></div>
+        <!-- 敵側UI -->
+        <div id="enemy-ui" class="battle-status-ui">
+          <div class="level-text">Lv.1</div>
+          <div class="hp-bar-container"><div class="hp-bar-inner"></div></div>
+          <div class="hp-text">0 / 0</div>
+
+          <div class="param-container">
+            <div class="param-row"><span>ATK</span><span class="val-atk">0</span></div>
+            <div class="param-row"><span>DEF</span><span class="val-def">0</span></div>
+            <div class="param-row"><span>MDF</span><span class="val-mdf">0</span></div>
+            <div class="param-row"><span>SPD</span><span class="val-spd">0</span></div>
+            <div class="param-row"><span>CRI</span><span class="val-cri">0%</span></div>
+          </div>
         </div>
+      </div> <!-- /statusArea -->
+
+      <!-- 2. アクションエリア -->
+      <div id="actionArea"></div>
+
+      <!-- 3. クイズエリア -->
+      <div id="quizArea"></div>
+
+      <!-- 4. フラッシュレイヤー -->
+      <div id="flash-layer"></div>
+        
+      <!-- 5. スキルパネル -->
+      <div id="skill-panel" style="display: none;">
+        <div class="panel-content"></div>
       </div>
-    </div>
-
-    <!-- 3. クイズエリア (独立) -->
-    <div id="quizArea"></div>
-
-    <!-- 4. フラッシュレイヤー (独立) -->
-    <div id="flash-layer"></div>
-      
-    <!-- 5. スキルパネル (独立) -->
-    <div id="skill-panel" style="display: none;">
-      <div class="panel-content"></div>
-    </div>
-  </div> <!-- battleScreen の閉じ -->
-</div> <!-- gameCanvas の閉じ -->
+    </div> <!-- /battleScreen -->
+  </div> <!-- /gameCanvas -->
 
   <script type="module" src="js/gameManager.js"></script>
 </body>

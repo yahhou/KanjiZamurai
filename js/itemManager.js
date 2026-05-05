@@ -1,4 +1,4 @@
-import { assets } from './assets.js';
+import { assets } from "./assets.js";
 
 export class Item {
   constructor({ id, name, description, frame, rarity, weight, apply }) {
@@ -12,57 +12,66 @@ export class Item {
   }
 }
 
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export const itemManager = {
   rarities: {
-    common: { label: 'Common', weight: 60 },
-    uncommon: { label: 'Uncommon', weight: 40 },
-    rare: { label: 'Rare', weight: 25 },
-    legendary: { label: 'Legendary', weight: 10 },
-    mythic: { label: 'Mythic', weight: 3 }
+    common: { label: "Common", weight: 60 },
+    uncommon: { label: "Uncommon", weight: 40 },
+    rare: { label: "Rare", weight: 25 },
+    legendary: { label: "Legendary", weight: 10 },
+    mythic: { label: "Mythic", weight: 3 },
   },
 
   items: [
     new Item({
-      id: 'onigiri',
-      name: 'Onigiri',
-      description: 'HP 50% Restore',
+      id: "onigiri",
+      name: "Onigiri",
+      description: "HP 50% Restore",
       frame: 0,
-      rarity: 'common',
+      rarity: "common",
       apply(player) {
         const restoreAmount = Math.floor(player.maxHp * 0.5);
         player.hp = Math.min(player.maxHp, player.hp + restoreAmount);
         player.updateHPBar();
-      }
+      },
     }),
     new Item({
-      id: 'green tea',
-      name: 'Green tea',
-      description: 'HP +3%',
+      id: "green tea",
+      name: "Green tea",
+      description: "HP +3%",
       frame: 1,
-      rarity: 'Uncommon',
+      rarity: "uncommon",
       apply(player) {
-        player.isRegenerating = true; // 自動回復フラグをON
-      }
+        player.isRegenerating = true;
+      },
     }),
     new Item({
-      id: 'dango',
-      name: 'Dango',
-      description: 'HP Full Restore',
+      id: "dango",
+      name: "Dango",
+      description: "HP Full Restore",
       frame: 2,
-      rarity: 'Rare',
+      rarity: "rare",
       apply(player) {
         player.hp = player.maxHp;
-        player.updateHPBar()
-      }
-    })
+        player.updateHPBar();
+      },
+    }),
   ],
 
   getItem(id) {
-    return this.items.find(item => item.id === id);
+    return this.items.find((item) => item.id === id);
   },
 
   getRarity(item) {
-    return this.rarities[item.rarity] || this.rarities.common;
+    const key = String(item.rarity || "common").toLowerCase();
+    return this.rarities[key] || this.rarities.common;
   },
 
   getItemWeight(item) {
@@ -76,7 +85,7 @@ export const itemManager = {
     while (choices.length < count && pool.length > 0) {
       const totalWeight = pool.reduce((sum, item) => sum + this.getItemWeight(item), 0);
       let roll = Math.random() * totalWeight;
-      const index = pool.findIndex(item => {
+      const index = pool.findIndex((item) => {
         roll -= this.getItemWeight(item);
         return roll <= 0;
       });
@@ -96,17 +105,17 @@ export const itemManager = {
     container.innerHTML = `
       <h2>Choose one</h2>
       <div class="item-choice-list">
-        ${choices.map(item => this.renderItemButton(item, frameCount)).join("")}
+        ${choices.map((item) => this.renderItemButton(item, frameCount)).join("")}
       </div>
     `;
   },
 
   renderItemButton(item, frameCount) {
-  const rarity = this.getRarity(item);
+    const rarity = this.getRarity(item);
+    const rarityClass = String(item.rarity || "common").toLowerCase().replace(/\s+/g, "-");
 
-  return `
-    <button class="item-choice rarity-${item.rarity.toLowerCase()}" onclick="gameManager.selectItem('${item.id}')">
-      <!-- アイコンを上に配置 -->
+    return `
+    <button type="button" class="item-choice rarity-${escapeHtml(rarityClass)}" data-id="${escapeHtml(item.id)}">
       <div class="item-icon-wrapper">
         <span
           class="item-icon"
@@ -117,15 +126,13 @@ export const itemManager = {
           "
         ></span>
       </div>
-      
-      <!-- テキスト情報を下に配置 -->
       <div class="item-info">
-        <div class="item-name">${item.name}</div>
-        <div class="item-description">${item.description}</div>
+        <div class="item-name">${escapeHtml(item.name)}</div>
+        <div class="item-description">${escapeHtml(item.description)}</div>
       </div>
     </button>
   `;
-},
+  },
 
   getFrameCount() {
     const image = assets.images.ui_Items;
@@ -139,7 +146,6 @@ export const itemManager = {
   applyItem(itemId, player) {
     const item = this.getItem(itemId);
     if (!item || !player) return;
-
     item.apply(player);
-  }
+  },
 };

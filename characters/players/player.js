@@ -1,5 +1,6 @@
 import { Character } from '../../js/characterManager.js';
 import { gameManager } from '../../js/gameManager.js';
+import { refreshPlayerBuffIcons } from '../../js/playerBuffIcons.js';
 
 export class Player extends Character {
   constructor(config) {
@@ -106,68 +107,38 @@ export class Player extends Character {
       this.levelUpSound.play();
       
     }
-    
-  /* ==========================================================================
-  HPバーの更新
-  ========================================================================== */ 
- 
-    updateHPBar() {
-      
-    super.updateHPBar();
-    const pct = (this.hp / this.maxHp) * 100;
 
-    let innerBar = null;
+  /**
+   * 経験値バーとレベル表示を、いまの exp / maxExp に合わせて更新する。
+   */
+  updateExpBar() {
+    const playerUi = document.getElementById("player-ui");
+    if (!playerUi) return;
 
-    if (this.id === 'player') {
-      innerBar = document.querySelector('#player-ui .hp-bar-inner');
-    } else if (this.id === 'enemy') {
-      innerBar = document.querySelector('#enemy-ui .hp-bar-inner');
-    } else {
-      innerBar = this.el.querySelector('.hp-bar-inner');
+    const inner = playerUi.querySelector(".exp-bar-inner");
+    if (inner) {
+      const pct = this.maxExp > 0 ? (this.exp / this.maxExp) * 100 : 0;
+      inner.style.width = `${Math.min(100, Math.max(0, pct))}%`;
     }
 
-    if (innerBar) {
-      innerBar.style.width = `${pct}%`;
-
-      if (pct < 20) {
-        innerBar.style.backgroundColor = "#e74c3c";
-      } else if (pct < 50) {
-        innerBar.style.backgroundColor = "#f1c40f";
-      } else {
-        innerBar.style.backgroundColor = "#2ecc71";
-      }
+    const levelEl = playerUi.querySelector(".level-text");
+    if (levelEl) {
+      levelEl.textContent = `Lv.${this.level}`;
     }
   }
 
-  /* ==========================================================================
-  経験値バーの更新
-  ========================================================================== */ 
+  /** レベルアップ直後など、経験値バーを 0% 表示に戻す */
+  resetExpBarToZero() {
+    const playerUi = document.getElementById("player-ui");
+    if (!playerUi) return;
+    const inner = playerUi.querySelector(".exp-bar-inner");
+    if (inner) inner.style.width = "0%";
+  }
 
-    updateExpBar() {
-      const levelEl = document.querySelector('#player-ui .level-text');
-      const expBar = document.querySelector('#player-ui .exp-bar-inner');
-
-      if (levelEl) {
-        levelEl.innerText = `Lv.${this.level}`;
-      }
-
-      if (expBar) {
-        const pct = this.maxExp > 0 ? (this.exp / this.maxExp) * 100 : 0;
-        expBar.style.transition = "width 0.3s ease-out";
-        expBar.style.width = `${pct}%`;
-      }
-    }
-
-    resetExpBarToZero() {
-      const expBar = document.querySelector('#player-ui .exp-bar-inner');
-      if (!expBar) return;
-
-      expBar.style.transition = "none";
-      expBar.style.width = "0%";
-      void expBar.offsetWidth;
-      expBar.style.transition = "width 0.3s ease-out";
-    }
-
+  updateHPBar() {
+    super.updateHPBar();
+    refreshPlayerBuffIcons();
+  }
 
   /* ==========================================================================
   レベルアップした時のエフェクト
@@ -184,8 +155,7 @@ export class Player extends Character {
 
       const timeoutId = setTimeout(() => {
         levelUpEl.remove();
-        this.activeTimeouts = this.activeTimeouts.filter(id => id !==
-  timeoutId);
+        this.activeTimeouts = this.activeTimeouts.filter((id) => id !== timeoutId);
       }, 2000);
 
       this.activeTimeouts.push(timeoutId);

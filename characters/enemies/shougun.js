@@ -5,7 +5,7 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/Shougun-Sheet.png", 
-        hp: 20,
+        hp: 40,
         mp: 0,
         atk: 25,
         def: 10,
@@ -19,7 +19,7 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "Shougun";
-      this.expReward = 12;
+      this.expReward = 20;
     }
 
   // 専用のスキルを作りたくなったらここに追加

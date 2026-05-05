@@ -128,49 +128,51 @@ export class Character {
   /* ==========================================================================
   HPの処理
   ========================================================================== */
-  updateHPBar() {
+   /* Characterクラス内の updateHPBar */
+updateHPBar() {
   const pct = (this.hp / this.maxHp) * 100;
-  let uiContainer = null;
+  // 自分のIDに基づいて、対象のコンテナ（#player-ui か #enemy-ui）を絞り込む
+  const uiContainer = document.querySelector(this.id === 'player' ? '#player-ui' : '#enemy-ui');
 
-  if (this.id === 'player') {
-    uiContainer = document.querySelector('#player-ui');
-  } else if (this.id === 'enemy') {
-    uiContainer = document.querySelector('#enemy-ui');
-  }
+  if (!uiContainer) return;
 
   // 1. バーの更新
-  if (uiContainer) {
-    const innerBar = uiContainer.querySelector('.hp-bar-inner');
-    if (innerBar) {
-      innerBar.style.width = `${pct}%`;
-      // 色の変更
-      if (pct < 20) innerBar.style.backgroundColor = "#e74c3c";
-      else if (pct < 50) innerBar.style.backgroundColor = "#f1c40f";
-      else innerBar.style.backgroundColor = "#2ecc71";
-    }
-
-    // 2. テキストの更新
-    let textDisplay = uiContainer.querySelector('.hp-text');
-    if (!textDisplay) {
-      // HTMLに無い場合は新しく作る
-      textDisplay = document.createElement('div');
-      textDisplay.className = 'hp-text';
-      uiContainer.appendChild(textDisplay);
-    }
-    // 文字を上書き
-    textDisplay.innerText = `${Math.ceil(this.hp)} / ${this.maxHp}`;
-
-    if (this.level !== undefined) {
-      let levelDisplay = uiContainer.querySelector('.level-text');
-      if (!levelDisplay) {
-        levelDisplay = document.createElement('div');
-        levelDisplay.className = 'level-text';
-        // HTMLの構造に合わせて挿入位置を調整（一番上にするなど）
-        uiContainer.insertBefore(levelDisplay, uiContainer.firstChild);
-      }
-      levelDisplay.innerText = `Lv.${this.level}`;
+  const innerBar = uiContainer.querySelector('.hp-bar-inner');
+  if (innerBar) {
+    innerBar.style.width = `${pct}%`;
+    if (pct < 20) innerBar.style.backgroundColor = "#e74c3c";
+    else if (pct < 50) innerBar.style.backgroundColor = "#f1c40f";
+    else innerBar.style.backgroundColor = "#2ecc71";
   }
-}}
+
+  // 2. テキストの更新（HP）
+  const hpText = uiContainer.querySelector('.hp-text');
+  if (hpText) {
+    hpText.innerText = `${Math.ceil(this.hp)} / ${this.maxHp}`;
+  }
+
+  // 2b. レベル表示（プレイヤー・敵とも this.level を反映）
+  const levelText = uiContainer.querySelector('.level-text');
+  if (levelText != null && this.level != null) {
+    levelText.textContent = `Lv.${this.level}`;
+  }
+
+  // 3. パラメータの更新 (重要：uiContainer内から探す)
+  const updateParam = (cls, val) => {
+    // 自分のUI（#player-ui等）の中から、そのクラスを持つ要素を探す
+    const el = uiContainer.querySelector(cls);
+    if (el) el.innerText = val;
+  };
+
+  updateParam('.val-atk', this.atk);
+  updateParam('.val-def', this.def);
+  updateParam('.val-mdf', this.mdf);
+  updateParam('.val-spd', this.spd);
+  // クリティカル率が定義されていれば表示
+  if (this.critRate !== undefined) {
+    updateParam('.val-cri', `${this.critRate}%`);
+  }
+}
   /* ==========================================================================
   攻撃ロジック
   ========================================================================== */

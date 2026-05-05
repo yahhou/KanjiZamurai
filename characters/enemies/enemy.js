@@ -30,22 +30,22 @@ export class Enemy extends Character {
     if(this.isDead) return;
     this.isDead = true;
 
-    super.die()
+    super.die();
 
     battleManager.checkBattleStatus();
 
-    if(this.el){
-        this.el.classList.add('fade-out');
+    if (this.el) {
+      this.el.classList.add("fade-out");
 
-        setTimeout(() => {
-
-          if(this.el){
-            this.el.remove();
-            this.el = null;
-          }
-           if (battleManager.enemy === this) {
-      battleManager.enemy = null;}
-       }, 1000);
-      }
+      setTimeout(() => {
+        if (this.el) {
+          this.el.remove();
+          this.el = null;
+        }
+        if (battleManager.enemy === this) {
+          battleManager.enemy = null;
+        }
+      }, 1000);
+    }
   }
 }

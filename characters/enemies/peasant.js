@@ -19,7 +19,7 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "Peasant";
-      this.expReward = 5;
+      this.expReward = 30;
       
     }
 

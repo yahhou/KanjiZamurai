@@ -5,7 +5,7 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/Ninja-Sheet.png", 
-        hp: 10,
+        hp: 15,
         mp: 0,
         atk: 10,
         def: 10,
@@ -21,7 +21,7 @@ import { Enemy } from './enemy.js';
         idleFrames: [0, 1, 2, 1]
       });
       this.name = "Ninja";
-      this.expReward = 12;
+      this.expReward = 30;
     }
 
   // 専用のスキルを作りたくなったらここに追加

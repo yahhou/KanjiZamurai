@@ -1,23 +1,28 @@
-  //他のファイルから Samurai クラスを読み込む
-  import { Samurai } from '../characters/players/samurai.js';
-  import { Peasant } from '../characters/enemies/peasant.js';
-  import { Shougun } from '../characters/enemies/shougun.js';
-  import { Ninja } from '../characters/enemies/ninja.js';
+import { Samurai } from "../characters/players/samurai.js";
+import { Peasant } from "../characters/enemies/peasant.js";
+import { Shougun } from "../characters/enemies/shougun.js";
+import { Ninja } from "../characters/enemies/ninja.js";
 
-  export const battleManager = {
+/**
+ * 敵の「スケールに使うレベル」の上乗せ（プレイヤー Lv に足す）
+ *
+ * - 0 のまま → いままでどおり「敵 Lv = プレイヤー Lv」だけ
+ * - 例: 15 → `quizManager.stageCorrectCount`（そのバトル中の正解数っぽい累計）が 15 増えるごとに敵 Lv +1
+ *
+ * 別案（撃破数で強くしたい等）は `defeatEnemy` でカウンタを足して、下の scale 内で使うとよいです。
+ */
+const ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT = 0;
+
+export const battleManager = {
   player: null,
   enemy: null,
 
-  /* ==========================================================================
-  プレイヤーと敵を表示
-  ========================================================================== */ 
-
-   init() {
+  init() {
     this.clearCharacters();
 
     this.player = new Samurai();
 
-    const actionArea = document.getElementById('actionArea');
+    const actionArea = document.getElementById("actionArea");
     if (actionArea && this.player.el) {
       actionArea.appendChild(this.player.el);
     }
@@ -25,80 +30,65 @@
     this.enemySpawn();
   },
 
-  /* ==========================================================================
-  プレイヤー攻撃
-  ========================================================================== */ 
-
   playerAttack() {
-     if (!this.player || !this.enemy) return;
+    if (!this.player || !this.enemy) return;
     if (!this.player.el || !this.enemy.el) return;
     if (this.enemy.hp <= 0 || this.enemy.isDead) return;
 
-       this.player.attack(this.enemy);
+    this.player.attack(this.enemy);
     this.checkBattleStatus();
   },
 
-  /* ==========================================================================
-  敵の攻撃
-  ========================================================================== */ 
-  
-   enemyAttack() {
-
-  if (!this.enemy || !this.player) return;
+  enemyAttack() {
+    if (!this.enemy || !this.player) return;
     if (!this.enemy.el || !this.player.el) return;
     if (this.enemy.hp <= 0 || this.enemy.isDead) return;
     if (this.player.hp <= 0) return;
 
     this.enemy.attack(this.player);
-
   },
 
-  /* ==========================================================================
-  clean up
-  ========================================================================== */ 
-
-// ★追加：お掃除窓口
   clearCharacters() {
     if (this.player) this.player.destroy();
     if (this.enemy) this.enemy.destroy();
     this.player = null;
     this.enemy = null;
   },
-  /* ==========================================================================
-  敵のランダムスポーン
-  ========================================================================== */ 
-  enemySpawn(){
+
+  enemySpawn() {
     if (this.enemy && this.enemy.el) {
       this.enemy.destroy();
     }
 
     const enemyTypes = [Peasant, Ninja, Shougun];
-    const RandomEnemy = enemyTypes[Math.floor(Math.random() *  enemyTypes.length)];
-    this.enemy = new RandomEnemy();
+    const EnemyClass = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
+    this.enemy = new EnemyClass();
     this.scaleEnemyToPlayerLevel(this.enemy);
     this.enemy.updateHPBar();
 
-    const actionArea = document.getElementById('actionArea');
-      if(actionArea && this.enemy.el) {
-
-        this.enemy.el.classList.remove('fade-out');
-
-
+    const actionArea = document.getElementById("actionArea");
+    if (actionArea && this.enemy.el) {
+      this.enemy.el.classList.remove("fade-out");
       actionArea.appendChild(this.enemy.el);
     }
   },
 
-  /* ==========================================================================
-  プレイヤーレベルに合わせた敵強化
-  ========================================================================== */ 
   scaleEnemyToPlayerLevel(enemy) {
     if (!enemy || !this.player) return;
 
-    const level = Math.max(1, this.player.level || 1);
+    const playerLevel = Math.max(1, this.player.level || 1);
+
+    let bonusFromQuiz = 0;
+    if (ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT > 0) {
+      const correct = window.quizManager?.stageCorrectCount ?? 0;
+      bonusFromQuiz = Math.floor(Math.max(0, correct) / ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT);
+    }
+
+    const level = Math.max(1, playerLevel + bonusFromQuiz);
     enemy.level = level;
-    const hpScale = 1 + ((level - 1) * 0.25);
-    const statScale = 1 + ((level - 1) * 0.15);
-    const expScale = 1 + ((level - 1) * 0.1);
+    const hpScale = 1 + (level - 1) * 0.25;
+    const statScale = 1 + (level - 1) * 0.15;
+    const expScale = 1 + (level - 1) * 0.1;
 
     enemy.maxHp = Math.floor(enemy.maxHp * hpScale);
     enemy.hp = enemy.maxHp;
@@ -107,31 +97,24 @@
     enemy.mdf = Math.floor(enemy.mdf * statScale);
     enemy.expReward = Math.floor((enemy.expReward || 5) * expScale);
   },
-  
-  /* ==========================================================================
-  生死状態チェック 
-  ========================================================================== */ 
-  checkBattleStatus(){
-    if (this.enemy && this.enemy.hp <= 0 && !this.enemy.ishandled){
+
+  checkBattleStatus() {
+    if (this.enemy && this.enemy.hp <= 0 && !this.enemy.ishandled) {
       this.enemy.ishandled = true;
       this.defeatEnemy();
     }
   },
 
-  /* ==========================================================================
-  敵を倒した時の処理
-  ========================================================================== */ 
-    defeatEnemy(){
-    
-      if (this.player && this.enemy) {
-      const exp = this.enemy.expReward || 5;
-      this.player.gainExp(exp);
+  defeatEnemy() {
+    if (!this.player || !this.enemy) return;
 
-      setTimeout(() => {
-        this.enemySpawn();
-      }, 1100);
-    }
-  }
-}
+    const exp = this.enemy.expReward || 5;
+    this.player.gainExp(exp);
+
+    setTimeout(() => {
+      this.enemySpawn();
+    }, 1100);
+  },
+};
 
 window.battleManager = battleManager;

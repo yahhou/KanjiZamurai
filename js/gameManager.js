@@ -1,69 +1,79 @@
+import { assets } from "./assets.js";
+import { battleManager } from "./battleManager.js";
+import { quizManager } from "./quizManager.js";
+import { itemManager } from "./itemManager.js";
+import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 
-import { assets } from './assets.js';
-import { battleManager } from './battleManager.js';
-import { quizManager } from './quizManager.js';
-import { itemManager } from './itemManager.js';
+const INITIAL_LOAD_MS = 2000;
+
+/**
+ * 単語 JSON のURLを「このファイル（js/gameManager.js）」基準で決める。
+ * index.html の置き場所や <base> に依存せず、コピーしたフォルダでも assets/words/ を探しにいける。
+ */
+function stageWordUrl(fileName) {
+  return new URL(`../assets/words/${fileName}`, import.meta.url);
+}
 
 export const gameManager = {
-
-   stageConfigs:[
-    {id: 1, name:"Legendary Samurai", files:['word_list_7.json']},
-    {id: 2, name:"Novice Samurai 6", files:['word_list_6.json']},
-    {id: 3, name:"Novice Samurai 5", files:['word_list_5.json']},
-    {id: 4, name:"Novice Samurai 4", files:['word_list_4.json']},
-    {id: 5, name:"Novice Samurai 3", files:['word_list_3.json']},
-    {id: 6, name:"Novice Samurai 2", files:['word_list_2.json']},
-    {id: 7, name:"Novice Samurai 1", files:['word_list_1.json']},
+  stageConfigs: [
+    { id: 1, name: "Legendary Samurai", files: ["word_list_7.json"] },
+    { id: 2, name: "Novice Samurai 6", files: ["word_list_6.json"] },
+    { id: 3, name: "Novice Samurai 5", files: ["word_list_5.json"] },
+    { id: 4, name: "Novice Samurai 4", files: ["word_list_4.json"] },
+    { id: 5, name: "Novice Samurai 3", files: ["word_list_3.json"] },
+    { id: 6, name: "Novice Samurai 2", files: ["word_list_2.json"] },
+    { id: 7, name: "Novice Samurai 1", files: ["word_list_1.json"] },
   ],
 
-   startBtnSE: new Audio('assets/sounds/StartButton.mp3'),
-   gameOverSE: new Audio('assets/sounds/gameOver.mp3'),
-   itemBonusSE: new Audio('assets/sounds/itemBonus.mp3'),
-   isLoaded: false, // 追加：ロード完了フラグ
-   loadingInterval: null,
+  startBtnSE: new Audio("assets/sounds/StartButton.mp3"),
+  gameOverSE: new Audio("assets/sounds/gameOver.mp3"),
+  itemBonusSE: new Audio("assets/sounds/itemBonus.mp3"),
+  /** 初回ロード済みか（リトライ時は true のまま） */
+  isLoaded: false,
+  loadingInterval: null,
 
-  /* ==========================================================================
-  1　.初期化（起動）
-  ========================================================================== */
   init() {
     this.startLoadingAnimation();
 
+    // クイズの正誤が「誰が攻撃するか」に直結するルール（ここで一度だけ結線）
+    quizManager.onCorrect = () => battleManager.playerAttack();
+    quizManager.onWrong = () => battleManager.enemyAttack();
+
     if (!this.isLoaded) {
       assets.loadAssets();
+      setTimeout(() => {
+        this.isLoaded = true;
+        this.stopLoadingAnimation();
+        this.showStartMessage();
+      }, INITIAL_LOAD_MS);
+    } else {
+      this.stopLoadingAnimation();
+      this.showStartMessage();
+    }
 
-    setTimeout(() => {
-    this.isLoaded = true;
-    this.stopLoadingAnimation();
-    this.showStartMessage();
-    },2000);
-  } else {
-    this.stopLoadingAnimation();
-    this.showStartMessage();
-  }
-
-    // --- ここで「ルール」を1回だけ決めてしまう ---
-    quizManager.onCorrect = () => battleManager.playerAttack();
-    quizManager.onWrong = () => battleManager.enemyAttack(); 
-
-  document.addEventListener("click", () => {
-  // BGMの再生準備（一度 play してすぐ pause することで、以降自由に鳴らせるようになる）
-  if (assets.sounds.bgm_Battle && assets.sounds.bgm_Battle.paused) {
-    assets.sounds.bgm_Battle.play()
-      .then(() => {
-        assets.sounds.bgm_Battle.pause();
-        assets.sounds.bgm_Battle.currentTime = 0;
-      })
-      .catch(e => console.log("Audio unlock failed:", e));
-  }
-}, { once: true }); // 最初の1回だけ実行
-// -
+    // ブラウザの自動再生制限を避ける：最初のクリックで BGM を一度だけ「解錠」する
+    document.addEventListener(
+      "click",
+      () => {
+        const bgm = assets.sounds.bgm_Battle;
+        if (bgm && bgm.paused) {
+          bgm
+            .play()
+            .then(() => {
+              bgm.pause();
+              bgm.currentTime = 0;
+            })
+            .catch((e) => console.warn("Audio unlock failed:", e));
+        }
+      },
+      { once: true }
+    );
   },
-/* ==========================================================================
-  2.　ローディング演出
-  ========================================================================== */
+
   startLoadingAnimation() {
     const loadingArea = document.getElementById("loadingArea");
-    if(!loadingArea) return;
+    if (!loadingArea) return;
+
     loadingArea.style.display = "flex";
     let dots = 0;
     this.loadingInterval = setInterval(() => {
@@ -71,11 +81,9 @@ export const gameManager = {
       loadingArea.innerText = "Loading" + ".".repeat(dots);
     }, 500);
   },
-  /* ==========================================================================
-  3.　ロード終了演出
-  ========================================================================== */
+
   stopLoadingAnimation() {
-    if(this.loadingInterval){
+    if (this.loadingInterval) {
       clearInterval(this.loadingInterval);
       this.loadingInterval = null;
     }
@@ -86,243 +94,243 @@ export const gameManager = {
       loadingArea.innerText = "";
     }
   },
-  /* ==========================================================================
-  4.　データ呼び込み（選択されたファイルをフェッチ）
-  ========================================================================== */
+
   loadSelectedStageData(files) {
     this.startLoadingAnimation();
 
-    // 修正：files（配列）の中身を一つずつfetchする
-    const fetchPromises = files.map(fileName => 
-      fetch(`assets/words/${fileName}`).then(res => {
-        if (!res.ok) throw new Error(`Fetch error: ${fileName}`);
+    const fetchPromises = files.map((fileName) => {
+      const url = stageWordUrl(fileName);
+      return fetch(url).then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status} ${fileName} (${url})`);
+        }
         return res.json();
-      })
-    );
+      });
+    });
 
     Promise.all(fetchPromises)
-      .then(results => {
-        quizManager.wordList = results; 
-        this.stopLoadingAnimation();
-        
+      .then((results) => {
+        quizManager.wordList = results;
         quizManager.images = {
-          ui_Kiwami: assets.images.ui_Kiwami,    // 実際のファイルパスを直接書く
-          ui_Kiwami_BG: assets.images.ui_Kiwami
+          ui_Kiwami: assets.images.ui_Kiwami,
+          ui_Kiwami_BG: assets.images.ui_Kiwami,
         };
-        
         this.isLoaded = true;
         this.stopLoadingAnimation();
         this.startBattle();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error(err);
         this.stopLoadingAnimation();
+
+        const isFileProtocol = window.location.protocol === "file:";
+        const message = isFileProtocol
+          ? [
+              "いまのアドレスが file:// だと、ブラウザの仕様で JSON を読み込めません（コピーしただけでダブルクリックで開いている場合など）。",
+              "",
+              "次のどちらかで、このフォルダを一度「サーバー」として出してから、http:// で開いてください。",
+              "",
+              "例1: python3 -m http.server 8080",
+              "例2: npx --yes serve . -l 8080",
+              "",
+              "そのあとブラウザで http://localhost:8080/ を開き、index.html に進んでください。",
+            ].join("\n")
+          : [
+              "ステージデータの読み込みに失敗しました。",
+              "",
+              "・index.html と同じ階層に assets フォルダがあるか",
+              "・assets/words/ に word_list_*.json があるか",
+              "・ブラウザの開発者ツール（F12）→ Console に出ているエラー",
+              "",
+              "を確認してください。",
+            ].join("\n");
+
+        alert(message);
+        this.showStartMessage();
       });
   },
 
-  /* ==========================================================================
-  4. 画面の切り替え
-  ========================================================================== */ 
   showStartMessage() {
     const container = document.getElementById("uiWrapper");
-    if(!container) return;
+    if (!container) return;
 
-    container.style.display = "flex";// リトライ時などのために表示を確実にする
-    container.style.backgroundColor = "transparent"; // 暗転リセット
+    container.style.display = "flex";
+    container.style.backgroundColor = "transparent";
     container.style.opacity = "1";
 
-    // ボタンの自動生成
-    let buttonsHtml = `<div class="menu-container">`;
-    this.stageConfigs.forEach(stage => {
-      buttonsHtml += `<button class = "mode-btn" data-stage-id="${stage.id}">${stage.name}</button>`;
-    });
-    buttonsHtml += `</div>`;
+    const buttonsHtml =
+      `<div class="menu-container">` +
+      this.stageConfigs
+        .map(
+          (stage) =>
+            `<button type="button" class="mode-btn" data-stage-id="${stage.id}">${stage.name}</button>`
+        )
+        .join("") +
+      `</div>`;
+
     container.innerHTML = buttonsHtml;
 
-    // 全てのボタンにイベントを設定
-    const buttons = container.querySelectorAll(".mode-btn");
-    buttons.forEach(btn => {
+    container.querySelectorAll(".mode-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         this.playStartBtnSE();
-        if(assets.sounds.bgm_Battle){
-          assets.sounds.bgm_Battle.play().then(() => {
-            assets.sounds.bgm_Battle.pause();
-          }).catch(e => console.log("Audio play blocked"));
+
+        const bgm = assets.sounds.bgm_Battle;
+        if (bgm) {
+          bgm
+            .play()
+            .then(() => {
+              bgm.pause();
+            })
+            .catch(() => {});
         }
-        const stageId = parseInt(e.currentTarget.dataset.stageId);
-        const selectedStage = this.stageConfigs.find(s => s.id === stageId);
-        
+
+        const stageId = parseInt(e.currentTarget.dataset.stageId, 10);
+        const selectedStage = this.stageConfigs.find((s) => s.id === stageId);
+        if (!selectedStage) return;
+
         container.style.transition = "1s";
         container.style.backgroundColor = "black";
-        btn.parentElement.style.opacity = "0";
+        const menu = e.currentTarget.parentElement;
+        if (menu) menu.style.opacity = "0";
 
         setTimeout(() => {
           container.style.display = "none";
-         // 選択されたステージのファイルを読み込む
           this.loadSelectedStageData(selectedStage.files);
-        },1000);
+        }, 1000);
       });
     });
   },
 
-  /* ==========================================================================
-  5.　バトル開始処理
-  ========================================================================== */
-  startBattle() {  
+  startBattle() {
     this.hideStartScreen();
     this.showBattleScreen();
-    battleManager.init(); 
+    battleManager.init();
 
-    if (assets.sounds.bgm_Battle) {
-      // 一度 pause してから再生し直すと、ブラウザの再生制限を突破しやすいです
-      assets.sounds.bgm_Battle.pause();
-      assets.sounds.bgm_Battle.currentTime = 0;
-      assets.sounds.bgm_Battle.volume = 0.5;
-
-      // play() は Promise を返すので、エラーをキャッチできるようにします
-      const playPromise = assets.sounds.bgm_Battle.play();
-
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // 失敗した場合は、画面のどこかをクリックしたら流れるように仕込むのも手です
-        });
+    const bgm = assets.sounds.bgm_Battle;
+    if (bgm) {
+      bgm.pause();
+      bgm.currentTime = 0;
+      bgm.volume = 0.5;
+      const p = bgm.play();
+      if (p !== undefined) {
+        p.catch(() => {});
       }
     }
 
     quizManager.start();
   },
-  /* ==========================================================================
-  6. 開始画面の非表示
-  ========================================================================== */
+
   hideStartScreen() {
     const wrapper = document.getElementById("uiWrapper");
     if (wrapper) wrapper.style.display = "none";
-  }, 
-  /* ==========================================================================
-  7.　バトルスクリーン表示
-  ========================================================================== */ 
+  },
+
   showBattleScreen() {
     const battle = document.getElementById("battleScreen");
     if (battle) battle.style.display = "flex";
   },
-  /* ==========================================================================
-  ゲームオーバー
-  ========================================================================== */ 
+
   handleGameOver() {
-    // BGMを止めるなどの演出
-    if (assets.sounds.bgm_Battle) assets.sounds.bgm_Battle.pause();
+    const bgm = assets.sounds.bgm_Battle;
+    if (bgm) bgm.pause();
     this.playGameOverSE();
 
     const container = document.getElementById("quizArea");
-    if(!container) return;
+    if (!container) return;
+
     container.style.display = "flex";
+    const reviewHtml = quizManager.buildWrongAnswersReviewHtml();
     container.innerHTML = `
-      
-      <div class="announcement-area">
+      <div class="announcement-area announcement-area--gameover">
         <div class="game-over-area">
-          <h2>Game Over</h2></div>
-        <button id="retryBtn" class="retry-btn">RETRY</button>
+          <h2>Game Over</h2>
+        </div>
+        ${reviewHtml}
+        <button type="button" id="retryBtn" class="retry-btn">メニューへ</button>
       </div>
     `;
 
     document.getElementById("retryBtn")?.addEventListener("click", () => this.retry());
   },
 
-  /* ==========================================================================
-  リトライ
-  ========================================================================== */
   retry() {
     this.hideSkillPanel();
 
-    // --- BGMのリセット処理 ---
-    if (assets.sounds.bgm_Battle) {
-      assets.sounds.bgm_Battle.pause();      // 一旦止める
-      assets.sounds.bgm_Battle.currentTime = 0; // 再生位置を最初に戻す
+    const bgm = assets.sounds.bgm_Battle;
+    if (bgm) {
+      bgm.pause();
+      bgm.currentTime = 0;
     }
-    
+
     const quizContainer = document.getElementById("quizArea");
     if (quizContainer) quizContainer.innerHTML = "";
 
     const battle = document.getElementById("battleScreen");
     if (battle) battle.style.display = "none";
 
-    // 再び初期化処理へ（isLoadedがtrueなので、ロードを飛ばしてスタートボタンへ戻る）
     this.init();
   },
 
-  /* ==========================================================================
-  スタート音
-  ========================================================================== */ 
-  playStartBtnSE(){
-     
+  playStartBtnSE() {
     if (this.startBtnSE) {
       this.startBtnSE.currentTime = 0;
       this.startBtnSE.play();
     }
   },
 
-   /* ==========================================================================
-  スタート音
-  ========================================================================== */ 
-  playGameOverSE(){
-     
+  playGameOverSE() {
     if (this.gameOverSE) {
       this.gameOverSE.currentTime = 0;
       this.gameOverSE.play();
     }
   },
-  /* ==========================================================================
-  スキルパネルh表示
-  ========================================================================== */ 
-  
-  showSkillPanel(){
-  if (quizManager.isVictoryActive) return;
 
-  this.itemBonusSE.play();
+  showSkillPanel() {
+    if (quizManager.isVictoryActive) return;
 
-  const panel = document.getElementById('skill-panel');
-  if(!panel) return;
+    this.itemBonusSE?.play();
 
-  this.renderSkillOptions();
-  panel.style.display = 'flex';
-},
-  
-  /* ==========================================================================
-  アイテム選択肢の表示
-  ============================================================================*/
+    const panel = document.getElementById("skill-panel");
+    if (!panel) return;
 
-  renderSkillOptions(){
-    const content = document.querySelector('#skill-panel .panel-content');
-    
-     content.innerHTML = '';
+    this.renderSkillOptions();
+    panel.style.display = "flex";
+  },
+
+  renderSkillOptions() {
+    const content = document.querySelector("#skill-panel .panel-content");
+    if (!content) return;
+
+    content.innerHTML = "";
     itemManager.renderOptions(content, 2);
   },
 
-  selectItem(itemId){
-  itemManager.applyItem(itemId, battleManager.player);
+  selectItem(itemId) {
+    itemManager.applyItem(itemId, battleManager.player);
+    refreshPlayerBuffIcons();
+    this.hideSkillPanel();
 
-  this.hideSkillPanel();
+    quizManager.correctQuestionCount = 0;
+    quizManager.updateKiwamiIcon();
+    quizManager.randomQuestion();
+  },
 
-  quizManager.correctQuestionCount = 0;
-  quizManager.updateKiwamiIcon();
-  quizManager.randomQuestion();
-},
-
-hideSkillPanel(){
-  const panel = document.getElementById('skill-panel');
-  if(panel){
-    panel.style.display = 'none';
-  }
-},
-  /* ==========================================================================
-  8.　ゲーム起動
-  ========================================================================== */ 
+  hideSkillPanel() {
+    const panel = document.getElementById("skill-panel");
+    if (panel) panel.style.display = "none";
+  },
 };
-  gameManager.init();
-  window.gameManager = gameManager;
 
-  document.addEventListener("click", (e) => {
+gameManager.init();
+window.gameManager = gameManager;
+
+// アイテム選択は document に一本化（HTML の onclick を減らす）
+document.addEventListener("click", (e) => {
   const btn = e.target.closest(".item-choice");
-  if (!btn) return;
+  if (!btn || btn.disabled) return;
 
-  window.gameManager.selectItem(btn.dataset.id);
+  const id = btn.dataset.id;
+  if (id == null || id === "") return;
+
+  window.gameManager.selectItem(id);
 });

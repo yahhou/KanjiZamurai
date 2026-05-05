@@ -1,5 +1,4 @@
-
-  /* ==========================================================================
+/* ==========================================================================
       基本設定(base)
   ==========================================================================
   */
@@ -126,7 +125,7 @@
   }
   
   /* ==========================================================================
-   3. バトル・メイン画面
+   . バトル・メイン画面
   ========================================================================== */
   
    #battleScreen {
@@ -138,20 +137,167 @@
     overflow: hidden;
     box-sizing: border-box;
   }
-   
+
+   /* ==========================================================================
+   3. ステータス
+  ========================================================================== */
+  
   #statusArea {
-    position: relative;
-    height: 20%;
-    width: 100%;
-    display: flex;
-    justify-content: center; /* 横方向の真ん中 */
-    background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 50%);
+  position: relative;
+  height: 25%;
+  width: 100%;
+  display: flex !important;      /* 強制的にFlexbox */
+  justify-content: space-between; /* これで左右の端に配置 */
+  align-items: flex-start;
+  padding: 2cqw;
+  box-sizing: border-box;
+  z-index: 50;
+  background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 80%);
+
+  /* HP/EXP トラックの高さを左右で共通にし、敵側は EXP が無い分だけ下にずらす */
+  --stat-bar-height: 1.5cqw;
+  --stat-bar-min-height: 6px;
+  --stat-exp-gap-below: 6px; /* プレイヤー exp-bar の margin-bottom と同じ値に合わせる */
+  --stat-enemy-hp-offset: calc(var(--stat-bar-height) + var(--stat-exp-gap-below));
+}
+/* ステータスUIコンテナ */
+#statusArea .battle-status-ui {
+  position: relative; /* absoluteを解除 */
+  top: 15%;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  width: 38%; /* 幅を少し広げる */
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+
+/* 詳細ステータスの行設定 */
+.param-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-top: 1cqw;
+  gap: 0.2cqw;
+  
+}
+
+.param-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 2.5cqw; /* スマホで見やすいサイズ */
+  font-family: monospace;
+}
+#player-ui {
+  align-items: flex-start; /* 中身を左に寄せる */
+  text-align: left;        /* テキストを左寄せ */
+}
+
+#enemy-ui {
+  text-align: right;
+  align-items: flex-end;
+}
+
+/* CRI の下: アクティブなバフを上から縦に並べる（新規バフは PLAYER_BUFF_SOURCES に追加） */
+#statusArea #player-ui .player-buff-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  width: 100%;
+  margin-top: 0.35cqw;
+}
+
+#statusArea #player-ui .player-buff-icon {
+  width: 5.5cqw;
+  height: 5.5cqw;
+  min-width: 20px;
+  min-height: 20px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+/* 敵側はラベルと数値の並びを逆転させる */
+#enemy-ui .param-row {
+  flex-direction: row-reverse;
+}
+
+/* 数値部分を少し強調 */
+.param-row span:last-child {
+  color: #fff;
+  font-weight: bold;
+}
+
+#statusArea .level-text {
+  position: relative;
+  top: 0;
+  margin-bottom: 0.5cqw;
+  font-size: 4cqw;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+  /* ==========================================================================
+   『極』アイコン
+  ========================================================================== */
+
+  #kiwami-container{  /* 「極」アイコンを表示するコンテナ */
+
+  display: none;
+  width: 20cqw;       /* コンテナも1枚分の幅に合わせる */
+  height: 20cqw;
+  margin: 0 auto;/* 真ん中寄せ */
+  overflow: hidden; /* 1フレーム分だけ見せる */
+
+  position: absolute;
+  left: 50%;
+  top: 10cqw;           /* 上からの距離。statusAreaの高さに合わせて調整 */
+  transform: translateX(-50%);
+  
+  z-index: 100;        /* ステータスより手前に出す */
+
+  }
+ 
+  #kiwami-image,#kiwami-bg {
+  height: 20cqw;      /* 画面幅の15%の高さにする */
+  width: calc(20cqw * 13); /* 高さ1枚分 × 13枚分の横幅を自動計算 */
+  max-width: none;  /* 他のCSSの干渉を確実に防ぐ */
+  position: absolute;
+  top: 0;
+  image-rendering: pixelated;
   }
 
+  #kiwami-bg {/* 背景は1フレーム目（0px）で動かさない */
+    left: 0;
+    z-index: 1; /* 後ろ */
+  }
+
+  #kiwami-image {
+    z-index: 2; /* 前 */
+  }
+  
+  #kiwami-image.is-rainbow{
+    animation: rainbowShift 1s linear infinite;
+  }
+  @keyframes rainbowShift {
+    0% { filter: hue-rotate(0deg);}
+    100% { filter: hue-rotate(360deg) ;}
+  }  
+/* ==========================================================================
+   
+  ========================================================================== */
+  
+
   #question-progress {
-    position: absolute;
+     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     top: 3cqw;
-    right: 4cqw;
     z-index: 20;
     min-width: 18cqw;
     padding: 1cqw 2cqw;
@@ -179,7 +325,7 @@
   position: absolute; 
   width: 15cqw;  /* コンテナと同じサイズにする */
   height: 15cqw;
-  bottom: 30%;     /* 足元を地面に合わせる */
+  bottom: 20%;     /* 足元を地面に合わせる */
   left: 0%;    /* プレイヤーの位置 */
   display: flex;
   flex-direction: column;
@@ -206,7 +352,7 @@
   position: absolute; 
   width: 15cqw;  /* コンテナと同じサイズにする */
   height: 15cqw;
-  bottom: 30%;     /* 足元を地面に合わせる */
+  bottom: 20%;     /* 足元を地面に合わせる */
   right: 0%;    /* プレイヤーの位置 */
   z-index: 9;
   transition: opacity 0.5s ease, transform 1s ease !important;
@@ -220,7 +366,7 @@
   
   .hp-text {
   color: white;
-  font-size: 14px;
+  font-size: 3cqw;
   text-align: center;
   font-weight: bold;
   text-shadow: 1px 1px 2px #000;
@@ -238,11 +384,11 @@
 /* ダメージ数字の基本スタイル */
 .damage-popup {
   position: absolute;
-  bottom: 110%;
+  bottom: -200% !important;
   left: 50%;
   transform: translateX(-50%);
 
-  font-size: 3rem;
+  font-size: 6cqw;
   font-family: inherit;
   pointer-events: none; /* クリックを邪魔しない */
   z-index: 100;
@@ -299,13 +445,36 @@
   }
 }
 
-  .level-up-popup {
-    bottom: 85%;
+  /* レベルアップ: ダメージポップの「画面下」指定を打ち消して、キャラの少し上に出す */
+  .damage-popup.level-up-popup {
+    bottom: auto !important;
+    top: 5cqw;/*(少ないと上に行く)*/
     color: #f1c40f;
     font-size: 5cqw;
+    font-weight: 800;
     text-shadow:
       0 0 5px #fff,
       0 0 12px #f1c40f;
+    animation: levelUpPop 1.6s ease-out forwards;
+  }
+
+  @keyframes levelUpPop {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 8px);
+    }
+    18% {
+      opacity: 1;
+      transform: translate(-50%, -8px);
+    }
+    70% {
+      opacity: 1;
+      transform: translate(-50%, -12px);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -20px);
+    }
   }
 
   /* ==========================================================================
@@ -427,46 +596,6 @@
     transform: scale(1.05) !important;
   }
 
-  /* ==========================================================================
-   『極』アイコン
-  ========================================================================== */
-
-  #kiwami-container{  /* 「極」アイコンを表示するコンテナ */
-  display: none;
-  width: 20cqw;       /* コンテナも1枚分の幅に合わせる */
-  height: 20cqw;
-  margin: 0 auto;/* 真ん中寄せ */
-  overflow: hidden; /* 1フレーム分だけ見せる */
-  position: relative;
-  margin-top: 5cqw;
-
-  }
- 
-  #kiwami-image,#kiwami-bg {
-  height: 20cqw;      /* 画面幅の15%の高さにする */
-  width: calc(20cqw * 13); /* 高さ1枚分 × 13枚分の横幅を自動計算 */
-  max-width: none;  /* 他のCSSの干渉を確実に防ぐ */
-  position: absolute;
-  top: 0;
-  image-rendering: pixelated;
-  }
-
-  #kiwami-bg {/* 背景は1フレーム目（0px）で動かさない */
-    left: 0;
-    z-index: 1; /* 後ろ */
-  }
-
-  #kiwami-image {
-    z-index: 2; /* 前 */
-  }
-  
-  #kiwami-image.is-rainbow{
-    animation: rainbowShift 1s linear infinite;
-  }
-  @keyframes rainbowShift {
-    0% { filter: hue-rotate(0deg);}
-    100% { filter: hue-rotate(360deg) ;}
-  }  
 
   /* ==========================================================================
   クリア・ゲームオーバー画面
@@ -509,6 +638,91 @@
 
   .retry-btn:active {
   transform: scale(0.95);    /* 押した時に少し小さくなる */
+}
+
+/* ゲームオーバー: 誤答リスト（多いときはこの中だけスクロール） */
+.announcement-area--gameover {
+  justify-content: flex-start;
+  padding: 3cqw 2cqw 2cqw;
+  box-sizing: border-box;
+  gap: 1.2cqw;
+  overflow: hidden;
+}
+
+.announcement-area--gameover .game-over-area {
+  flex: 0 0 auto;
+}
+
+.announcement-area--gameover .retry-btn {
+  flex: 0 0 auto;
+  height: auto;
+  min-height: 44px;
+  margin-top: auto;
+}
+
+.game-over-review {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 90%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.game-over-review-title {
+  margin: 0 0 0.4cqw;
+  font-size: 3.2cqw;
+  font-weight: 700;
+  color: #e0e0e0;
+  text-align: left;
+}
+
+.game-over-review-list {
+  list-style: decimal;
+  margin: 0;
+  padding-left: 1.15em;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  max-height: min(36vh, 14rem);
+  font-size: 2.9cqw;
+  color: #f2f2f2;
+  text-align: left;
+  -webkit-overflow-scrolling: touch;
+}
+
+.game-over-review-item {
+  margin-bottom: 0.65em;
+  padding-right: 0.2em;
+}
+
+.game-over-review-kanji {
+  font-size: 1.1em;
+  font-weight: 800;
+}
+
+.game-over-review-meta {
+  font-size: 0.88em;
+  color: #9a9a9a;
+  margin: 0.08em 0 0.2em;
+}
+
+.game-over-review-answer {
+  color: #b8dfff;
+}
+
+.game-over-review-label {
+  color: #888;
+  font-size: 0.92em;
+  margin-right: 0.2em;
+}
+
+.game-over-review-empty {
+  width: 90%;
+  font-size: 2.8cqw;
+  color: #888;
+  text-align: center;
+  margin: 0.5cqw 0 0;
 }
 
 /* ==========================================================================
@@ -564,7 +778,7 @@
 
   .panel-content h2 {
     margin: 0 0 5cqw;
-    font-size: 5cqw;
+    font-size: 10cqw;
     line-height: 1;
   }
 
@@ -630,18 +844,13 @@
 
   .item-name {
   font-weight: bold;
-  font-size: 3.5cqw;
-}
-
-.item-rarity {
-  font-size: 0.8rem;
-  opacity: 0.8;
+  font-size: 7cqw;
 }
 
   /* クラス名の頭にドット（.）が抜けていたので修正 */
 .item-description {
-  font-size: 2.8cqw;
-  line-height: 1.2;
+  font-size: 4cqw;
+  line-height: 8cqw;
 }
 
   .item-choice.rarity-common {
@@ -692,6 +901,7 @@
     }
   }
 
+  /* キャラの上に重ねるレイアウト用（player-ui を actionArea に置いた場合） */
   #actionArea .battle-status-ui {
     position: absolute;
     bottom: 4%;
@@ -708,6 +918,12 @@
     right: 6%;
   }
 
+  /*
+   * HP/EXP の「枠」と色。
+   * index.html ではバーは #statusArea 内にあるが、昔の CSS は #actionArea だけ指定していたため表示されなかった。
+   */
+  #statusArea .battle-status-ui .hp-bar-container,
+  #statusArea .battle-status-ui .exp-bar-container,
   #actionArea .battle-status-ui .hp-bar-container,
   #actionArea .battle-status-ui .exp-bar-container {
     position: relative;
@@ -715,17 +931,26 @@
     bottom: auto;
     display: block;
     width: 100%;
-    height: 6px;
+    height: var(--stat-bar-height, 1.5cqw);
+    min-height: var(--stat-bar-min-height, 6px);
     background-color: #4d4d4d;
     border: 1px solid #111;
     overflow: hidden;
     box-sizing: border-box;
   }
 
-  #actionArea #player-ui .exp-bar-container {
-    margin-bottom: 4px;
+  /* 敵: Lv の下に「EXP 行と同じ高さ + 下あき」の空きを入れて、HP バーをプレイヤーと横位置で揃える */
+  #statusArea #enemy-ui .hp-bar-container {
+    margin-top: var(--stat-enemy-hp-offset, calc(1.5cqw + 6px));
   }
 
+  /* プレイヤー: Lv の下 → EXP → すぐ下に HP（HTML の順番どおり） */
+  #statusArea #player-ui .exp-bar-container,
+  #actionArea #player-ui .exp-bar-container {
+    margin-bottom: var(--stat-exp-gap-below, 6px);
+  }
+
+  #statusArea #player-ui .exp-bar-inner,
   #actionArea #player-ui .exp-bar-inner {
     display: block;
     width: 0%;
@@ -736,15 +961,15 @@
 
   #actionArea .battle-status-ui .level-text {
     position: absolute;
+    font-size: 3.5cqw;
     left: 0;
     top: -1.4em;
     bottom: auto;
     width: 100%;
-    height: auto;
     line-height: 1;
     text-align: left;
   }
 
   #actionArea #enemy-ui .level-text {
-  top: -2em; /* -1.4em より小さな値（マイナスを大きく）にすると上がります */
-}
+    top: -2em;
+  }
