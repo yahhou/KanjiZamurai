@@ -31,6 +31,8 @@ export class Character {
 
     this.init();  
     this.baseAtk = atk;
+    this.baseDef = def;
+    this.baseMdf = mdf;
     this.isAttacking = false; // 今攻撃中かどうかのフラグ
     this.isRegenerating = false;// 今リジェネ中かフラグ
 
