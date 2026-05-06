@@ -305,8 +305,7 @@ export const quizManager = {
     this.streak = 0;
   },
 
-  /////////////////////////
-  //     レビュー画面
+    //     レビュー画面
   /////////////////////////
   buildWrongAnswersReviewHtml() {
     if (!this.wrongAnswersLog.length) {
@@ -318,10 +317,10 @@ export const quizManager = {
         (row) => `
       <li class="game-over-review-item">
         <div class="game-over-review-kanji">${escapeHtml(row.kanji)}</div>
-        <div class="game-over-review-meta">${escapeHtml(row.yomi)}${
-          row.romaji ? ` · ${escapeHtml(row.romaji)}` : ""
-        }</div>
-        <div class="game-over-review-answer"><span class="game-over-review-label">Answer</span> ${escapeHtml(
+        <div class="game-over-review-meta">
+        ${escapeHtml(row.yomi)} ${row.romaji ? `/ ${escapeHtml(row.romaji)} /` : ""}
+         </div>
+        <div class="game-over-review-answer"><span class="game-over-review-label">Def:</span> ${escapeHtml(
           row.correctEnglish
         )}</div>
       </li>`
@@ -330,11 +329,12 @@ export const quizManager = {
 
     return `
       <div class="game-over-review">
-        <p class="game-over-review-title">Wrong ansers</p>
+        <p class="game-over-review-title">Missed words</p>
         <ol class="game-over-review-list">${items}</ol>
       </div>
     `;
-  },
+  },/////////////////////////
+
   
   /////////////////////////
   //   正解数と問題数の表示
