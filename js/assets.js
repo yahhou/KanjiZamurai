@@ -35,6 +35,13 @@ export const assets = {
 
     this.images.dragon = new Image();
     this.images.dragon.src = "assets/images/dragon-Sheet.png";
+    
+    /////////////
+    //  ステージ
+    /////////////
+    
+    this.images.stage_castle = new Image();
+    this.images.stage_castle.src = "assets/images/stage_castle.png";
 
     // --- UI ---
     this.images.ui_Kiwami = new Image();

@@ -10,13 +10,14 @@ const ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT = 0;
 export const battleManager = {
   player: null,
   enemy: null,
+  bgImages: {},
 
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
   ///////////////////////////////////
   init() {
     this.clearCharacters();
-
+    this.setupBackgrounds();
     this.player = new Samurai();
 
     const actionArea = document.getElementById("actionArea");
@@ -24,6 +25,7 @@ export const battleManager = {
       actionArea.appendChild(this.player.el);
     }
 
+    this.updateBackground();
     this.enemySpawn();
   },
 
@@ -185,8 +187,51 @@ export const battleManager = {
     
     actionArea.appendChild(el);
   }
-}
+},
 
+///////////////////////////////////
+//      背景の準備
+///////////////////////////////////
+  setupBackgrounds() {
+    // 既にあればスキップ
+    if (Object.keys(this.bgImages).length > 0) return;
+
+    // 指定の形式で画像を登録
+    const bgList = {
+      "stage_1": "assets/images/stage_castle.png",
+      //"stage_2": "assets/images/stage_2.png", // 複数入れる場合
+      //"stage_3": "assets/images/stage_3.png"
+    };
+
+    for (const key in bgList) {
+      this.bgImages[key] = new Image();
+      this.bgImages[key].src = bgList[key];
+    }
+  },
+
+  ///////////////////////////////////
+  //      背景の表示更新
+  ///////////////////////////////////
+  updateBackground(bgKey = null) {
+    // ターゲットを親要素の battleScreen に変更
+    const target = document.getElementById("actionArea"); 
+    if (!target) return;
+
+    let selectedSrc;
+    const keys = Object.keys(this.bgImages);
+
+    if (bgKey && this.bgImages[bgKey]) {
+      selectedSrc = this.bgImages[bgKey].src;
+    } else if (keys.length > 0) {
+      const randomKey = keys[Math.floor(Math.random() * keys.length)];
+      selectedSrc = this.bgImages[randomKey].src;
+    }
+
+    if (selectedSrc) {
+      // 画面全体（battleScreen）の背景を更新
+      target.style.backgroundImage = `url('${selectedSrc}')`;
+    }
+  },
 };
 
 window.battleManager = battleManager;
