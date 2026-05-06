@@ -1064,7 +1064,7 @@ body {
 .game-over-review-item {
   margin-bottom: 0.5em;           /* 下の項目との間隔を広げる */
   padding-bottom: 0.8em;          /* 線と文字の間の余白 */
-  border-bottom: 1px solid #444;  /* ★ここで境界線（グレー）を引く */
+  border-bottom: 0.5cqw solid #444;  /* ★ここで境界線（グレー）を引く */
 }
 
 /* 最後の項目の線は消すとスッキリします */
