@@ -11,6 +11,7 @@ export class Item {
     rarity,
     weight,
     isWeapon = false,
+    isBand = false, // 追加
     apply,
   }) {
     this.id = id;
@@ -20,6 +21,7 @@ export class Item {
     this.rarity = String(rarity || "common").toLowerCase();
     this.weight = weight;
     this.isWeapon = isWeapon;
+    this.isBand = isBand;
     this.apply = apply;
   }
 }
@@ -60,11 +62,10 @@ export const itemManager = {
   //     アイテム一覧
   //////////////////////////////
   items: [
-    
     ///////////////////////////////////////////
     //          回復
     ///////////////////////////////////////////
-    /*
+
     new Item({//onigiri
       id: "onigiri",
       name: "Onigiri",
@@ -98,10 +99,9 @@ export const itemManager = {
         player.refreshStats();
       },
     }),
-    */
 
     ///////////////////////////////////////////
-    // 　　　刀
+    // 　　　      刀
     ///////////////////////////////////////////
 
     new Item({
@@ -188,6 +188,98 @@ export const itemManager = {
         player.refreshStats();
       },
     }),
+
+     ///////////////////////////////////////////
+    // 　　　      鉢金（会心率）
+    ///////////////////////////////////////////
+    new Item({
+    id: "Novice Band",
+      name: "Novice Band",
+      description: "CRT → 10%",
+      frame: 8,
+      rarity: "common",
+      isBand: true,
+
+      apply(player) {
+        player.isBandEquipped = true;
+        player.critRate = 10;
+        player.bandRarity = "common";
+
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+    id: "Insight Band",
+      name: "Insight Band",
+      description: "CRT → 20%",
+      frame: 9,
+      rarity: "uncommon",
+      isBand: true,
+
+      apply(player) {
+        player.isBandEquipped = true;
+        player.critRate = 20;
+        player.bandRarity = "uncommon";
+
+        player.refreshStats();
+      },
+    }),
+
+     new Item({
+    id: "Mindeye Band",
+      name: "Mindeye Band",
+      description: "CRT → 30%",
+      frame: 10,
+      rarity: "rare",
+      isBand: true,
+
+      apply(player) {
+        player.isBandEquipped = true;
+        player.critRate = 30;
+        player.bandRarity = "rare";
+
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+    id: "Demon Gaze Band",
+      name: "Oni Eye Band",
+      description: "CRT → 40%",
+      frame: 11,
+      rarity: "legendary",
+      isBand: true,
+
+      apply(player) {
+        player.isBandEquipped = true;
+        player.critRate = 40;
+        player.bandRarity = "legendary";
+
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+    id: "Musou Band",
+      name: "Musou Band",
+      description: "CRT → 70%",
+      frame: 12,
+      rarity: "mythic",
+      isBand: true,
+
+      apply(player) {
+        player.isBandEquipped = true;
+        player.critRate = 70;
+        player.bandRarity = "mythic";
+
+        player.refreshStats();
+      },
+    }),
+
+
+
+
   ],
 
   //////////////////////////////
@@ -223,28 +315,27 @@ export const itemManager = {
     // 装備武器より低いレア度を除外
     ///////////////////////////////////////////
 
-    if (player?.weaponRarity) {
+    // --- レアリティ順序の定義（共通で使う） ---
+    const getRank = (rarity) => this.rarityOrder[String(rarity).toLowerCase()] || 0;
 
-      const currentRank =
-        this.rarityOrder[
-          String(player.weaponRarity).toLowerCase()
-        ];
+    pool = pool.filter((item) => {
+      // 1. 武器（isWeapon）のチェック
+      if (item.isWeapon && player?.weaponRarity) {
+        const currentWeaponRank = getRank(player.weaponRarity);
+        const itemRank = getRank(item.rarity);
+        if (itemRank < currentWeaponRank) return false;
+      }
 
-      pool = pool.filter((item) => {
+      // 2. 鉢金（仮に isBand プロパティがある場合）のチェック
+      // アイテムデータに "isBand: true" を持たせるのが理想的です
+      if (item.isBand && player?.bandRarity) {
+        const currentBandRank = getRank(player.bandRarity);
+        const itemRank = getRank(item.rarity);
+        if (itemRank < currentBandRank) return false;
+      }
 
-        // 武器以外は通す
-        if (!item.isWeapon) {
-          return true;
-        }
-
-        const itemRank =
-          this.rarityOrder[
-            String(item.rarity).toLowerCase()
-          ];
-
-        return itemRank >= currentRank;
-      });
-    }
+      return true;
+    });
 
     ///////////////////////////////////////////
     // 重み付きランダム

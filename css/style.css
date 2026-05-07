@@ -286,10 +286,10 @@ body {
 
   filter: 
   /* 小さな影を4方向に配置して縁取りにする（ブラーは0） */
-  drop-shadow(1px 1px 3px rgba(0,0,0,0.3))
-  drop-shadow(-1px -1px 3px rgba(0,0,0,0.3))
-  drop-shadow(1px -1px 3px rgba(0,0,0,0.3))
-  drop-shadow(-1px 1px 3px rgba(0,0,0,0.3));
+  drop-shadow(1px 1px 5px rgba(0,0,0,0.5))
+  drop-shadow(-1px -1px 5px rgba(0,0,0,0.5))
+  drop-shadow(1px -1px 5px rgba(0,0,0,0.5))
+  drop-shadow(-1px 1px 5px rgba(0,0,0,0.5));
 }
 
 /* ====================
@@ -850,26 +850,33 @@ body {
 
 .question-container {
   flex-shrink: 0;
-  height: 30%;
+  min-height: 20%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  overflow: hidden; /* はみ出しをカット */
+  padding: 0;    /* 内側に余白を作る */
+  box-sizing: border-box;
 }
 
 .question-container h2 {
-  font-size: 8cqw;
-  line-height: 1.5;
-  margin-top: 3cqw;
+  width: 100%;
+  font-size: clamp(3cqw, 6cqw, 6cqw);
+  line-height: 1;
+  margin-top: 0cqw;
   font-family: inherit;
 }
 
 .question-container p {
-  font-size: 6cqw;
+  width: 100%;
+  font-size: 3cqw;
   opacity: 0.8;
   color: #90ff2f;
-  margin-top: -10cqw;
+  font-size: clamp(3cqw, 4cqw, 4cqw);
+  margin-top: 0;
   font-family: inherit;
 }
 
@@ -878,14 +885,14 @@ body {
 =============================*/
 
 .button-container {
-  height: 65%;
+  height: 70%;
   width: 90%;
   display: grid;
   margin: 0 auto;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 2cqw 3cqw;
-  margin-bottom: 4%;
+  margin-bottom: 3%;
   margin-top: 1%;
   align-content: stretch;
 }
@@ -897,7 +904,7 @@ body {
 #optionArea button {
   height: 100%;
   width: 100%;
-  padding: 5px;
+  padding: 0px;
   background-color: #222222;
   border-radius: 10cqw;
   color: white;
@@ -1234,7 +1241,7 @@ body {
   background: #2c2c2c;
   border-radius: 5cqw;
   width: 70%;
-  min-height: 25%;
+  height: 40%;
   padding: 5cqw;
   text-align: center;
   z-index: 10000;
@@ -1243,7 +1250,7 @@ body {
 
 .panel-content h2 {
   margin: 0 0 5cqw;
-  font-size: 10cqw;
+  font-size: 8cqw;
   line-height: 1;
 }
 
@@ -1270,13 +1277,13 @@ body {
   align-items: center;
   justify-content: flex-start;
   background: rgba(0, 0, 0, 0.7);
-  border: 0.5cqw solid #d4af37;
+  border: 3cqw solid #d4af37;
   color: white;
   width: 100%;
   aspect-ratio: 4 / 5;
   padding: 3cqw;
   box-sizing: border-box;
-  border-radius: 2cqw;
+  border-radius: 5cqw;
 }
 
 .item-choice:active {
