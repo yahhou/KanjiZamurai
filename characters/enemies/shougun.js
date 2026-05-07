@@ -14,7 +14,7 @@ import { Enemy } from './enemy.js';
         critRate: 10,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
-        sizeRatio: 55,
+        sizeRatio: 48,
         frameCount: 2,
         idleFrameCount: 2
       });

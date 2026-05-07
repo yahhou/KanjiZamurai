@@ -320,7 +320,7 @@ export const gameManager = {
     if (bgm) {
       bgm.pause();
       bgm.currentTime = 0;
-      bgm.volume = 0.5;
+      bgm.volume = 0.3;
       const p = bgm.play();
       if (p !== undefined) {
         p.catch(() => {});
@@ -404,6 +404,7 @@ export const gameManager = {
   playStartBtnSE() {
     if (this.startBtnSE) {
       this.startBtnSE.currentTime = 0;
+      this.startBtnSE.volume = 0.5;
       this.startBtnSE.play();
     }
   },
@@ -415,6 +416,7 @@ export const gameManager = {
   playGameOverSE() {
     if (this.gameOverSE) {
       this.gameOverSE.currentTime = 0;
+      this.gameOverSE.volume = 0.5;
       this.gameOverSE.play();
     }
   },
@@ -425,7 +427,7 @@ export const gameManager = {
   //////////////////////////////
   showSkillPanel() {
     if (quizManager.isVictoryActive) return;
-
+    this.itemBonusSE.volume = 0.5;
     this.itemBonusSE?.play();
 
     const panel = document.getElementById("skill-panel");

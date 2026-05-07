@@ -252,7 +252,7 @@ export const quizManager = {
     if (!img) return;
 
     const count = Math.max(0, this.correctQuestionCount);
-    const xPosition = Math.min(count, this.MAX_QUESTIONS) * 20;
+    const xPosition = Math.min(count, this.MAX_QUESTIONS) * 15;
     img.style.left = `-${xPosition}cqw`;
 
     if (count >= 3) {
