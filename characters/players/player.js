@@ -17,7 +17,9 @@ export class Player extends Character {
     this.isWeaponEquipped = false;
     this.weaponRarity = null;
     this.isBandEquipped = false;
+    this.isBeadsEquipped = false;
     this.bandRarity = null;
+    this.beadsRarity = null;
 
     this.levelUpSound = new Audio('assets/sounds/levelUp.mp3');
   }

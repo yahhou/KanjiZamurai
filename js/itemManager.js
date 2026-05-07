@@ -12,6 +12,7 @@ export class Item {
     weight,
     isWeapon = false,
     isBand = false, // 追加
+    isBeads = false,
     apply,
   }) {
     this.id = id;
@@ -22,6 +23,7 @@ export class Item {
     this.weight = weight;
     this.isWeapon = isWeapon;
     this.isBand = isBand;
+    this.isBeads = isBeads;
     this.apply = apply;
   }
 }
@@ -276,10 +278,94 @@ export const itemManager = {
         player.refreshStats();
       },
     }),
+    
+    ///////////////////////////////////////////
+    // 　　　      数珠(回避率)
+    ///////////////////////////////////////////
+    new Item({
+    id: "Old Beads",
+      name: "Old Beads",
+      description: "DEV → 10%",
+      frame: 13,
+      rarity: "common",
+      isBeads: true,
 
+      apply(player) {
+        player.isBeadsEquipped = true;
+        player.eva = 10;
+        player.beadsRarity = "common";
 
+        player.refreshStats();
+      },
+    }),
+    
+    new Item({
+    id: "Warding Beads",
+      name: "Warding Beads",
+      description: "DEV → 20%",
+      frame: 14,
+      rarity: "uncommon",
+      isBeads: true,
 
+      apply(player) {
+        player.isBeadsEquipped = true;
+        player.eva = 20;
+        player.beadsRarity = "uncommon";
 
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+    id: "Phantom Beads",
+      name: "Phantom Beads",
+      description: "DEV → 30%",
+      frame: 15,
+      rarity: "rare",
+      isBeads: true,
+
+      apply(player) {
+        player.isBeadsEquipped = true;
+        player.eva = 30;
+        player.beadsRarity = "rare";
+
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+    id: "Onyx Beads",
+      name: "Onyx Beads",
+      description: "DEV → 40%",
+      frame: 16,
+      rarity: "legendary",
+      isBeads: true,
+
+      apply(player) {
+        player.isBeadsEquipped = true;
+        player.eva = 40;
+        player.beadsRarity = "legendary";
+
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+    id: "Amaterasu Beads",
+      name: "Amaterasu Beads",
+      description: "DEV → 70%",
+      frame: 17,
+      rarity: "mythic",
+      isBeads: true,
+
+      apply(player) {
+        player.isBeadsEquipped = true;
+        player.eva = 70;
+        player.beadsRarity = "mythic";
+
+        player.refreshStats();
+      },
+    }),
   ],
 
   //////////////////////////////
@@ -330,6 +416,12 @@ export const itemManager = {
       // アイテムデータに "isBand: true" を持たせるのが理想的です
       if (item.isBand && player?.bandRarity) {
         const currentBandRank = getRank(player.bandRarity);
+        const itemRank = getRank(item.rarity);
+        if (itemRank < currentBandRank) return false;
+      }
+
+      if (item.isBeads && player?.beadsRarity) {
+        const currentBandRank = getRank(player.beadsRarity);
         const itemRank = getRank(item.rarity);
         if (itemRank < currentBandRank) return false;
       }

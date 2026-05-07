@@ -184,7 +184,8 @@ export class Character {
   updateParam('.val-atk', this.atk);
   updateParam('.val-def', this.def);
   updateParam('.val-mdf', this.mdf);
-  updateParam('.val-eva', this.eva);
+  updateParam('.val-eva', `${this.eva}%`);
+
   // クリティカル率が定義されていれば表示
   if (this.critRate !== undefined) {
     updateParam('.val-cri', `${this.critRate}%`);
@@ -207,8 +208,7 @@ export class Character {
   //      　回避計算
   ///////////////////////////////////
   checkEvade(attacker) {
-    const evaDiff = this.eva - attacker.eva;
-    const evadeRate = Math.min(35, Math.max(5, 10 + (evaDiff * 0.3)));
+    const evadeRate = this.eva;
 
     return Math.random() * 100 < evadeRate;
   }
