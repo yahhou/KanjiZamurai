@@ -110,7 +110,7 @@ export const battleManager = {
 
     enemy.maxHp = Math.floor(enemy.maxHp * hpScale);
     enemy.hp = enemy.maxHp;
-    enemy.atk = Math.floor(enemy.atk * statScale);
+    enemy.baseAtk = Math.floor(enemy.baseAtk * statScale);
     enemy.def = Math.floor(enemy.def * statScale);
     enemy.mdf = Math.floor(enemy.mdf * statScale);
     enemy.expReward = Math.floor((enemy.expReward || 5) * expScale);
@@ -149,12 +149,13 @@ export const battleManager = {
   updateStreakBonus(streakCount) {
     if (!this.player) return;
 
-    // 1. ボーナス値を計算 (2連撃以上で発生)
-    const bonusAtk = streakCount >= 2 ? Math.floor(streakCount * 0.5) : 0;
     this.refreshStreakDisplay(streakCount);
-    // 2. プレイヤーのステータスに反映
-    // baseAtk(レベル依存の基礎値)に加算することで、レベルアップ分を保持しつつボーナスだけを変動させる
-    this.player.atk = this.player.baseAtk + bonusAtk;
+  // 1. ボーナス倍率を計算 (例: 1コンボにつき 5% アップなら 0.05)
+  // streakCountが 2 以上なら 1.1, 1.2... と増えていくイメージ
+    const bonus = streakCount >= 2 ? 1.0 + (streakCount * 0.05) : 1.0;
+  
+    // 2. 攻撃力そのものではなく、「倍率」の変数に代入する
+    this.player.streakMultiplier = bonus;
 
     // 3. バフ状態のフラグ更新
     this.player.hasStreakBonus = (streakCount >= 2);
@@ -218,7 +219,7 @@ export const battleManager = {
     }
   },
 
-  
+
   ///////////////////////////////////
   //      背景の表示更新
   ///////////////////////////////////
@@ -237,9 +238,15 @@ export const battleManager = {
       selectedSrc = this.bgImages[randomKey].src;
     }
 
-    if (selectedSrc) {
-      // 画面全体（battleScreen）の背景を更新
+   if (selectedSrc) {
+      // 親要素(battleScreen)に背景がついている場合は消去する（念のため）
+      const parent = document.getElementById("battleScreen");
+      if (parent) parent.style.backgroundImage = "none";
+
+      // actionArea だけに背景を適用
       target.style.backgroundImage = `url('${selectedSrc}')`;
+      target.style.backgroundSize = "cover"; 
+      target.style.backgroundPosition = "center";
     }
   },
 };

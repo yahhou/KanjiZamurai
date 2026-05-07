@@ -1185,6 +1185,7 @@ body {
 .rainbow .streak-number {
   background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
   animation: rainbowScroll 2s linear infinite;
@@ -1314,7 +1315,8 @@ body {
 }
 
 .item-description {
-  font-size: 4cqw;
+  color: #4eb3fa;
+  font-size: 5cqw;
   line-height: 8cqw;
 }
 

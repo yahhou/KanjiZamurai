@@ -8,7 +8,10 @@ export class Character {
     this.hp = hp;
     this.maxHp = hp;
     this.mp = mp;
-    this.atk = atk;
+    this.baseAtk = atk;
+    this.weaponMultiplier = 1.0; // ★これを追加（初期値1倍）
+    this.atkMultiplier = 1.0;
+    this.streakMultiplier = 1.0; // コンボ用（デフォルト1倍）
     this.def = def;
     this.mdf = mdf;
     this.eva = eva;
@@ -30,7 +33,6 @@ export class Character {
     this.el.className = 'character-container';
 
     this.init();  
-    this.baseAtk = atk;
     this.baseDef = def;
     this.baseMdf = mdf;
     this.isAttacking = false; // 今攻撃中かどうかのフラグ
@@ -40,6 +42,18 @@ export class Character {
 
      this.criticalSound = new Audio('assets/sounds/criticalHit.mp3');
      this.evadeSound = new Audio('assets/sounds/evade1.mp3');
+  }
+
+  ///////////////////////////////////
+  //    現在の攻撃力を計算して返す
+  ///////////////////////////////////
+  get atk() {
+  // すべての倍率を掛け算する。
+  // baseAtk(基礎) × weapon(武器) × streak(コンボ)
+    const totalAtk = this.baseAtk * this.weaponMultiplier * this.streakMultiplier;
+  
+  // もし計算ミスでNaNになった時のために「|| 0」をつけておくと安全
+    return Math.floor(totalAtk) || 0;
   }
 
   ///////////////////////////////////

@@ -14,6 +14,8 @@ export class Player extends Character {
     this.createExpBar();
     this.updateExpBar();
     this.hasStreakBouns = false;
+    this.isWeaponEquipped = false;
+    this.weaponRarity = null;
 
     this.levelUpSound = new Audio('assets/sounds/levelUp.mp3');
   }
@@ -101,9 +103,9 @@ export class Player extends Character {
       this.maxHp += 10;
       this.hp += 10;
 
-      this.atk = this.baseAtk += 3;
-      this.def = this.baseDef += 2;
-      this.mdf = this.baseMdf += 2;
+      this.baseAtk += 3;
+      this.baseDef += 2;
+      this.baseMdf += 2;
 
       this.maxExp = Math.floor(this.maxExp * 1.4);
 

@@ -48,7 +48,7 @@ export const assets = {
     this.images.ui_Kiwami.src = "assets/images/Kiwami-Sheet.png";
 
     this.images.ui_Items = new Image();
-    this.images.ui_Items.src = "assets/images/items-Sheet-Sheet.png";
+    this.images.ui_Items.src = "assets/images/items-Sheet.png";
 
     // --- BGM ---
     this.sounds.bgm_Battle = new Audio("assets/sounds/Battle1.mp3");

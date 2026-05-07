@@ -6,6 +6,8 @@ export class Enemy extends Character {
     constructor(config) {
     super(config);
 
+    this.baseAtk;
+
     this.attackSound1 = new Audio('assets/sounds/enemyAttack1.mp3');
     // プレイヤー共通の初期化（例：現在のレベルなど）
     this.level = 1;

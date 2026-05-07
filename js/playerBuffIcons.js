@@ -1,6 +1,6 @@
 import { itemManager } from "./itemManager.js";
 
-const ITEMS_SHEET_URL = "assets/images/items-Sheet-Sheet.png";
+const ITEMS_SHEET_URL = "assets/images/items-Sheet.png";
 
 /**
  * プレイヤー横の「バフアイコン」行に出す定義。
