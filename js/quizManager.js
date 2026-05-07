@@ -14,7 +14,7 @@ export const quizManager = {
   wordList: [],
   currentStage: 0,
   correctQuestionCount: 0,
-  MAX_QUESTIONS: 13,
+  MAX_QUESTIONS: 6,
   usedWords: [],
   /** いま出題中の正解データ */
   currentQuestion: {},
@@ -261,7 +261,7 @@ export const quizManager = {
       img.classList.remove("is-flashing");
     }
 
-    if (count >= 12) {
+    if (count >= 5) {
       img.classList.add("is-rainbow");
     } else {
       img.classList.remove("is-rainbow");

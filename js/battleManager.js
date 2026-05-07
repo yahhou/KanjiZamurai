@@ -246,7 +246,7 @@ export const battleManager = {
       // actionArea だけに背景を適用
       target.style.backgroundImage = `url('${selectedSrc}')`;
       target.style.backgroundSize = "cover"; 
-      target.style.backgroundPosition = "center 10%";
+      target.style.backgroundPosition = "center 25%";
     }
   },
 };
