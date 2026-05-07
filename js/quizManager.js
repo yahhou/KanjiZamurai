@@ -255,8 +255,7 @@ export const quizManager = {
     const xPosition = Math.min(count, this.MAX_QUESTIONS) * 15;
     img.style.left = `-${xPosition}cqw`;
 
-    if (count >= 3) {
-          window.gameManager?.showSkillPanel();
+    if (count >= 2) {
       img.classList.add("is-flashing");
     } else {
       img.classList.remove("is-flashing");
