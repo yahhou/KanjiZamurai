@@ -58,7 +58,6 @@ export const gameManager = {
   //////////////////////////////
   // 　　　ゲーム起動
   //////////////////////////////
-
   init() {
     this.startLoadingAnimation();
 
@@ -97,10 +96,10 @@ export const gameManager = {
     );
   },
 
+
   //////////////////////////////
   //   ロード中アニメーションの開始
   //////////////////////////////
-
   startLoadingAnimation() {
     const loadingArea = document.getElementById("loadingArea");
     if (!loadingArea) return;
@@ -113,10 +112,10 @@ export const gameManager = {
     }, 500);
   },
 
+
   //////////////////////////////
   //   ロード中アニメーションの停止
   //////////////////////////////
-
   stopLoadingAnimation() {
     if (this.loadingInterval) {
       clearInterval(this.loadingInterval);
@@ -129,6 +128,7 @@ export const gameManager = {
       loadingArea.innerText = "";
     }
   },
+
 
   //////////////////////////////
   //   ステージデータの読み込み
@@ -188,10 +188,10 @@ export const gameManager = {
       });
   },
 
+
   //////////////////////////////
   //   ステージ画面の準備
   //////////////////////////////
-
   showStartScreen() {
   const container = document.getElementById("uiWrapper");
   if (!container) return;
@@ -202,10 +202,11 @@ export const gameManager = {
 
   this.showCategoryMenu();
 },
+
+
   //////////////////////////////
   //  カテゴリー選択メニューの表示(N5,N4..など)
   //////////////////////////////
-
   showCategoryMenu() {
     const container = document.getElementById("uiWrapper");
     if (!container) return;
@@ -233,10 +234,10 @@ export const gameManager = {
     });
   },
 
+
   //////////////////////////////
   //  ステージ選択メニューの表示（名詞、動詞など）
   //////////////////////////////
-
   showStageMenu(category) {
     const container = document.getElementById("uiWrapper");
     if (!container) return;
@@ -306,10 +307,10 @@ export const gameManager = {
     });
   },
 
+
   //////////////////////////////
   //     バトルスタート
   //////////////////////////////
-
   startBattle() {
     this.hideStartScreen();
     this.showBattleScreen();
@@ -329,28 +330,28 @@ export const gameManager = {
     quizManager.start();
   },
 
+
   //////////////////////////////
   //    スタート画面の非表示
   //////////////////////////////
-
   hideStartScreen() {
     const wrapper = document.getElementById("uiWrapper");
     if (wrapper) wrapper.style.display = "none";
   },
 
+
   //////////////////////////////
   //    バトル画面の表示
   //////////////////////////////
-
   showBattleScreen() {
     const battle = document.getElementById("battleScreen");
     if (battle) battle.style.display = "flex";
   },
 
+
   //////////////////////////////////
   //   ゲームオーバー処理と復習画面の表示
   //////////////////////////////////
-
   handleGameOver() {
     const bgm = assets.sounds.bgm_Battle;
     if (bgm) bgm.pause();
@@ -374,10 +375,10 @@ export const gameManager = {
     document.getElementById("retryBtn")?.addEventListener("click", () => this.retry());
   },
 
+
   //////////////////////////////
   //  リトライ（タイトルへ戻る）処理
   //////////////////////////////
-
   retry() {
     this.hideSkillPanel();
 
@@ -396,10 +397,10 @@ export const gameManager = {
     this.init();
   },
 
+
   //////////////////////////////
   //    ボタンクリック効果音の再生
   //////////////////////////////
-
   playStartBtnSE() {
     if (this.startBtnSE) {
       this.startBtnSE.currentTime = 0;
@@ -407,10 +408,10 @@ export const gameManager = {
     }
   },
 
+
   //////////////////////////////
   //    ゲームオーバー効果音の再生
   //////////////////////////////
-
   playGameOverSE() {
     if (this.gameOverSE) {
       this.gameOverSE.currentTime = 0;
@@ -418,10 +419,10 @@ export const gameManager = {
     }
   },
 
+
   //////////////////////////////
   //    スキル選択パネルの表示
   //////////////////////////////
-
   showSkillPanel() {
     if (quizManager.isVictoryActive) return;
 
@@ -434,10 +435,10 @@ export const gameManager = {
     panel.style.display = "flex";
   },
 
+
   //////////////////////////////
   //    スキル選択肢の描画
   //////////////////////////////
-
   renderSkillOptions() {
     const content = document.querySelector("#skill-panel .panel-content");
     if (!content) return;
@@ -446,10 +447,10 @@ export const gameManager = {
     itemManager.renderOptions(content, 2);
   },
 
+
   //////////////////////////////
   //    スキルの選択・適用実行
   //////////////////////////////
-
   selectItem(itemId) {
     itemManager.applyItem(itemId, battleManager.player);
     refreshPlayerBuffIcons();
@@ -460,14 +461,16 @@ export const gameManager = {
     quizManager.randomQuestion();
   },
 
+
   //////////////////////////////
   //    スキル選択パネルの非表示
   //////////////////////////////
-
   hideSkillPanel() {
     const panel = document.getElementById("skill-panel");
     if (panel) panel.style.display = "none";
   },
+
+  
 };
 
 gameManager.init();

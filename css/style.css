@@ -232,232 +232,6 @@ body {
   box-sizing: border-box;
 }
 
-/* ==========================================================================
-/* ==========================================================================
-/* ==========================================================================
-/* ==========================================================================
-/* ==========================================================================
-/* ==========================================================================
-/* ==========================================================================
-   ステータスエリア（プレイヤー・敵 HP/レベル表示）
-===========================================================================*/
-
-#statusArea {
-  position: relative;
-  height: 25%;
-  width: 100%;
-  display: flex !important;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 2cqw;
-  box-sizing: border-box;
-  z-index: 50;
-  background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 80%);
-  --stat-bar-height: 1.5cqw;
-  --stat-bar-min-height: 0px;
-  --stat-exp-gap-below: 0px;
-  --stat-enemy-hp-offset: calc(var(--stat-bar-height) + var(--stat-exp-gap-below));
-}
-
-/* =======================================
-   ステータスUIコンテナ（プレイヤー・敵共通）
-==========================================*/
-
-#statusArea .battle-status-ui {
-  position: relative;
-  top: 0%;
-  bottom: auto;
-  left: auto;
-  right: auto;
-  width: 38%;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
-}
-
-/* ===========================
-   プレイヤーUI（左側）
-==============================*/
-
-#player-ui {
-  align-items: flex-start;
-  text-align: left;
-}
-
-/* ===========================
-   敵UI（右側）
-=============================*/
-
-#enemy-ui {
-  text-align: right;
-  align-items: flex-end;
-}
-
-/* =======================
-   レベルテキスト
-==========================*/
-
-#statusArea .level-text {
-  position: relative;
-  top: 0;
-  margin-bottom: 0.5cqw;
-  font-size: 5cqw;
-  font-weight: bold;
-  color: #ffd700;
-}
-
-/* =================================
-   パラメータコンテナ（ATK、DEF等の親）
-====================================*/
-
-.param-container {
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  margin-top: 0cqw;
-  gap: 1cqw;
-}
-
-/* =============================
-   パラメータ行（ATK 5 など）
-===============================*/
-
-.param-row {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 4cqw;
-  font-family: inherit;
-  margin-top: -2cqw;
-  gap: 2cqw;
-}
-
-/* プレイヤー側は英語 + 間 + 数字 */
-#player-ui .param-row {
-  flex-direction: row;
-}
-
-/* 敵側は数字 + 間 + 英語（反対） */
-#enemy-ui .param-row {
-  flex-direction: row-reverse;
-}
-
-/* ==============================
-   パラメータラベル色（ATK、DEF等）
-============================== */
-
-.param-row span:first-child {
-  color: #f53b3b;
-  font-weight: bold;
-}
-
-/* =========================
-   パラメータ値色（数字）
-===========================*/
-
-.param-row span:last-child {
-  color: #ffffff;
-  font-weight: bold;
-}
-
-/* =================
-   バフアイコン
-===================*/
-
-#statusArea #player-ui .player-buff-icons {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 5px;
-  width: 100%;
-  margin-top: 0.35cqw;
-  
-}
-
-#statusArea #player-ui .player-buff-icon {
-  width: 5.5cqw;
-  height: 5.5cqw;
-  min-width: 20px;
-  min-height: 20px;
-  box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.35);
-}
-
-/* ===================
-   極アイコンコンテナ
-=====================*/
-
-#kiwami-container {
-  display: none;
-  width: 20cqw;
-  height: 20cqw;
-  margin: 0 auto;
-  overflow: hidden;
-  position: absolute;
-  left: 50%;
-  top: 10cqw;
-  transform: translateX(-50%);
-  z-index: 100;
-}
-
-/* ==================
-   極アイコン画像
-====================*/
-
-#kiwami-image,
-#kiwami-bg {
-  height: 20cqw;
-  width: calc(20cqw * 13);
-  max-width: none;
-  position: absolute;
-  top: 0;
-  image-rendering: pixelated;
-}
-
-#kiwami-bg {
-  left: 0;
-  z-index: 1;
-}
-
-#kiwami-image {
-  z-index: 2;
-}
-
-#kiwami-image.is-rainbow {
-  animation: rainbowShift 1s linear infinite;
-}
-
-@keyframes rainbowShift {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-  }
-}
-
-/* =======================
-   問題進捗表示（○/○）
-=========================*/
-
-#question-progress {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 3cqw;
-  z-index: 20;
-  min-width: 18cqw;
-  padding: 1cqw 2cqw;
-  text-align: center;
-  font-size: 3.5cqw;
-  line-height: 1;
-  color: #ffffff;
-  background: rgba(0, 0, 0, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 2cqw;
-}
 
 /* ==========================================================================
 /* ==========================================================================
@@ -803,6 +577,239 @@ body {
   100% {
     opacity: 0;
   }
+}
+
+/* ==========================================================================
+/* ==========================================================================
+/* ==========================================================================
+/* ==========================================================================
+/* ==========================================================================
+/* ==========================================================================
+/* ==========================================================================
+   ステータスエリア（プレイヤー・敵 HP/レベル表示）
+===========================================================================*/
+
+#statusArea {
+  position: relative;
+  height: 25%;
+  width: 100%;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2cqw;
+  box-sizing: border-box;
+  z-index: 50;
+  background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.8) 80%);
+  --stat-bar-height: 1.5cqw;
+  --stat-bar-min-height: 0px;
+  --stat-exp-gap-below: 0px;
+  --stat-enemy-hp-offset: calc(var(--stat-bar-height) + var(--stat-exp-gap-below));
+}
+
+/* =======================================
+   ステータスUIコンテナ（プレイヤー・敵共通）
+==========================================*/
+
+#statusArea .battle-status-ui {
+  position: relative;
+  top: 0%;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+/* ===========================
+   プレイヤーUI（左側）
+==============================*/
+
+#player-ui {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* ===========================
+   敵UI（右側）
+=============================*/
+
+#enemy-ui {
+  text-align: right;
+  align-items: flex-end;
+}
+
+/* =======================
+   レベルテキスト
+==========================*/
+
+#statusArea .level-text {
+  position: relative;
+  margin-top: -2cqw;
+  margin-bottom: 0.5cqw;
+  font-size: 5cqw;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+/* =================================
+   パラメータコンテナ（ATK、DEF等の親）
+====================================*/
+
+.param-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-top: 0cqw;
+  gap: 1cqw;
+}
+
+/* =============================
+   パラメータ行（ATK 5 など）
+===============================*/
+
+.param-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 4cqw;
+  font-family: inherit;
+  margin-top: -2cqw;
+  gap: 2cqw;
+}
+
+/* プレイヤー側は英語 + 間 + 数字 */
+#player-ui .param-row {
+  flex-direction: row;
+}
+
+/* 敵側は数字 + 間 + 英語（反対） */
+#enemy-ui .param-row {
+  flex-direction: row-reverse;
+}
+
+/* ==============================
+   パラメータラベル色（ATK、DEF等）
+============================== */
+
+.param-row span:first-child {
+  color: #f53b3b;
+  font-weight: bold;
+}
+
+/* =========================
+   パラメータ値色（数字）
+===========================*/
+
+.param-row span:last-child {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* =================
+   バフアイコン
+===================*/
+
+#statusArea #player-ui .player-buff-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  width: 100%;
+  margin-top: 1cqw;
+
+  /* --- 追加：レイアウトに影響を与えない設定 --- */
+  position: absolute;   /* 絶対配置にする */
+  top: 100%;            /* 親要素（player-ui）のすぐ下に配置 */
+  left: 0;
+  pointer-events: none; /* クリックを邪魔しない */
+  
+}
+
+#statusArea #player-ui .player-buff-icon {
+  width: 5.5cqw;
+  height: 5.5cqw;
+  min-width: 20px;
+  min-height: 20px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+/* ===================
+   極アイコンコンテナ
+=====================*/
+
+#kiwami-container {
+  display: none;
+  width: 20cqw;
+  height: 20cqw;
+  margin: 0 auto;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 10cqw;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+/* ==================
+   極アイコン画像
+====================*/
+
+#kiwami-image,
+#kiwami-bg {
+  height: 20cqw;
+  width: calc(20cqw * 13);
+  max-width: none;
+  position: absolute;
+  top: 0;
+  image-rendering: pixelated;
+}
+
+#kiwami-bg {
+  left: 0;
+  z-index: 1;
+}
+
+#kiwami-image {
+  z-index: 2;
+}
+
+#kiwami-image.is-rainbow {
+  animation: rainbowShift 1s linear infinite;
+}
+
+@keyframes rainbowShift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* =======================
+   問題進捗表示（○/○）
+=========================*/
+
+#question-progress {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 3cqw;
+  z-index: 20;
+  min-width: 18cqw;
+  padding: 1cqw 2cqw;
+  text-align: center;
+  font-size: 3.5cqw;
+  line-height: 1;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 2cqw;
 }
 
 /* ==========================================================================

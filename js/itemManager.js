@@ -68,32 +68,31 @@ export const itemManager = {
   //////////////////////////////
   //     アイテムデータの取得
   //////////////////////////////
-  
   getItem(id) {
     return this.items.find((item) => item.id === id);
   },
 
+
   //////////////////////////////
   //     レアリティ設定の解決
   //////////////////////////////
-
   getRarity(item) {
     const key = String(item.rarity || "common").toLowerCase();
     return this.rarities[key] || this.rarities.common;
   },
   
+
   //////////////////////////////
   //     出現重みの計算
   //////////////////////////////
-
   getItemWeight(item) {
     return item.weight || this.getRarity(item).weight;
   },
 
+
   //////////////////////////////
   // アイテムの抽選（重み付きランダム）
   //////////////////////////////
-
   pickItems(count) {
     const pool = [...this.items];
     const choices = [];
@@ -112,10 +111,10 @@ export const itemManager = {
     return choices;
   },
 
+
   //////////////////////////////
   //     生成画面の生成
   //////////////////////////////
-
   renderOptions(container, count = 2) {
     if (!container) return;
 
@@ -130,10 +129,10 @@ export const itemManager = {
     `;
   },
 
+
   //////////////////////////////
   //     アイテムボタンのHTML
   //////////////////////////////
-
   renderItemButton(item, frameCount) {
     const rarity = this.getRarity(item);
     const rarityClass = String(item.rarity || "common").toLowerCase().replace(/\s+/g, "-");
@@ -158,23 +157,24 @@ export const itemManager = {
   `;
   },
   
+
   ///////////////////////////////////////////
   //   スプライト画像分割数の計算(絵がどこにあるか)
   ///////////////////////////////////////////
-
   getFrameCount() {
     const image = assets.images.ui_Items;
     return image?.naturalWidth ? Math.max(1, Math.floor(image.naturalWidth / 32)) : 3;
   },
   
+
    //////////////////////////////
   //    アイコン表示位置の計算
   //////////////////////////////
-
   getFramePosition(frame, frameCount) {
     return frameCount <= 1 ? 0 : (frame / (frameCount - 1)) * 100;
   },
   
+
   //////////////////////////////
   //     アイテム効果の適用実行
   //////////////////////////////

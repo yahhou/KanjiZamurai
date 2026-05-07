@@ -45,7 +45,6 @@ export class Character {
   ///////////////////////////////////
   //       キャラクター生成・描画
   ///////////////////////////////////
-
   init() {
     if (!this.el) return;
 
@@ -86,7 +85,6 @@ export class Character {
   ///////////////////////////////////
   //       待機モーション
   ///////////////////////////////////
-  
   startIdle() {
   // 待機アニメーション（パラパラ漫画）
   if (this.idleInterval) clearInterval(this.idleInterval);
@@ -110,16 +108,20 @@ export class Character {
     
   }
 
+
+  ///////////////////////////////////
+  //       フレームの取得
+  ///////////////////////////////////
   setSpriteFrame(frame) {
     if (!this.sprite) return;
     const xShift = this.frameCount <= 1 ? 0 : (frame / (this.frameCount - 1)) * 100;
     this.sprite.style.backgroundPosition = `${xShift}% 0px`;
   }
 
+
   ///////////////////////////////////
   //       停止モーション
   ///////////////////////////////////
-  
   stopIdle() {
     if (this.idleInterval) {
       clearInterval(this.idleInterval);
@@ -127,10 +129,10 @@ export class Character {
     }
   }
   
+
   ///////////////////////////////////
   //       HP等のステータスの処理
   ///////////////////////////////////
-
   refreshStats() {
   const pct = (this.hp / this.maxHp) * 100;
   // 自分のIDに基づいて、対象のコンテナ（#player-ui か #enemy-ui）を絞り込む
@@ -143,7 +145,6 @@ export class Character {
   if (innerBar) {
     innerBar.style.width = `${pct}%`;
     if (pct < 20) innerBar.style.backgroundColor = "#e74c3c";
-    else if (pct < 50) innerBar.style.backgroundColor = "#f1c40f";
     else innerBar.style.backgroundColor = "#2ecc71";
   }
 
@@ -175,10 +176,11 @@ export class Character {
     updateParam('.val-cri', `${this.critRate}%`);
   }
 }
+
+
   ///////////////////////////////////
   //      攻撃の処理
   ///////////////////////////////////
-
   attack(target) {
     const isEvaded = target.checkEvade(this);
     const { amount, isCritical }= this.calculateDamage(target);
@@ -186,10 +188,10 @@ export class Character {
     this.playAttackAnimation(target, amount, isCritical, isEvaded)
   }
 
+
   ///////////////////////////////////
   //      　回避計算
   ///////////////////////////////////
-
   checkEvade(attacker) {
     const evaDiff = this.eva - attacker.eva;
     const evadeRate = Math.min(35, Math.max(5, 10 + (evaDiff * 0.3)));
@@ -197,10 +199,10 @@ export class Character {
     return Math.random() * 100 < evadeRate;
   }
 
+
   ///////////////////////////////////
   //       ダメージの処理
   ///////////////////////////////////
-
   takeDamage(amount, isCritical = false) {
     this.hp = Math.max(0, this.hp - amount);
     this.refreshStats();
@@ -212,10 +214,10 @@ export class Character {
     }
   }
 
+
   ///////////////////////////////////
   //       ダメージ計算
   ///////////////////////////////////
-  // 共通の被ダメージロジック
   calculateDamage(target) {
     const baseDamage = this.atk - Math.floor(target.def / 2);
     const variation = 0.7 + (Math.random() * 0.2); 
@@ -234,18 +236,18 @@ export class Character {
 
   }
 
+
   ///////////////////////////////////
   //      死亡時の処理
   ///////////////////////////////////
-
   die() {
     this.stopIdle();
   }
 
+
   ///////////////////////////////////
   //    ダメージエフェクト表示
   ///////////////////////////////////
-
   showDamageEffect(amount, isCritical) {
   if (!this.el) return;
 
@@ -271,10 +273,10 @@ export class Character {
   this.activeTimeouts.push(timeoutId);
 }
 
+
   ///////////////////////////////////
   //     回避エフェクト表示
   ///////////////////////////////////
-
   showEvadeEffect() {
   if (!this.el) return;
 
@@ -297,7 +299,6 @@ export class Character {
   ///////////////////////////////////
   //   ダメージエフェクト表示場所指定
   ///////////////////////////////////
-
   getDamagePopupRoot() {
     if (this.id === 'player') {
       return document.getElementById('player-ui') || this.el;
@@ -310,10 +311,10 @@ export class Character {
     return this.el;
   }
 
+
   ///////////////////////////////////
   //    共通攻撃アニメーション
   ///////////////////////////////////
-
   playAttackAnimation(target, damage, isCritical, isEvaded = false) {
     this.isAttacking = true;
 
@@ -336,10 +337,10 @@ export class Character {
     }, 150);
   }
 
+
   ///////////////////////////////////
   //    敵の攻撃アニメーション
   ///////////////////////////////////
-  
   playEnemyAttackAnimation() {
     this.sprite.animate([
       { transform: 'translateX(0)' },
@@ -348,10 +349,10 @@ export class Character {
     ], { duration: 150 });
   }
 
+
   ///////////////////////////////////
   //       会心の一撃
   ///////////////////////////////////
-
   triggerFlash() {
     const layer = document.getElementById('flash-layer');
     if(!layer) {return;}
@@ -361,10 +362,10 @@ export class Character {
     layer.classList.add('flash-active');
   }
 
+
   ///////////////////////////////////
   //    会心の一撃サウンド
   ///////////////////////////////////
-
   playCriticalHitSE(){
      
      if (this.criticalSound) {
@@ -373,6 +374,7 @@ export class Character {
       this.criticalSound.play();
     }
   }
+
 
   ///////////////////////////////////
   //    回避サウンド
@@ -386,10 +388,10 @@ export class Character {
    }
   }
 
+
   ///////////////////////////////////
   //    リジェネ効果発動
   ///////////////////////////////////
-
   applyRegeneration() {  
 
     if (!this.isRegenerating) return;
@@ -399,10 +401,10 @@ export class Character {
     this.refreshStats();
   }
 
+
   ///////////////////////////////////
   //    　　　消去処理
   ///////////////////////////////////
-  
   destroy() {
     // 1. 全てのダメージ表示タイマーをキャンセル
     this.activeTimeouts.forEach(id => clearTimeout(id));

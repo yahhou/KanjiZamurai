@@ -20,10 +20,10 @@ export const PLAYER_BUFF_SOURCES = [
   },
 ];
 
-/**
- * #player-buff-icons を、いまアクティブなバフだけで上から順に描き直す。
- * 複数あるときは配列の順（上→下）で並ぶ。
- */
+////////////////////////////////////////////////////////////////
+ /* #player-buff-icons を、いまアクティブなバフだけで上から順に描き直す。
+  複数あるときは配列の順（上→下）で並ぶ。*/
+///////////////////////////////////////////////////////////////
 export function refreshPlayerBuffIcons() {
   const root = document.getElementById("player-buff-icons");
   if (!root) return;

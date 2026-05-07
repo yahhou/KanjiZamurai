@@ -39,10 +39,10 @@ export class Player extends Character {
       }
     }
 
+
   /* ==========================================================================
   経験値を獲得
   ========================================================================== */ 
- 
     gainExp(amount) {
       this.pendingExp += amount;
       if (!this.isAnimatingExp) {
@@ -50,6 +50,10 @@ export class Player extends Character {
       }
     } 
 
+
+  /* ==========================================================================
+  経験値のアニメーション
+  ========================================================================== */ 
     animateExpGain() {
       if (this.pendingExp <= 0) {
         this.isAnimatingExp = false;
@@ -87,10 +91,10 @@ export class Player extends Character {
       }, 350);
     }
 
+
    /* ==========================================================================
   レベルアップ
   ========================================================================== */ 
- 
     levelUp() {
       this.level++;
 
@@ -109,10 +113,11 @@ export class Player extends Character {
       
     }
 
-  /**
-   * 経験値バーとレベル表示を、いまの exp / maxExp に合わせて更新する。
-   */
-  updateExpBar() {
+
+ /* ==========================================================================
+  経験値の更新
+  ========================================================================== */ 
+    updateExpBar() {
     const playerUi = document.getElementById("player-ui");
     if (!playerUi) return;
 
@@ -126,25 +131,32 @@ export class Player extends Character {
     if (levelEl) {
       levelEl.textContent = `Lv.${this.level}`;
     }
-  }
+    }
 
+
+  /* ==========================================================================
+  経験値がmmaxになった後の処理
+  ========================================================================== */ 
   /** レベルアップ直後など、経験値バーを 0% 表示に戻す */
-  resetExpBarToZero() {
+    resetExpBarToZero() {
     const playerUi = document.getElementById("player-ui");
     if (!playerUi) return;
     const inner = playerUi.querySelector(".exp-bar-inner");
     if (inner) inner.style.width = "0%";
-  }
+    }
 
-  refreshStats() {
-    super.refreshStats();
-    refreshPlayerBuffIcons();
-  }
+
+   /* ==========================================================================
+  ステータスのリフレッシュ
+  ========================================================================== */ 
+    refreshStats() {
+      super.refreshStats();
+      refreshPlayerBuffIcons();
+    }
 
   /* ==========================================================================
   レベルアップした時のエフェクト
   ========================================================================== */ 
-
     showLevelUpEffect() {
       if (!this.el) return;
 

@@ -41,6 +41,7 @@ export const quizManager = {
     this.randomQuestion();
   },
 
+
   /////////////////////////
   //   ランダムクイズの準備）
   /////////////////////////
@@ -80,6 +81,7 @@ export const quizManager = {
     this.updateQuestionProgress();
   },
 
+
   /////////////////////////
   //      問題の表示
   /////////////////////////
@@ -115,6 +117,7 @@ export const quizManager = {
     this.updateKiwamiIcon();
   },
 
+
   /////////////////////////
   //      回答の判定
   /////////////////////////
@@ -129,6 +132,7 @@ export const quizManager = {
     }
   },
   
+
   /////////////////////////
   //    不正解時のボタン停止
   /////////////////////////
@@ -137,6 +141,7 @@ export const quizManager = {
       btn.disabled = true;
     });
   },
+
 
   /////////////////////////
   //　　　　正解処理
@@ -173,6 +178,7 @@ export const quizManager = {
     setTimeout(() => this.randomQuestion(), 1000);
   },
   
+
   /////////////////////////
   //　　　不正解処理
   /////////////////////////
@@ -213,6 +219,7 @@ export const quizManager = {
     });
   },
 
+
   /////////////////////////
   //      極アイコン表示
   /////////////////////////
@@ -236,6 +243,7 @@ export const quizManager = {
     }
   },
   
+
   /////////////////////////
   // 　　　極アップデート
   /////////////////////////
@@ -247,7 +255,8 @@ export const quizManager = {
     const xPosition = Math.min(count, this.MAX_QUESTIONS) * 20;
     img.style.left = `-${xPosition}cqw`;
 
-    if (count >= 1) {
+    if (count >= 2) {
+        window.gameManager?.showSkillPanel();
       img.classList.add("is-flashing");
     } else {
       img.classList.remove("is-flashing");
@@ -263,6 +272,7 @@ export const quizManager = {
       window.gameManager?.showSkillPanel();
     }
   },
+
 
   /////////////////////////
   //　　　　勝利
@@ -289,6 +299,7 @@ export const quizManager = {
     });
   },
 
+
   /////////////////////////
   //　　　クイズリセット
   /////////////////////////
@@ -303,7 +314,10 @@ export const quizManager = {
     this.updateKiwamiIcon();
     this.updateQuestionProgress();
     this.streak = 0;
+    this.correctAnswerCount = 0;
+    this.updateQuestionProgress()
   },
+
 
     //     レビュー画面
   /////////////////////////
@@ -346,6 +360,8 @@ export const quizManager = {
     const total = this.wordList[this.currentStage]?.length || 0;
     progressEl.innerText = `${this.correctAnswerCount} / ${total}`;
   },
+
+
 };
 
 window.quizManager = quizManager;

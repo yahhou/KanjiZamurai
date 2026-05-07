@@ -41,6 +41,7 @@ export const battleManager = {
     this.checkBattleStatus();
   },
 
+
   ///////////////////////////////////
   //         　 敵の攻撃
   ///////////////////////////////////
@@ -53,6 +54,7 @@ export const battleManager = {
     this.enemy.attack(this.player);
   },
 
+
   ///////////////////////////////////
   //       キャラクターリセット
   ///////////////////////////////////
@@ -62,6 +64,7 @@ export const battleManager = {
     this.player = null;
     this.enemy = null;
   },
+
 
   ///////////////////////////////////
   //       　　敵の再生成
@@ -83,6 +86,7 @@ export const battleManager = {
       actionArea.appendChild(this.enemy.el);
     }
   },
+
 
   ///////////////////////////////////
   //          敵のレベルを調整
@@ -112,6 +116,7 @@ export const battleManager = {
     enemy.expReward = Math.floor((enemy.expReward || 5) * expScale);
   },
 
+
   ///////////////////////////////////
   //         敵の生存状態を管理
   ///////////////////////////////////
@@ -122,6 +127,7 @@ export const battleManager = {
     }
   },
   
+
   ///////////////////////////////////
   //       経験値の獲得処理
   ///////////////////////////////////
@@ -135,6 +141,7 @@ export const battleManager = {
       this.enemySpawn();
     }, 1100);
   },
+
 
   ///////////////////////////////////
   //  Streakボーナスの更新 (追加)
@@ -158,6 +165,7 @@ export const battleManager = {
       refreshPlayerBuffIcons();
     }
   },
+
 
   ///////////////////////////////////
   //  Streakボーナスの設定とHTML
@@ -189,6 +197,7 @@ export const battleManager = {
   }
 },
 
+
 ///////////////////////////////////
 //      背景の準備
 ///////////////////////////////////
@@ -209,6 +218,7 @@ export const battleManager = {
     }
   },
 
+  
   ///////////////////////////////////
   //      背景の表示更新
   ///////////////////////////////////
