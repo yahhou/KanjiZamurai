@@ -208,10 +208,10 @@ export const battleManager = {
 
     // 指定の形式で画像を登録
     const bgList = {
-      //"stage_1": "assets/images/stage_castle.png",
-     // "stage_2": "assets/images/stage_bambooGrove.png",
-      "stage_3": "assets/images/stage_field.png",
-      
+      "stage_1": "assets/images/stage_castle.png",
+      //"stage_2": "assets/images/stage_bambooGrove.png",
+     //"stage_3": "assets/images/stage_field.png",
+     //"stage_4": "assets/images/stage_shrine.png",
     };
 
     for (const key in bgList) {
