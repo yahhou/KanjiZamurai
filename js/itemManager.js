@@ -161,7 +161,7 @@ export const itemManager = {
       id: "masamune",
       name: "Masamune",
       description: "Atk +400%",
-      frame: 4,
+      frame: 6,
       rarity: "legendary",
       isWeapon: true,
 
