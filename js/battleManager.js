@@ -111,7 +111,7 @@ export const battleManager = {
     enemy.maxHp = Math.floor(enemy.maxHp * hpScale);
     enemy.hp = enemy.maxHp;
     enemy.baseAtk = Math.floor(enemy.baseAtk * statScale);
-    enemy.def = Math.floor(enemy.def * statScale);
+    enemy.baseDef = Math.floor(enemy.baseDef * statScale);
     enemy.mdf = Math.floor(enemy.mdf * statScale);
     enemy.expReward = Math.floor((enemy.expReward || 5) * expScale);
   },
@@ -209,8 +209,9 @@ export const battleManager = {
     // 指定の形式で画像を登録
     const bgList = {
       "stage_1": "assets/images/stage_castle.png",
-      //"stage_2": "assets/images/stage_2.png", // 複数入れる場合
-      //"stage_3": "assets/images/stage_3.png"
+      "stage_2": "assets/images/stage_bambooGrove.png",
+      "stage_3": "assets/images/stage_field.png",
+      
     };
 
     for (const key in bgList) {

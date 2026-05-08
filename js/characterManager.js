@@ -12,7 +12,10 @@ export class Character {
     this.weaponMultiplier = 1.0; // ★これを追加（初期値1倍）
     this.atkMultiplier = 1.0;
     this.streakMultiplier = 1.0; // コンボ用（デフォルト1倍）
-    this.def = def;
+    
+    this.baseDef = def; // ★ 基礎防御力を保存
+    this.haoriMultiplier = 1.0;    // ★ 防御アイテム用の倍率を追加
+    
     this.mdf = mdf;
     this.eva = eva;
     this.critRate = critRate || 5;
@@ -32,8 +35,6 @@ export class Character {
     this.el.id = id;
     this.el.className = 'character-container';
 
-    this.init();  
-    this.baseDef = def;
     this.baseMdf = mdf;
     this.isAttacking = false; // 今攻撃中かどうかのフラグ
     this.isRegenerating = false;// 今リジェネ中かフラグ
@@ -42,6 +43,8 @@ export class Character {
 
      this.criticalSound = new Audio('assets/sounds/criticalHit.mp3');
      this.evadeSound = new Audio('assets/sounds/evade1.mp3');
+
+     this.init();  
   }
 
   ///////////////////////////////////
@@ -55,6 +58,19 @@ export class Character {
   // もし計算ミスでNaNになった時のために「|| 0」をつけておくと安全
     return Math.floor(totalAtk) || 0;
   }
+  
+
+  ///////////////////////////////////
+  //    現在の防御力を計算して返す
+  ///////////////////////////////////
+  get def() {
+    // 基礎防御力 × アイテム倍率
+    const totalDef = this.baseDef * this.haoriMultiplier;
+    
+    // 小数点を切り捨てて返す
+    return Math.floor(totalDef) || 0;
+  }
+
 
   ///////////////////////////////////
   //       キャラクター生成・描画
@@ -233,7 +249,7 @@ export class Character {
   //       ダメージ計算
   ///////////////////////////////////
   calculateDamage(target) {
-    const baseDamage = this.atk - Math.floor(target.def / 2);
+    const baseDamage = this.atk - Math.floor(target.baseDef / 2);
     const variation = 0.7 + (Math.random() * 0.2); 
     let finalDamage = Math.floor(Math.max(1, baseDamage * variation));
 

@@ -16,6 +16,8 @@ export class Player extends Character {
     this.hasStreakBouns = false;
     this.isWeaponEquipped = false;
     this.weaponRarity = null;
+    this.isHaoriEquipped = false;
+    this.haoriRarity = null;
     this.isBandEquipped = false;
     this.isBeadsEquipped = false;
     this.bandRarity = null;

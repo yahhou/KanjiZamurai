@@ -43,6 +43,12 @@ export const assets = {
     this.images.stage_castle = new Image();
     this.images.stage_castle.src = "assets/images/stage_castle.png";
 
+    this.images.stage_bambooGrove = new Image();
+    this.images.stage_bambooGrove.src = "assets/images/stage_bambooGrove.png";
+
+     this.images.stage_field = new Image();
+    this.images.stage_field.src = "assets/images/stage_field.png";
+
     // --- UI ---
     this.images.ui_Kiwami = new Image();
     this.images.ui_Kiwami.src = "assets/images/Kiwami-Sheet.png";

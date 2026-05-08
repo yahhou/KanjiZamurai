@@ -11,6 +11,7 @@ export class Item {
     rarity,
     weight,
     isWeapon = false,
+    isHaori = false,
     isBand = false, // 追加
     isBeads = false,
     apply,
@@ -22,6 +23,7 @@ export class Item {
     this.rarity = String(rarity || "common").toLowerCase();
     this.weight = weight;
     this.isWeapon = isWeapon;
+    this.isHaori = isHaori;
     this.isBand = isBand;
     this.isBeads = isBeads;
     this.apply = apply;
@@ -67,7 +69,6 @@ export const itemManager = {
     ///////////////////////////////////////////
     //          回復
     ///////////////////////////////////////////
-
     new Item({//onigiri
       id: "onigiri",
       name: "Onigiri",
@@ -105,7 +106,6 @@ export const itemManager = {
     ///////////////////////////////////////////
     // 　　　      刀
     ///////////////////////////////////////////
-
     new Item({
       id: "kanesada",
       name: "Kanesada",
@@ -127,7 +127,7 @@ export const itemManager = {
       id: "kiku-ichimonji",
       name: "Kiku-Ichimonji",
       description: "Atk +200%",
-      frame: 4,
+      frame: 6,
       rarity: "uncommon",
       isWeapon: true,
 
@@ -161,7 +161,7 @@ export const itemManager = {
       id: "masamune",
       name: "Masamune",
       description: "Atk +400%",
-      frame: 6,
+      frame: 4,
       rarity: "legendary",
       isWeapon: true,
 
@@ -191,11 +191,101 @@ export const itemManager = {
       },
     }),
 
+
+    ///////////////////////////////////////////
+    // 　　　     羽織（防御力）
+    ///////////////////////////////////////////
+    new Item({
+      id: "Worn Haori",
+      name: "Worn Haori",
+      description: "Def +150%",
+      frame: 18,
+      rarity: "common",
+      isHaori: true,
+
+      apply(player) {
+        player.isHaoriEquipped = true;
+        player.haoriMultiplier = 1.5;
+        player.haoriRarity = "common";
+
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+      id: "Guardian Haori",
+      name: "Guardian Haori",
+      description: "Def +200%",
+      frame: 19,
+      rarity: "uncommon",
+      isHaori: true,
+
+      apply(player) {
+        player.isHaoriEquipped = true;
+        player.haoriMultiplier = 2;
+        player.haoriRarity = "uncommon";
+
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+      id: "Kongou Haori",
+      name: "Kongou Haori",
+      description: "Def +300%",
+      frame: 20,
+      rarity: "rare",
+      isHaori: true,
+
+      apply(player) {
+        player.isHaoriEquipped = true;
+        player.haoriMultiplier = 3;
+        player.haoriRarity = "rare";
+
+        player.refreshStats();
+      },
+    }),
+
+    new Item({
+      id: "Moonshadow Haori",
+      name: "Moonshadow Haori",
+      description: "Def +400%",
+      frame: 21,
+      rarity: "legendary",
+      isHaori: true,
+
+      apply(player) {
+        player.isHaoriEquipped = true;
+        player.haoriMultiplier = 4;
+        player.haoriRarity = "legendary";
+
+        player.refreshStats();
+      },
+    }),
+
+     new Item({
+      id: "Yakumo Haori",
+      name: "Yakumo Haori",
+      description: "Def +500%",
+      frame: 22,
+      rarity: "mythic",
+      isHaori: true,
+
+      apply(player) {
+        player.isHaoriEquipped = true;
+        player.haoriMultiplier = 5;
+        player.haoriRarity = "mythic";
+
+        player.refreshStats();
+      },
+    }),
+
+
      ///////////////////////////////////////////
     // 　　　      鉢金（会心率）
     ///////////////////////////////////////////
     new Item({
-    id: "Novice Band",
+      id: "Novice Band",
       name: "Novice Band",
       description: "CRT → 10%",
       frame: 8,
@@ -279,13 +369,14 @@ export const itemManager = {
       },
     }),
     
+
     ///////////////////////////////////////////
     // 　　　      数珠(回避率)
     ///////////////////////////////////////////
     new Item({
     id: "Old Beads",
       name: "Old Beads",
-      description: "DEV → 10%",
+      description: "Eva → 10%",
       frame: 13,
       rarity: "common",
       isBeads: true,
@@ -302,7 +393,7 @@ export const itemManager = {
     new Item({
     id: "Warding Beads",
       name: "Warding Beads",
-      description: "DEV → 20%",
+      description: "Eva → 20%",
       frame: 14,
       rarity: "uncommon",
       isBeads: true,
@@ -319,7 +410,7 @@ export const itemManager = {
     new Item({
     id: "Phantom Beads",
       name: "Phantom Beads",
-      description: "DEV → 30%",
+      description: "Eva → 30%",
       frame: 15,
       rarity: "rare",
       isBeads: true,
@@ -336,7 +427,7 @@ export const itemManager = {
     new Item({
     id: "Onyx Beads",
       name: "Onyx Beads",
-      description: "DEV → 40%",
+      description: "Eva → 40%",
       frame: 16,
       rarity: "legendary",
       isBeads: true,
@@ -353,7 +444,7 @@ export const itemManager = {
     new Item({
     id: "Amaterasu Beads",
       name: "Amaterasu Beads",
-      description: "DEV → 70%",
+      description: "Eva → 70%",
       frame: 17,
       rarity: "mythic",
       isBeads: true,
@@ -366,8 +457,9 @@ export const itemManager = {
         player.refreshStats();
       },
     }),
-  ],
 
+  
+  ],
   //////////////////////////////
   //     アイテム取得
   //////////////////////////////
@@ -410,6 +502,13 @@ export const itemManager = {
         const currentWeaponRank = getRank(player.weaponRarity);
         const itemRank = getRank(item.rarity);
         if (itemRank < currentWeaponRank) return false;
+      }
+      
+      // 2. 羽織（ここを追加！）
+      if (item.isHaori && player?.haoriRarity) {
+        const currentRank = getRank(player.haoriRarity);
+        const itemRank = getRank(item.rarity);
+        if (itemRank < currentRank) return false;
       }
 
       // 2. 鉢金（仮に isBand プロパティがある場合）のチェック
