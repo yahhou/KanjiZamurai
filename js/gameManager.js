@@ -45,7 +45,6 @@ export const gameManager = {
       { id: 1, name: "Hiragana", files: ["hiragana.json"] },
       { id: 2, name: "Katakana", files: ["katakana.json"] },
       { id: 8, name: "Test", files: ["test.json"] },
-      { id: 9, name: "ことわざ", files: ["ことわざ.json"] },
   ]
   },
 
