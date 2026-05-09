@@ -15,19 +15,34 @@ export const battleManager = {
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
   ///////////////////////////////////
-  init() {
+  init(savedStatus = null, bgKey = null) { // 引数で保存データを受け取れるようにする
     this.clearCharacters();
     this.setupBackgrounds();
+    
     this.player = new Samurai();
+    // ストーリーモードなどで保存されたステータスがあれば上書き
+    if (savedStatus) {
+      this.player.importStatus(savedStatus);
+    }
 
     const actionArea = document.getElementById("actionArea");
     if (actionArea && this.player.el) {
       actionArea.appendChild(this.player.el);
     }
 
-    this.updateBackground();
+    this.updateBackground(bgKey);
+
     this.enemySpawn();
   },
+
+
+  ///////////////////////////////////////////////////////////
+  // 敵を倒した時など、適切なタイミングで「最新のステータス」を取得する用
+  ////////////////////////////////////////////////////////////
+  getCurrentPlayerStatus() {
+    return this.player ? this.player.exportStatus() : null;
+  },
+
 
   ///////////////////////////////////
   //   　　プレイヤーの攻撃
@@ -137,9 +152,17 @@ export const battleManager = {
     const exp = this.enemy.expReward || 5;
     this.player.gainExp(exp);
 
-    setTimeout(() => {
-      this.enemySpawn();
-    }, 1100);
+    if (window.gameManager && window.gameManager.isStoryMode) {
+      // ストーリーモードなら、敵を倒した＝ステージクリアとする
+      setTimeout(() => {
+        window.gameManager.nextStage();
+      }, 1100);
+    } else {
+      // 練習モード（Practice）なら、次の敵を出す
+      setTimeout(() => {
+        this.enemySpawn();
+      }, 1100);
+    }
   },
 
 
@@ -208,9 +231,9 @@ export const battleManager = {
 
     // 指定の形式で画像を登録
     const bgList = {
-      "stage_1": "assets/images/stage_castle.png",
+      "stage_1": "assets/images/stage_field.png",
+      "stage_3": "assets/images/stage_castle.png",
       "stage_2": "assets/images/stage_bambooGrove.png",
-      "stage_3": "assets/images/stage_field.png",
       "stage_4": "assets/images/stage_shrine.png",
     };
 
@@ -225,26 +248,22 @@ export const battleManager = {
   //      背景の表示更新
   ///////////////////////////////////
   updateBackground(bgKey = null) {
-    // ターゲットを親要素の battleScreen に変更
-    const target = document.getElementById("actionArea"); 
+   const target = document.getElementById("actionArea"); 
     if (!target) return;
 
     let selectedSrc;
-    const keys = Object.keys(this.bgImages);
 
+    // bgKey が指定されていて、かつ bgImages に存在する場合
     if (bgKey && this.bgImages[bgKey]) {
       selectedSrc = this.bgImages[bgKey].src;
-    } else if (keys.length > 0) {
+    } else {
+      // 指定がない場合のみランダム
+      const keys = Object.keys(this.bgImages);
       const randomKey = keys[Math.floor(Math.random() * keys.length)];
-      selectedSrc = this.bgImages[randomKey].src;
+      selectedSrc = this.bgImages[randomKey]?.src;
     }
 
-   if (selectedSrc) {
-      // 親要素(battleScreen)に背景がついている場合は消去する（念のため）
-      const parent = document.getElementById("battleScreen");
-      if (parent) parent.style.backgroundImage = "none";
-
-      // actionArea だけに背景を適用
+    if (selectedSrc) {
       target.style.backgroundImage = `url('${selectedSrc}')`;
       target.style.backgroundSize = "cover"; 
       target.style.backgroundPosition = "center 25%";

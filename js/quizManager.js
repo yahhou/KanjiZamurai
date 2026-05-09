@@ -90,11 +90,11 @@ export const quizManager = {
   const quizArea = document.getElementById("quizArea");
   if (!quizArea) return;
 
-  // streakのHTML表示部分をまるごと削除
+  // streakのHTML表示部分をまるごと削除  //読みとローマ字の間に何か入れたければ<div id="optionArea"ここにclass="button-container">
   quizArea.innerHTML = `
     <div class="question-container">
       <h2>${escapeHtml(kanji)}</h2>
-      <p>${escapeHtml(yomi)} / ${escapeHtml(romaji)}</p>
+      <p>${escapeHtml(yomi)} ${escapeHtml(romaji)}</p>
     </div>
     <div id="optionArea" class="button-container">
       ${options.map(o => `
