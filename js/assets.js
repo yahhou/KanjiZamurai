@@ -43,6 +43,9 @@ export const assets = {
     this.images.stage_castle = new Image();
     this.images.stage_castle.src = "assets/images/stage_castle.png";
 
+    this.images.stage_village = new Image();
+    this.images.stage_village.src = "assets/images/stage_village.png";
+
     this.images.stage_bambooGrove = new Image();
     this.images.stage_bambooGrove.src = "assets/images/stage_bambooGrove.png";
 

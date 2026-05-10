@@ -108,20 +108,42 @@ export class Player extends Character {
     levelUp() {
       this.level++;
 
-      this.maxHp += 10;
-      this.hp += 10;
+    // --- HPの上昇（10〜15の範囲でランダム） ---
+    const hpGain = 10 + Math.floor(Math.random() * 6);
+    this.maxHp += hpGain;
+    this.hp += hpGain;
 
-      this.baseAtk += 3;
-      this.baseDef += 2;
-      this.baseMdf += 2;
+    // --- ステータスポイントの割り振り ---
+    // 合計で「7ポイント」を Atk, Def, Mdf にランダムに振り分ける
+    // これにより合計値が一定（上がりすぎ防止）になりつつ、個性が生まれる
+    let totalStatPoints = 7;
+    const stats = ["baseAtk", "baseDef", "baseMdf"];
 
-      this.maxExp = Math.floor(this.maxExp * 1.4);
+    // 最低でも各ステータス 1 は上がるように保証（上がらなすぎ防止）
+    this.baseAtk += 1;
+    this.baseDef += 1;
+    this.baseMdf += 1;
+    totalStatPoints -= 3;
 
-      this.refreshStats();
-      this.showLevelUpEffect();
-      this.levelUpSound.play();
-      
+    // 残りの 4ポイントをランダムに割り振る
+    for (let i = 0; i < totalStatPoints; i++) {
+      const targetStat = stats[Math.floor(Math.random() * stats.length)];
+      this[targetStat] += 1;
     }
+
+    // 次のレベルまでの経験値を増加
+    this.maxExp = Math.floor(this.maxExp * 1.4);
+
+    this.refreshStats();
+    this.showLevelUpEffect();
+    
+    if (this.levelUpSound) {
+      this.levelUpSound.currentTime = 0;
+      this.levelUpSound.play();
+    }
+    
+    console.log(`Level Up! ${this.level} になりました。`);
+  }
 
 
  /* ==========================================================================

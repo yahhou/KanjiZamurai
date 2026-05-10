@@ -8,20 +8,20 @@ import { Enemy } from './enemy.js';
         hp: 10,
         mp: 0,
         atk: 10,
-        def: 10,
+        def: 5,
         mdf: 5,
         eva: 10,
         critRate: 50,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
-        sizeRatio: 45,
+        sizeRatio: 50,
         frameCount: 3,
         frameInterval: 50,
         idleFrameCount: 3,
         idleFrames: [0, 1, 2, 1]
       });
       this.name = "Ninja";
-      this.expReward =25;
+      this.expReward =15;
     }
 
   // 専用のスキルを作りたくなったらここに追加

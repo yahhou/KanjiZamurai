@@ -14,7 +14,7 @@ import { Player } from './player.js';
         critRate: 5,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
-        sizeRatio: 40,
+        sizeRatio: 45,
         frameCount: 5,
         deathFrame: 4,
         idleFrameCount: 2,

@@ -175,7 +175,7 @@ export const quizManager = {
     }
 
     if (battleManager) battleManager.updateStreakBonus(this.streak);
-    this.updateKiwamiIcon();
+    this.updateKiwamiIcon(); // ここでパネルが出る可能性がある
     this.updateQuestionProgress();
 
     if (battleManager.player?.isRegenerating) battleManager.player.applyRegeneration();
@@ -187,18 +187,27 @@ export const quizManager = {
       }
     });
 
+    // ★修正箇所: スキルパネルが出ているかチェック
+    const panel = document.getElementById("skill-panel");
+    const isSkillPanelVisible = (panel && panel.style.display === "flex");
+
+    // スキルパネルが出ている場合は、ここで処理を終了する。
+    // （次の問題やボス移行は、gameManager.selectItem の中で行うため）
+    if (isSkillPanelVisible) {
+      console.log("スキル選択待ちのため、次問への遷移をストップしました");
+      return; 
+    }
+
+    // スキルパネルが出ていない場合のみ、1秒後に次へ
     setTimeout(() => {
-      // 勝利フラグが立っている（ボスが死んだ）なら、もう何もしない
       if (this.isVictoryActive) return;
 
       if (this.quizMode === "boss") {
-        // ボス戦：HPがある限り無限ループ
         this.randomQuestion();
       } else {
-        // 通常戦：全問正解チェック
         const totalInStage = this.wordList[this.currentStage]?.length || 0;
         if (this.correctAnswerCount >= totalInStage) {
-          this.victory(); // ボス戦フェーズへ
+          this.victory();
         } else {
           this.randomQuestion();
         }
@@ -316,7 +325,6 @@ export const quizManager = {
     if (this.quizMode === "normal") {
       this.quizMode = "boss";
       this.usedWords = [];           
-      this.correctQuestionCount = 0; 
 
       // 2. スキルパネルが出ているかチェック
       const panel = document.getElementById("skill-panel");
@@ -326,7 +334,7 @@ export const quizManager = {
         // スキルパネルが出ているなら、パネルが閉じるのを待つ
         // ※gameManager側の「スキル選択完了」イベント等にフックする
         console.log("スキル選択待ち...");
-        return; 
+  
       } else {
         // 出ていなければ即座にボス演出開始
         this.triggerBossAppearance();
@@ -379,21 +387,31 @@ export const quizManager = {
   //　ボス登場の演出とBGM開始 
   /////////////////////////
   triggerBossAppearance() {
+    // すでに演出済みならスキップ
+    if (this.hasBossAppeared) return;
+    this.hasBossAppeared = true;
 
-    this.hasBossAppeared = true; // ★演出開始時にフラグを立てる
+    // 1. 追加先を actionArea に変更
+    const actionArea = document.getElementById("actionArea");
+    if (!actionArea) return; // 安全策
     
+    // ★ ボス戦用の赤いレイヤーを有効にするクラスを付与
+    actionArea.classList.add("boss-active");
+
     // 1. ホワイトアウト用要素の作成
     const overlay = document.createElement("div");
-    overlay.className = "white-out-overlay";
-    document.body.appendChild(overlay);
+    overlay.className = "black-out-overlay";
+    // body ではなく actionArea に追加
+    actionArea.appendChild(overlay);
 
     // 強制的にブラウザに描画させてからアニメーション開始
     requestAnimationFrame(() => {
-      overlay.classList.add("white-out-active");
+      overlay.classList.add("black-out-active");
     });
 
     // 2. 画面が真っ白になった頃（0.8秒後など）に処理を実行
     setTimeout(() => {
+    
       // BGM切り替え (gameManager内のassetsを参照)
       if (window.gameManager && assets.sounds.bgm_BossBattle) {
         // 既存のBGMを止める
@@ -412,9 +430,9 @@ export const quizManager = {
 
       // クイズ画面をボス用に更新
       this.randomQuestion();
-
+     
       // 3. ホワイトアウト解除（クラスを外す）
-      overlay.classList.remove("white-out-active");
+      overlay.classList.remove("black-out-active");
       
       // アニメーションが終わるのを待ってから要素自体を削除
       setTimeout(() => {
@@ -438,6 +456,12 @@ export const quizManager = {
     this.isVictoryActive = false;
     this.streak = 0;               // ストリークリセット
     this.hasBossAppeared = false; // ★リセット時にここも戻す
+
+    // ★ ステージリセット時に赤いフィルターも消す
+    const actionArea = document.getElementById("actionArea");
+    if (actionArea) {
+      actionArea.classList.remove("boss-active");
+    }
     
     // UIの更新
     this.updateKiwamiIcon();

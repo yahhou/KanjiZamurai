@@ -277,7 +277,7 @@ body {
   position: relative;
   height: 50%;
   width: 100%;
-  overflow: visible;
+  overflow: hidden; /* 枠からはみ出さないようにする */
   background: transparent; /* 背景は透明にする */
   box-sizing: border-box;
 
@@ -481,7 +481,7 @@ body {
 
 .damage-popup {
   position: absolute;
-  bottom: -10%;
+  bottom: -5%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 6cqw;
@@ -618,21 +618,47 @@ body {
    bossバトル移行時のフラッシュ
 ==============================*/
 /* style.css 等に追加 */
-.white-out-overlay {
-  position: fixed;
+.black-out-overlay {
+  position: absolute; /* 親要素(#actionArea)を基準にする */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: rgb(0, 0, 0);
   opacity: 0;
   pointer-events: none; /* 下のボタンが押せるように */
   z-index: 9999;
   transition: opacity 0.5s ease;
 }
 
-.white-out-active {
+.black-out-active {
   opacity: 1;
+}
+
+/* ボス戦中だけ表示される赤いレイヤー */
+#actionArea.boss-active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* 暗い赤のグラデーション（周辺を特に暗くするとボス感が出ます） */
+  background: radial-gradient(circle, rgba(139, 0, 0, 0.7) 0%, rgba(50, 0, 0, 0.7) 100%);
+  
+  /* 乗算モード：画像の色を活かしつつ暗い赤を合成する */
+  mix-blend-mode: multiply;
+  
+  pointer-events: none; /* クリックを邪魔しない */
+  z-index: 5;          /* 背景画像より上で、キャラクターより下 */
+  animation: boss-flash 3s infinite alternate; /* 軽く明滅させるとさらに雰囲気が出ます */
+}
+
+/* 鼓動のようにじわじわ明滅させるアニメーション（任意） */
+@keyframes boss-flash {
+  from { opacity: 0.7; }
+  to { opacity: 1.0; }
 }
 
 /* ==========================================================================
@@ -1194,7 +1220,7 @@ body {
 /* ベース配置：左下に固定 */
 .streak-display {
   position: absolute;
-  bottom: 30%;
+  bottom: 20%;
   left: 5%;
   z-index: 50;
   pointer-events: none;

@@ -61,7 +61,7 @@ export const gameManager = {
     N1: [], N2: [], N3: [], N4: [],
     N5: [
       { id: 1, name: "numbers", files: ["N5_stage1.json"], bgKey: "stage_1"},
-      { id: 2, name: "time", files: ["N5_stage2.json"], bgKey: "stage_1"},
+      { id: 2, name: "time", files: ["N5_stage2.json"], bgKey: "stage_2"},
     ],
     N6: [
       { id: 99, name: "Hiragana", files: ["hiragana.json"] },
@@ -349,18 +349,18 @@ export const gameManager = {
     itemManager.applyItem(itemId, battleManager.player);
     refreshPlayerBuffIcons();
     
-    // スキルパネルを隠す
     this.hideSkillPanel();
     
-    // 極ゲージのリセット
+    // スキルを使ったのでゲージはリセット
     quizManager.correctQuestionCount = 0;
     quizManager.updateKiwamiIcon();
 
-    // ★修正：ボスモード かつ まだボスが出ていない時だけ演出を開始
+    // ★チェック：全問正解してボスモードに切り替わっているか？ かつ まだ演出前か？
     if (quizManager.quizMode === "boss" && !quizManager.hasBossAppeared) {
+      console.log("スキル選択完了：ボス演出を開始します");
       quizManager.triggerBossAppearance();
     } else {
-      // 通常時（雑魚戦中）はそのまま次の問題へ
+      // すでにボス戦の真っ最中、あるいはまだ雑魚戦の途中なら次の問題へ
       quizManager.randomQuestion();
     }
   }
