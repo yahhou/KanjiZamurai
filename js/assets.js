@@ -64,6 +64,10 @@ export const assets = {
     this.sounds.bgm_Battle.load();
     this.sounds.bgm_Battle.loop = true;
 
+    this.sounds.bgm_BossBattle = new Audio("assets/sounds/boss_battle.mp3");
+    this.sounds.bgm_BossBattle.load();
+    this.sounds.bgm_BossBattle.loop = true;
+
     this.sounds.bgm_victory = new Audio("assets/sounds/victory.mp3");
 
     // --- 効果音 ---

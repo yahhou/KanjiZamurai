@@ -31,10 +31,12 @@ export const gameManager = {
   currentStageIndex: 0,
   isLoaded: false,
   loadingInterval: null,
-
+  
   startBtnSE: new Audio("assets/sounds/StartButton.mp3"),
   gameOverSE: new Audio("assets/sounds/gameOver.mp3"),
   itemBonusSE: new Audio("assets/sounds/itemBonus.mp3"),
+
+  
 
   storyStages: [
     { 
@@ -305,6 +307,10 @@ export const gameManager = {
 
 
   handleGameOver() {
+    if (assets?.sounds?.bgm_BossBattle) {
+      assets.sounds.bgm_BossBattle.pause();
+    }
+
     const bgm = assets.sounds.bgm_Battle;
     if (bgm) bgm.pause();
     if (this.gameOverSE) this.gameOverSE.play();
@@ -337,15 +343,28 @@ export const gameManager = {
   },
 
   playStartBtnSE() { this.startBtnSE.currentTime = 0; this.startBtnSE.play(); },
+
+
   selectItem(itemId) {
     itemManager.applyItem(itemId, battleManager.player);
     refreshPlayerBuffIcons();
-    document.getElementById("skill-panel").style.display = "none";
+    
+    // スキルパネルを隠す
+    this.hideSkillPanel();
+    
+    // 極ゲージのリセット
     quizManager.correctQuestionCount = 0;
     quizManager.updateKiwamiIcon();
-    quizManager.randomQuestion();
+
+    // ★修正：ボスモード かつ まだボスが出ていない時だけ演出を開始
+    if (quizManager.quizMode === "boss" && !quizManager.hasBossAppeared) {
+      quizManager.triggerBossAppearance();
+    } else {
+      // 通常時（雑魚戦中）はそのまま次の問題へ
+      quizManager.randomQuestion();
+    }
   }
-};
+}
 
 gameManager.init();
 window.gameManager = gameManager;
