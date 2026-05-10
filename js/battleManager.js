@@ -15,14 +15,25 @@ export const battleManager = {
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
   ///////////////////////////////////
-  init(savedStatus = null, bgKey = null) { // 引数で保存データを受け取れるようにする
+  init(savedStatus = null, bgKey = null, enemyType = null) { // 引数で保存データを受け取れるようにする
     this.clearCharacters();
     this.setupBackgrounds();
     
+    this.currentEnemyType = enemyType;
+
+    // 1. まず新しいインスタンスを作る（この時点ではLv1, Exp0）
     this.player = new Samurai();
-    // ストーリーモードなどで保存されたステータスがあれば上書き
+    
+    // 2. ステータスを読み込む
     if (savedStatus) {
       this.player.importStatus(savedStatus);
+      
+      // ★重要：読み込んだあとに「現在の経験値」でバーを即座に描画し直す
+      // これをしないと、Samuraiのconstructorが作った「0%」のままになってしまう
+      this.player.updateExpBar(); 
+      
+      this.player.hp = this.player.maxHp; 
+      if (this.player.refreshStats) this.player.refreshStats();
     }
 
     const actionArea = document.getElementById("actionArea");
@@ -31,8 +42,7 @@ export const battleManager = {
     }
 
     this.updateBackground(bgKey);
-
-    this.enemySpawn();
+    this.enemySpawn(enemyType);
   },
 
 
@@ -41,6 +51,29 @@ export const battleManager = {
   ////////////////////////////////////////////////////////////
   getCurrentPlayerStatus() {
     return this.player ? this.player.exportStatus() : null;
+  },
+  
+  
+  ///////////////////////////////////
+  //   　　ボスのスポーン
+  ///////////////////////////////////
+  bossSpawn(bossTypeName) {
+    if (this.enemy) this.enemy.destroy();
+
+    const enemyTypes = { Peasant, Ninja, Shougun };
+    const BossClass = enemyTypes[bossTypeName] || Ninja;
+
+    this.enemy = new BossClass(); 
+    // ボス補正：HPを2倍、攻撃力を1.2倍など
+    this.enemy.maxHp = Math.floor(this.enemy.maxHp * 2.0);
+    this.enemy.hp = this.enemy.maxHp;
+    this.enemy.baseAtk = Math.floor(this.enemy.baseAtk * 1.2);
+    this.enemy.refreshStats();
+
+    const actionArea = document.getElementById("actionArea");
+    if (actionArea && this.enemy.el) {
+      actionArea.appendChild(this.enemy.el);
+    }
   },
 
 
@@ -84,13 +117,30 @@ export const battleManager = {
   ///////////////////////////////////
   //       　　敵の再生成
   ///////////////////////////////////
-  enemySpawn() {
+  enemySpawn(specifiedType = null) {
     if (this.enemy && this.enemy.el) {
       this.enemy.destroy();
     }
+    
+    // クラスを名前で引けるようにオブジェクト形式にする
+    const enemyMap = { 
+      "Peasant": Peasant, 
+      "Ninja": Ninja, 
+      "Shougun": Shougun 
+    };
 
-    const enemyTypes = [Peasant, Ninja, Shougun];
-    const EnemyClass = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
+    let EnemyClass;
+    // 引数指定 > 保持しているタイプ > デフォルト(Peasant) の順で決める
+    const typeName = specifiedType || this.currentEnemyType;
+
+    if (typeName && enemyMap[typeName]) {
+      EnemyClass = enemyMap[typeName];
+    } else {
+      // どこにも指定がない場合のみランダム（練習モード用など）
+      const classes = [Peasant, Ninja, Shougun];
+      EnemyClass = classes[Math.floor(Math.random() * classes.length)];
+    }
+
     this.enemy = new EnemyClass();
     this.scaleEnemyToPlayerLevel(this.enemy);
     this.enemy.refreshStats();
@@ -149,20 +199,35 @@ export const battleManager = {
   defeatEnemy() {
     if (!this.player || !this.enemy) return;
 
-    const exp = this.enemy.expReward || 5;
-    this.player.gainExp(exp);
-
-    if (window.gameManager && window.gameManager.isStoryMode) {
-      // ストーリーモードなら、敵を倒した＝ステージクリアとする
-      setTimeout(() => {
-        window.gameManager.nextStage();
-      }, 1100);
-    } else {
-      // 練習モード（Practice）なら、次の敵を出す
-      setTimeout(() => {
-        this.enemySpawn();
-      }, 1100);
+  const exp = this.enemy.expReward || 5;
+  
+  if (window.quizManager.quizMode === "boss") {
+    // ボスを倒した時はアニメを待たずに即時加算！
+    this.player.exp += exp;
+    
+    // もし経験値が溢れたらレベルアップ処理
+    while (this.player.exp >= this.player.maxExp) {
+      this.player.exp -= this.player.maxExp;
+      this.player.levelUp();
     }
+    
+    this.player.updateExpBar();
+    window.quizManager.victory(); 
+    return;
+  }
+
+  // ザコ敵は今まで通りアニメーションさせる
+  this.player.gainExp(exp);
+
+    // --- 以下は通常（ザコ戦）の処理 ---
+    setTimeout(() => {
+      // クイズがまだ終わっていない（ボス戦前）なら、次のザコ敵を出す
+      if (!window.quizManager.isVictoryActive) {
+        if (window.quizManager.quizMode === "normal") {
+          this.enemySpawn();
+        }
+      }
+    }, 1100);
   },
 
 

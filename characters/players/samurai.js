@@ -49,10 +49,14 @@ import { Player } from './player.js';
       // --- 【3枚目】構え ---
       this.sprite.style.backgroundPosition = `50% 100%`; 
       frame = 3; 
-      setTimeout(nextFrame, 300); 
+      setTimeout(nextFrame, 400); 
     } 
     else if (frame === 3) {
       // --- 【4枚目】斬撃 ＆ 突進 ---
+
+      // ★ぬるっと動かすための設定 (0.15秒かけて移動)
+      this.sprite.style.transition = "transform 0.15s ease-out";
+
       this.sprite.style.backgroundPosition = `75% 100%`; 
       this.sprite.style.transform = `translateX(${distanceX}px)`;
       

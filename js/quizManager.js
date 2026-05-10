@@ -14,6 +14,7 @@ export const quizManager = {
   wordList: [],
   currentStage: 0,
   correctQuestionCount: 0,
+  // MAX_QUESTIONSは極ゲージ（スキルパネル）の閾値としてのみ使用
   MAX_QUESTIONS: 6,
   usedWords: [],
   /** いま出題中の正解データ */
@@ -26,6 +27,7 @@ export const quizManager = {
   onCorrect: null,
   onWrong: null,
   streak: 0,
+  quizMode: "normal", // "normal" か "boss"
 
   
   /////////////////////////
@@ -37,6 +39,7 @@ export const quizManager = {
       return;
     }
     this.reset();
+    this.quizMode = "normal"; // スタート時は必ずnormal
     this.setupKiwami();
     this.randomQuestion();
   },
@@ -46,37 +49,40 @@ export const quizManager = {
   //   ランダムクイズの準備）
   /////////////////////////
   randomQuestion() {
-    const currentStageWords = this.wordList[this.currentStage];
-    if (!currentStageWords?.length) {
-      this.victory();
-      return;
-    }
+    if (this.isVictoryActive) return;
 
-    const availableWords = currentStageWords.filter(
+    const currentStageWords = this.wordList[this.currentStage];
+    if (!currentStageWords?.length) return;
+
+    // まだ「正解していない」単語を抽出
+    let availableWords = currentStageWords.filter(
       (item) => !this.usedWords.includes(item.kanji)
     );
 
+    // ★重要：全問正解した時の処理
     if (availableWords.length === 0) {
-      this.victory();
-      return;
+      if (this.quizMode === "boss") {
+        // ボス戦なら、単語を使い果たしてもリセットしてループ（HPを削るまで終わらせない）
+        this.usedWords = [];
+        availableWords = currentStageWords;
+      } else {
+        // 通常モードなら、全問正解でボス召喚（victory）へ
+        this.victory();
+        return;
+      }
     }
 
-    const correct =
-      availableWords[Math.floor(Math.random() * availableWords.length)];
-    this.usedWords.push(correct.kanji);
-
+    const correct = availableWords[Math.floor(Math.random() * availableWords.length)];
     const options = [correct];
-    while (options.length < 4) {
-      const rand =
-        currentStageWords[Math.floor(Math.random() * currentStageWords.length)];
-      if (!options.some((opt) => opt.english === rand.english)) {
+    while (options.length < 3) {
+      const rand = currentStageWords[Math.floor(Math.random() * currentStageWords.length)];
+      if (!options.some((opt) => opt.kanji === rand.kanji)) {
         options.push(rand);
       }
     }
 
     options.sort(() => Math.random() - 0.5);
     this.currentQuestion = correct;
-
     this.renderQuestion(correct, options);
     this.updateQuestionProgress();
   },
@@ -86,50 +92,116 @@ export const quizManager = {
   //      問題の表示
   /////////////////////////
   renderQuestion(correct, options) {
-  const { kanji, yomi, romaji } = correct;
-  const quizArea = document.getElementById("quizArea");
-  if (!quizArea) return;
+    const quizArea = document.getElementById("quizArea");
+    if (!quizArea) return;
 
-  // streakのHTML表示部分をまるごと削除  //読みとローマ字の間に何か入れたければ<div id="optionArea"ここにclass="button-container">
-  quizArea.innerHTML = `
-    <div class="question-container">
-      <h2>${escapeHtml(kanji)}</h2>
-      <p>${escapeHtml(yomi)} ${escapeHtml(romaji)}</p>
-    </div>
-    <div id="optionArea" class="button-container">
-      ${options.map(o => `
-        <button type="button" class="quiz-button" data-english="${escapeHtml(o.english)}">
-          <div class="yomi-text">${escapeHtml(o.english)}</div>
-        </button>`).join("")}
-    </div>
-  `;
-
-    const optionArea = document.getElementById("optionArea");
-    if (optionArea) {
-      optionArea.querySelectorAll(".quiz-button").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const selected = btn.getAttribute("data-english");
-          if (selected != null) this.answer(selected);
-        });
-      });
+    let mainText, subText, btnTextKey;
+    
+    if (this.quizMode === "boss") {
+      // ボス戦：英語を見て漢字を当てる
+      mainText = correct.english;
+      subText = "正しい漢字を選べ！"; 
+      btnTextKey = "kanji"; 
+    } else {
+      // 通常戦：漢字を見て英語を当てる
+      mainText = correct.kanji;
+      subText = `${correct.yomi} / ${correct.romaji}`;
+      btnTextKey = "english";
     }
+
+    quizArea.innerHTML = `
+      <div class="question-container ${this.quizMode === 'boss' ? 'boss-mode-ui' : ''}">
+        <h2>${escapeHtml(mainText)}</h2>
+        <p>${escapeHtml(subText)}</p>
+      </div>
+      <div id="optionArea" class="button-container">
+        ${options.map(o => `
+          <button type="button" class="quiz-button" data-answer="${escapeHtml(o[btnTextKey])}">
+            <div class="yomi-text">${escapeHtml(o[btnTextKey])}</div>
+          </button>`).join("")}
+      </div>
+    `;
+
+    // クリックイベントの設定
+    // クリック判定のキーも変更
+    const optionArea = document.getElementById("optionArea");
+    optionArea.querySelectorAll(".quiz-button").forEach((btn) => {
+      // ここをアロー関数にするのが最大のポイントです
+      btn.addEventListener("click", () => {
+        const selected = btn.getAttribute("data-answer");
+        
+        // 正解判定
+        const isCorrect = (this.quizMode === "boss") 
+          ? (selected === this.currentQuestion.kanji)
+          : (selected === this.currentQuestion.english);
+        
+        this.answer(selected, isCorrect);
+      });
+    });
 
     this.updateKiwamiIcon();
   },
+ 
+  /////////////////////////
+  //      回答
+  /////////////////////////
+  answer(selected, isCorrect) {
+    const buttons = document.querySelectorAll("#optionArea button");
+    this.disableOptionButtons(buttons);
 
+    if (isCorrect) {
+      // ★正解した時だけ、使用済み（正解済み）リストに追加する
+      if (!this.usedWords.includes(this.currentQuestion.kanji)) {
+        this.usedWords.push(this.currentQuestion.kanji);
+      }
+      this.handleCorrectAnswer(buttons, selected);
+    } else {
+      // 不正解の場合は usedWords に入れない → randomQuestionでまた出題候補に残る
+      this.handleWrongAnswer(buttons, selected);
+    }
+  },
 
   /////////////////////////
   //      回答の判定
   /////////////////////////
-  answer(selected) {
-    const buttons = document.querySelectorAll("#optionArea button");
+  handleCorrectAnswer(buttons, selected) {
+    this.correctQuestionCount++;
+    this.streak++;
 
-    if (selected === this.currentQuestion.english) {
-      this.disableOptionButtons(buttons);
-      this.handleCorrectAnswer(buttons);
-    } else {
-      this.handleWrongAnswer(buttons, selected);
+    if (this.quizMode === "normal") {
+      this.correctAnswerCount++;
     }
+
+    if (battleManager) battleManager.updateStreakBonus(this.streak);
+    this.updateKiwamiIcon();
+    this.updateQuestionProgress();
+
+    if (battleManager.player?.isRegenerating) battleManager.player.applyRegeneration();
+    if (this.onCorrect) this.onCorrect();
+
+    buttons.forEach((btn) => {
+      if (btn.getAttribute("data-answer") === selected) {
+        btn.classList.add("correct-answer");
+      }
+    });
+
+    setTimeout(() => {
+      // 勝利フラグが立っている（ボスが死んだ）なら、もう何もしない
+      if (this.isVictoryActive) return;
+
+      if (this.quizMode === "boss") {
+        // ボス戦：HPがある限り無限ループ
+        this.randomQuestion();
+      } else {
+        // 通常戦：全問正解チェック
+        const totalInStage = this.wordList[this.currentStage]?.length || 0;
+        if (this.correctAnswerCount >= totalInStage) {
+          this.victory(); // ボス戦フェーズへ
+        } else {
+          this.randomQuestion();
+        }
+      }
+    }, 1000);
   },
   
 
@@ -144,57 +216,18 @@ export const quizManager = {
 
 
   /////////////////////////
-  //　　　　正解処理
-  /////////////////////////
-  handleCorrectAnswer(buttons) {
-    this.correctQuestionCount++;
-    this.correctAnswerCount++;
-    this.streak++;
-
-    // battleManager経由でボーナス計算とステータス更新を一括で行う
-    if (battleManager) {
-      battleManager.updateStreakBonus(this.streak);
-    }
-
-    this.updateKiwamiIcon();
-    this.updateQuestionProgress();
-
-    if (battleManager.player?.isRegenerating) {
-      battleManager.player.applyRegeneration();
-    }
-
-    if (this.onCorrect) this.onCorrect();
-
-    buttons.forEach((btn) => {
-      if (btn.getAttribute("data-english") === this.currentQuestion.english) {
-        btn.classList.add("correct-answer");
-      }
-    });
-
-    if (this.correctQuestionCount >= this.MAX_QUESTIONS) {
-      return;
-    }
-
-    setTimeout(() => this.randomQuestion(), 1000);
-  },
-  
-
-  /////////////////////////
   //　　　不正解処理
   /////////////////////////
   handleWrongAnswer(buttons, selected) {
-    this.correctQuestionCount--;
+    // 極ゲージを減らす（最小0）
+    this.correctQuestionCount = Math.max(0, this.correctQuestionCount - 1);
     this.updateKiwamiIcon();
+    this.streak = 0;
     
-    this.streak = 0; // ストリークリセット
-    
-    // battleManagerにリセットを伝える
-    if (battleManager) {
-      battleManager.updateStreakBonus(this.streak);
-    }
+    if (battleManager) battleManager.updateStreakBonus(this.streak);
 
     const q = this.currentQuestion;
-    if (q && q.kanji) {
+    if (q) {
       this.wrongAnswersLog.push({
         kanji: q.kanji,
         yomi: q.yomi || "",
@@ -203,20 +236,20 @@ export const quizManager = {
       });
     }
 
-    if (battleManager.player) {
-      battleManager.player.isRegenerating = false;
-    }
-
-    refreshPlayerBuffIcons();
-
     if (this.onWrong) this.onWrong();
 
     buttons.forEach((btn) => {
-      if (btn.getAttribute("data-english") === selected) {
+      if (btn.getAttribute("data-answer") === selected) {
         btn.classList.add("wrong-answer");
-        btn.disabled = true;
       }
     });
+    
+    // プレイヤーが生きている場合のみ、同じ問題を飛ばして次へ（または同じ問題を出し直すなら usedWordsに入れないだけでOK）
+    setTimeout(() => {
+        if (battleManager.player && battleManager.player.hp > 0) {
+            this.randomQuestion();
+        }
+    }, 1000);
   },
 
 
@@ -251,23 +284,20 @@ export const quizManager = {
     const img = document.getElementById("kiwami-image");
     if (!img) return;
 
+    // MAX_QUESTIONSを6と仮定して位置計算（または固定値で調整）
+    const gaugeMax = 6; 
     const count = Math.max(0, this.correctQuestionCount);
-    const xPosition = Math.min(count, this.MAX_QUESTIONS) * 15;
+    const xPosition = Math.min(count, gaugeMax) * 15;
     img.style.left = `-${xPosition}cqw`;
 
-    if (count >= 2) {
-      img.classList.add("is-flashing");
-    } else {
-      img.classList.remove("is-flashing");
-    }
+    if (count >= 2) img.classList.add("is-flashing");
+    else img.classList.remove("is-flashing");
 
-    if (count >= 5) {
-      img.classList.add("is-rainbow");
-    } else {
-      img.classList.remove("is-rainbow");
-    }
+    if (count >= 5) img.classList.add("is-rainbow");
+    else img.classList.remove("is-rainbow");
 
-    if (count >= this.MAX_QUESTIONS && !this.isVictoryActive) {
+    // ★ 極スキルパネル：連続正解数（ゲージ）が一定に達したら出す
+    if (count >= gaugeMax && !this.isVictoryActive) {
       window.gameManager?.showSkillPanel();
     }
   },
@@ -277,22 +307,56 @@ export const quizManager = {
   //　　　　勝利
   /////////////////////////
   victory() {
+    // すでにリザルト画面が出ているなら重複させない
+    if (this.isVictoryActive && document.getElementById("nextStageBtn")) return;
+
+    // 1. 雑魚戦が終わった直後 -> ボス戦へ移行
+    if (this.quizMode === "normal") {
+      this.quizMode = "boss";
+      this.usedWords = [];           
+      this.correctQuestionCount = 0; 
+
+      // ★修正：ここでは hideSkillPanel() を呼ばない！
+      // ボス出現演出中もスキルを選択できるようにします。
+
+      const stageInfo = window.gameManager.storyStages[window.gameManager.currentStageIndex];
+      if (stageInfo && window.battleManager) {
+        window.battleManager.bossSpawn(stageInfo.bossType);
+      }
+      
+      setTimeout(() => this.randomQuestion(), 1000);
+      return; 
+    }
+
+    // 2. ボス戦終了（本当のステージクリア）
     this.isVictoryActive = true;
+    
+    // クリア画面を出すときだけ、スキルパネルを隠す
     window.gameManager?.hideSkillPanel();
 
     const container = document.getElementById("quizArea");
     if (!container) return;
 
     container.style.display = "flex";
+    // ボタンのHTMLを先に構築
+    let buttonHtml = window.gameManager?.isStoryMode
+      ? `<button type="button" id="nextStageBtn" class="retry-btn">Next Stage</button>`
+      : `<button type="button" id="retryBtn" class="retry-btn">RETRY</button>`;
+
     container.innerHTML = `
       <div class="announcement-area">
         <div class="victory-message-area">
-          <h2>Stage ${this.currentStage + 1} Clear!</h2>
+          <h2>Stage Clear!</h2>
+          <p>Boss Defeated!</p>
         </div>
-        <button type="button" id="retryBtn" class="retry-btn">RETRY</button>
+        <div class="menu-container">${buttonHtml}</div>
       </div>
     `;
 
+    // innerHTMLを書き換えた直後にイベントリスナーを再登録
+    document.getElementById("nextStageBtn")?.addEventListener("click", () => {
+      window.gameManager?.nextStage();
+    });
     document.getElementById("retryBtn")?.addEventListener("click", () => {
       window.gameManager?.retry();
     });
@@ -303,18 +367,19 @@ export const quizManager = {
   //　　　クイズリセット
   /////////////////////////
   reset() {
-    this.currentStage = 0;
+    // ステージ番号はそのまま（今のステージをやり直すため）
+    // それ以外の「そのステージ内での進捗」をすべてゼロにする
     this.currentQuestion = {};
-    this.correctQuestionCount = 0;
-    this.stageCorrectCount = 0;
-    this.usedWords = [];
-    this.wrongAnswersLog = [];
+    this.correctQuestionCount = 0; // 極ゲージ用カウント
+    this.correctAnswerCount = 0;   // UI表示用の正解数カウント
+    this.usedWords = [];           // ★重要：出題済みリストを空にする
+    this.wrongAnswersLog = [];     // 誤答ログを空にする
     this.isVictoryActive = false;
+    this.streak = 0;               // ストリークリセット
+    
+    // UIの更新
     this.updateKiwamiIcon();
     this.updateQuestionProgress();
-    this.streak = 0;
-    this.correctAnswerCount = 0;
-    this.updateQuestionProgress()
   },
 
 

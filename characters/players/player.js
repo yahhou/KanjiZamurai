@@ -64,40 +64,42 @@ export class Player extends Character {
   ========================================================================== */ 
     animateExpGain() {
       if (this.pendingExp <= 0) {
-        this.isAnimatingExp = false;
-        return;
-      }
+    this.isAnimatingExp = false;
+    return;
+  }
 
-      this.isAnimatingExp = true;
+  this.isAnimatingExp = true;
+  const neededExp = this.maxExp - this.exp;
 
-      const neededExp = this.maxExp - this.exp;
+  if (this.pendingExp >= neededExp) {
+    // 1. まずゲージを 100% にする
+    this.pendingExp -= neededExp;
+    this.exp = this.maxExp;
+    this.updateExpBar();
 
-      if (this.pendingExp >= neededExp) {
-        this.pendingExp -= neededExp;
-        this.exp = this.maxExp;
-        this.updateExpBar();
+    // 2. ゲージが 100% に到達するのを待ってからリセット
+    setTimeout(() => {
+      this.levelUp(); // ここで maxExp が増える
+      this.exp = 0;
+      this.resetExpBarToZero(); // ★アニメなしで 0% に戻す
 
-        setTimeout(() => {
-          this.levelUp();
-          this.exp = 0;
-          this.resetExpBarToZero();
-
-          setTimeout(() => {
-            this.animateExpGain();
-          }, 80);
-        }, 350);
-
-        return;
-      }
-
-      this.exp += this.pendingExp;
-      this.pendingExp = 0;
-      this.updateExpBar();
-
+      // 3. 0.1秒待ってから、余った経験値を左から伸ばし始める
       setTimeout(() => {
-        this.isAnimatingExp = false;
-      }, 350);
-    }
+        this.animateExpGain();
+      }, 100); 
+    }, 400); // ゲージが右端に届くまでの時間
+
+  } else {
+    // 通常の加算
+    this.exp += this.pendingExp;
+    this.pendingExp = 0;
+    this.updateExpBar();
+
+    setTimeout(() => {
+      this.isAnimatingExp = false;
+    }, 350);
+  }
+}
 
 
    /* ==========================================================================
@@ -146,12 +148,22 @@ export class Player extends Character {
   経験値がmmaxになった後の処理
   ========================================================================== */ 
   /** レベルアップ直後など、経験値バーを 0% 表示に戻す */
-    resetExpBarToZero() {
+    /** ゲージを「アニメなし」で 0% に戻す */
+  resetExpBarToZero() {
     const playerUi = document.getElementById("player-ui");
-    if (!playerUi) return;
+      if (!playerUi) return;
     const inner = playerUi.querySelector(".exp-bar-inner");
-    if (inner) inner.style.width = "0%";
+      if (inner) {
+    // transition を一時的に消すことで、右から左へ戻る動きをカットする
+      inner.style.transition = "none";
+      inner.style.width = "0%";
+    
+    // 次の更新でアニメーションが効くように戻す
+    // reflow（強制再描画）を発生させるための呪文
+      inner.offsetHeight; 
+      inner.style.transition = "width 0.35s ease-out";
     }
+  }
 
 
    /* ==========================================================================
@@ -182,6 +194,55 @@ export class Player extends Character {
       this.activeTimeouts.push(timeoutId);
     }
     
+  
+  /* ==========================================================================
+  ステータスのエクスポート（セーブ用）
+  ========================================================================== */
+  exportStatus() {
+    return {
+      level: this.level,
+      exp: this.exp,
+      maxExp: this.maxExp,
+      hp: this.hp,
+      maxHp: this.maxHp,
+      baseAtk: this.baseAtk,
+      baseDef: this.baseDef,
+      baseMdf: this.baseMdf,
+      // 装備品の状態も継続したい場合はここに追加
+      //isWeaponEquipped: this.isWeaponEquipped,
+      //weaponRarity: this.weaponRarity,
+      //isHaoriEquipped: this.isHaoriEquipped,
+      //haoriRarity: this.haoriRarity
+      // ...他、必要なフラグ
+    };
+  }
+  
+
+  /* ==========================================================================
+  ステータスのインポート（ロード用）
+  ========================================================================== */
+  importStatus(status) {
+    /* Player.js の importStatus */
+
+    this.level = status.level || 1;
+    this.exp = status.exp || 0;
+    this.maxExp = status.maxExp || 20;
+    
+    // ★追加：前ステージのアニメーション残骸をクリアする
+    this.pendingExp = 0;
+    this.isAnimatingExp = false;
+
+    this.maxHp = status.maxHp || this.maxHp;
+    this.hp = status.hp || this.maxHp;
+
+    this.baseAtk = status.baseAtk || this.baseAtk;
+    this.baseDef = status.baseDef || this.baseDef;
+    this.baseMdf = status.baseMdf || this.baseMdf;
+
+    this.refreshStats();
+    this.updateExpBar(); // ここでも呼んでいるので、基本的にはこれで同期されます
+  }
+
 
   /* ==========================================================================
   死亡

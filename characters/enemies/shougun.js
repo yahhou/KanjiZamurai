@@ -19,7 +19,7 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "Shougun";
-      this.expReward = 20;
+      this.expReward = 30;
     }
 
   // 専用のスキルを作りたくなったらここに追加

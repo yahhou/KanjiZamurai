@@ -37,8 +37,22 @@ export const gameManager = {
   itemBonusSE: new Audio("assets/sounds/itemBonus.mp3"),
 
   storyStages: [
-    { category: "N5", stageId: 1, name: "numbers", bgKey: "stage_1"},
-    { category: "N5", stageId: 2, name: "time", bgKey: "stage_1"},
+    { 
+    category: "N5", 
+    stageId: 1, 
+    name: "numbers", 
+    bgKey: "stage_1",
+    enemyType: "Peasant", // 雑魚敵
+    bossType: "Ninja"     // ボス
+  },
+  { 
+    category: "N5", 
+    stageId: 2, 
+    name: "time", 
+    bgKey: "stage_2",
+    enemyType: "Ninja",
+    bossType: "Shougun" 
+  },
   ],
 
   stageConfigs: {
@@ -116,6 +130,11 @@ export const gameManager = {
 
   launchStoryStage() {
     const stageInfo = this.storyStages[this.currentStageIndex];
+
+    // クイズの進捗とモードをリセット
+    quizManager.reset();
+    quizManager.quizMode = "normal";
+
     if (!stageInfo) {
       alert("全ステージクリア！");
       this.isStoryMode = false;
@@ -135,11 +154,16 @@ export const gameManager = {
 
   nextStage() {
     this.currentStageIndex++;
+    
+    // ★ここを確実に！
+    const currentPlayerStatus = battleManager.getCurrentPlayerStatus();
+    console.log("セーブ直前のExp:", currentPlayerStatus.exp); // ここで 0 じゃないかチェック！
     const saveData = {
       currentStageIndex: this.currentStageIndex,
-      playerStatus: battleManager.getCurrentPlayerStatus(),
+      playerStatus: currentPlayerStatus, // currentPlayerStatus を使う
       lastUpdated: new Date().getTime()
     };
+    
     storyStorage.saveProgress(saveData);
     this.launchStoryStage();
   },
@@ -150,17 +174,24 @@ export const gameManager = {
     if (wrapper) wrapper.style.display = "none";
     document.getElementById("battleScreen").style.display = "flex";
 
-    let savedStatus = null;
-    let activeConfig = this.currentConfig;
+    // ★修正：セーブデータからプレイヤーのステータスを読み込む
+    const progress = storyStorage.loadProgress();
+    let savedStatus = progress.playerStatus; 
 
-    if (this.isStoryMode) {
-      const progress = storyStorage.loadProgress();
-      savedStatus = progress.playerStatus;
-      activeConfig = this.storyStages[this.currentStageIndex];
+    let activeConfig = this.currentConfig;
+    let enemyType = "Peasant"; 
+
+    const stageInfo = this.storyStages[this.currentStageIndex];
+    if (stageInfo) {
+      activeConfig = stageInfo;
+      enemyType = stageInfo.enemyType || "Peasant";
     }
 
     const bgKey = activeConfig ? activeConfig.bgKey : null;
-    battleManager.init(savedStatus, bgKey);
+    quizManager.quizMode = "normal";
+
+    // 読み込んだ savedStatus を渡すことでレベルが継続される
+    battleManager.init(savedStatus, bgKey, enemyType);
 
     const bgm = assets.sounds.bgm_Battle;
     if (bgm) {

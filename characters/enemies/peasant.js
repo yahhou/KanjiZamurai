@@ -5,10 +5,10 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/peasant-Sheet.png", 
-        hp: 15,
+        hp: 10,
         mp: 0,
         atk: 10,
-        def: 5,
+        def: 3,
         mdf: 10,
         eva: 10,
         critRate: 10,
@@ -19,7 +19,7 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "Peasant";
-      this.expReward = 30;
+      this.expReward = 8;
       
     }
 
