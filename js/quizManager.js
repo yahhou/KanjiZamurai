@@ -355,24 +355,20 @@ export const quizManager = {
     // クリア画面を出すときだけ、スキルパネルを隠す
     window.gameManager?.hideSkillPanel();
 
-    const container = document.getElementById("quizArea");
-    if (!container) return;
-
-    container.style.display = "flex";
     // ボタンのHTMLを先に構築
     let buttonHtml = window.gameManager?.isStoryMode
       ? `<button type="button" id="nextStageBtn" class="retry-btn">Next Stage</button>`
       : `<button type="button" id="retryBtn" class="retry-btn">RETRY</button>`;
 
-    container.innerHTML = `
+    window.gameManager?.showBattleResult(`
       <div class="announcement-area">
         <div class="victory-message-area">
           <h2>Stage Clear!</h2>
           <p>Boss Defeated!</p>
         </div>
-        <div class="menu-container">${buttonHtml}</div>
+        <div class="menu-container result-actions">${buttonHtml}</div>
       </div>
-    `;
+    `);
 
     // innerHTMLを書き換えた直後にイベントリスナーを再登録
     document.getElementById("nextStageBtn")?.addEventListener("click", () => {

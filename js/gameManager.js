@@ -131,6 +131,7 @@ export const gameManager = {
     battleManager.clearCharacters();
     quizManager.reset();
     this.hideSkillPanel();
+    this.clearBattleResult();
 
     const battle = document.getElementById("battleScreen");
     if (battle) battle.style.display = "none";
@@ -138,6 +139,24 @@ export const gameManager = {
     document.getElementById("stageIntro")?.remove();
     document.getElementById("quizArea").innerHTML = "";
     this.showStartScreen();
+  },
+
+  showBattleResult(html) {
+    const battle = document.getElementById("battleScreen");
+    if (!battle) return null;
+
+    this.clearBattleResult();
+
+    const overlay = document.createElement("div");
+    overlay.id = "battleResultOverlay";
+    overlay.className = "battle-result-overlay";
+    overlay.innerHTML = html;
+    battle.appendChild(overlay);
+    return overlay;
+  },
+
+  clearBattleResult() {
+    document.getElementById("battleResultOverlay")?.remove();
   },
 
   // --- 画面表示系 ---
@@ -183,10 +202,7 @@ export const gameManager = {
     quizManager.quizMode = "normal";
 
     if (!stageInfo) {
-      alert("全ステージクリア！");
-      this.isStoryMode = false;
-      this.currentStageIndex = 0;
-      return this.showStartScreen();
+      return this.showNextStageInDevelopment();
     }
 
     this.currentConfig = stageInfo;
@@ -209,8 +225,37 @@ export const gameManager = {
     this.launchStoryStage();
   },
 
+  showNextStageInDevelopment() {
+    this.stopBattleSounds();
+    this.hideSkillPanel();
+    battleManager.clearCharacters();
+
+    const wrapper = document.getElementById("uiWrapper");
+    if (wrapper) wrapper.style.display = "none";
+
+    const battle = document.getElementById("battleScreen");
+    if (battle) battle.style.display = "flex";
+
+    this.showBattleResult(`
+      <div class="announcement-area next-stage-development">
+        <div class="victory-message-area">
+          <h2>More Stages Coming Soon</h2>
+          <p>The next stage is still in development.</p>
+        </div>
+        <div class="menu-container">
+          <button type="button" id="backToTitleBtn" class="retry-btn">Back to Title</button>
+        </div>
+      </div>
+    `);
+
+    document.getElementById("backToTitleBtn")?.addEventListener("click", () => {
+      this.returnToTitle();
+    });
+  },
+
   // --- バトル開始 ---
   startBattle() {
+    this.clearBattleResult();
     const wrapper = document.getElementById("uiWrapper");
     if (wrapper) wrapper.style.display = "none";
     document.getElementById("battleScreen").style.display = "flex";
@@ -396,12 +441,13 @@ export const gameManager = {
     const bgm = assets.sounds.bgm_Battle;
     if (bgm) bgm.pause();
     if (this.gameOverSE) this.gameOverSE.play();
-    const container = document.getElementById("quizArea");
-    container.style.display = "flex";
     let buttons = this.isStoryMode ? `<button type="button" id="re-challengeBtn" class="retry-btn">Retry Stage</button>` : "";
     buttons += `<button type="button" id="retryBtn" class="retry-btn">Back to menu</button>`;
-    container.innerHTML = `<div class="announcement-area--gameover"><h2>Game Over</h2>${quizManager.buildWrongAnswersReviewHtml()}<div class="menu-container">${buttons}</div></div>`;
-    document.getElementById("re-challengeBtn")?.addEventListener("click", () => this.launchStoryStage());
+    this.showBattleResult(`<div class="announcement-area--gameover"><h2>Game Over</h2>${quizManager.buildWrongAnswersReviewHtml()}<div class="menu-container result-actions">${buttons}</div></div>`);
+    document.getElementById("re-challengeBtn")?.addEventListener("click", () => {
+      this.clearBattleResult();
+      this.launchStoryStage();
+    });
     document.getElementById("retryBtn").addEventListener("click", () => this.retry());
   },
   
@@ -418,6 +464,7 @@ export const gameManager = {
 
 
   retry() {
+    this.clearBattleResult();
     const battle = document.getElementById("battleScreen");
     if (battle) battle.style.display = "none";
     document.getElementById("quizArea").innerHTML = "";
