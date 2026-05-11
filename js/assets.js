@@ -14,15 +14,21 @@ export const assets = {
     this.images.onmyoji = new Image();
     this.images.onmyoji.src = "assets/images/Onmyoji-Sheet.png";
 
+    /////////////
     // --- 敵 ---
+    /////////////
+
+    //農民
     this.images.peasant = new Image();
     this.images.peasant.src = "assets/images/peasant-Sheet.png";
-
+    
+     //天狗
     this.images.tengu = new Image();
     this.images.tengu.src = "assets/images/tengu-Sheet.png";
 
-    this.images.testEnemy = new Image();
-    this.images.testEnemy.src = "assets/images/testEnemy-Sheet.png";
+    //one_eyed_gobline
+    this.images.oneEyedGoblin = new Image();
+    this.images.oneEyedGoblin.src = "assets/images/OneEyedGoblin-Sheet.png";
 
     this.images.pirate = new Image();
     this.images.pirate.src = "assets/images/pirate-Sheet.png";

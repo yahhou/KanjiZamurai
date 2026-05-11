@@ -3,7 +3,7 @@ import { Peasant } from "../characters/enemies/peasant.js";
 import { Shougun } from "../characters/enemies/shougun.js";
 import { Ninja } from "../characters/enemies/ninja.js";
 import { Tengu } from "../characters/enemies/tengu.js";
-import { quizManager } from "./quizManager.js";
+import { OneEyedGoblin } from "../characters/enemies/oneEyedGoblin.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -12,6 +12,7 @@ const ENEMY_CLASSES = {
   Ninja,
   Tengu,
   Shougun,
+  OneEyedGoblin,
 };
 
 function normalizeEnemyTypes(enemyTypes) {

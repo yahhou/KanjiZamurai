@@ -16,7 +16,7 @@ export const STAGE_CONFIGS = {
       files: ["N5_stage1.json"],
       bgKey: "stage_1",
       enemyLevel: 1,
-      enemyTypes: ["Peasant"],
+      enemyTypes: ["OneEyedGoblin"],
       bossType: "Tengu",
     },
     {
