@@ -3,23 +3,27 @@ import { Peasant } from "../characters/enemies/peasant.js";
 import { Shougun } from "../characters/enemies/shougun.js";
 import { Ninja } from "../characters/enemies/ninja.js";
 import { quizManager } from "./quizManager.js";
+import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
+import { ENEMY_BALANCE } from "./balanceConfig.js";
 
-
-const ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT = 0;
 
 export const battleManager = {
   player: null,
   enemy: null,
   bgImages: {},
+  currentEnemyLevel: null,
+  currentBossType: null,
 
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
   ///////////////////////////////////
-  init(savedStatus = null, bgKey = null, enemyType = null) { // 引数で保存データを受け取れるようにする
+  init(savedStatus = null, bgKey = null, enemyType = null, enemyLevel = null, bossType = null) { // 引数で保存データを受け取れるようにする
     this.clearCharacters();
     this.setupBackgrounds();
     
     this.currentEnemyType = enemyType;
+    this.currentEnemyLevel = enemyLevel;
+    this.currentBossType = bossType;
 
     // 1. まず新しいインスタンスを作る（この時点ではLv1, Exp0）
     this.player = new Samurai();
@@ -57,17 +61,17 @@ export const battleManager = {
   ///////////////////////////////////
   //   　　ボスのスポーン
   ///////////////////////////////////
-  bossSpawn(bossTypeName) {
+  bossSpawn(bossTypeName = null) {
     if (this.enemy) this.enemy.destroy();
 
     const enemyTypes = { Peasant, Ninja, Shougun };
-    const BossClass = enemyTypes[bossTypeName] || Ninja;
+    const BossClass = enemyTypes[bossTypeName || this.currentBossType] || Ninja;
 
     this.enemy = new BossClass(); 
-    // ボス補正：HPを2倍、攻撃力を1.2倍など
-    this.enemy.maxHp = Math.floor(this.enemy.maxHp * 2.0);
+    this.scaleEnemyToStageLevel(this.enemy, this.getBossLevel());
+    this.enemy.maxHp = Math.floor(this.enemy.maxHp * ENEMY_BALANCE.bossHpMultiplier);
     this.enemy.hp = this.enemy.maxHp;
-    this.enemy.baseAtk = Math.floor(this.enemy.baseAtk * 1.2);
+    this.enemy.baseAtk = Math.floor(this.enemy.baseAtk * ENEMY_BALANCE.bossAtkMultiplier);
     this.enemy.refreshStats();
 
     const actionArea = document.getElementById("actionArea");
@@ -142,7 +146,7 @@ export const battleManager = {
     }
 
     this.enemy = new EnemyClass();
-    this.scaleEnemyToPlayerLevel(this.enemy);
+    this.scaleEnemyToStageLevel(this.enemy);
     this.enemy.refreshStats();
 
     const actionArea = document.getElementById("actionArea");
@@ -156,22 +160,25 @@ export const battleManager = {
   ///////////////////////////////////
   //          敵のレベルを調整
   ///////////////////////////////////
-  scaleEnemyToPlayerLevel(enemy) {
+  scaleEnemyToStageLevel(enemy, specifiedLevel = null) {
     if (!enemy || !this.player) return;
 
     const playerLevel = Math.max(1, this.player.level || 1);
+    const stageLevel = specifiedLevel || this.currentEnemyLevel;
 
     let bonusFromQuiz = 0;
-    if (ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT > 0) {
+    if (ENEMY_BALANCE.extraLevelEveryNCorrect > 0) {
       const correct = window.quizManager?.stageCorrectCount ?? 0;
-      bonusFromQuiz = Math.floor(Math.max(0, correct) / ENEMY_EXTRA_LEVEL_EVERY_N_CORRECT);
+      bonusFromQuiz = Math.floor(Math.max(0, correct) / ENEMY_BALANCE.extraLevelEveryNCorrect);
     }
 
-    const level = Math.max(1, playerLevel + bonusFromQuiz);
+    const fallbackLevel = Math.max(1, Math.floor(playerLevel * ENEMY_BALANCE.fallbackPlayerLevelRatio));
+    const baseLevel = stageLevel || fallbackLevel;
+    const level = Math.max(1, baseLevel + bonusFromQuiz);
     enemy.level = level;
-    const hpScale = 1 + (level - 1) * 0.25;
-    const statScale = 1 + (level - 1) * 0.15;
-    const expScale = 1 + (level - 1) * 0.1;
+    const hpScale = 1 + (level - 1) * ENEMY_BALANCE.hpScalePerLevel;
+    const statScale = 1 + (level - 1) * ENEMY_BALANCE.statScalePerLevel;
+    const expScale = 1 + (level - 1) * ENEMY_BALANCE.expScalePerLevel;
 
     enemy.maxHp = Math.floor(enemy.maxHp * hpScale);
     enemy.hp = enemy.maxHp;
@@ -179,6 +186,11 @@ export const battleManager = {
     enemy.baseDef = Math.floor(enemy.baseDef * statScale);
     enemy.mdf = Math.floor(enemy.mdf * statScale);
     enemy.expReward = Math.floor((enemy.expReward || 5) * expScale);
+  },
+
+  getBossLevel() {
+    const baseLevel = this.currentEnemyLevel || Math.max(1, Math.floor((this.player?.level || 1) * ENEMY_BALANCE.fallbackPlayerLevelRatio));
+    return baseLevel + ENEMY_BALANCE.bossLevelBonus;
   },
 
 

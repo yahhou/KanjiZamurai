@@ -3,6 +3,7 @@ import { battleManager } from "./battleManager.js";
 import { quizManager } from "./quizManager.js";
 import { itemManager } from "./itemManager.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
+import { STAGE_CONFIGS, STORY_STAGE_ORDER, getStoryStage } from "./stageData.js";
 
 const INITIAL_LOAD_MS = 2000;
 
@@ -24,6 +25,18 @@ function stageWordUrl(category, fileName) {
   return new URL(`../assets/words/${category}/${fileName}`, import.meta.url);
 }
 
+function getStageIntroText(stageConfig) {
+  if (!stageConfig) return "";
+
+  const stageNumber = stageConfig.stageId || stageConfig.id;
+  const stageName = stageConfig.name || "";
+
+  if (stageNumber && stageName) return `Stage ${stageNumber} ${stageName}`;
+  if (stageName) return stageName;
+  if (stageNumber) return `Stage ${stageNumber}`;
+  return "";
+}
+
 export const gameManager = {
   // --- プロパティ ---
   currentConfig: null,
@@ -38,42 +51,15 @@ export const gameManager = {
 
   
 
-  storyStages: [
-    { 
-    category: "N5", 
-    stageId: 1, 
-    name: "numbers", 
-    bgKey: "stage_1",
-    enemyType: "Peasant", // 雑魚敵
-    bossType: "Ninja"     // ボス
-  },
-  { 
-    category: "N5", 
-    stageId: 2, 
-    name: "time", 
-    bgKey: "stage_2",
-    enemyType: "Ninja",
-    bossType: "Shougun" 
-  },
-  ],
-
-  stageConfigs: {
-    N1: [], N2: [], N3: [], N4: [],
-    N5: [
-      { id: 1, name: "numbers", files: ["N5_stage1.json"], bgKey: "stage_1"},
-      { id: 2, name: "time", files: ["N5_stage2.json"], bgKey: "stage_2"},
-    ],
-    N6: [
-      { id: 99, name: "Hiragana", files: ["hiragana.json"] },
-      { id: 100, name: "Katakana", files: ["katakana.json"] },
-    ]
-  },
+  storyStages: STORY_STAGE_ORDER,
+  stageConfigs: STAGE_CONFIGS,
 
   // --- 初期化 ---
   init() {
     this.startLoadingAnimation();
     quizManager.onCorrect = () => battleManager.playerAttack();
     quizManager.onWrong = () => battleManager.enemyAttack();
+    this.bindBattleControls();
 
     if (!this.isLoaded) {
       assets.loadAssets();
@@ -93,6 +79,65 @@ export const gameManager = {
         bgm.play().then(() => { bgm.pause(); bgm.currentTime = 0; }).catch(() => {});
       }
     }, { once: true });
+  },
+
+  bindBattleControls() {
+    const homeBtn = document.getElementById("battleHomeBtn");
+    if (homeBtn) homeBtn.onclick = () => this.showQuitConfirm();
+  },
+
+  showQuitConfirm() {
+    const modal = document.getElementById("quitConfirmModal");
+    if (!modal) return;
+
+    modal.innerHTML = `
+      <div class="quit-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="quitConfirmTitle">
+        <h2 id="quitConfirmTitle">Return to Title?</h2>
+        <p>Your current battle progress will be lost.</p>
+        <div class="quit-confirm-actions">
+          <button type="button" class="quit-confirm-btn cancel" id="quitCancelBtn">Cancel</button>
+          <button type="button" class="quit-confirm-btn confirm" id="quitConfirmBtn">Return</button>
+        </div>
+      </div>
+    `;
+    modal.style.display = "flex";
+    modal.setAttribute("aria-hidden", "false");
+
+    document.getElementById("quitCancelBtn")?.addEventListener("click", () => this.hideQuitConfirm());
+    document.getElementById("quitConfirmBtn")?.addEventListener("click", () => this.returnToTitle());
+  },
+
+  hideQuitConfirm() {
+    const modal = document.getElementById("quitConfirmModal");
+    if (!modal) return;
+
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    modal.innerHTML = "";
+  },
+
+  stopBattleSounds() {
+    const sounds = [assets.sounds.bgm_Battle, assets.sounds.bgm_BossBattle];
+    sounds.forEach((sound) => {
+      if (!sound) return;
+      sound.pause();
+      sound.currentTime = 0;
+    });
+  },
+
+  returnToTitle() {
+    this.hideQuitConfirm();
+    this.stopBattleSounds();
+    battleManager.clearCharacters();
+    quizManager.reset();
+    this.hideSkillPanel();
+
+    const battle = document.getElementById("battleScreen");
+    if (battle) battle.style.display = "none";
+
+    document.getElementById("stageIntro")?.remove();
+    document.getElementById("quizArea").innerHTML = "";
+    this.showStartScreen();
   },
 
   // --- 画面表示系 ---
@@ -131,7 +176,7 @@ export const gameManager = {
   },
 
   launchStoryStage() {
-    const stageInfo = this.storyStages[this.currentStageIndex];
+    const stageInfo = getStoryStage(this.currentStageIndex);
 
     // クイズの進捗とモードをリセット
     quizManager.reset();
@@ -144,14 +189,8 @@ export const gameManager = {
       return this.showStartScreen();
     }
 
-    const config = this.stageConfigs[stageInfo.category].find(s => s.id === stageInfo.stageId);
-    if (!config) {
-      console.error("Config not found", stageInfo);
-      return;
-    }
-
-    this.currentConfig = config;
-    this.loadSelectedStageData(stageInfo.category, config.files);
+    this.currentConfig = stageInfo;
+    this.loadSelectedStageData(stageInfo.category, stageInfo.files);
   },
 
   nextStage() {
@@ -176,24 +215,30 @@ export const gameManager = {
     if (wrapper) wrapper.style.display = "none";
     document.getElementById("battleScreen").style.display = "flex";
 
-    // ★修正：セーブデータからプレイヤーのステータスを読み込む
-    const progress = storyStorage.loadProgress();
-    let savedStatus = progress.playerStatus; 
+    const progress = this.isStoryMode ? storyStorage.loadProgress() : null;
+    let savedStatus = progress?.playerStatus || null; 
 
     let activeConfig = this.currentConfig;
     let enemyType = "Peasant"; 
+    let bossType = "Ninja";
 
-    const stageInfo = this.storyStages[this.currentStageIndex];
-    if (stageInfo) {
+    const stageInfo = getStoryStage(this.currentStageIndex);
+    if (this.isStoryMode && stageInfo) {
       activeConfig = stageInfo;
       enemyType = stageInfo.enemyType || "Peasant";
+      bossType = stageInfo.bossType || "Ninja";
+    } else if (activeConfig) {
+      enemyType = activeConfig.enemyType || "Peasant";
+      bossType = activeConfig.bossType || "Ninja";
     }
 
     const bgKey = activeConfig ? activeConfig.bgKey : null;
+    const enemyLevel = activeConfig?.enemyLevel || null;
     quizManager.quizMode = "normal";
 
     // 読み込んだ savedStatus を渡すことでレベルが継続される
-    battleManager.init(savedStatus, bgKey, enemyType);
+    battleManager.init(savedStatus, bgKey, enemyType, enemyLevel, bossType);
+    this.showStageIntro(activeConfig);
 
     const bgm = assets.sounds.bgm_Battle;
     if (bgm) {
@@ -203,6 +248,43 @@ export const gameManager = {
       bgm.play().catch(() => {});
     }
     quizManager.start();
+  },
+
+  showStageIntro(stageConfig) {
+    // stageConfig からレベル(1, 2...)と名前(名前)を別々に取得
+    const level = stageConfig.id; // または "STAGE " + stageConfig.level
+    const name = stageConfig.name;
+    
+    const battleScreen = document.getElementById("battleScreen");
+    if (!battleScreen) return;
+
+    document.getElementById("stageIntro")?.remove();
+
+    const intro = document.createElement("div");
+    intro.id = "stageIntro";
+    intro.className = "stage-intro";
+
+    // テンプレートリテラルで2行に構成
+    // styleで微調整しやすいよう、それぞれspanで囲んでいます
+    intro.innerHTML = `
+      <div class="intro-level">STAGE ${level}</div>
+      <div class="intro-name">${name}</div>
+    `;
+
+    battleScreen.appendChild(intro);
+
+    requestAnimationFrame(() => {
+      intro.classList.add("is-visible");
+    });
+
+    setTimeout(() => {
+      intro.classList.remove("is-visible");
+      intro.classList.add("is-hiding");
+    }, 1500);
+
+    setTimeout(() => {
+      intro.remove();
+    }, 2500);
   },
 
   // --- データ読み込み ---

@@ -274,8 +274,8 @@ export const quizManager = {
 
     if (container) container.style.display = "block";
 
-    if (bg && this.images.ui_Kiwami_BG) {
-      bg.src = this.images.ui_Kiwami_BG.src;
+    if (bg && this.images.ui_Kiwami) {
+      bg.src = this.images.ui_Kiwami.src;
       bg.style.display = "block";
     }
 
@@ -423,9 +423,8 @@ export const quizManager = {
       }
 
       // ボス出現
-      const stageInfo = window.gameManager.storyStages[window.gameManager.currentStageIndex];
-      if (stageInfo && window.battleManager) {
-        window.battleManager.bossSpawn(stageInfo.bossType);
+      if (window.battleManager) {
+        window.battleManager.bossSpawn();
       }
 
       // クイズ画面をボス用に更新

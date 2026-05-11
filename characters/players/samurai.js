@@ -94,36 +94,4 @@ import { Player } from './player.js';
     nextFrame();
   }
   
-
-  ////////////////////////////////////////////////
-  // 現在のステータスをプレーンなオブジェクトとして書き出す
-  ////////////////////////////////////////////////
-  exportStatus() {
-    return {
-      level: this.level,
-      hp: this.hp,
-      maxHp: this.maxHp,
-      exp: this.exp,
-      nextExp: this.nextExp,
-      baseAtk: this.baseAtk,
-      baseDef: this.baseDef,
-      // 習得したスキルやバフなども必要ならここに入れる
-    };
-  }
-
-
-///////////////////////////////////////
-// 保存されたデータからステータスを復元する
-///////////////////////////////////////
-  importStatus(data) {
-    if (!data) return;
-    this.level = data.level;
-    this.hp = data.hp;
-    this.maxHp = data.maxHp;
-    this.exp = data.exp;
-    this.nextExp = data.nextExp;
-    this.baseAtk = data.baseAtk;
-    this.baseDef = data.baseDef;
-    this.refreshStats(); // UI更新
-  }
 }

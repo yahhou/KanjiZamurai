@@ -261,6 +261,124 @@ body {
   box-sizing: border-box;
 }
 
+.battle-home-btn {
+  position: absolute;
+  top: 1.5cqw;
+  right: 1.5cqw;
+  z-index: 250;
+  min-width: 13cqw;
+  min-height: 7cqw;
+  padding: 0 2.5cqw;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.58);
+  color: #ffffff;
+  font-size: 3.2cqw;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  text-shadow: 0 1px 2px #000000;
+}
+
+.battle-home-btn:active {
+  transform: scale(0.96);
+}
+
+.quit-confirm-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.58);
+  pointer-events: auto;
+}
+
+.quit-confirm-dialog {
+  width: 78%;
+  padding: 5cqw;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 215, 0, 0.85);
+  border-radius: 6px;
+  background: rgba(10, 10, 10, 0.94);
+  color: #ffffff;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.72);
+}
+
+.quit-confirm-dialog h2 {
+  margin: 0 0 2cqw;
+  font-size: 6cqw;
+  line-height: 1.15;
+}
+
+.quit-confirm-dialog p {
+  margin: 0 0 4cqw;
+  font-size: 3.8cqw;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.quit-confirm-actions {
+  display: flex;
+  gap: 2cqw;
+  justify-content: center;
+}
+
+.quit-confirm-btn {
+  width: 34cqw;
+  min-height: 9cqw;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  color: #ffffff;
+  font-size: 4cqw;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.quit-confirm-btn.cancel {
+  background: #333333;
+}
+
+.quit-confirm-btn.confirm {
+  background: #8b0000;
+}
+
+.stage-intro {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  z-index: 300;
+  max-width: 84%;
+  padding: 2cqw 5cqw;
+  transform: translate(-50%, -50%) scale(0.96);
+  border-top: 1px solid rgba(255, 215, 0, 0.85);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.85);
+  background: rgba(0, 0, 0, 0.62);
+  color: #ffffff;
+  font-size: 6cqw;
+  font-weight: bold;
+  line-height: 1.15;
+  text-align: center;
+  text-shadow: 0 2px 4px #000000;
+  opacity: 0;
+  pointer-events: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.stage-intro.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.stage-intro.is-hiding {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.03);
+}
+
 
 /* ==========================================================================
 /* ==========================================================================
@@ -313,12 +431,12 @@ body {
   background-position: bottom center;
 
 
-  filter: 
-  /* 小さな影を4方向に配置して縁取りにする（ブラーは0） */
+  /* filter: 
+  /* 小さな影を4方向に配置して縁取りにする（ブラーは0）
   drop-shadow(3px 3px 3px rgba(0,0,0,0.3))
   drop-shadow(-3px -3px 3px rgba(0,0,0,0.3))
   drop-shadow(3px -3px 3px rgba(0,0,0,0.3))
-  drop-shadow(-3px 3px 3px rgba(0,0,0,0.3));
+  drop-shadow(-3px 3px 3px rgba(0,0,0,0.3)); */
 }
 
 /* ====================
@@ -795,27 +913,50 @@ body {
 
 #statusArea #player-ui .player-buff-icons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: flex-start;
-  gap: 5px;
-  width: 100%;
-
-
-  /* --- 追加：レイアウトに影響を与えない設定 --- */
-  position: absolute;   /* 絶対配置にする */
-  top: -50%;            /* 親要素（player-ui）のすぐ下に配置 */
-  left: 0;
-  pointer-events: none; /* クリックを邪魔しない */
-  
+  gap: 0.8cqw;
+  width: 80%;
+  min-height: 6cqw;
+  margin-top: 0.5cqw;
+  margin-bottom: 0.5cqw;
+  pointer-events: none;
 }
 
 #statusArea #player-ui .player-buff-icon {
-  width: 6cqw;
-  height: 6cqw;
+  width: 5.5cqw;
+  height: 5.5cqw;
+  flex: 0 0 auto;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 4px;
   background-color: rgba(0, 0, 0, 0.35);
+}
+
+#statusArea #player-ui .player-buff-icon.rarity-common {
+  border-color: #ffffff;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+#statusArea #player-ui .player-buff-icon.rarity-uncommon {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(74, 228, 255, 0.45);
+}
+
+#statusArea #player-ui .player-buff-icon.rarity-rare {
+  border-color: #ff2a2a;
+  box-shadow: 0 0 6px rgba(255, 42, 42, 0.45);
+}
+
+#statusArea #player-ui .player-buff-icon.rarity-legendary {
+  border-color: #fbff00;
+  box-shadow: 0 0 7px rgba(255, 255, 48, 0.55);
+}
+
+#statusArea #player-ui .player-buff-icon.rarity-mythic {
+  border-color: #ffffff;
+  animation: item-rainbow-border 1.2s linear infinite;
 }
 
 /* ===================
@@ -847,14 +988,18 @@ body {
   position: absolute;
   top: 0;
   image-rendering: pixelated;
+  border: 0;
+  outline: 0;
 }
 
 #kiwami-bg {
+  display: none;
   left: 0;
   z-index: 1;
 }
 
 #kiwami-image {
+  left: 0;
   z-index: 2;
 }
 

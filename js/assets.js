@@ -18,6 +18,9 @@ export const assets = {
     this.images.peasant = new Image();
     this.images.peasant.src = "assets/images/peasant-Sheet.png";
 
+    this.images.testEnemy = new Image();
+    this.images.testEnemy.src = "assets/images/testEnemy-Sheet.png";
+
     this.images.pirate = new Image();
     this.images.pirate.src = "assets/images/pirate-Sheet.png";
 

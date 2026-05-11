@@ -2,20 +2,47 @@ import { itemManager } from "./itemManager.js";
 
 const ITEMS_SHEET_URL = "assets/images/items-Sheet.png";
 
+function getEquippedItem(typeKey, rarity) {
+  if (!rarity) return null;
+
+  return itemManager.items.find(
+    (candidate) => candidate[typeKey] && candidate.rarity === rarity
+  ) || null;
+}
+
 /**
- * プレイヤー横の「バフアイコン」行に出す定義。
- * 新しいアイテム効果を足すときは、ここにオブジェクトを1行追加する。
- *
- * - id: DOM の data-buff-id（デバッグ用）
- * - title: ホバー時の説明
- * - itemFrame: items-Sheet-Sheet.png のフレーム番号（itemManager の Item と同じ）
- * - isActive: そのバフが付いているか
+ * HP数字の下に出す装備・状態アイコン定義。
+ * 回復だけの消費アイテムはここに入れない。
  */
-export const PLAYER_BUFF_SOURCES = [
+export const PLAYER_STATUS_ICON_SOURCES = [
+  {
+    id: "weapon",
+    title: "武器",
+    getItem: (player) => getEquippedItem("isWeapon", player?.weaponRarity),
+    isActive: (player) => player?.isWeaponEquipped === true,
+  },
+  {
+    id: "haori",
+    title: "羽織",
+    getItem: (player) => getEquippedItem("isHaori", player?.haoriRarity),
+    isActive: (player) => player?.isHaoriEquipped === true,
+  },
+  {
+    id: "band",
+    title: "鉢金",
+    getItem: (player) => getEquippedItem("isBand", player?.bandRarity),
+    isActive: (player) => player?.isBandEquipped === true,
+  },
+  {
+    id: "beads",
+    title: "数珠",
+    getItem: (player) => getEquippedItem("isBeads", player?.beadsRarity),
+    isActive: (player) => player?.isBeadsEquipped === true,
+  },
   {
     id: "regeneration",
     title: "リジェネ（緑茶）",
-    itemFrame: 1,
+    getItem: () => itemManager.getItem("green tea"),
     isActive: (player) => player?.isRegenerating === true,
   },
 ];
@@ -32,16 +59,20 @@ export function refreshPlayerBuffIcons() {
   root.innerHTML = "";
 
   const frameCount = itemManager.getFrameCount();
-  const activeDefs = PLAYER_BUFF_SOURCES.filter((def) => def.isActive(player));
+  const activeDefs = PLAYER_STATUS_ICON_SOURCES.filter((def) => def.isActive(player));
 
   for (const def of activeDefs) {
+    const item = def.getItem(player);
+    if (!item) continue;
+
     const cell = document.createElement("div");
-    cell.className = "player-buff-icon";
+    const rarityClass = String(item.rarity || "common").toLowerCase().replace(/\s+/g, "-");
+    cell.className = `player-buff-icon rarity-${rarityClass}`;
     cell.dataset.buffId = def.id;
     cell.title = def.title;
     cell.setAttribute("role", "img");
 
-    const pos = itemManager.getFramePosition(def.itemFrame, frameCount);
+    const pos = itemManager.getFramePosition(item.frame, frameCount);
     cell.style.backgroundImage = `url('${ITEMS_SHEET_URL}')`;
     cell.style.backgroundSize = `${frameCount * 100}% 100%`;
     cell.style.backgroundPosition = `${pos}% 0`;

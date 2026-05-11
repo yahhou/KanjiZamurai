@@ -127,7 +127,7 @@ export const itemManager = {
       id: "kiku-ichimonji",
       name: "Kiku-Ichimonji",
       description: "Atk +200%",
-      frame: 6,
+      frame: 4,
       rarity: "uncommon",
       isWeapon: true,
 

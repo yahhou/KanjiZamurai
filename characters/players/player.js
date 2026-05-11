@@ -1,6 +1,7 @@
 import { Character } from '../../js/characterManager.js';
 import { gameManager } from '../../js/gameManager.js';
 import { refreshPlayerBuffIcons } from '../../js/playerBuffIcons.js';
+import { PLAYER_BALANCE } from '../../js/balanceConfig.js';
 
 export class Player extends Character {
   constructor(config) {
@@ -8,7 +9,7 @@ export class Player extends Character {
     // プレイヤー共通の初期化（例：現在のレベルなど）
     this.level = 1;
     this.exp = 0;
-    this.maxExp = 20;
+    this.maxExp = PLAYER_BALANCE.initialMaxExp;
     this.pendingExp = 0;
     this.isAnimatingExp = false;
     this.createExpBar();
@@ -108,31 +109,32 @@ export class Player extends Character {
     levelUp() {
       this.level++;
 
-    // --- HPの上昇（10〜15の範囲でランダム） ---
-    const hpGain = 10 + Math.floor(Math.random() * 6);
+    // --- HPの上昇 ---
+    const hpRange = PLAYER_BALANCE.maxHpGainOnLevelUp - PLAYER_BALANCE.minHpGainOnLevelUp + 1;
+    const hpGain = PLAYER_BALANCE.minHpGainOnLevelUp + Math.floor(Math.random() * hpRange);
     this.maxHp += hpGain;
     this.hp += hpGain;
 
     // --- ステータスポイントの割り振り ---
-    // 合計で「7ポイント」を Atk, Def, Mdf にランダムに振り分ける
+    // 合計ポイントを Atk, Def, Mdf にランダムに振り分ける
     // これにより合計値が一定（上がりすぎ防止）になりつつ、個性が生まれる
-    let totalStatPoints = 7;
+    let totalStatPoints = PLAYER_BALANCE.statPointsOnLevelUp;
     const stats = ["baseAtk", "baseDef", "baseMdf"];
 
     // 最低でも各ステータス 1 は上がるように保証（上がらなすぎ防止）
-    this.baseAtk += 1;
-    this.baseDef += 1;
-    this.baseMdf += 1;
-    totalStatPoints -= 3;
+    this.baseAtk += PLAYER_BALANCE.guaranteedStatGain;
+    this.baseDef += PLAYER_BALANCE.guaranteedStatGain;
+    this.baseMdf += PLAYER_BALANCE.guaranteedStatGain;
+    totalStatPoints -= stats.length * PLAYER_BALANCE.guaranteedStatGain;
 
-    // 残りの 4ポイントをランダムに割り振る
+    // 残りポイントをランダムに割り振る
     for (let i = 0; i < totalStatPoints; i++) {
       const targetStat = stats[Math.floor(Math.random() * stats.length)];
       this[targetStat] += 1;
     }
 
     // 次のレベルまでの経験値を増加
-    this.maxExp = Math.floor(this.maxExp * 1.4);
+    this.maxExp = Math.floor(this.maxExp * PLAYER_BALANCE.maxExpMultiplier);
 
     this.refreshStats();
     this.showLevelUpEffect();
@@ -248,7 +250,7 @@ export class Player extends Character {
 
     this.level = status.level || 1;
     this.exp = status.exp || 0;
-    this.maxExp = status.maxExp || 20;
+    this.maxExp = status.maxExp || PLAYER_BALANCE.initialMaxExp;
     
     // ★追加：前ステージのアニメーション残骸をクリアする
     this.pendingExp = 0;
