@@ -2,6 +2,7 @@ import { Samurai } from "../characters/players/samurai.js";
 import { Peasant } from "../characters/enemies/peasant.js";
 import { Shougun } from "../characters/enemies/shougun.js";
 import { Ninja } from "../characters/enemies/ninja.js";
+import { Tengu } from "../characters/enemies/tengu.js";
 import { quizManager } from "./quizManager.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
@@ -64,7 +65,7 @@ export const battleManager = {
   bossSpawn(bossTypeName = null) {
     if (this.enemy) this.enemy.destroy();
 
-    const enemyTypes = { Peasant, Ninja, Shougun };
+    const enemyTypes = { Peasant, Ninja, Tengu, Shougun };
     const BossClass = enemyTypes[bossTypeName || this.currentBossType] || Ninja;
 
     this.enemy = new BossClass(); 
@@ -130,6 +131,7 @@ export const battleManager = {
     const enemyMap = { 
       "Peasant": Peasant, 
       "Ninja": Ninja, 
+      "Tengu": Tengu,
       "Shougun": Shougun 
     };
 
@@ -141,7 +143,7 @@ export const battleManager = {
       EnemyClass = enemyMap[typeName];
     } else {
       // どこにも指定がない場合のみランダム（練習モード用など）
-      const classes = [Peasant, Ninja, Shougun];
+      const classes = [Peasant, Ninja, Tengu, Shougun];
       EnemyClass = classes[Math.floor(Math.random() * classes.length)];
     }
 

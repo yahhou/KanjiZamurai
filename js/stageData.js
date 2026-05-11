@@ -17,7 +17,7 @@ export const STAGE_CONFIGS = {
       bgKey: "stage_1",
       enemyLevel: 1,
       enemyType: "Peasant",
-      bossType: "Ninja",
+      bossType: "Tengu",
     },
     {
       id: 2,
