@@ -1,5 +1,5 @@
 export const DEFAULT_STAGE_SETTINGS = {
-  enemyType: "Peasant",
+  enemyTypes: ["Peasant"],
   bossType: "Ninja",
   enemyLevel: null,
 };
@@ -16,7 +16,7 @@ export const STAGE_CONFIGS = {
       files: ["N5_stage1.json"],
       bgKey: "stage_1",
       enemyLevel: 1,
-      enemyType: "Peasant",
+      enemyTypes: ["Peasant"],
       bossType: "Tengu",
     },
     {
@@ -25,7 +25,7 @@ export const STAGE_CONFIGS = {
       files: ["N5_stage2.json"],
       bgKey: "stage_2",
       enemyLevel: 2,
-      enemyType: "Ninja",
+      enemyTypes: ["Ninja","Peasant"],
       bossType: "Shougun",
     },
   ],
@@ -35,7 +35,7 @@ export const STAGE_CONFIGS = {
       name: "Hiragana",
       files: ["hiragana.json"],
       enemyLevel: 1,
-      enemyType: "Peasant",
+      enemyTypes: ["Peasant"],
       bossType: "Ninja",
     },
     {
@@ -43,7 +43,7 @@ export const STAGE_CONFIGS = {
       name: "Katakana",
       files: ["katakana.json"],
       enemyLevel: 1,
-      enemyType: "Peasant",
+      enemyTypes: ["Peasant"],
       bossType: "Ninja",
     },
   ],

@@ -7,22 +7,37 @@ import { quizManager } from "./quizManager.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
+const ENEMY_CLASSES = {
+  Peasant,
+  Ninja,
+  Tengu,
+  Shougun,
+};
+
+function normalizeEnemyTypes(enemyTypes) {
+  if (Array.isArray(enemyTypes)) {
+    return enemyTypes.filter((typeName) => ENEMY_CLASSES[typeName]);
+  }
+
+  return ENEMY_CLASSES[enemyTypes] ? [enemyTypes] : [];
+}
 
 export const battleManager = {
   player: null,
   enemy: null,
   bgImages: {},
+  currentEnemyTypes: [],
   currentEnemyLevel: null,
   currentBossType: null,
 
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
   ///////////////////////////////////
-  init(savedStatus = null, bgKey = null, enemyType = null, enemyLevel = null, bossType = null) { // 引数で保存データを受け取れるようにする
+  init(savedStatus = null, bgKey = null, enemyTypes = null, enemyLevel = null, bossType = null) { // 引数で保存データを受け取れるようにする
     this.clearCharacters();
     this.setupBackgrounds();
     
-    this.currentEnemyType = enemyType;
+    this.currentEnemyTypes = normalizeEnemyTypes(enemyTypes);
     this.currentEnemyLevel = enemyLevel;
     this.currentBossType = bossType;
 
@@ -47,7 +62,7 @@ export const battleManager = {
     }
 
     this.updateBackground(bgKey);
-    this.enemySpawn(enemyType);
+    this.enemySpawn();
   },
 
 
@@ -65,8 +80,7 @@ export const battleManager = {
   bossSpawn(bossTypeName = null) {
     if (this.enemy) this.enemy.destroy();
 
-    const enemyTypes = { Peasant, Ninja, Tengu, Shougun };
-    const BossClass = enemyTypes[bossTypeName || this.currentBossType] || Ninja;
+    const BossClass = ENEMY_CLASSES[bossTypeName || this.currentBossType] || Ninja;
 
     this.enemy = new BossClass(); 
     this.scaleEnemyToStageLevel(this.enemy, this.getBossLevel());
@@ -126,24 +140,18 @@ export const battleManager = {
     if (this.enemy && this.enemy.el) {
       this.enemy.destroy();
     }
-    
-    // クラスを名前で引けるようにオブジェクト形式にする
-    const enemyMap = { 
-      "Peasant": Peasant, 
-      "Ninja": Ninja, 
-      "Tengu": Tengu,
-      "Shougun": Shougun 
-    };
+
+    const candidateTypes = specifiedType
+      ? normalizeEnemyTypes(specifiedType)
+      : this.currentEnemyTypes;
 
     let EnemyClass;
-    // 引数指定 > 保持しているタイプ > デフォルト(Peasant) の順で決める
-    const typeName = specifiedType || this.currentEnemyType;
-
-    if (typeName && enemyMap[typeName]) {
-      EnemyClass = enemyMap[typeName];
+    if (candidateTypes.length > 0) {
+      const typeName = candidateTypes[Math.floor(Math.random() * candidateTypes.length)];
+      EnemyClass = ENEMY_CLASSES[typeName];
     } else {
       // どこにも指定がない場合のみランダム（練習モード用など）
-      const classes = [Peasant, Ninja, Tengu, Shougun];
+      const classes = Object.values(ENEMY_CLASSES);
       EnemyClass = classes[Math.floor(Math.random() * classes.length)];
     }
 

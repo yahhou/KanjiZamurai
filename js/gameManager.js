@@ -264,16 +264,16 @@ export const gameManager = {
     let savedStatus = progress?.playerStatus || null; 
 
     let activeConfig = this.currentConfig;
-    let enemyType = "Peasant"; 
+    let enemyTypes = ["Peasant"]; 
     let bossType = "Ninja";
 
     const stageInfo = getStoryStage(this.currentStageIndex);
     if (this.isStoryMode && stageInfo) {
       activeConfig = stageInfo;
-      enemyType = stageInfo.enemyType || "Peasant";
+      enemyTypes = stageInfo.enemyTypes || stageInfo.enemyType || "Peasant";
       bossType = stageInfo.bossType || "Ninja";
     } else if (activeConfig) {
-      enemyType = activeConfig.enemyType || "Peasant";
+      enemyTypes = activeConfig.enemyTypes || activeConfig.enemyType || "Peasant";
       bossType = activeConfig.bossType || "Ninja";
     }
 
@@ -282,7 +282,7 @@ export const gameManager = {
     quizManager.quizMode = "normal";
 
     // 読み込んだ savedStatus を渡すことでレベルが継続される
-    battleManager.init(savedStatus, bgKey, enemyType, enemyLevel, bossType);
+    battleManager.init(savedStatus, bgKey, enemyTypes, enemyLevel, bossType);
     this.showStageIntro(activeConfig);
 
     const bgm = assets.sounds.bgm_Battle;
