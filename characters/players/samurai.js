@@ -8,8 +8,8 @@ import { Player } from './player.js';
         hp: 25,
         mp: 0,
         atk: 10,
-        def: 10,
-        mdf: 10,
+        def: 5,
+        mdf: 5,
         eva: 5,
         critRate: 5,
         width: 80,  // 個別の幅
