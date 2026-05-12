@@ -249,7 +249,7 @@ export class Character {
   //       ダメージ計算
   ///////////////////////////////////
   calculateDamage(target) {
-    const baseDamage = this.atk - Math.floor(target.baseDef / 2);
+    const baseDamage = this.atk - Math.floor(target.def / 2);
     const variation = 0.7 + (Math.random() * 0.2); 
     let finalDamage = Math.floor(Math.max(1, baseDamage * variation));
 

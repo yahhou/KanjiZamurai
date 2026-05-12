@@ -3,7 +3,7 @@ export const PLAYER_BALANCE = {
   maxExpMultiplier: 1.4,
   minHpGainOnLevelUp: 10,
   maxHpGainOnLevelUp: 15,
-  statPointsOnLevelUp: 5,
+  statPointsOnLevelUp: 7,
   guaranteedStatGain: 1,
 };
 
