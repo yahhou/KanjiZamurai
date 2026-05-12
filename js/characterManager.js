@@ -278,6 +278,21 @@ export class Character {
   ///////////////////////////////////
   //    ダメージエフェクト表示
   ///////////////////////////////////
+  appendDamagePopup(popupEl) {
+    const actionArea = document.getElementById("actionArea");
+    if (!actionArea || !this.el) {
+      this.el?.appendChild(popupEl);
+      return;
+    }
+
+    const targetRect = this.el.getBoundingClientRect();
+    const areaRect = actionArea.getBoundingClientRect();
+    popupEl.classList.add("damage-popup--world");
+    popupEl.style.left = `${targetRect.left - areaRect.left + targetRect.width / 2}px`;
+    popupEl.style.top = `${targetRect.top - areaRect.top + targetRect.height * 0.85}px`;
+    actionArea.appendChild(popupEl);
+  }
+
   showDamageEffect(amount, isCritical) {
   if (!this.el) return;
 
@@ -293,7 +308,7 @@ export class Character {
     damageEl.innerText = amount;
   }
 
-  this.el.appendChild(damageEl);  // ← 修正: getDamagePopupRoot() から this.el に変更
+  this.appendDamagePopup(damageEl);
 
   const timeoutId = setTimeout(() => {
     damageEl.remove();
@@ -314,7 +329,7 @@ export class Character {
   evadeEl.className = "damage-popup evade-popup";
   evadeEl.innerText = "MISS";
 
-  this.el.appendChild(evadeEl);  // ← 修正: getDamagePopupRoot() から this.el に変更
+  this.appendDamagePopup(evadeEl);
   this.playEvadeSE();
 
   const timeoutId = setTimeout(() => {

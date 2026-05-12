@@ -13,7 +13,7 @@ export const ENEMY_BALANCE = {
   statScalePerLevel: 0.15,
   expScalePerLevel: 0.1,
   bossLevelBonus: 1,
-  bossHpMultiplier: 2.0,
+  bossHpMultiplier: 1.5,
   bossAtkMultiplier: 1.2,
   extraLevelEveryNCorrect: 0,
 };

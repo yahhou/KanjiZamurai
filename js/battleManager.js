@@ -3,6 +3,9 @@ import { Peasant } from "../characters/enemies/peasant.js";
 import { Shougun } from "../characters/enemies/shougun.js";
 import { Ninja } from "../characters/enemies/ninja.js";
 import { Tengu } from "../characters/enemies/tengu.js";
+import { Kappa } from "../characters/enemies/kappa.js";
+import { KappaOyabun } from "../characters/enemies/kappaOyabun.js";
+import { OneEyedGoblinOyabun } from "../characters/enemies/oneEyedGoblinOyabun.js";
 import { OneEyedGoblin } from "../characters/enemies/oneEyedGoblin.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
@@ -13,6 +16,9 @@ const ENEMY_CLASSES = {
   Tengu,
   Shougun,
   OneEyedGoblin,
+  Kappa,
+  KappaOyabun,
+  OneEyedGoblinOyabun,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -320,9 +326,11 @@ export const battleManager = {
     // 指定の形式で画像を登録
     const bgList = {
       "stage_1": "assets/images/stage_field.png",
-      "stage_2": "assets/images/stage_village.png",
-      "stage_3": "assets/images/stage_castle.png",
-      "stage_4": "assets/images/stage_shrine.png",
+      "stage_2": "assets/images/stage_field.png",
+      "stage_3": "assets/images/stage_village.png",
+      "stage_4": "assets/images/stage_village.png",
+      "stage_5": "assets/images/stage_riceField.png",
+      "stage_6": "assets/images/stage_riceField.png",
     };
 
     for (const key in bgList) {

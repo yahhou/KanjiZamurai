@@ -16,19 +16,56 @@ export const STAGE_CONFIGS = {
       files: ["N5_stage1.json"],
       bgKey: "stage_1",
       enemyLevel: 1,
-      enemyTypes: ["OneEyedGoblin"],
-      bossType: "Tengu",
+      enemyTypes: ["Kappa"],
+      bossType: "KappaOyabun",
     },
     {
       id: 2,
-      name: "time",
+      name: "times of days",
       files: ["N5_stage2.json"],
       bgKey: "stage_2",
       enemyLevel: 2,
-      enemyTypes: ["Ninja","Peasant"],
-      bossType: "Shougun",
+      enemyTypes: ["Kappa"],
+      bossType: "KappaOyabun",
+    },
+      {
+      id: 3,
+      name: "dates & years",
+      files: ["N5_stage3.json"],
+      bgKey: "stage_3",
+      enemyLevel: 3,
+      enemyTypes: ["Kappa"],
+      bossType: "KappaOyabun",
+    },
+     {
+      id: 4,
+      name: "days of the week",
+      files: ["N5_stage4.json"],
+      bgKey: "stage_4",
+      enemyLevel: 4,
+      enemyTypes: ["Kappa","OneEyedGoblin"],
+      bossType: "KappaOyabun",
+    },
+     {
+      id: 5,
+      name: "family",
+      files: ["N5_stage5.json"],
+      bgKey: "stage_5",
+      enemyLevel: 5,
+      enemyTypes: ["Kappa","OneEyedGoblin"],
+      bossType: "OneEyedGoblinOyabun",
+    },
+      {
+      id: 6,
+      name: "people & identity",
+      files: ["N5_stage6.json"],
+      bgKey: "stage_6",
+      enemyLevel: 6,
+      enemyTypes: ["Kappa","OneEyedGoblin"],
+      bossType: "OneEyedGoblinOyabun",
     },
   ],
+
   N6: [
     {
       id: 99,
@@ -52,6 +89,10 @@ export const STAGE_CONFIGS = {
 export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 1 },
   { category: "N5", stageId: 2 },
+  { category: "N5", stageId: 3 },
+  { category: "N5", stageId: 4 },
+  { category: "N5", stageId: 5 },
+  { category: "N5", stageId: 6 },
 ];
 
 export function findStageConfig(category, stageId) {

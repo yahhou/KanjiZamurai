@@ -14,59 +14,6 @@ export const assets = {
     this.images.onmyoji = new Image();
     this.images.onmyoji.src = "assets/images/Onmyoji-Sheet.png";
 
-    /////////////
-    // --- 敵 ---
-    /////////////
-
-    //農民
-    this.images.peasant = new Image();
-    this.images.peasant.src = "assets/images/peasant-Sheet.png";
-    
-     //天狗
-    this.images.tengu = new Image();
-    this.images.tengu.src = "assets/images/tengu-Sheet.png";
-
-    //one_eyed_gobline
-    this.images.oneEyedGoblin = new Image();
-    this.images.oneEyedGoblin.src = "assets/images/OneEyedGoblin-Sheet.png";
-
-    this.images.pirate = new Image();
-    this.images.pirate.src = "assets/images/pirate-Sheet.png";
-
-    this.images.soldier = new Image();
-    this.images.soldier.src = "assets/images/Soldier-Sheet.png";
-
-    this.images.mage = new Image();
-    this.images.mage.src = "assets/images/mage.png";
-
-    this.images.ninja = new Image();
-    this.images.ninja.src = "assets/images/Ninja-Sheet.png";
-
-    this.images.shougun = new Image();
-    this.images.shougun.src = "assets/images/Shougun-Sheet.png";
-
-    this.images.dragon = new Image();
-    this.images.dragon.src = "assets/images/dragon-Sheet.png";
-    
-    /////////////
-    //  ステージ
-    /////////////
-    
-    this.images.stage_castle = new Image();
-    this.images.stage_castle.src = "assets/images/stage_castle.png";
-
-    this.images.stage_village = new Image();
-    this.images.stage_village.src = "assets/images/stage_village.png";
-
-    this.images.stage_bambooGrove = new Image();
-    this.images.stage_bambooGrove.src = "assets/images/stage_bambooGrove.png";
-
-    this.images.stage_field = new Image();
-    this.images.stage_field.src = "assets/images/stage_field.png";
-
-    this.images.stage_shrine = new Image();
-    this.images.stage_shrine.src = "assets/images/stage_shrine.png";
-
     // --- UI ---
     this.images.ui_Kiwami = new Image();
     this.images.ui_Kiwami.src = "assets/images/Kiwami-Sheet.png";

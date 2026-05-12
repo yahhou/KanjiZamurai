@@ -1,0 +1,67 @@
+[
+  {
+    "question": "The person who is being addressed (Second-person pronoun).",
+    "answer": "あなた",
+    "romaji": "a na ta"
+  },
+  {
+    "question": "A human being in general.",
+    "answer": "人",
+    "romaji": "hi to"
+  },
+  {
+    "question": "A person whom one knows and has a bond of mutual affection with.",
+    "answer": "友達",
+    "romaji": "to mo da chi"
+  },
+  {
+    "question": "A fully grown person.",
+    "answer": "大人",
+    "romaji": "o to na"
+  },
+  {
+    "question": "A female human being.",
+    "answer": "女",
+    "romaji": "on na"
+  },
+  {
+    "question": "A young female human.",
+    "answer": "女の子",
+    "romaji": "on na no ko"
+  },
+  {
+    "question": "A young human being below the age of adulthood.",
+    "answer": "子 / 子供",
+    "romaji": "ko / ko do mo"
+  },
+  {
+    "question": "A male human being.",
+    "answer": "男",
+    "romaji": "o to ko"
+  },
+  {
+    "question": "A young male human.",
+    "answer": "男の子",
+    "romaji": "o to ko no ko"
+  },
+  {
+    "question": "The person who is speaking or writing (First-person pronoun).",
+    "answer": "私",
+    "romaji": "wa ta shi"
+  },
+  {
+    "question": "A regular male companion with whom one has a romantic relationship.",
+    "answer": "彼氏",
+    "romaji": "ka re shi"
+  },
+  {
+    "question": "A regular female companion with whom one has a romantic relationship.",
+    "answer": "彼女",
+    "romaji": "ka no jo"
+  },
+  {
+    "question": "A very young child, particularly one who has not yet begun to walk or talk.",
+    "answer": "赤ちゃん",
+    "romaji": "a ka chan"
+  }
+]

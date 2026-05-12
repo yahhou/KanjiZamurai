@@ -1,0 +1,72 @@
+[
+  {
+    "question": "Your mother and father together.",
+    "answer": "両親",
+    "romaji": "ryou shin"
+  },
+  {
+    "question": "Your older brother.",
+    "answer": "兄",
+    "romaji": "a ni"
+  },
+  {
+    "question": "Male siblings or siblings in general.",
+    "answer": "兄弟",
+    "romaji": "kyou dai"
+  },
+  {
+    "question": "The man a person is married to.",
+    "answer": "夫",
+    "romaji": "ot to"
+  },
+  {
+    "question": "Female siblings.",
+    "answer": "姉妹",
+    "romaji": "shi mai"
+  },
+  {
+    "question": "Your younger sister.",
+    "answer": "妹",
+    "romaji": "i mou to"
+  },
+  {
+    "question": "The woman a person is married to.",
+    "answer": "妻",
+    "romaji": "tsu ma"
+  },
+  {
+    "question": "Your older sister.",
+    "answer": "姉",
+    "romaji": "a ne"
+  },
+  {
+    "question": "A group consisting of parents and children.",
+    "answer": "家族",
+    "romaji": "ka zo ku"
+  },
+  {
+    "question": "Your younger brother.",
+    "answer": "弟",
+    "romaji": "o tou to"
+  },
+  {
+    "question": "The person who gave birth to you.",
+    "answer": "母",
+    "romaji": "ha ha"
+  },
+  {
+    "question": "Your male parent.",
+    "answer": "父",
+    "romaji": "chi chi"
+  },
+  {
+    "question": "The mother of your father or mother.",
+    "answer": "祖母",
+    "romaji": "so bo"
+  },
+  {
+    "question": "The father of your father or mother.",
+    "answer": "祖父",
+    "romaji": "so fu"
+  }
+]

@@ -7,9 +7,9 @@ import { Player } from './player.js';
         imgSrc: "assets/images/Samurai-Sheet.png", 
         hp: 25,
         mp: 0,
-        atk: 5,
-        def: 5,
-        mdf: 5,
+        atk: 10,
+        def: 10,
+        mdf: 10,
         eva: 5,
         critRate: 5,
         width: 80,  // 個別の幅
@@ -27,7 +27,6 @@ import { Player } from './player.js';
   /* ==========================================================================
   通常攻撃
   ========================================================================== */ 
-
   playAttackAnimation(target, damage, isCritical, isEvaded = false) { // 引数をオブジェクトとダメージに変更
   if (!this.el || !target || !target.el) return;
 
@@ -82,7 +81,7 @@ import { Player } from './player.js';
         this.sprite.style.transform = `translateX(0px)`;
         frame = 999; // 2枚（2と3）以外なら何でもOK。終了フラグへ
         nextFrame();
-      }, 150);
+      }, 500);
     } 
     else {
       // --- 終了（待機に戻る） ---

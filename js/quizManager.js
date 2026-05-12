@@ -53,93 +53,78 @@ export const quizManager = {
   randomQuestion() {
     if (this.isVictoryActive) return;
 
-    const currentStageWords = this.wordList[this.currentStage];
-    if (!currentStageWords?.length) return;
+  const currentStageWords = this.wordList[this.currentStage];
+  if (!currentStageWords?.length) return;
 
-    // まだ「正解していない」単語を抽出
-    let availableWords = currentStageWords.filter(
-      (item) => !this.usedWords.includes(item.kanji)
-    );
+  // ★修正: item.kanji -> item.answer
+  let availableWords = currentStageWords.filter(
+    (item) => !this.usedWords.includes(item.answer)
+  );
 
-    // ★重要：全問正解した時の処理
-    if (availableWords.length === 0) {
-      if (this.quizMode === "boss") {
-        // ボス戦なら、単語を使い果たしてもリセットしてループ（HPを削るまで終わらせない）
-        this.usedWords = [];
-        availableWords = currentStageWords;
-      } else {
-        // 通常モードなら、全問正解でボス召喚（victory）へ
-        this.victory();
-        return;
-      }
+  if (availableWords.length === 0) {
+    if (this.quizMode === "boss") {
+      this.usedWords = [];
+      availableWords = currentStageWords;
+    } else {
+      this.victory();
+      return;
     }
+    
+  }
 
-    const correct = availableWords[Math.floor(Math.random() * availableWords.length)];
-    const options = [correct];
-    while (options.length < 3) {
-      const rand = currentStageWords[Math.floor(Math.random() * currentStageWords.length)];
-      if (!options.some((opt) => opt.kanji === rand.kanji)) {
-        options.push(rand);
-      }
+  const correct = availableWords[Math.floor(Math.random() * availableWords.length)];
+  const options = [correct];
+  while (options.length < 3) {
+    const rand = currentStageWords[Math.floor(Math.random() * currentStageWords.length)];
+    // ★修正: opt.kanji -> opt.answer
+    if (!options.some((opt) => opt.answer === rand.answer)) {
+      options.push(rand);
     }
+   }
 
-    options.sort(() => Math.random() - 0.5);
-    this.currentQuestion = correct;
-    this.renderQuestion(correct, options);
-    this.updateQuestionProgress();
+  options.sort(() => Math.random() - 0.5);
+  this.currentQuestion = correct;
+  this.renderQuestion(correct, options);
+  this.updateQuestionProgress();
   },
-
 
   /////////////////////////
   //      問題の表示
   /////////////////////////
-  renderQuestion(correct, options) {
-    const quizArea = document.getElementById("quizArea");
-    if (!quizArea) return;
+    renderQuestion(correct, options) {
+  const quizArea = document.getElementById("quizArea");
+  if (!quizArea) return;
 
-    let mainText, subText, btnTextKey;
+  const isBoss = (this.quizMode === "boss");
+
+  quizArea.innerHTML = `
+    <div class="question-container ${isBoss ? 'boss-mode-ui' : ''}">
+      <h2>${escapeHtml(correct.question)}</h2>
+    </div>
+    <div id="optionArea" class="button-container">
+      ${options.map(o => {
+        // 通常時は「答え (読み)」、ボス時は「答え」のみ
+        const label = isBoss ? o.answer : `${o.answer} (${o.romaji})`;
+        
+        return `
+          <button type="button" class="quiz-button" data-answer="${escapeHtml(o.answer)}">
+            <div class="answer-text">${escapeHtml(label)}</div>
+          </button>`;
+      }).join("")}
+    </div>
+  `;
+
+    /// renderQuestion 内のイベントリスナー部分
+  optionArea.querySelectorAll(".quiz-button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const selected = btn.getAttribute("data-answer");
     
-    if (this.quizMode === "boss") {
-      // ボス戦：英語を見て漢字を当てる
-      mainText = correct.english;
-      subText = "正しい漢字を選べ！"; 
-      btnTextKey = "kanji"; 
-    } else {
-      // 通常戦：漢字を見て英語を当てる
-      mainText = correct.kanji;
-      subText = `${correct.yomi} / ${correct.romaji}`;
-      btnTextKey = "english";
-    }
-
-    quizArea.innerHTML = `
-      <div class="question-container ${this.quizMode === 'boss' ? 'boss-mode-ui' : ''}">
-        <h2>${escapeHtml(mainText)}</h2>
-        <p>${escapeHtml(subText)}</p>
-      </div>
-      <div id="optionArea" class="button-container">
-        ${options.map(o => `
-          <button type="button" class="quiz-button" data-answer="${escapeHtml(o[btnTextKey])}">
-            <div class="yomi-text">${escapeHtml(o[btnTextKey])}</div>
-          </button>`).join("")}
-      </div>
-    `;
-
-    // クリックイベントの設定
-    // クリック判定のキーも変更
-    const optionArea = document.getElementById("optionArea");
-    optionArea.querySelectorAll(".quiz-button").forEach((btn) => {
-      // ここをアロー関数にするのが最大のポイントです
-      btn.addEventListener("click", () => {
-        const selected = btn.getAttribute("data-answer");
-        
-        // 正解判定
-        const isCorrect = (this.quizMode === "boss") 
-          ? (selected === this.currentQuestion.kanji)
-          : (selected === this.currentQuestion.english);
-        
-        this.answer(selected, isCorrect);
-      });
+    // ★修正: 以前の kanji/english 判定を削除し、answer プロパティで比較
+      const isCorrect = (selected === this.currentQuestion.answer);
+    
+      this.answer(selected, isCorrect);
     });
+  });
 
     this.updateKiwamiIcon();
   },
@@ -149,19 +134,18 @@ export const quizManager = {
   /////////////////////////
   answer(selected, isCorrect) {
     const buttons = document.querySelectorAll("#optionArea button");
-    this.disableOptionButtons(buttons);
+  this.disableOptionButtons(buttons);
 
-    if (isCorrect) {
-      // ★正解した時だけ、使用済み（正解済み）リストに追加する
-      if (!this.usedWords.includes(this.currentQuestion.kanji)) {
-        this.usedWords.push(this.currentQuestion.kanji);
-      }
-      this.handleCorrectAnswer(buttons, selected);
-    } else {
-      // 不正解の場合は usedWords に入れない → randomQuestionでまた出題候補に残る
-      this.handleWrongAnswer(buttons, selected);
+  if (isCorrect) {
+    // ★修正: kanji -> answer
+    if (!this.usedWords.includes(this.currentQuestion.answer)) {
+      this.usedWords.push(this.currentQuestion.answer);
     }
-  },
+    this.handleCorrectAnswer(buttons, selected);
+  } else {
+    this.handleWrongAnswer(buttons, selected);
+  }
+},
 
   /////////////////////////
   //      回答の判定

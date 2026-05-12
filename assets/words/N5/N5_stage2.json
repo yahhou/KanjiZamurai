@@ -1,110 +1,42 @@
 [
   {
-    "kanji": "明後日",
-    "yomi": "",
-    "english": "the day after tomorrow",
-    "romaji": "asatte"
+    "question": "The time from midnight until noon (A.M.).",
+    "answer": "午前",
+    "romaji": "go zen"
   },
   {
-    "kanji": "明日",
-    "yomi": "",
-    "english": "tomorrow",
-    "romaji": "ashita"
+    "question": "The time from noon until midnight (P.M.).",
+    "answer": "午後",
+    "romaji": "go go"
   },
   {
-    "kanji": "昨日",
-    "yomi": "",
-    "english": "yesterday",
-    "romaji": "kinou"
+    "question": "Late afternoon or early evening; when the sun sets.",
+    "answer": "夕方",
+    "romaji": "yuu ga ta"
   },
   {
-    "kanji": "時間",
-    "yomi": "",
-    "english": "time",
-    "romaji": "jikan"
+    "question": "Night; the period of darkness when you sleep.",
+    "answer": "夜",
+    "romaji": "yo ru"
   },
   {
-    "kanji": "時々",
-    "yomi": "",
-    "english": "sometimes",
-    "romaji": "tokidoki"
+    "question": "Noon, midday, or daytime.",
+    "answer": "昼",
+    "romaji": "hi ru"
   },
   {
-    "kanji": "平日",
-    "yomi": "",
-    "english": "weekday",
-    "romaji": "heijitsu"
+    "question": "Time or hours in general.",
+    "answer": "時間",
+    "romaji": "ji kan"
   },
   {
-    "kanji": "先月",
-    "yomi": "",
-    "english": "last month",
-    "romaji": "sengetsu"
+    "question": "Morning; when you wake up and the sun rises.",
+    "answer": "朝",
+    "romaji": "a sa"
   },
   {
-    "kanji": "先週",
-    "yomi": "",
-    "english": "last week",
-    "romaji": "senshuu"
-  },
-  {
-    "kanji": "来年",
-    "yomi": "",
-    "english": "next year",
-    "romaji": "rainen"
-  },
-  {
-    "kanji": "来月",
-    "yomi": "",
-    "english": "next month",
-    "romaji": "raigetsu"
-  },
-  {
-    "kanji": "来週",
-    "yomi": "",
-    "english": "next week",
-    "romaji": "raishuu"
-  },
-  {
-    "kanji": "毎年",
-    "yomi": "",
-    "english": "every year",
-    "romaji": "maitoshi"
-  },
-  {
-    "kanji": "毎日",
-    "yomi": "",
-    "english": "every day",
-    "romaji": "mainichi"
-  },
-  {
-    "kanji": "毎晩",
-    "yomi": "",
-    "english": "every night",
-    "romaji": "maiban"
-  },
-  {
-    "kanji": "毎月",
-    "yomi": "",
-    "english": "every month",
-    "romaji": "maitsuki"
-  },
-  {
-    "kanji": "毎朝",
-    "yomi": "",
-    "english": "every morning",
-    "romaji": "maiasa"
-  },
-  {
-    "kanji": "毎週",
-    "yomi": "",
-    "english": "every week",
-    "romaji": "maishuu"
-  },
-  {
-    "kanji": "今日",
-    "yomi": "",
-    "english": "today",
-    "romaji": "kyou"
+    "question": "Evening or night; often used for \"dinner time.",
+    "answer": "晩",
+    "romaji": "ban"
   }
 ]

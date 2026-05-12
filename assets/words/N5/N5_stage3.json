@@ -1,0 +1,67 @@
+[
+  {
+    "question": "The current year.",
+    "answer": "今年",
+    "romaji": "ko to shi"
+  },
+  {
+    "question": "The current day.",
+    "answer": "今日",
+    "romaji": "kyou"
+  },
+  {
+    "question": "The current month.",
+    "answer": "今月",
+    "romaji": "kon getsu"
+  },
+  {
+    "question": "The current week.",
+    "answer": "今週",
+    "romaji": "kon shuu"
+  },
+  {
+    "question": "The month before this month.",
+    "answer": "先月",
+    "romaji": "sen getsu"
+  },
+  {
+    "question": "The week before this week.",
+    "answer": "先週",
+    "romaji": "sen shuu"
+  },
+  {
+    "question": "The year before this year.",
+    "answer": "去年",
+    "romaji": "kyo nen"
+  },
+  {
+    "question": "The day after tomorrow.",
+    "answer": "明後日",
+    "romaji": "a sat te"
+  },
+  {
+    "question": "The day after today.",
+    "answer": "明日",
+    "romaji": "a shi ta"
+  },
+  {
+    "question": "The day before today.",
+    "answer": "昨日",
+    "romaji": "ki nou"
+  },
+  {
+    "question": "The year after this year.",
+    "answer": "来年",
+    "romaji": "rai nen"
+  },
+  {
+    "question": "The month after this month.",
+    "answer": "来月",
+    "romaji": "rai getsu"
+  },
+  {
+    "question": "The week after this week.",
+    "answer": "来週",
+    "romaji": "rai shuu"
+  }
+]

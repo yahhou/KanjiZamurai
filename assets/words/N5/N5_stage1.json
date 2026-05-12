@@ -1,26 +1,67 @@
 [
   {
-    "kanji": "一",
-    "yomi": "",
-    "english": "one",
+    "question": "The number 1.",
+    "answer": "一",
     "romaji": "ichi"
   },
   {
-    "kanji": "二",
-    "yomi": "",
-    "english": "two",
+    "question": "The number 2.",
+    "answer": "二",
     "romaji": "ni"
   },
   {
-    "kanji": "三",
-    "yomi": "",
-    "english": "three",
+    "question": "The number 3.",
+    "answer": "三",
     "romaji": "san"
   },
   {
-    "kanji": "四",
-    "yomi": "",
-    "english": "four",
+    "question": "The number 4.",
+    "answer": "四",
     "romaji": "yon / shi"
+  },
+  {
+    "question": "The number 5.",
+    "answer": "五",
+    "romaji": "go"
+  },
+  {
+    "question": "The number 6.",
+    "answer": "六",
+    "romaji": "roku"
+  },
+  {
+    "question": "The number 7.",
+    "answer": "七",
+    "romaji": "nana / shichi"
+  },
+  {
+    "question": "The number 8.",
+    "answer": "八",
+    "romaji": "hachi"
+  },
+  {
+    "question": "The number 9.",
+    "answer": "九",
+    "romaji": "kyuu / ku"
+  },
+  {
+    "question": "The number 10.",
+    "answer": "十",
+    "romaji": "juu"
+  },
+  {
+    "question": "The number 100.",
+    "answer": "百",
+    "romaji": "hyaku"
+  },
+  {
+    "question": "The number 1,000.",
+    "answer": "千",
+    "romaji": "sen"
+  },
+  {
+    "question": "The number 10,000.",
+    "answer": "万",
+    "romaji": "man"
   }
 ]
