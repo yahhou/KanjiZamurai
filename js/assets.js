@@ -11,9 +11,6 @@ export const assets = {
     this.images.samurai = new Image();
     this.images.samurai.src = "assets/images/Samurai-Sheet.png";
 
-    this.images.onmyoji = new Image();
-    this.images.onmyoji.src = "assets/images/Onmyoji-Sheet.png";
-
     // --- UI ---
     this.images.ui_Kiwami = new Image();
     this.images.ui_Kiwami.src = "assets/images/Kiwami-Sheet.png";
