@@ -8,7 +8,7 @@ import { Enemy } from './enemy.js';
         imgSrc: "assets/images/Kappa-Sheet.png", 
         hp: 20,
         mp: 0,
-        atk: 5,
+        atk: 8,
         def: 2,
         mdf: 5,
         eva: 5,
