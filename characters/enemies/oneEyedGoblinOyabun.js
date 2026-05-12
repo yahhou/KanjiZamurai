@@ -7,7 +7,7 @@ import { Enemy } from './enemy.js';
         imgSrc: "assets/images/OneEyedGoblinOyabun-Sheet.png", 
         hp: 35,
         mp: 0,
-        atk: 20,
+        atk: 22,
         def: 15,
         mdf: 10,
         eva: 10,
