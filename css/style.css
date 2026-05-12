@@ -434,12 +434,12 @@ body {
   background-position: bottom center;
 
 
-  /* filter: 
-  /* 小さな影を4方向に配置して縁取りにする（ブラーは0）
-  drop-shadow(3px 3px 3px rgba(0,0,0,0.3))
-  drop-shadow(-3px -3px 3px rgba(0,0,0,0.3))
-  drop-shadow(3px -3px 3px rgba(0,0,0,0.3))
-  drop-shadow(-3px 3px 3px rgba(0,0,0,0.3)); */
+  /*filter: 
+  /*小さな影を4方向に配置して縁取りにする（ブラーは0）
+  drop-shadow(1px 1px 1px rgba(0,0,0,0.8))
+  drop-shadow(-1px -1px 1px rgba(0,0,0,0.8))
+  drop-shadow(1px -1px 1px rgba(0,0,0,0.8))
+  drop-shadow(-1px 1px 1px rgba(0,0,0,0.8)); */
 }
 
 /* ====================
