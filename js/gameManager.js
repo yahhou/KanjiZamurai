@@ -329,7 +329,7 @@ export const gameManager = {
 
     setTimeout(() => {
       intro.remove();
-    }, 2500);
+    }, 3000);
   },
 
   // --- データ読み込み ---
