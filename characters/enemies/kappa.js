@@ -5,7 +5,7 @@ import { Enemy } from './enemy.js';
     constructor() {
       super({
         id: "enemy",          
-        imgSrc: "assets/images/Kappa-sheet.png", 
+        imgSrc: "assets/images/Kappa-Sheet.png", 
         hp: 20,
         mp: 0,
         atk: 12,
