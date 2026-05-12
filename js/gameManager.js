@@ -325,11 +325,11 @@ export const gameManager = {
     setTimeout(() => {
       intro.classList.remove("is-visible");
       intro.classList.add("is-hiding");
-    }, 1500);
+    }, 2000);
 
     setTimeout(() => {
       intro.remove();
-    }, 3000);
+    }, 4000);
   },
 
   // --- データ読み込み ---

@@ -92,27 +92,30 @@ export const quizManager = {
   //      問題の表示
   /////////////////////////
     renderQuestion(correct, options) {
-  const quizArea = document.getElementById("quizArea");
-  if (!quizArea) return;
+    const quizArea = document.getElementById("quizArea");
+    if (!quizArea) return;
 
-  const isBoss = (this.quizMode === "boss");
+    const isBoss = (this.quizMode === "boss");
 
-  quizArea.innerHTML = `
-    <div class="question-container ${isBoss ? 'boss-mode-ui' : ''}">
-      <h2>${escapeHtml(correct.question)}</h2>
-    </div>
-    <div id="optionArea" class="button-container">
-      ${options.map(o => {
-        // 通常時は「答え (読み)」、ボス時は「答え」のみ
-        const label = isBoss ? o.answer : `${o.answer} (${o.romaji})`;
-        
-        return `
-          <button type="button" class="quiz-button" data-answer="${escapeHtml(o.answer)}">
-            <div class="answer-text">${escapeHtml(label)}</div>
-          </button>`;
-      }).join("")}
-    </div>
-  `;
+    quizArea.innerHTML = `
+      <div class="question-container ${isBoss ? 'boss-mode-ui' : ''}">
+        <h2>${escapeHtml(correct.question)}</h2>
+      </div>
+      <div id="optionArea" class="button-container">
+        ${options.map(o => {
+          // 通常時はローマ字を .romaji-text で囲む。ボス時は答えのみ。
+          // <span>タグを活かすため、中身の変数だけを個別にエスケープします。
+          const label = isBoss 
+            ? escapeHtml(o.answer) 
+            : `${escapeHtml(o.answer)} <span class="romaji-text">/ ${escapeHtml(o.romaji)} /</span>`;
+          
+          return `
+            <button type="button" class="quiz-button" data-answer="${escapeHtml(o.answer)}">
+              <div class="answer-text">${label}</div>
+            </button>`;
+        }).join("")}
+      </div>
+    `;
 
     /// renderQuestion 内のイベントリスナー部分
   optionArea.querySelectorAll(".quiz-button").forEach((btn) => {

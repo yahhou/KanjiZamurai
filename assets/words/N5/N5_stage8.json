@@ -1,0 +1,77 @@
+[
+  {
+    "question": "A very high place on land.",
+    "answer": "山",
+    "romaji": "ya ma"
+  },
+  {
+    "question": "A long line of flowing water.",
+    "answer": "川",
+    "romaji": "ka wa"
+  },
+  {
+    "question": "The blue space above the earth.",
+    "answer": "空",
+    "romaji": "so ra"
+  },
+  {
+    "question": "The very large area of salt water.",
+    "answer": "海",
+    "romaji": "u mi"
+  },
+  {
+    "question": "A small area of still water.",
+    "answer": "池",
+    "romaji": "i ke"
+  },
+  {
+    "question": "A tall plant made of wood.",
+    "answer": "木",
+    "romaji": "ki"
+  },
+  {
+    "question": "The colorful part of a plant.",
+    "answer": "花",
+    "romaji": "ha na"
+  },
+  {
+    "question": "The flat green part of a plant.",
+    "answer": "葉",
+    "romaji": "ha"
+  },
+  {
+    "question": "Water falling from the sky.",
+    "answer": "雨",
+    "romaji": "a me"
+  },
+  {
+    "question": "White frozen water falling in winter.",
+    "answer": "雪",
+    "romaji": "yu ki"
+  },
+  {
+    "question": "Moving air.",
+    "answer": "風",
+    "romaji": "ka ze"
+  },
+  {
+    "question": "The season when flowers bloom.",
+    "answer": "春",
+    "romaji": "ha ru"
+  },
+  {
+    "question": "The hottest season.",
+    "answer": "夏",
+    "romaji": "na tsu"
+  },
+  {
+    "question": "The season when leaves fall.",
+    "answer": "秋",
+    "romaji": "a ki"
+  },
+  {
+    "question": "The coldest season.",
+    "answer": "冬",
+    "romaji": "fu yu"
+  }
+]

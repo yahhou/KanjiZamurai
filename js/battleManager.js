@@ -4,7 +4,8 @@ import { Kappa } from "../characters/enemies/kappa.js";
 import { KappaOyabun } from "../characters/enemies/kappaOyabun.js";
 import { OneEyedGoblinOyabun } from "../characters/enemies/oneEyedGoblinOyabun.js";
 import { OneEyedGoblin } from "../characters/enemies/oneEyedGoblin.js";
-import { Oogama } from "../characters/enemies/Oogama.js";
+import { Oogama } from "../characters/enemies/oogama.js";
+import { ObakeKinoko } from "../characters/enemies/obakeKinoko.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -15,6 +16,7 @@ const ENEMY_CLASSES = {
   KappaOyabun,
   OneEyedGoblinOyabun,
   Oogama,
+  ObakeKinoko,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -328,6 +330,8 @@ export const battleManager = {
       "stage_5": "assets/images/stage_riceField.png",
       "stage_6": "assets/images/stage_riceField.png",
       "stage_7": "assets/images/stage_creek.png",
+      "stage_8": "assets/images/stage_creek.png",
+      "stage_9": "assets/images/stage_bambooGrove.png",
     };
 
     for (const key in bgList) {

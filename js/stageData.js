@@ -73,6 +73,24 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["OneEyedGoblinOyabun","OneEyedGoblin"],
       bossType: "Oogama",
     },
+      {
+      id: 8,
+      name: "nature & seasons",
+      files: ["N5_stage8.json"],
+      bgKey: "stage_8",
+      enemyLevel: 8,
+      enemyTypes: ["OneEyedGoblinOyabun","KappaOyabun"],
+      bossType: "Oogama",
+    },
+     {
+      id: 9,
+      name: "transport",
+      files: ["N5_stage9.json"],
+      bgKey: "stage_9",
+      enemyLevel: 9,
+      enemyTypes: ["OneEyedGoblinOyabun","KappaOyabun", "Oogama"],
+      bossType: "ObakeKinoko",
+    },
   ],
 
   N6: [
@@ -103,6 +121,8 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 5 },
   { category: "N5", stageId: 6 },
   { category: "N5", stageId: 7 },
+  { category: "N5", stageId: 8 },
+  { category: "N5", stageId: 9 },
 ];
 
 export function findStageConfig(category, stageId) {
