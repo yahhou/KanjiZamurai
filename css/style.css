@@ -1402,8 +1402,8 @@ body {
 .game-over-review-answer {
   color: #b3e5fc;
   font-size: 3.6cqw;
-  line-height: 1.25;
-  margin-top: 0.5cqw;
+  line-height: 2;
+  margin-top: 3cqw;
 }
 
 /* Defの文字*/
@@ -1415,7 +1415,7 @@ body {
 /* */
 .game-over-review-empty {
   width: 100%;
-  font-size: 4cqw;
+  font-size: 5cqw;
   color: #ffffff;
   text-align: center;
   margin: 4cqw 0;
@@ -1424,7 +1424,6 @@ body {
 /* 境界線*/
 .game-over-review-item {
   margin-bottom: 0.75em;
-  padding-bottom: 0.75em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.16);
 }
 

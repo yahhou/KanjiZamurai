@@ -9,8 +9,8 @@ export const PLAYER_BALANCE = {
 
 export const ENEMY_BALANCE = {
   fallbackPlayerLevelRatio: 0.75,
-  hpScalePerLevel: 0.4,
-  statScalePerLevel: 0.3,
+  hpScalePerLevel: 0.25,
+  statScalePerLevel: 0.2,
   expScalePerLevel: 0.4,
   bossLevelBonus: 1,
   bossHpMultiplier: 1.5,

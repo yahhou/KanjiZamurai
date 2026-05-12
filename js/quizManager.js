@@ -224,8 +224,8 @@ export const quizManager = {
     const q = this.currentQuestion;
     if (q) {
       this.wrongAnswersLog.push({
-        kanji: q.kanji,
-        yomi: q.yomi || "",
+        question: q.question,
+        answer: q.answer || "",
         romaji: q.romaji || "",
         correctEnglish: q.english,
       });
@@ -447,7 +447,7 @@ export const quizManager = {
     this.updateQuestionProgress();
   },
 
-
+  //////////////////////////////
     //     レビュー画面
   /////////////////////////
   buildWrongAnswersReviewHtml() {
@@ -459,13 +459,12 @@ export const quizManager = {
       .map(
         (row) => `
       <li class="game-over-review-item">
-        <div class="game-over-review-kanji">${escapeHtml(row.kanji)}</div>
-        <div class="game-over-review-meta">
-        ${escapeHtml(row.yomi)} ${row.romaji ? `/ ${escapeHtml(row.romaji)} /` : ""}
-         </div>
-        <div class="game-over-review-answer"><span class="game-over-review-label">Def:</span> ${escapeHtml(
-          row.correctEnglish
-        )}</div>
+        <div class="game-over-review-kanji" style="font-size: 0.9em; margin-bottom: 2px;">
+          ${escapeHtml(row.question)}
+        <div class="game-over-review-answer">
+          <span class="game-over-review-label">A:</span> 
+          ${escapeHtml(row.answer)}${row.romaji ? ` / ${escapeHtml(row.romaji)}` : ""}
+        </div>
       </li>`
       )
       .join("");
@@ -476,9 +475,9 @@ export const quizManager = {
         <ol class="game-over-review-list">${items}</ol>
       </div>
     `;
-  },/////////////////////////
+  },
 
-  
+
   /////////////////////////
   //   正解数と問題数の表示
   /////////////////////////

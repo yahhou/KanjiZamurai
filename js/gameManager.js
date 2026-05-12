@@ -264,17 +264,17 @@ export const gameManager = {
     let savedStatus = progress?.playerStatus || null; 
 
     let activeConfig = this.currentConfig;
-    let enemyTypes = ["Peasant"]; 
-    let bossType = "Ninja";
+    let enemyTypes = ["kappa"]; 
+    let bossType = "kappaOyabun";
 
     const stageInfo = getStoryStage(this.currentStageIndex);
     if (this.isStoryMode && stageInfo) {
       activeConfig = stageInfo;
-      enemyTypes = stageInfo.enemyTypes || stageInfo.enemyType || "Peasant";
-      bossType = stageInfo.bossType || "Ninja";
+      enemyTypes = stageInfo.enemyTypes || stageInfo.enemyType || "Kappa";
+      bossType = stageInfo.bossType || "kappaOyabun";
     } else if (activeConfig) {
-      enemyTypes = activeConfig.enemyTypes || activeConfig.enemyType || "Peasant";
-      bossType = activeConfig.bossType || "Ninja";
+      enemyTypes = activeConfig.enemyTypes || activeConfig.enemyType || "Kappa";
+      bossType = activeConfig.bossType || "kappaOyabun";
     }
 
     const bgKey = activeConfig ? activeConfig.bgKey : null;

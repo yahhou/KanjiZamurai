@@ -1,6 +1,6 @@
 export const DEFAULT_STAGE_SETTINGS = {
-  enemyTypes: ["Peasant"],
-  bossType: "Ninja",
+  enemyTypes: ["Kappa"],
+  bossType: "KappaOyabun",
   enemyLevel: null,
 };
 
@@ -64,6 +64,15 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Kappa","OneEyedGoblin"],
       bossType: "OneEyedGoblinOyabun",
     },
+      {
+      id: 7,
+      name: "colors",
+      files: ["N5_stage7.json"],
+      bgKey: "stage_7",
+      enemyLevel: 7,
+      enemyTypes: ["OneEyedGoblinOyabun","OneEyedGoblin"],
+      bossType: "Oogama",
+    },
   ],
 
   N6: [
@@ -72,16 +81,16 @@ export const STAGE_CONFIGS = {
       name: "Hiragana",
       files: ["hiragana.json"],
       enemyLevel: 1,
-      enemyTypes: ["Peasant"],
-      bossType: "Ninja",
+      enemyTypes: ["Kappa"],
+      bossType: "KappaOyabun",
     },
     {
       id: 100,
       name: "Katakana",
       files: ["katakana.json"],
       enemyLevel: 1,
-      enemyTypes: ["Peasant"],
-      bossType: "Ninja",
+      enemyTypes: ["Kappa"],
+      bossType: "KappaOyabun",
     },
   ],
 };
@@ -93,6 +102,7 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 4 },
   { category: "N5", stageId: 5 },
   { category: "N5", stageId: 6 },
+  { category: "N5", stageId: 7 },
 ];
 
 export function findStageConfig(category, stageId) {

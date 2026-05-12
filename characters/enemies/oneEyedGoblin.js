@@ -5,7 +5,7 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/OneEyedGoblin-Sheet.png", 
-        hp: 10,
+        hp: 15,
         mp: 0,
         atk: 15,
         def: 5,

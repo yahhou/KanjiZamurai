@@ -6,7 +6,7 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/KappaOyabun-Sheet.png", 
-        hp: 35,
+        hp: 25,
         mp: 0,
         atk: 17,
         def: 8,

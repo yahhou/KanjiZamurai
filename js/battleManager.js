@@ -1,24 +1,20 @@
 import { Samurai } from "../characters/players/samurai.js";
-import { Peasant } from "../characters/enemies/peasant.js";
-import { Shougun } from "../characters/enemies/shougun.js";
-import { Ninja } from "../characters/enemies/ninja.js";
 import { Tengu } from "../characters/enemies/tengu.js";
 import { Kappa } from "../characters/enemies/kappa.js";
 import { KappaOyabun } from "../characters/enemies/kappaOyabun.js";
 import { OneEyedGoblinOyabun } from "../characters/enemies/oneEyedGoblinOyabun.js";
 import { OneEyedGoblin } from "../characters/enemies/oneEyedGoblin.js";
+import { Oogama } from "../characters/enemies/Oogama.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
 const ENEMY_CLASSES = {
-  Peasant,
-  Ninja,
   Tengu,
-  Shougun,
   OneEyedGoblin,
   Kappa,
   KappaOyabun,
   OneEyedGoblinOyabun,
+  Oogama,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -331,6 +327,7 @@ export const battleManager = {
       "stage_4": "assets/images/stage_village.png",
       "stage_5": "assets/images/stage_riceField.png",
       "stage_6": "assets/images/stage_riceField.png",
+      "stage_7": "assets/images/stage_creek.png",
     };
 
     for (const key in bgList) {

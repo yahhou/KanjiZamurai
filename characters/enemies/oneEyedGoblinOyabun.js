@@ -7,8 +7,8 @@ import { Enemy } from './enemy.js';
         imgSrc: "assets/images/OneEyedGoblinOyabun-Sheet.png", 
         hp: 35,
         mp: 0,
-        atk: 22,
-        def: 15,
+        atk: 16,
+        def: 12,
         mdf: 10,
         eva: 0,
         critRate: 10,
@@ -19,7 +19,7 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "OneEyedGoblinOyabun";
-      this.expReward = 8;
+      this.expReward = 25;
       
     }
 

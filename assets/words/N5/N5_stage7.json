@@ -1,0 +1,62 @@
+[
+  {
+    "question": "The color of snow or milk.",
+    "answer": "白",
+    "romaji": "shi ro"
+  },
+  {
+    "question": "The color of coal or the night sky.",
+    "answer": "黒",
+    "romaji": "ku ro"
+  },
+  {
+    "question": "The color of blood or a ripe tomato.",
+    "answer": "赤",
+    "romaji": "a ka"
+  },
+  {
+    "question": "The color of the clear sky or the deep ocean.",
+    "answer": "青",
+    "romaji": "a o"
+  },
+  {
+    "question": "The color of a lemon or a sunflower.",
+    "answer": "黄色",
+    "romaji": "ki i ro"
+  },
+  {
+    "question": "The color of earth or wood.",
+    "answer": "茶色",
+    "romaji": "cha i ro"
+  },
+  {
+    "question": "The color of grass or leaves.",
+    "answer": "緑",
+    "romaji": "mi do ri"
+  },
+  {
+    "question": "The color of a carrot",
+    "answer": "オレンジ",
+    "romaji": "o ren ji"
+  },
+  {
+    "question": "A pale red color, often associated with cherry blossoms",
+    "answer": "ピンク",
+    "romaji": "pin ku"
+  },
+  {
+    "question": "The color of lead or a cloudy sky.",
+    "answer": "灰色",
+    "romaji": "hai i ro"
+  },
+  {
+    "question": "A bright yellow color like the precious metal.",
+    "answer": "金色",
+    "romaji": "kin i ro"
+  },
+  {
+    "question": "A shiny grey color like the metal",
+    "answer": "銀色",
+    "romaji": "gin i ro"
+  }
+]
