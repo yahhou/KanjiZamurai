@@ -1,77 +1,77 @@
 [
   {
-    "question": "A very high place on land.",
+    "question": "Mountain",
     "answer": "山",
-    "romaji": "ya ma"
+    "romaji": "yama"
   },
   {
-    "question": "A long line of flowing water.",
+    "question": "River",
     "answer": "川",
-    "romaji": "ka wa"
+    "romaji": "kawa"
   },
   {
-    "question": "The blue space above the earth.",
+    "question": "Sky",
     "answer": "空",
-    "romaji": "so ra"
+    "romaji": "sora"
   },
   {
-    "question": "The very large area of salt water.",
+    "question": "Sea / Ocean",
     "answer": "海",
-    "romaji": "u mi"
+    "romaji": "umi"
   },
   {
-    "question": "A small area of still water.",
+    "question": "Pond",
     "answer": "池",
-    "romaji": "i ke"
+    "romaji": "ike"
   },
   {
-    "question": "A tall plant made of wood.",
+    "question": "Tree",
     "answer": "木",
     "romaji": "ki"
   },
   {
-    "question": "The colorful part of a plant.",
+    "question": "Flower",
     "answer": "花",
-    "romaji": "ha na"
+    "romaji": "hana"
   },
   {
-    "question": "The flat green part of a plant.",
+    "question": "Leaf",
     "answer": "葉",
     "romaji": "ha"
   },
   {
-    "question": "Water falling from the sky.",
+    "question": "Rain",
     "answer": "雨",
-    "romaji": "a me"
+    "romaji": "ame"
   },
   {
-    "question": "White frozen water falling in winter.",
+    "question": "Snow",
     "answer": "雪",
-    "romaji": "yu ki"
+    "romaji": "yuki"
   },
   {
-    "question": "Moving air.",
+    "question": "Wind",
     "answer": "風",
-    "romaji": "ka ze"
+    "romaji": "kaze"
   },
   {
-    "question": "The season when flowers bloom.",
+    "question": "Spring",
     "answer": "春",
-    "romaji": "ha ru"
+    "romaji": "haru"
   },
   {
-    "question": "The hottest season.",
+    "question": "Summer",
     "answer": "夏",
-    "romaji": "na tsu"
+    "romaji": "natsu"
   },
   {
-    "question": "The season when leaves fall.",
+    "question": "Autumn / Fall",
     "answer": "秋",
-    "romaji": "a ki"
+    "romaji": "aki"
   },
   {
-    "question": "The coldest season.",
+    "question": "Winter",
     "answer": "冬",
-    "romaji": "fu yu"
+    "romaji": "fuyu"
   }
 ]

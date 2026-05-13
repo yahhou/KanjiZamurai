@@ -320,6 +320,7 @@ export const gameManager = {
     // styleで微調整しやすいよう、それぞれspanで囲んでいます
     intro.innerHTML = `
       <div class="intro-level">STAGE ${level}</div>
+      <div class="intro-line"></div> <!-- ★この一行（線）を追加 -->
       <div class="intro-name">${name}</div>
     `;
 
@@ -332,7 +333,7 @@ export const gameManager = {
     setTimeout(() => {
       intro.classList.remove("is-visible");
       intro.classList.add("is-hiding");
-    }, 2000);
+    }, 3000);
 
     setTimeout(() => {
       intro.remove();

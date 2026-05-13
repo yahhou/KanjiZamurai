@@ -1,46 +1,46 @@
 [
   {
-    "question": "A car with a driver that you pay to take you somewhere.",
+    "question": "Taxi",
     "answer": "タクシー",
     "romaji": "ta ku shii"
   },
   {
-    "question": "A large vehicle that carries many passengers by road.",
+    "question": "Bus",
     "answer": "バス",
     "romaji": "ba su"
   },
   {
-    "question": "An underground railway system.",
+    "question": "Subway",
     "answer": "地下鉄",
     "romaji": "chi ka tetsu"
   },
   {
-    "question": "A Japanese high-speed bullet train.",
+    "question": "Bullet train",
     "answer": "新幹線",
     "romaji": "shin kan sen"
   },
   {
-    "question": "A vehicle with two wheels moved by pedals.",
+    "question": "Bicycle",
     "answer": "自転車",
     "romaji": "ji ten sha"
   },
   {
-    "question": "A large vehicle for traveling on water.",
+    "question": "Ship / Boat",
     "answer": "船",
     "romaji": "fune"
   },
   {
-    "question": "A vehicle with four wheels for personal use.",
+    "question": "Car",
     "answer": "車",
     "romaji": "kuruma"
   },
   {
-    "question": "A long vehicle that runs on rails.",
+    "question": "Train",
     "answer": "電車",
     "romaji": "den sha"
   },
   {
-    "question": "A vehicle with wings that flies in the sky.",
+    "question": "Airplane",
     "answer": "飛行機",
     "romaji": "hi kou ki"
   }

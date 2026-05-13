@@ -1,67 +1,67 @@
 [
   {
-    "question": "The person who is being addressed (Second-person pronoun).",
+    "question": "You",
     "answer": "あなた",
     "romaji": "a na ta"
   },
   {
-    "question": "A human being in general.",
+    "question": "Person",
     "answer": "人",
-    "romaji": "hi to"
+    "romaji": "hito"
   },
   {
-    "question": "A person whom one knows and has a bond of mutual affection with.",
+    "question": "Friend",
     "answer": "友達",
-    "romaji": "to mo da chi"
+    "romaji": "tomo dachi"
   },
   {
-    "question": "A fully grown person.",
+    "question": "Adult",
     "answer": "大人",
-    "romaji": "o to na"
+    "romaji": "otona"
   },
   {
-    "question": "A female human being.",
+    "question": "Woman / Female",
     "answer": "女",
-    "romaji": "on na"
+    "romaji": "onna"
   },
   {
-    "question": "A young female human.",
+    "question": "Girl",
     "answer": "女の子",
-    "romaji": "on na no ko"
+    "romaji": "onna no ko"
   },
   {
-    "question": "A young human being below the age of adulthood.",
+    "question": "Child",
     "answer": "子 / 子供",
-    "romaji": "ko / ko do mo"
+    "romaji": "ko / ko domo"
   },
   {
-    "question": "A male human being.",
+    "question": "Man / Male",
     "answer": "男",
-    "romaji": "o to ko"
+    "romaji": "otoko"
   },
   {
-    "question": "A young male human.",
+    "question": "Boy",
     "answer": "男の子",
-    "romaji": "o to ko no ko"
+    "romaji": "otoko no ko"
   },
   {
-    "question": "The person who is speaking or writing (First-person pronoun).",
+    "question": "I / Me",
     "answer": "私",
-    "romaji": "wa ta shi"
+    "romaji": "watashi"
   },
   {
-    "question": "A regular male companion with whom one has a romantic relationship.",
+    "question": "Boyfriend",
     "answer": "彼氏",
-    "romaji": "ka re shi"
+    "romaji": "kare shi"
   },
   {
-    "question": "A regular female companion with whom one has a romantic relationship.",
+    "question": "Girlfriend",
     "answer": "彼女",
-    "romaji": "ka no jo"
+    "romaji": "kano jo"
   },
   {
-    "question": "A very young child, particularly one who has not yet begun to walk or talk.",
+    "question": "Baby",
     "answer": "赤ちゃん",
-    "romaji": "a ka chan"
+    "romaji": "aka chan"
   }
 ]

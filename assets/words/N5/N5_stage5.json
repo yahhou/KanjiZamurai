@@ -1,71 +1,71 @@
 [
   {
-    "question": "Your mother and father together.",
+    "question": "Parents",
     "answer": "両親",
     "romaji": "ryou shin"
   },
   {
-    "question": "Your older brother.",
+    "question": "Older brother",
     "answer": "兄",
-    "romaji": "a ni"
+    "romaji": "ani"
   },
   {
-    "question": "Male siblings or siblings in general.",
+    "question": "Brothers / Siblings",
     "answer": "兄弟",
     "romaji": "kyou dai"
   },
   {
-    "question": "The man a person is married to.",
+    "question": "Husband",
     "answer": "夫",
-    "romaji": "ot to"
+    "romaji": "otto"
   },
   {
-    "question": "Female siblings.",
+    "question": "Sisters",
     "answer": "姉妹",
     "romaji": "shi mai"
   },
   {
-    "question": "Your younger sister.",
+    "question": "Younger sister",
     "answer": "妹",
-    "romaji": "i mou to"
+    "romaji": "imouto"
   },
   {
-    "question": "The woman a person is married to.",
+    "question": "Wife",
     "answer": "妻",
-    "romaji": "tsu ma"
+    "romaji": "tsuma"
   },
   {
-    "question": "Your older sister.",
+    "question": "Older sister",
     "answer": "姉",
-    "romaji": "a ne"
+    "romaji": "ane"
   },
   {
-    "question": "A group consisting of parents and children.",
+    "question": "Family",
     "answer": "家族",
-    "romaji": "ka zo ku"
+    "romaji": "ka zoku"
   },
   {
-    "question": "Your younger brother.",
+    "question": "Younger brother",
     "answer": "弟",
-    "romaji": "o tou to"
+    "romaji": "otouto"
   },
   {
-    "question": "The person who gave birth to you.",
+    "question": "Mother",
     "answer": "母",
-    "romaji": "ha ha"
+    "romaji": "haha"
   },
   {
-    "question": "Your male parent.",
+    "question": "Father",
     "answer": "父",
-    "romaji": "chi chi"
+    "romaji": "chichi"
   },
   {
-    "question": "The mother of your father or mother.",
+    "question": "Grandmother",
     "answer": "祖母",
     "romaji": "so bo"
   },
   {
-    "question": "The father of your father or mother.",
+    "question": "Grandfather",
     "answer": "祖父",
     "romaji": "so fu"
   }

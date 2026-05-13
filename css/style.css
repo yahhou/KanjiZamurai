@@ -181,18 +181,18 @@ body {
 
 .mode-btn {
   width: 70%;
-  min-height: 60px;
   padding: 15px 30px;
   border-radius: 10cqw;
   background: #1f1f1f;
   color: #ffffff;
-  font-size: 8cqw;
+  font-size: 3cqw;
   font-weight: bold;
   box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
   border: 1px solid #ffffff;
   cursor: pointer;
   transition: transform 0.1s;
   font-family: inherit;
+  margin-top: 2cqw;
 }
 
 .mode-btn:active {
@@ -209,7 +209,7 @@ body {
 =====================================*/
 
 .category-title {
-  font-size: 6cqw;
+  font-size: 5cqw;
   font-weight: bold;
   margin-bottom: 2cqw;
   color: #ffd700;
@@ -227,7 +227,7 @@ body {
   border-radius: 10cqw;
   background: #8B0000;
   color: #ffffff;
-  font-size: 5cqw;
+  font-size: 3cqw;
   font-weight: bold;
   box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
   border: 1px solid #ffffff;
@@ -363,37 +363,53 @@ body {
 }
 
 .stage-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
-  left: 50%;
+  left: 0;           /* 左端から */
   top: 38%;
+  font-size: 4cqw;
   z-index: 300;
-  max-width: 84%;
-  padding: 2cqw 5cqw;
-  transform: translate(-50%, -50%) scale(0.96);
+  width: 100%;       /* 横幅いっぱい */
+  max-width: 100%;   /* 制限を解除 */
+  padding: 4cqw 0;   /* 左右のパディングは不要なので0に */
+  transform: translateY(-50%) scale(0.96); /* 左右中央寄せのtranslate(-50%)は不要に */
   border-top: 1px solid rgba(255, 215, 0, 0.85);
   border-bottom: 1px solid rgba(255, 215, 0, 0.85);
-  background: rgba(0, 0, 0, 0.62);
-  color: #ffffff;
-  font-size: 6cqw;
+  background: rgba(0, 0, 0, 0.7); /* 少し濃くすると白文字が映えます */
+  color: #fff41a;
   font-weight: bold;
   line-height: 1.15;
   text-align: center;
   text-shadow: 0 2px 4px #000000;
   opacity: 0;
   pointer-events: none;
-  white-space: normal;
-  overflow-wrap: anywhere;
   transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
+/* 表示時の位置合わせ（translateの修正） */
 .stage-intro.is-visible {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translateY(-50%) scale(1);
 }
 
 .stage-intro.is-hiding {
   opacity: 0;
-  transform: translate(-50%, -50%) scale(1.03);
+  transform: translateY(-50%) scale(1.03);
+}
+
+/* ★追加：ステージ名だけ白くする */
+.intro-name {
+  font-size: 5cqw;
+  color: #ffffff; /* 白色に変更 */
+}
+
+.intro-line {
+  width: 60%; /* 画面いっぱいなので、線は少し短めが綺麗です */
+  height: 1px;
+  background: rgba(255, 215, 0, 0.6);
+  margin: 1.5cqw 0;
 }
 
 

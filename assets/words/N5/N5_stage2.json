@@ -1,41 +1,41 @@
 [
   {
-    "question": "The time from midnight until noon (A.M.).",
+    "question": "Morning / A.M.",
     "answer": "午前",
     "romaji": "go zen"
   },
   {
-    "question": "The time from noon until midnight (P.M.).",
+    "question": "Afternoon / P.M.",
     "answer": "午後",
     "romaji": "go go"
   },
   {
-    "question": "Late afternoon or early evening; when the sun sets.",
+    "question": "Late afternoon / Evening",
     "answer": "夕方",
-    "romaji": "yuu ga ta"
+    "romaji": "yuu gata"
   },
   {
-    "question": "Night; the period of darkness when you sleep.",
+    "question": "Night",
     "answer": "夜",
-    "romaji": "yo ru"
+    "romaji": "yoru"
   },
   {
-    "question": "Noon, midday, or daytime.",
+    "question": "Daytime / Midday",
     "answer": "昼",
-    "romaji": "hi ru"
+    "romaji": "hiru"
   },
   {
-    "question": "Time or hours in general.",
+    "question": "Time / Hours",
     "answer": "時間",
     "romaji": "ji kan"
   },
   {
-    "question": "Morning; when you wake up and the sun rises.",
+    "question": "Morning",
     "answer": "朝",
-    "romaji": "a sa"
+    "romaji": "asa"
   },
   {
-    "question": "Evening or night; often used for dinner time.",
+    "question": "Evening / Night",
     "answer": "晩",
     "romaji": "ban"
   }

@@ -91,6 +91,15 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["OneEyedGoblinOyabun","KappaOyabun", "Oogama"],
       bossType: "ObakeKinoko",
     },
+     {
+      id: 10,
+      name: "services & daily life",
+      files: ["N5_stage10.json"],
+      bgKey: "stage_9",
+      enemyLevel: 9,
+      enemyTypes: ["ObakeKinoko","Oogama"],
+      bossType: "Kakashi",
+    },
   ],
 
   N6: [
@@ -123,6 +132,7 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 7 },
   { category: "N5", stageId: 8 },
   { category: "N5", stageId: 9 },
+  { category: "N5", stageId: 10 },
 ];
 
 export function findStageConfig(category, stageId) {

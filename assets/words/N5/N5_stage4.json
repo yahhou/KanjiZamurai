@@ -1,46 +1,46 @@
 [
   {
-    "question": "The first day of the weekend.",
+    "question": "Saturday",
     "answer": "土曜日",
     "romaji": "do you bi"
   },
   {
-    "question": "The first day of the work week.",
+    "question": "Monday",
     "answer": "月曜日",
     "romaji": "ge tsu you bi"
   },
   {
-    "question": "The days from Monday through Friday.",
+    "question": "Weekday",
     "answer": "平日",
-    "romaji": "hei ji tsu"
+    "romaji": "hei jitsu"
   },
   {
-    "question": "The second day of the work week.",
+    "question": "Tuesday",
     "answer": "火曜日",
     "romaji": "ka you bi"
   },
   {
-    "question": "The last day of the work week.",
+    "question": "Friday",
     "answer": "金曜日",
     "romaji": "kin you bi"
   },
   {
-    "question": "The fourth day of the work week.",
+    "question": "Thursday",
     "answer": "木曜日",
-    "romaji": "mo ku you bi"
+    "romaji": "moku you bi"
   },
   {
-    "question": "The second day of the weekend.",
+    "question": "Sunday",
     "answer": "日曜日",
-    "romaji": "ni chi you bi"
+    "romaji": "nichi you bi"
   },
   {
-    "question": "Saturday and Sunday.",
+    "question": "Weekend",
     "answer": "週末",
-    "romaji": "shuu ma tsu"
+    "romaji": "shuu matsu"
   },
   {
-    "question": "The middle of the work week.",
+    "question": "Wednesday",
     "answer": "水曜日",
     "romaji": "sui you bi"
   }

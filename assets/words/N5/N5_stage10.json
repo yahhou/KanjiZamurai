@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Apartment",
+    "answer": "アパート",
+    "romaji": "a paato"
+  },
+  {
+    "question": "Bank",
+    "answer": "銀行",
+    "romaji": "gin kou"
+  },
+  {
+    "question": "Embassy",
+    "answer": "大使館",
+    "romaji": "tai shi kan"
+  },
+  {
+    "question": "Hospital",
+    "answer": "病院",
+    "romaji": "byou in"
+  },
+  {
+    "question": "Library",
+    "answer": "図書館",
+    "romaji": "to sho kan"
+  },
+  {
+    "question": "Park",
+    "answer": "公園",
+    "romaji": "kou en"
+  },
+  {
+    "question": "Police box",
+    "answer": "交番",
+    "romaji": "kou ban"
+  },
+  {
+    "question": "Post office",
+    "answer": "郵便局",
+    "romaji": "yuu bin kyoku"
+  },
+  {
+    "question": "School",
+    "answer": "学校",
+    "romaji": "ga kkou"
+  },
+  {
+    "question": "University / College",
+    "answer": "大学",
+    "romaji": "dai gaku"
+  }
+]

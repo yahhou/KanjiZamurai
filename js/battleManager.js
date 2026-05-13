@@ -6,6 +6,7 @@ import { OneEyedGoblinOyabun } from "../characters/enemies/oneEyedGoblinOyabun.j
 import { OneEyedGoblin } from "../characters/enemies/oneEyedGoblin.js";
 import { Oogama } from "../characters/enemies/oogama.js";
 import { ObakeKinoko } from "../characters/enemies/obakeKinoko.js";
+import { Kakashi } from "../characters/enemies/kakashi.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -17,6 +18,7 @@ const ENEMY_CLASSES = {
   OneEyedGoblinOyabun,
   Oogama,
   ObakeKinoko,
+  Kakashi,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
