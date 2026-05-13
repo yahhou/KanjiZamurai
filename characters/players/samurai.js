@@ -27,46 +27,37 @@ import { Player } from './player.js';
   /* ==========================================================================
   通常攻撃
   ========================================================================== */ 
-  playAttackAnimation(target, damage, isCritical, isEvaded = false) { // 引数をオブジェクトとダメージに変更
+  playAttackAnimation(target, damage, isCritical, isEvaded = false) {
   if (!this.el || !target || !target.el) return;
 
   this.isAttacking = true;
   this.stopIdle();
 
-  // ★ここで target.el を使うことでエラーを回避
-  const targetEl = target.el; 
+  const targetEl = target.el;
   const selfRect = this.el.getBoundingClientRect();
-
   const targetRect = targetEl.getBoundingClientRect();
+  const distanceX = targetRect.left - selfRect.left - 50;
 
-  const distanceX = targetRect.left - selfRect.left - 50; 
-  // 手入力で管理しやすいように、開始フレームを3枚目の「2」にする
   let frame = 2;
 
   const nextFrame = () => {
     if (frame === 2) {
       // --- 【3枚目】構え ---
-      this.sprite.style.backgroundPosition = `50% 100%`; 
-      frame = 3; 
-      setTimeout(nextFrame, 400); 
+      this.sprite.style.backgroundPosition = `50% 100%`;
+      frame = 3;
+      setTimeout(nextFrame, 300);
     } 
     else if (frame === 3) {
       // --- 【4枚目】斬撃 ＆ 突進 ---
-
-      // ★ぬるっと動かすための設定 (0.15秒かけて移動)
-      this.sprite.style.transition = "transform 0.15s ease-out";
-
-      this.sprite.style.backgroundPosition = `75% 100%`; 
+      this.sprite.style.transition = "transform 0.1s ease-out"; // 突進速度
+      this.sprite.style.backgroundPosition = `75% 100%`;
       this.sprite.style.transform = `translateX(${distanceX}px)`;
-      
-      // ★ここで音を鳴らす！
-        this.attackSound.currentTime = 0; // 再生位置をリセット（連続攻撃対策）
 
-      
-      if(isCritical){
+      this.attackSound.currentTime = 0;
+      if (isCritical) {
         this.triggerFlash();
         this.playCriticalHitSE();
-      }else{
+      } else {
         this.attackSound.play();
       }
 
@@ -78,19 +69,21 @@ import { Player } from './player.js';
 
       // 突っ込んだあと、元の位置に戻るタイミング
       setTimeout(() => {
+        // --- 修正点 ---
+        this.sprite.style.transition = "none"; // 一瞬で戻る
         this.sprite.style.transform = `translateX(0px)`;
-        frame = 999; // 2枚（2と3）以外なら何でもOK。終了フラグへ
+        this.sprite.style.backgroundPosition = `50% 100%`; // 3枚目の座標に切り替え
+        
+        frame = 999; 
         nextFrame();
-      }, 500);
+      }, 400); // 停止時間（お好みで調整）
     } 
     else {
-      // --- 終了（待機に戻る） ---
       this.isAttacking = false;
-      this.startIdle(); // ここで自動的に待機フレーム（0〜1）のループに戻ります
+      this.startIdle();
     }
   };
-  // ★これを忘れていました！（アニメーションの起動スイッチ）
-    nextFrame();
+
+  nextFrame();
   }
-  
 }

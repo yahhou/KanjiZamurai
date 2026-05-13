@@ -166,14 +166,21 @@ export const gameManager = {
     container.style.display = "flex";
     container.style.backgroundColor = "transparent";
     container.style.opacity = "1";
+    
     container.innerHTML = `
       <div class="menu-container">
-        <h1 class="game-title">侍</h1>
-        <button type="button" class="main-menu-btn story" id="storyBtn">Story Mode</button>
-        <button type="button" class="main-menu-btn practice" id="practiceBtn">Practice (自由練習)</button>
+        <!-- 背景画像 -->
+        <img src="assets/images/Kiwami_title.png" alt="Background">
+        
+        <!-- ボタン群（画像の上に重なる） -->
+        <div class="button-overlay">
+          <button type="button" class="main-menu-btn story" id="storyBtn">Story Mode</button>
+          <button type="button" class="main-menu-btn practice" id="practiceBtn">Practice (自由練習)</button>
+        </div>
       </div>
     `;
 
+    // ...イベントリスナーはそのまま...
     document.getElementById("storyBtn").addEventListener("click", () => {
       this.playStartBtnSE();
       this.startStoryMode();

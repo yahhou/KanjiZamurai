@@ -117,28 +117,43 @@ body {
   pointer-events: auto;
 }
 
+/* --- 画像の設定を修正 --- */
+#uiWrapper img {
+  position: absolute; /* 絶対配置にして浮かせる */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 比率を維持して全画面を埋める */
+  z-index: -1;       /* ボタンより後ろに配置 */
+}
+
 /* ============================
    メニューコンテナ
 ===============================*/
 
+/* 既存の .menu-container を少し調整 */
 .menu-container {
+  position: relative; /* 子要素の基準にする */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 45px;
   width: 100%;
+  height: 100%;
+  justify-content: center; /* 中央寄せ */
 }
 
 /* メインメニュー用のスタイル例 */
 .main-menu-btn {
   display: block;
-  width: 280px;
-  margin: 15px auto;
-  padding: 20px;
-  font-size: 1.5rem;
+  width: 70cqw;
+  height: 15cqw;
+  margin: 5cqw;
+
+  font-size: 5cqw;
   font-family: 'Sawarabi Mincho', serif; /* 和風フォントがあれば */
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
   border: 3px solid #d4af37; /* 金色 */
   border-radius: 8px;
@@ -151,16 +166,18 @@ body {
   transform: scale(1.05);
 }
 
-.game-title {
-  color: white;
-  text-shadow: 2px 2px 4px #000;
-  font-size: 3rem;
-  margin-bottom: 30px;
-  text-align: center;
-}
 /* ============================
    モードボタン（ステージ選択）
 ===============================*/
+/* --- ボタンをまとめるコンテナを追加（HTML側でも使用） --- */
+.button-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 1; /* 画像の前に出す */
+  margin-top: 100cqw;
+}
 
 .mode-btn {
   width: 70%;
@@ -169,7 +186,7 @@ body {
   border-radius: 10cqw;
   background: #1f1f1f;
   color: #ffffff;
-  font-size: 5cqw;
+  font-size: 8cqw;
   font-weight: bold;
   box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.5);
   border: 1px solid #ffffff;
