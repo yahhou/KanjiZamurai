@@ -1,0 +1,92 @@
+[
+  {
+    "question": "Shampoo",
+    "answer": "シャンプー",
+    "romaji": "shan puu"
+  },
+  {
+    "question": "Towel",
+    "answer": "タオル",
+    "romaji": "ta o ru"
+  },
+  {
+    "question": "Table",
+    "answer": "テーブル",
+    "romaji": "tee bu ru"
+  },
+  {
+    "question": "TV",
+    "answer": "テレビ",
+    "romaji": "te re bi"
+  },
+  {
+    "question": "Bed",
+    "answer": "ベッド",
+    "romaji": "bed do"
+  },
+  {
+    "question": "Refrigerator",
+    "answer": "冷蔵庫",
+    "romaji": "rei zou ko"
+  },
+  {
+    "question": "Vacuum cleaner",
+    "answer": "掃除機",
+    "romaji": "sou ji ki"
+  },
+  {
+    "question": "Clock / Watch",
+    "answer": "時計",
+    "romaji": "to kei"
+  },
+  {
+    "question": "Bookshelf",
+    "answer": "本棚",
+    "romaji": "hon dana"
+  },
+  {
+    "question": "Desk",
+    "answer": "机",
+    "romaji": "tsukue"
+  },
+  {
+    "question": "Chair",
+    "answer": "椅子",
+    "romaji": "i su"
+  },
+  {
+    "question": "Toothbrush",
+    "answer": "歯ブラシ",
+    "romaji": "ha bu ra shi"
+  },
+  {
+    "question": "Washing machine",
+    "answer": "洗濯機",
+    "romaji": "sen taku ki"
+  },
+  {
+    "question": "Soap",
+    "answer": "石鹸",
+    "romaji": "sek ken"
+  },
+  {
+    "question": "Key",
+    "answer": "鍵",
+    "romaji": "kagi"
+  },
+  {
+    "question": "Mirror",
+    "answer": "鏡",
+    "romaji": "kagami"
+  },
+  {
+    "question": "Light / Electricity",
+    "answer": "電気",
+    "romaji": "den ki"
+  },
+  {
+    "question": "Telephone",
+    "answer": "電話",
+    "romaji": "den wa"
+  }
+]
