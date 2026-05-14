@@ -7,6 +7,7 @@ import { OneEyedGoblin } from "../characters/enemies/oneEyedGoblin.js";
 import { Oogama } from "../characters/enemies/oogama.js";
 import { ObakeKinoko } from "../characters/enemies/obakeKinoko.js";
 import { Kakashi } from "../characters/enemies/kakashi.js";
+import { Genin } from "../characters/enemies/genin.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -19,6 +20,7 @@ const ENEMY_CLASSES = {
   Oogama,
   ObakeKinoko,
   Kakashi,
+  Genin,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -334,6 +336,10 @@ export const battleManager = {
       "stage_7": "assets/images/stage_creek.png",
       "stage_8": "assets/images/stage_creek.png",
       "stage_9": "assets/images/stage_bambooGrove.png",
+      "stage_10": "assets/images/stage_bambooGrove.png",
+      "stage_11": "assets/images/stage_bambooGrove.png",
+      "stage_12": "assets/images/stage_mountainPath.png",
+      "stage_13": "assets/images/stage_mountainPath.png",
     };
 
     for (const key in bgList) {

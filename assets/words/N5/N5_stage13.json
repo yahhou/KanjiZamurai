@@ -1,0 +1,87 @@
+[
+  {
+    "question": "Drink / Beverage",
+    "answer": "飲み物",
+    "romaji": "nomi mono"
+  },
+  {
+    "question": "Water",
+    "answer": "水",
+    "romaji": "mizu"
+  },
+  {
+    "question": "Tea (Green tea)",
+    "answer": "お茶",
+    "romaji": "o cha"
+  },
+  {
+    "question": "Black tea",
+    "answer": "紅茶",
+    "romaji": "kou cha"
+  },
+  {
+    "question": "Coffee",
+    "answer": "コーヒー",
+    "romaji": "koo hii"
+  },
+  {
+    "question": "Juice",
+    "answer": "ジュース",
+    "romaji": "juu su"
+  },
+  {
+    "question": "Milk",
+    "answer": "牛乳 / ミルク",
+    "romaji": "gyuu nyuu / mi ru ku"
+  },
+  {
+    "question": "Beer",
+    "answer": "ビール",
+    "romaji": "bii ru"
+  },
+  {
+    "question": "Alcohol / Sake",
+    "answer": "お酒",
+    "romaji": "o sake"
+  },
+  {
+    "question": "Lunch box (Bento)",
+    "answer": "お弁当",
+    "romaji": "o ben tou"
+  },
+  {
+    "question": "Curry",
+    "answer": "カレー",
+    "romaji": "ka ree"
+  },
+  {
+    "question": "Bread",
+    "answer": "パン",
+    "romaji": "pan"
+  },
+  {
+    "question": "Rice / Meal",
+    "answer": "ご飯",
+    "romaji": "go han"
+  },
+  {
+    "question": "Cooking / Cuisine",
+    "answer": "料理",
+    "romaji": "ryou ri"
+  },
+  {
+    "question": "Breakfast",
+    "answer": "朝ご飯",
+    "romaji": "asa go han"
+  },
+  {
+    "question": "Lunch",
+    "answer": "昼ご飯",
+    "romaji": "hiru go han"
+  },
+  {
+    "question": "Dinner",
+    "answer": "晩ご飯",
+    "romaji": "ban go han"
+  }
+]

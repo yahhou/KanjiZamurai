@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Beef",
+    "answer": "牛肉",
+    "romaji": "gyuu niku"
+  },
+  {
+    "question": "Pork",
+    "answer": "豚肉",
+    "romaji": "buta niku"
+  },
+  {
+    "question": "Chicken",
+    "answer": "鶏肉",
+    "romaji": "tori niku"
+  },
+  {
+    "question": "Meat",
+    "answer": "肉",
+    "romaji": "niku"
+  },
+  {
+    "question": "Fish",
+    "answer": "魚",
+    "romaji": "sakana"
+  },
+  {
+    "question": "Egg",
+    "answer": "卵",
+    "romaji": "tamago"
+  },
+  {
+    "question": "Vegetables",
+    "answer": "野菜",
+    "romaji": "ya sai"
+  },
+  {
+    "question": "Fruit",
+    "answer": "果物",
+    "romaji": "kuda mono"
+  },
+  {
+    "question": "Banana",
+    "answer": "バナナ",
+    "romaji": "ba na na"
+  },
+  {
+    "question": "Mandarin Orange",
+    "answer": "みかん",
+    "romaji": "mi kan"
+  },
+  {
+    "question": "Apple",
+    "answer": "りんご",
+    "romaji": "rin go"
+  },
+  {
+    "question": "Salt",
+    "answer": "塩",
+    "romaji": "shio"
+  },
+  {
+    "question": "Sugar",
+    "answer": "砂糖",
+    "romaji": "sa tou"
+  },
+  {
+    "question": "Soy sauce",
+    "answer": "醤油",
+    "romaji": "shou yu"
+  },
+  {
+    "question": "Candy",
+    "answer": "飴",
+    "romaji": "ame"
+  },
+  {
+    "question": "Sweets / Snacks",
+    "answer": "お菓子",
+    "romaji": "o ka shi"
+  }
+]

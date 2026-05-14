@@ -34,9 +34,15 @@ import { Player } from './player.js';
   this.stopIdle();
 
   const targetEl = target.el;
-  const selfRect = this.el.getBoundingClientRect();
   const targetRect = targetEl.getBoundingClientRect();
-  const distanceX = targetRect.left - selfRect.left - 50;
+  const selfRect = this.el.getBoundingClientRect();
+
+  // 1. 自分と敵の純粋な距離（中心点どうしの差など）を計算
+  const fullDistance = targetRect.left - selfRect.left;
+
+  // 2. 「距離の90%」だけ移動するように設定（＝10%手前で止まる）
+  // 敵が左にいる場合でも、この掛け算なら正しく計算されます
+  const distanceX = fullDistance * 0.7;
 
   let frame = 2;
 

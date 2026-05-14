@@ -95,11 +95,39 @@ export const STAGE_CONFIGS = {
       id: 10,
       name: "services & daily life",
       files: ["N5_stage10.json"],
-      bgKey: "stage_9",
-      enemyLevel: 9,
+      bgKey: "stage_10",
+      enemyLevel: 10,
+      enemyTypes: ["Oogama"],
+      bossType: "Kakashi",
+    },
+      {
+      id: 11,
+      name: "Infrastructure & Commerce",
+      files: ["N5_stage11.json"],
+      bgKey: "stage_11",
+      enemyLevel: 11,
       enemyTypes: ["ObakeKinoko","Oogama"],
       bossType: "Kakashi",
     },
+     {
+      id: 11,
+      name: "Infrastructure & Commerce",
+      files: ["N5_stage11.json"],
+      bgKey: "stage_11",
+      enemyLevel: 11,
+      enemyTypes: ["ObakeKinoko","Oogama"],
+      bossType: "Kakashi",
+    },
+     {
+      id: 12,
+      name: "Ingredients & Basic Foods",
+      files: ["N5_stage12.json"],
+      bgKey: "stage_12",
+      enemyLevel: 12,
+      enemyTypes: ["Genin"],
+      bossType: "Genin",
+    },
+
   ],
 
   N6: [
@@ -133,6 +161,8 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 8 },
   { category: "N5", stageId: 9 },
   { category: "N5", stageId: 10 },
+  { category: "N5", stageId: 11 },
+  { category: "N5", stageId: 12 },
 ];
 
 export function findStageConfig(category, stageId) {

@@ -1,0 +1,67 @@
+[
+  {
+    "question": "Airport",
+    "answer": "空港",
+    "romaji": "kuu kou"
+  },
+  {
+    "question": "Bridge",
+    "answer": "橋",
+    "romaji": "hashi"
+  },
+  {
+    "question": "Bus stop",
+    "answer": "バス停",
+    "romaji": "basu tei"
+  },
+  {
+    "question": "Coffee shop / Café",
+    "answer": "喫茶店",
+    "romaji": "kissa ten"
+  },
+  {
+    "question": "Corner",
+    "answer": "角",
+    "romaji": "kado"
+  },
+  {
+    "question": "Department store",
+    "answer": "デパート",
+    "romaji": "depaato"
+  },
+  {
+    "question": "Intersection",
+    "answer": "交差点",
+    "romaji": "kou sa ten"
+  },
+  {
+    "question": "Kiosk / Stall",
+    "answer": "売店",
+    "romaji": "bai ten"
+  },
+  {
+    "question": "Restaurant",
+    "answer": "レストラン",
+    "romaji": "resu to ran"
+  },
+  {
+    "question": "Road / Street",
+    "answer": "道",
+    "romaji": "michi"
+  },
+  {
+    "question": "Shop / Store",
+    "answer": "店",
+    "romaji": "mise"
+  },
+  {
+    "question": "Station",
+    "answer": "駅",
+    "romaji": "eki"
+  },
+  {
+    "question": "Traffic light",
+    "answer": "信号",
+    "romaji": "shin gou"
+  }
+]
