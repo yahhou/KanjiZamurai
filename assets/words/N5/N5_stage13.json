@@ -2,7 +2,7 @@
   {
     "question": "Drink / Beverage",
     "answer": "飲み物",
-    "romaji": "nomi mono"
+    "romaji": "no mi mono"
   },
   {
     "question": "Water",
@@ -31,8 +31,8 @@
   },
   {
     "question": "Milk",
-    "answer": "牛乳 / ミルク",
-    "romaji": "gyuu nyuu / mi ru ku"
+    "answer": "牛乳",
+    "romaji": "gyuu nyuu"
   },
   {
     "question": "Beer",
@@ -40,7 +40,7 @@
     "romaji": "bii ru"
   },
   {
-    "question": "Alcohol / Sake",
+    "question": "Alcohol",
     "answer": "お酒",
     "romaji": "o sake"
   },

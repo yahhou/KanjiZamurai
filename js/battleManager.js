@@ -340,6 +340,7 @@ export const battleManager = {
       "stage_11": "assets/images/stage_bambooGrove.png",
       "stage_12": "assets/images/stage_mountainPath.png",
       "stage_13": "assets/images/stage_mountainPath.png",
+      "stage_14": "assets/images/stage_mountainPath.png",
     };
 
     for (const key in bgList) {

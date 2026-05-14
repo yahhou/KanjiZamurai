@@ -127,6 +127,15 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin"],
       bossType: "Genin",
     },
+      {
+      id: 13,
+      name: "Meals & Beverages",
+      files: ["N5_stage13.json"],
+      bgKey: "stage_13",
+      enemyLevel: 13,
+      enemyTypes: ["Genin","Oogama"],
+      bossType: "Genin",
+    },
 
   ],
 
@@ -163,6 +172,7 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 10 },
   { category: "N5", stageId: 11 },
   { category: "N5", stageId: 12 },
+  { category: "N5", stageId: 13 },
 ];
 
 export function findStageConfig(category, stageId) {
