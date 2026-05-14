@@ -4,7 +4,7 @@ import { Enemy } from './enemy.js';
     constructor() {
       super({
         id: "enemy",          
-        imgSrc: "assets/images/koganeKozou-Sheet.png", 
+        imgSrc: "assets/images/KoganeKozou-Sheet.png", 
         hp: 10,
         mp: 0,
         atk: 1,
