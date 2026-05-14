@@ -8,6 +8,7 @@ import { Oogama } from "../characters/enemies/oogama.js";
 import { ObakeKinoko } from "../characters/enemies/obakeKinoko.js";
 import { Kakashi } from "../characters/enemies/kakashi.js";
 import { Genin } from "../characters/enemies/genin.js";
+import { Kamaitachi } from "../characters/enemies/kamaitachi.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -21,6 +22,7 @@ const ENEMY_CLASSES = {
   ObakeKinoko,
   Kakashi,
   Genin,
+  Kamaitachi,
 };
 
 function normalizeEnemyTypes(enemyTypes) {

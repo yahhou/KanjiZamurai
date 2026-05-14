@@ -136,26 +136,16 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin","Oogama"],
       bossType: "Genin",
     },
-
-  ],
-
-  N6: [
-    {
-      id: 99,
-      name: "Hiragana",
-      files: ["hiragana.json"],
-      enemyLevel: 1,
-      enemyTypes: ["Kappa"],
-      bossType: "KappaOyabun",
+        {
+      id: 14,
+      name: "Jobs & Roles",
+      files: ["N5_stage14.json"],
+      bgKey: "stage_14",
+      enemyLevel: 14,
+      enemyTypes: ["Genin","Oogama"],
+      bossType: "Kamaitachi",
     },
-    {
-      id: 100,
-      name: "Katakana",
-      files: ["katakana.json"],
-      enemyLevel: 1,
-      enemyTypes: ["Kappa"],
-      bossType: "KappaOyabun",
-    },
+
   ],
 };
 
@@ -173,6 +163,7 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 11 },
   { category: "N5", stageId: 12 },
   { category: "N5", stageId: 13 },
+  { category: "N5", stageId: 14 },
 ];
 
 export function findStageConfig(category, stageId) {

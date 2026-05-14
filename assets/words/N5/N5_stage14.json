@@ -1,0 +1,72 @@
+[
+  {
+    "question": "Doctor",
+    "answer": "医者",
+    "romaji": "i sha"
+  },
+  {
+    "question": "Nurse",
+    "answer": "看護師",
+    "romaji": "kan go shi"
+  },
+  {
+    "question": "Teacher",
+    "answer": "先生",
+    "romaji": "sen sei"
+  },
+  {
+    "question": "Student",
+    "answer": "学生",
+    "romaji": "gaku sei"
+  },
+  {
+    "question": "International student",
+    "answer": "留学生",
+    "romaji": "ryuu gaku sei"
+  },
+  {
+    "question": "Office worker / Company employee",
+    "answer": "会社員",
+    "romaji": "kai sha in"
+  },
+  {
+    "question": "Bank clerk / Banker",
+    "answer": "銀行員",
+    "romaji": "gin kou in"
+  },
+  {
+    "question": "Police officer",
+    "answer": "警官",
+    "romaji": "kei kan"
+  },
+  {
+    "question": "Store clerk / Shop assistant",
+    "answer": "店員",
+    "romaji": "ten in"
+  },
+  {
+    "question": "Cook / Chef",
+    "answer": "料理人",
+    "romaji": "ryou ri nin"
+  },
+  {
+    "question": "Driver",
+    "answer": "運転手",
+    "romaji": "un ten shu"
+  },
+  {
+    "question": "Ambassador",
+    "answer": "大使",
+    "romaji": "tai shi"
+  },
+  {
+    "question": "Homemaker / Housewife",
+    "answer": "主婦",
+    "romaji": "shu fu"
+  },
+  {
+    "question": "Shop owner",
+    "answer": "店主",
+    "romaji": "ten shu"
+  }
+]
