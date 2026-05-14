@@ -10,7 +10,7 @@ import { Enemy } from './enemy.js';
         atk: 1,
         def: 1,
         mdf: 5,
-        eva: 5,
+        eva: 0,
         critRate: 10,
         width: 40,  // 個別の幅
         height: 40,  // 個別の高さ
