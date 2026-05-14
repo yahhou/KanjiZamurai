@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Door",
+    "answer": "戸",
+    "romaji": "to"
+  },
+  {
+    "question": "Window",
+    "answer": "窓",
+    "romaji": "ma do"
+  },
+  {
+    "question": "Toilet / Restroom",
+    "answer": "お手洗い",
+    "romaji": "o te ara i"
+  },
+  {
+    "question": "Bathroom / Bath",
+    "answer": "お風呂",
+    "romaji": "o fu ro"
+  },
+  {
+    "question": "Kitchen",
+    "answer": "台所",
+    "romaji": "dai dokoro"
+  },
+  {
+    "question": "House / Home",
+    "answer": "家",
+    "romaji": "ie"
+  },
+  {
+    "question": "Room",
+    "answer": "部屋",
+    "romaji": "he ya"
+  },
+  {
+    "question": "Stairs",
+    "answer": "階段",
+    "romaji": "kai dan"
+  },
+  {
+    "question": "Entrance",
+    "answer": "玄関",
+    "romaji": "gen kan"
+  },
+  {
+    "question": "Garden / Yard",
+    "answer": "庭",
+    "romaji": "niwa"
+  }
+]

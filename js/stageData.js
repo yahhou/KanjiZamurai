@@ -109,16 +109,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["ObakeKinoko","Oogama"],
       bossType: "Kakashi",
     },
-     {
-      id: 11,
-      name: "Infrastructure & Commerce",
-      files: ["N5_stage11.json"],
-      bgKey: "stage_11",
-      enemyLevel: 11,
-      enemyTypes: ["ObakeKinoko","Oogama"],
-      bossType: "Kakashi",
-    },
-     {
+      {
       id: 12,
       name: "Ingredients & Basic Foods",
       files: ["N5_stage12.json"],
@@ -145,7 +136,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin","Oogama"],
       bossType: "Kamaitachi",
     },
-          {
+      {
       id: 15,
       name: "Household Items & Appliances",
       files: ["N5_stage15.json"],
@@ -153,6 +144,15 @@ export const STAGE_CONFIGS = {
       enemyLevel: 15,
       enemyTypes: ["Genin","Oogama"],
       bossType: "Kamaitachi",
+    },
+      {
+      id: 16,
+      name: "House Structure & Rooms",
+      files: ["N5_stage16.json"],
+      bgKey: "stage_16",
+      enemyLevel: 16,
+      enemyTypes: ["Genin","Oogama","KappaOyabun","OneEyedGoblinOyabun"],
+      bossType: "KoganeKozou",
     },
 
   ],
@@ -174,6 +174,7 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 13 },
   { category: "N5", stageId: 14 },
   { category: "N5", stageId: 15 },
+  { category: "N5", stageId: 16 },
 ];
 
 export function findStageConfig(category, stageId) {
