@@ -57,6 +57,14 @@ export const battleManager = {
   init(savedStatus = null, bgKey = null, enemyTypes = null, enemyLevel = null, bossType = null) { // 引数で保存データを受け取れるようにする
     this.clearCharacters();
     this.setupBackgrounds();
+    // ★追加：コンボとStreakの内部数値をリセット
+
+    // ★追加：コンボとStreakの内部数値をリセット
+    this.comboCount = 0;
+    if (this.player) {
+      this.player.streakMultiplier = 1.0;
+      this.player.hasStreakBonus = false;
+    }
     
     this.currentEnemyTypes = normalizeEnemyTypes(enemyTypes);
     this.currentEnemyLevel = enemyLevel;
@@ -213,10 +221,28 @@ export const battleManager = {
   //       キャラクターリセット
   ///////////////////////////////////
   clearCharacters() {
-    if (this.player) this.player.destroy();
+    // 1. まずプレイヤーと敵のインスタンスを破棄
+    if (this.player) {
+      this.player.streakMultiplier = 1.0;
+      this.player.hasStreakBonus = false;
+      this.player.destroy();
+    }
     if (this.enemy) this.enemy.destroy();
     this.player = null;
     this.enemy = null;
+
+    // 2. 画面に残った Streak UI を削除
+    const streakEl = document.getElementById("battle-streak");
+    if (streakEl) streakEl.remove();
+
+    // 3. 画面に残ったダメージポップアップなどの残骸を強制掃除
+    const actionArea = document.getElementById("actionArea");
+    if (actionArea) {
+      // actionArea の中にある「要素（el）以外の残骸」を消す、
+      // またはポップアップのクラス名（.damage-popup等）が分かればそれを指定して削除
+      const oldPopups = actionArea.querySelectorAll(".damage-popup"); 
+      oldPopups.forEach(popup => popup.remove());
+    }
   },
 
 
