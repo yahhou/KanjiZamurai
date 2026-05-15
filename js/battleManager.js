@@ -126,6 +126,8 @@ export const battleManager = {
     if (this.enemy.hp <= 0 || this.enemy.isDead) return;
 
     this.player.attack(this.enemy, damageMultiplier);
+    
+    // 攻撃直後にHPチェックを行い、死んでいたらフラグを立てる
     this.checkBattleStatus();
   },
 
@@ -142,27 +144,59 @@ export const battleManager = {
     this.enemy.attack(this.player, damageMultiplier);
   },
 
+  ///////////////////////////////////
+  //    プレイヤーのダメージ計算
+  ///////////////////////////////////
+  calculatePlayerDamage() {
+    // 基礎攻撃力
+    let atk = this.player.atk || 10;
+    
+    // クリティカル判定（例: 10%の確率）
+    const isCritical = Math.random() < (this.player.critRate / 100);
+    let damage = isCritical ? Math.floor(atk * 1.5) : atk;
 
+    return { damage, isCritical };
+  },
+
+  
   ///////////////////////////////////
   //    正解時のターン処理
   ///////////////////////////////////
   resolveCorrectAnswerTurn() {
-    this.playerAttack();
+    this.comboCount = (this.comboCount || 0) + 1;
+    const { damage, isCritical } = this.calculatePlayerDamage();
 
+    // 攻撃前のターゲットを保持しておく（リスポーン後の新敵への攻撃化け防止）
+    const targetEnemy = this.enemy;
+
+   if (this.comboCount >= 3 && this.player.playFinishingMove) {
+  this.player.playFinishingMove(targetEnemy, damage);
+} else {
+  this.player.playAttackAnimation(targetEnemy, damage, isCritical);
+}
+
+    // 2. 反撃の予約
     setTimeout(() => {
-      if (!this.player || !this.enemy) return;
-      if (this.player.hp <= 0) return;
-      if (this.enemy.hp <= 0 || this.enemy.isDead) return;
+      // プレイヤーが消えている、または死んでいる場合は何もしない
+      if (!this.player || this.player.hp <= 0) return;
 
+      // 【重要】攻撃した対象（targetEnemy）がまだ存在し、かつ生きているかチェック
+      // 新しくスポーンした敵（this.enemy）ではなく、さっき攻撃した相手を見ることがポイント
+      if (!targetEnemy || targetEnemy.hp <= 0 || targetEnemy.isDead || targetEnemy.ishandled) {
+        console.log("ターゲットは撃破済みのため、反撃をスキップします");
+        return; 
+      }
+
+      // まだ生きていれば反撃
       this.enemyAttack(0.5);
-    }, this.counterAttackDelayMs);
+    }, 1500); 
   },
-
 
   ///////////////////////////////////
   //    不正解時のターン処理
   ///////////////////////////////////
   resolveWrongAnswerTurn() {
+    this.comboCount = 0; // コンボ途絶
     this.enemyAttack();
 
     setTimeout(() => {
@@ -274,37 +308,32 @@ export const battleManager = {
   defeatEnemy() {
     if (!this.player || !this.enemy) return;
 
-  const exp = this.enemy.expReward || 5;
-  
-  if (window.quizManager.quizMode === "boss") {
-    // ボスを倒した時はアニメを待たずに即時加算！
-    this.player.exp += exp;
+    const exp = this.enemy.expReward || 5;
     
-    // もし経験値が溢れたらレベルアップ処理
-    while (this.player.exp >= this.player.maxExp) {
-      this.player.exp -= this.player.maxExp;
-      this.player.levelUp();
+    if (window.quizManager.quizMode === "boss") {
+      this.player.exp += exp;
+      while (this.player.exp >= this.player.maxExp) {
+        this.player.exp -= this.player.maxExp;
+        this.player.levelUp();
+      }
+      this.player.updateExpBar();
+      window.quizManager.victory(); 
+      return;
     }
-    
-    this.player.updateExpBar();
-    window.quizManager.victory(); 
-    return;
-  }
 
-  // ザコ敵は今まで通りアニメーションさせる
-  this.player.gainExp(exp);
+    // ザコ敵の経験値獲得
+    this.player.gainExp(exp);
 
-    // --- 以下は通常（ザコ戦）の処理 ---
+    // 次の敵を出すタイマー
     setTimeout(() => {
-      // クイズがまだ終わっていない（ボス戦前）なら、次のザコ敵を出す
+      // クイズが継続中なら敵を出す
       if (!window.quizManager.isVictoryActive) {
         if (window.quizManager.quizMode === "normal") {
-          this.enemySpawn();
+          this.enemySpawn(); // ここで確実に新しい敵を生成
         }
       }
     }, 1100);
   },
-
 
   ///////////////////////////////////
   //  Streakボーナスの更新 (追加)

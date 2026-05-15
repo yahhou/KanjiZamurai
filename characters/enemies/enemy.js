@@ -6,7 +6,7 @@ export class Enemy extends Character {
     constructor(config) {
     super(config);
 
-    this.baseAtk;
+    this.baseAtk = config.atk || 10;
     this.attackSound1 = new Audio('assets/sounds/enemyAttack1.mp3');
     // プレイヤー共通の初期化（例：現在のレベルなど）
     this.level = 1;
@@ -28,25 +28,15 @@ export class Enemy extends Character {
   死んだ時の処理
   ========================================================================== */ 
   die() {
-    if(this.isDead) return;
-    this.isDead = true;
+  if(this.isDead) return;
+  this.isDead = true;
 
-    super.die();
+  super.die();
 
-    battleManager.checkBattleStatus();
+  battleManager.checkBattleStatus();
 
-    if (this.el) {
-      this.el.classList.add("fade-out");
-
-      setTimeout(() => {
-        if (this.el) {
-          this.el.remove();
-          this.el = null;
-        }
-        if (battleManager.enemy === this) {
-          battleManager.enemy = null;
-        }
-      }, 1000);
-    }
+  if (this.el) {
+    this.el.classList.add("fade-out");
   }
+}
 }

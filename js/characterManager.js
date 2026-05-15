@@ -303,8 +303,7 @@ export class Character {
   if(isCritical){
     damageEl.classList.add("critical");
     damageEl.innerText = `✨${amount}✨`;
-    this.playCriticalHitSE();
-    if(isCritical) this.triggerFlash();
+
   } else {
     damageEl.innerText = amount;
   }
