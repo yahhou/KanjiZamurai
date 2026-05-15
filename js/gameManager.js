@@ -57,8 +57,8 @@ export const gameManager = {
   // --- 初期化 ---
   init() {
     this.startLoadingAnimation();
-    quizManager.onCorrect = () => battleManager.playerAttack();
-    quizManager.onWrong = () => battleManager.enemyAttack();
+    quizManager.onCorrect = () => battleManager.resolveCorrectAnswerTurn();
+    quizManager.onWrong = () => battleManager.resolveWrongAnswerTurn();
     this.bindBattleControls();
 
     if (!this.isLoaded) {

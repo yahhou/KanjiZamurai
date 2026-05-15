@@ -48,6 +48,8 @@ export const battleManager = {
   currentEnemyTypes: [],
   currentEnemyLevel: null,
   currentBossType: null,
+  counterAttackDelayMs: 1000,
+  answerTurnDelayMs: 1500,
 
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
@@ -118,12 +120,12 @@ export const battleManager = {
   ///////////////////////////////////
   //   　　プレイヤーの攻撃
   ///////////////////////////////////
-  playerAttack() {
+  playerAttack(damageMultiplier = 1) {
     if (!this.player || !this.enemy) return;
     if (!this.player.el || !this.enemy.el) return;
     if (this.enemy.hp <= 0 || this.enemy.isDead) return;
 
-    this.player.attack(this.enemy);
+    this.player.attack(this.enemy, damageMultiplier);
     this.checkBattleStatus();
   },
 
@@ -131,13 +133,45 @@ export const battleManager = {
   ///////////////////////////////////
   //         　 敵の攻撃
   ///////////////////////////////////
-  enemyAttack() {
+  enemyAttack(damageMultiplier = 1) {
     if (!this.enemy || !this.player) return;
     if (!this.enemy.el || !this.player.el) return;
     if (this.enemy.hp <= 0 || this.enemy.isDead) return;
     if (this.player.hp <= 0) return;
 
-    this.enemy.attack(this.player);
+    this.enemy.attack(this.player, damageMultiplier);
+  },
+
+
+  ///////////////////////////////////
+  //    正解時のターン処理
+  ///////////////////////////////////
+  resolveCorrectAnswerTurn() {
+    this.playerAttack();
+
+    setTimeout(() => {
+      if (!this.player || !this.enemy) return;
+      if (this.player.hp <= 0) return;
+      if (this.enemy.hp <= 0 || this.enemy.isDead) return;
+
+      this.enemyAttack(0.5);
+    }, this.counterAttackDelayMs);
+  },
+
+
+  ///////////////////////////////////
+  //    不正解時のターン処理
+  ///////////////////////////////////
+  resolveWrongAnswerTurn() {
+    this.enemyAttack();
+
+    setTimeout(() => {
+      if (!this.player || !this.enemy) return;
+      if (this.player.hp <= 0) return;
+      if (this.enemy.hp <= 0 || this.enemy.isDead) return;
+
+      this.playerAttack(0.5);
+    }, this.counterAttackDelayMs);
   },
 
 

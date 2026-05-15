@@ -185,7 +185,7 @@ export const quizManager = {
       return; 
     }
 
-    // スキルパネルが出ていない場合のみ、1秒後に次へ
+    // スキルパネルが出ていない場合のみ、ターン演出後に次へ
     setTimeout(() => {
       if (this.isVictoryActive) return;
 
@@ -199,7 +199,7 @@ export const quizManager = {
           this.randomQuestion();
         }
       }
-    }, 1000);
+    }, battleManager.answerTurnDelayMs || 1000);
   },
   
 
@@ -247,7 +247,7 @@ export const quizManager = {
         if (battleManager.player && battleManager.player.hp > 0) {
             this.randomQuestion();
         }
-    }, 1000);
+    }, battleManager.answerTurnDelayMs || 1000);
   },
 
 

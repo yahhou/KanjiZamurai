@@ -212,11 +212,12 @@ export class Character {
   ///////////////////////////////////
   //      攻撃の処理
   ///////////////////////////////////
-  attack(target) {
+  attack(target, damageMultiplier = 1) {
     const isEvaded = target.checkEvade(this);
     const { amount, isCritical }= this.calculateDamage(target);
+    const adjustedAmount = Math.max(1, Math.floor(amount * damageMultiplier));
 
-    this.playAttackAnimation(target, amount, isCritical, isEvaded)
+    this.playAttackAnimation(target, adjustedAmount, isCritical, isEvaded)
   }
 
 
