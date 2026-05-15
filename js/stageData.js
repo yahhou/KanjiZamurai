@@ -154,7 +154,33 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin","Oogama","KappaOyabun","OneEyedGoblinOyabun"],
       bossType: "KoganeKozou",
     },
-
+      {
+      id: 17,
+      name: "Study Materials & Tools",
+      files: ["N5_stage17.json"],
+      bgKey: "stage_17",
+      enemyLevel: 17,
+      enemyTypes: ["KappaOyabun","OneEyedGoblinOyabun"],
+      bossType: "AkaOni",
+    }, 
+     {
+      id: 18,
+      name: "Learning & Activities",
+      files: ["N5_stage18.json"],
+      bgKey: "stage_18",
+      enemyLevel: 18,
+      enemyTypes: ["AoOni"],
+      bossType: "AkaOni",
+    },
+     {
+      id: 19,
+      name: "Body Parts & Sensory",
+      files: ["N5_stage19.json"],
+      bgKey: "stage_19",
+      enemyLevel: 19,
+      enemyTypes: ["AoOni","akaOni"],
+      bossType: "OoOni",
+    },
   ],
 };
 
@@ -175,6 +201,9 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 14 },
   { category: "N5", stageId: 15 },
   { category: "N5", stageId: 16 },
+  { category: "N5", stageId: 17 },
+  { category: "N5", stageId: 18 },
+  { category: "N5", stageId: 19 },
 ];
 
 export function findStageConfig(category, stageId) {

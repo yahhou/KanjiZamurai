@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Body",
+    "answer": "体",
+    "romaji": "karada"
+  },
+  {
+    "question": "Stomach",
+    "answer": "腹",
+    "romaji": "hara"
+  },
+  {
+    "question": "Leg / Foot",
+    "answer": "足",
+    "romaji": "ashi"
+  },
+  {
+    "question": "Hand",
+    "answer": "手",
+    "romaji": "te"
+  },
+  {
+    "question": "Finger / Toe",
+    "answer": "指",
+    "romaji": "yubi"
+  },
+  {
+    "question": "Back",
+    "answer": "背中",
+    "romaji": "se naka"
+  },
+  {
+    "question": "Head",
+    "answer": "頭",
+    "romaji": "atama"
+  },
+  {
+    "question": "Eye",
+    "answer": "目",
+    "romaji": "me"
+  },
+  {
+    "question": "Ear",
+    "answer": "耳",
+    "romaji": "mimi"
+  },
+  {
+    "question": "Mouth",
+    "answer": "口",
+    "romaji": "kuchi"
+  },
+  {
+    "question": "Nose",
+    "answer": "鼻",
+    "romaji": "hana"
+  },
+  {
+    "question": "Voice",
+    "answer": "声",
+    "romaji": "koe"
+  }
+]

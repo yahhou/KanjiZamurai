@@ -10,6 +10,9 @@ import { Kakashi } from "../characters/enemies/kakashi.js";
 import { Genin } from "../characters/enemies/genin.js";
 import { KoganeKozou } from "../characters/enemies/koganeKozou.js";
 import { Kamaitachi } from "../characters/enemies/kamaitachi.js";
+import { AkaOni } from "../characters/enemies/akaOni.js";
+import { AoOni } from "../characters/enemies/aoOni.js";
+import { OoOni } from "../characters/enemies/ooOni.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -25,6 +28,9 @@ const ENEMY_CLASSES = {
   Genin,
   Kamaitachi,
   KoganeKozou,
+  AkaOni,
+  AoOni,
+  OoOni,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -347,6 +353,9 @@ export const battleManager = {
       "stage_14": "assets/images/stage_mountainPath.png",
       "stage_15": "assets/images/stage_shrine.png",
       "stage_16": "assets/images/stage_shrine.png",
+      "stage_17": "assets/images/stage_shrine.png",
+      "stage_18": "assets/images/stage_shrine.png",
+      "stage_19": "assets/images/stage_shrine.png",
     };
 
     for (const key in bgList) {

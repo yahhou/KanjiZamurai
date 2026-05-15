@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Test / Exam",
+    "answer": "テスト",
+    "romaji": "te su to"
+  },
+  {
+    "question": "Essay / Composition",
+    "answer": "作文",
+    "romaji": "saku bun"
+  },
+  {
+    "question": "Study",
+    "answer": "勉強",
+    "romaji": "ben kyou"
+  },
+  {
+    "question": "Problem / Question",
+    "answer": "問題",
+    "romaji": "mon dai"
+  },
+  {
+    "question": "Homework",
+    "answer": "宿題",
+    "romaji": "shuku dai"
+  },
+  {
+    "question": "Meaning",
+    "answer": "意味",
+    "romaji": "i mi"
+  },
+  {
+    "question": "Class / Lesson",
+    "answer": "授業",
+    "romaji": "ju gyou"
+  },
+  {
+    "question": "Kanji",
+    "answer": "漢字",
+    "romaji": "kan ji"
+  },
+  {
+    "question": "Answer",
+    "answer": "答え",
+    "romaji": "kota e"
+  },
+  {
+    "question": "English",
+    "answer": "英語",
+    "romaji": "ei go"
+  },
+  {
+    "question": "Word / Language",
+    "answer": "言葉",
+    "romaji": "koto ba"
+  },
+  {
+    "question": "Classroom",
+    "answer": "教室",
+    "romaji": "kyou shitsu"
+  }
+]

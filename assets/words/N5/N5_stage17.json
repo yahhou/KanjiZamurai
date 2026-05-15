@@ -1,0 +1,47 @@
+[
+  {
+    "question": "Notebook",
+    "answer": "ノート",
+    "romaji": "noo to"
+  },
+  {
+    "question": "Pen",
+    "answer": "ペン",
+    "romaji": "pen"
+  },
+  {
+    "question": "Newspaper",
+    "answer": "新聞",
+    "romaji": "shin bun"
+  },
+  {
+    "question": "Book",
+    "answer": "本",
+    "romaji": "hon"
+  },
+  {
+    "question": "Eraser",
+    "answer": "消しゴム",
+    "romaji": "ke shi go mu"
+  },
+  {
+    "question": "Paper",
+    "answer": "紙",
+    "romaji": "ka mi"
+  },
+  {
+    "question": "Dictionary",
+    "answer": "辞書",
+    "romaji": "ji sho"
+  },
+  {
+    "question": "Pencil",
+    "answer": "鉛筆",
+    "romaji": "en pitsu"
+  },
+  {
+    "question": "Magazine",
+    "answer": "雑誌",
+    "romaji": "zas shi"
+  }
+]
