@@ -38,7 +38,7 @@ export class Samurai extends Player {
 
     const targetRect = target.el.getBoundingClientRect();
     const selfRect = this.el.getBoundingClientRect();
-    const distanceX = (targetRect.left - selfRect.left) * 0.7;
+    const distanceX = (targetRect.left - selfRect.left) * 0.8;
 
     this.sprite.style.backgroundPosition = this.getFramePos(2);
 
@@ -213,11 +213,11 @@ play9ComboUltimate(target, damage) {
         // 終了
         setTimeout(() => {
           this.resetToIdle();
-        }, 180);
+        }, 300);
 
-      }, 120);
+      }, 250);
 
-    }, 120);
+    }, 250);
 
   }, 500);
 }
