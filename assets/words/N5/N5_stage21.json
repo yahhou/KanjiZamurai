@@ -1,0 +1,67 @@
+[
+{
+"question": "to wake up / to occur",
+"answer": "起きる",
+"romaji": "o ki ru"
+},
+{
+"question": "to sleep",
+"answer": "寝る",
+"romaji": "ne ru"
+},
+{
+"question": "to eat",
+"answer": "食べる",
+"romaji": "ta be ru"
+},
+{
+"question": "to drink",
+"answer": "飲む",
+"romaji": "no mu"
+},
+{
+"question": "to wash",
+"answer": "洗う",
+"romaji": "a ra u"
+},
+{
+"question": "to do laundry",
+"answer": "洗濯する",
+"romaji": "sen taku su ru"
+},
+{
+"question": "to clean (a room etc.)",
+"answer": "掃除する",
+"romaji": "so ji su ru"
+},
+{
+"question": "to brush (teeth) / to polish",
+"answer": "磨く",
+"romaji": "miga ku"
+},
+{
+"question": "to take (a shower) / to bathe",
+"answer": "浴びる",
+"romaji": "a bi ru"
+},
+{
+"question": "to cook",
+"answer": "料理する",
+"romaji": "ryo ri su ru"
+},
+{
+"question": "to buy",
+"answer": "買う",
+"romaji": "ka u"
+},
+{
+"question": "to do shopping",
+"answer": "買物する",
+"romaji": "kai mono su ru"
+},
+{
+"question": "to get married",
+"answer": "結婚する",
+"romaji": "kek kon su ru"
+}
+]

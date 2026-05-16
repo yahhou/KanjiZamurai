@@ -1,0 +1,92 @@
+[
+{
+"question": "to line up",
+"answer": "並ぶ",
+"romaji": "nara bu"
+},
+{
+"question": "to line up / to arrange",
+"answer": "並べる",
+"romaji": "nara be ru"
+},
+{
+"question": "to ride / to board",
+"answer": "乗る",
+"romaji": "no ru"
+},
+{
+"question": "to enter",
+"answer": "入る",
+"romaji": "hai ru"
+},
+{
+"question": "to put in / to insert",
+"answer": "入れる",
+"romaji": "i re ru"
+},
+{
+"question": "to take out / to hand in",
+"answer": "出す",
+"romaji": "da su"
+},
+{
+"question": "to go out / to leave",
+"answer": "出る",
+"romaji": "de ru"
+},
+{
+"question": "to go",
+"answer": "行く",
+"romaji": "i ku"
+},
+{
+"question": "to come",
+"answer": "来る",
+"romaji": "ku ru"
+},
+{
+"question": "to return / to go home",
+"answer": "帰る",
+"romaji": "kae ru"
+},
+{
+"question": "to walk",
+"answer": "歩く",
+"romaji": "aru ku"
+},
+{
+"question": "to run",
+"answer": "走る",
+"romaji": "hashi ru"
+},
+{
+"question": "to fly / to jump",
+"answer": "飛ぶ",
+"romaji": "to bu"
+},
+{
+"question": "to climb",
+"answer": "登る",
+"romaji": "nobo ru"
+},
+{
+"question": "to cross",
+"answer": "渡る",
+"romaji": "wata ru"
+},
+{
+"question": "to turn",
+"answer": "曲がる",
+"romaji": "ma ga ru"
+},
+{
+"question": "to arrive",
+"answer": "着く",
+"romaji": "tsu ku"
+},
+{
+"question": "to get off (a train etc.)",
+"answer": "降りる",
+"romaji": "o ri ru"
+}
+]

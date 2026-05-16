@@ -13,6 +13,8 @@ import { Kamaitachi } from "../characters/enemies/kamaitachi.js";
 import { AkaOni } from "../characters/enemies/akaOni.js";
 import { AoOni } from "../characters/enemies/aoOni.js";
 import { OoOni } from "../characters/enemies/ooOni.js";
+import { NoroiMusha } from "../characters/enemies/noroiMusha.js";
+import { HitotsumeKomori } from "../characters/enemies/hitotsumeKomori.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -31,6 +33,8 @@ const ENEMY_CLASSES = {
   AkaOni,
   AoOni,
   OoOni,
+  NoroiMusha,
+  HitotsumeKomori,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -445,6 +449,12 @@ export const battleManager = {
       "stage_17": "assets/images/stage_shrine.png",
       "stage_18": "assets/images/stage_shrine.png",
       "stage_19": "assets/images/stage_shrine.png",
+      "stage_20": "assets/images/stage_pluvialVillage.png",
+      "stage_21": "assets/images/stage_pluvialVillage.png",
+      "stage_22": "assets/images/stage_pluvialVillage.png",
+      "stage_23": "assets/images/stage_pluvialVillage.png",
+      "stage_24": "assets/images/stage_pluvialVillage.png",
+      "stage_25": "assets/images/stage_pluvialVillage.png",
     };
 
     for (const key in bgList) {

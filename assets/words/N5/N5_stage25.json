@@ -1,0 +1,42 @@
+[
+{
+"question": "to take off (clothes)",
+"answer": "脱ぐ",
+"romaji": "nugu"
+},
+{
+"question": "to wear (upper body)",
+"answer": "着る",
+"romaji": "kiru"
+},
+{
+"question": "to wear (lower body)",
+"answer": "履く",
+"romaji": "haku"
+},
+{
+"question": "to wear (on head)",
+"answer": "被る",
+"romaji": "kaburu"
+},
+{
+"question": "to smoke / to inhale",
+"answer": "吸う",
+"romaji": "suu"
+},
+{
+"question": "to blow (wind)",
+"answer": "吹く",
+"romaji": "fuku"
+},
+{
+"question": "to bloom",
+"answer": "咲く",
+"romaji": "saku"
+},
+{
+"question": "to fall (rain, snow)",
+"answer": "降る",
+"romaji": "furu"
+}
+]

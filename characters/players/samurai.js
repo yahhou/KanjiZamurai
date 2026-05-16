@@ -31,10 +31,7 @@ import { Player } from './player.js';
     return `${(frameIndex / (totalFrames - 1)) * 100}% 100%`;
   }
 
-  /* ==========================================================================
-  通常攻撃
-  ========================================================================== */ 
-  /* ==========================================================================
+   /* ==========================================================================
   通常攻撃 (修正版)
   ========================================================================== */
   playAttackAnimation(target, damage, isCritical, isEvaded = false) {
@@ -72,6 +69,10 @@ import { Player } from './player.js';
       // --- ステップ3: 帰還 ---
       setTimeout(() => {
         this.sprite.style.transition = "none";
+        
+        // ★ここを追加：元の位置に戻る瞬間に、待機フレーム（例: フレーム1）に画像を切り替える
+        this.sprite.style.backgroundPosition = this.getFramePos(1); 
+        
         this.sprite.style.transform = `translateX(0px)`;
         this.isAttacking = false;
         this.startIdle();
@@ -118,9 +119,8 @@ import { Player } from './player.js';
         // --- ここが重要：戻ると同時に見た目を待機に戻す ---
         this.isAttacking = false; 
         this.sprite.style.backgroundPosition = this.getFramePos(0); // 最初のフレームに強制セット
-        this.startIdle(); // 待機アニメーション（0と1のループ）を再開
-        
-      }, 400); // 攻撃ポーズ（フレーム6）を見せる時間
+        this.startIdle(); // 待機アニメーション（0と1のループ）を再開 
+      }, 400); // 攻撃ポーズ（フレーム6）を見せる時間      
     }, 400);
   }
 }

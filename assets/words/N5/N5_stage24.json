@@ -1,0 +1,67 @@
+[
+{
+"question": "to cut",
+"answer": "切る",
+"romaji": "ki ru"
+},
+{
+"question": "to pull",
+"answer": "引く",
+"romaji": "hi ku"
+},
+{
+"question": "to push",
+"answer": "押す",
+"romaji": "o su"
+},
+{
+"question": "to close / to shut (intransitive)",
+"answer": "閉まる",
+"romaji": "shi ma ru"
+},
+{
+"question": "to close / to shut (transitive)",
+"answer": "閉める",
+"romaji": "shi me ru"
+},
+{
+"question": "to open (intransitive)",
+"answer": "開く",
+"romaji": "a ku"
+},
+{
+"question": "to open (transitive)",
+"answer": "開ける",
+"romaji": "a ke ru"
+},
+{
+"question": "to disappear / to go out",
+"answer": "消える",
+"romaji": "ki e ru"
+},
+{
+"question": "to turn off / to erase",
+"answer": "消す",
+"romaji": "ke su"
+},
+{
+"question": "to lose (something)",
+"answer": "失くす",
+"romaji": "na ku su"
+},
+{
+"question": "to stick / to paste",
+"answer": "貼る",
+"romaji": "ha ru"
+},
+{
+"question": "to begin / to start (intransitive)",
+"answer": "始まる",
+"romaji": "haji ma ru"
+},
+{
+"question": "to begin / to start (transitive)",
+"answer": "始める",
+"romaji": "haji me ru"
+}
+]

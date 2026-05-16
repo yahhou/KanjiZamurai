@@ -1,0 +1,72 @@
+[
+{
+"question": "to say",
+"answer": "言う",
+"romaji": "i u"
+},
+{
+"question": "to speak / to talk",
+"answer": "話す",
+"romaji": "hana su"
+},
+{
+"question": "to listen / to hear / to ask",
+"answer": "聞く",
+"romaji": "ki ku"
+},
+{
+"question": "to read",
+"answer": "読む",
+"romaji": "yo mu"
+},
+{
+"question": "to write",
+"answer": "書く",
+"romaji": "ka ku"
+},
+{
+"question": "to remember / to memorize",
+"answer": "覚える",
+"romaji": "obo e ru"
+},
+{
+"question": "to forget",
+"answer": "忘れる",
+"romaji": "wasu re ru"
+},
+{
+"question": "to teach / to tell",
+"answer": "教える",
+"romaji": "oshi e ru"
+},
+{
+"question": "to learn",
+"answer": "習う",
+"romaji": "nara u"
+},
+{
+"question": "to answer",
+"answer": "答える",
+"romaji": "kota e ru"
+},
+{
+"question": "to ask / to request",
+"answer": "頼む",
+"romaji": "tano mu"
+},
+{
+"question": "to see / to watch / to look",
+"answer": "見る",
+"romaji": "mi ru"
+},
+{
+"question": "to show",
+"answer": "見せる",
+"romaji": "mi se ru"
+},
+{
+"question": "to know",
+"answer": "知る",
+"romaji": "shi ru"
+}
+]

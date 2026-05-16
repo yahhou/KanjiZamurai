@@ -181,6 +181,83 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["AoOni","akaOni"],
       bossType: "OoOni",
     },
+
+
+    ////////////////////////////
+    /////      動詞
+    ////////////////////////////'
+    {
+      id: 20,
+      name: "Daily Life & Basic Actions",
+      files: ["N5_stage20.json"],
+      bgKey: "stage_20",
+      enemyLevel: 20,
+      enemyTypes: ["NoroiMusha"],
+      bossType: "OoOni",
+    },
+    {
+      id: 21,
+      name: "Meals, Sleep, Chores & Personal Care",
+      files: ["N5_stage21.json"],
+      bgKey: "stage_21",
+      enemyLevel: 21,
+      enemyTypes: ["NoroiMusha"],
+      bossType: "OoOni",
+    },
+    {
+      id: 22,
+      name: "Movement & Direction",
+      files: ["N5_stage22.json"],
+      bgKey: "stage_22",
+      enemyLevel: 22,
+      enemyTypes: ["NoroiMusha"],
+      bossType: "OoOni",
+    },
+    {
+      id: 23,
+      name: "Communication, Thinking & Senses",
+      files: ["N5_stage23.json"],
+      bgKey: "stage_23",
+      enemyLevel: 23,
+      enemyTypes: ["NoroiMusha","HitotsumeKomori"],
+      bossType: "OoOni",
+    },
+    {
+      id: 24,
+      name: "Object Manipulation & Changes of State",
+      files: ["N5_stage24.json"],
+      bgKey: "stage_24",
+      enemyLevel: 24,
+      enemyTypes: ["HitotsumeKomori"],
+      bossType: "Tengu",
+    },
+    {
+      id: 25,
+      name: "Clothing, Natural Phenomena & Others",
+      files: ["N5_stage25.json"],
+      bgKey: "stage_25",
+      enemyLevel: 25,
+      enemyTypes: [],
+      bossType: "",
+    },
+    {
+      id: 0,
+      name: "",
+      files: ["N5_stage.json"],
+      bgKey: "stage_",
+      enemyLevel: 0,
+      enemyTypes: [],
+      bossType: "",
+    },
+    {
+      id: 0,
+      name: "",
+      files: ["N5_stage.json"],
+      bgKey: "stage_",
+      enemyLevel: 0,
+      enemyTypes: [],
+      bossType: "",
+    },
   ],
 };
 
@@ -204,6 +281,11 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 17 },
   { category: "N5", stageId: 18 },
   { category: "N5", stageId: 19 },
+  { category: "N5", stageId: 20 },
+  { category: "N5", stageId: 21 },
+  { category: "N5", stageId: 22 },
+  { category: "N5", stageId: 23 },
+  { category: "N5", stageId: 24 },
 ];
 
 export function findStageConfig(category, stageId) {
