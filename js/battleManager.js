@@ -15,6 +15,8 @@ import { AoOni } from "../characters/enemies/aoOni.js";
 import { OoOni } from "../characters/enemies/ooOni.js";
 import { NoroiMusha } from "../characters/enemies/noroiMusha.js";
 import { HitotsumeKomori } from "../characters/enemies/hitotsumeKomori.js";
+import { Ashigaru } from "../characters/enemies/ashigaru.js";
+import { SamuraiTaishou } from "../characters/enemies/samuraiTaishou.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -35,6 +37,8 @@ const ENEMY_CLASSES = {
   OoOni,
   NoroiMusha,
   HitotsumeKomori,
+  Ashigaru,
+  SamuraiTaishou,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -455,6 +459,9 @@ export const battleManager = {
       "stage_23": "assets/images/stage_pluvialVillage.png",
       "stage_24": "assets/images/stage_pluvialVillage.png",
       "stage_25": "assets/images/stage_pluvialVillage.png",
+      "stage_26": "assets/images/stage_castle.png",
+      "stage_27": "assets/images/stage_castle.png",
+      "stage_28": "assets/images/stage_castle.png",
     };
 
     for (const key in bgList) {

@@ -1,0 +1,97 @@
+[
+{
+"question": "good",
+"answer": "良い",
+"romaji": "yo i"
+},
+{
+"question": "bad",
+"answer": "悪い",
+"romaji": "waru i"
+},
+{
+"question": "new",
+"answer": "新しい",
+"romaji": "atara shi i"
+},
+{
+"question": "old",
+"answer": "古い",
+"romaji": "furu i"
+},
+{
+"question": "expensive / high",
+"answer": "高い",
+"romaji": "taka i"
+},
+{
+"question": "low",
+"answer": "低い",
+"romaji": "hiku i"
+},
+{
+"question": "cheap",
+"answer": "安い",
+"romaji": "yasu i"
+},
+{
+"question": "spacious / wide",
+"answer": "広い",
+"romaji": "hiro i"
+},
+{
+"question": "narrow",
+"answer": "狭い",
+"romaji": "sema i"
+},
+{
+"question": "big",
+"answer": "大きい",
+"romaji": "oo ki i"
+},
+{
+"question": "small",
+"answer": "小さい",
+"romaji": "chii sa i"
+},
+{
+"question": "many / much",
+"answer": "多い",
+"romaji": "oo i"
+},
+{
+"question": "few / little",
+"answer": "少ない",
+"romaji": "suku na i"
+},
+{
+"question": "long",
+"answer": "長い",
+"romaji": "naga i"
+},
+{
+"question": "short",
+"answer": "短い",
+"romaji": "mijika i"
+},
+{
+"question": "early",
+"answer": "早い",
+"romaji": "haya i"
+},
+{
+"question": "late / slow",
+"answer": "遅い",
+"romaji": "oso i"
+},
+{
+"question": "fast / quick",
+"answer": "速い",
+"romaji": "haya i"
+},
+{
+"question": "young",
+"answer": "若い",
+"romaji": "waka i"
+}
+]

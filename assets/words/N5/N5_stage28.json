@@ -1,0 +1,37 @@
+[
+{
+"question": "busy",
+"answer": "忙しい",
+"romaji": "i so ga shi i"
+},
+{
+"question": "dangerous",
+"answer": "危ない",
+"romaji": "a bu na i"
+},
+{
+"question": "painful",
+"answer": "痛い",
+"romaji": "i ta i"
+},
+{
+"question": "dirty",
+"answer": "汚い",
+"romaji": "ki ta na i"
+},
+{
+"question": "interesting / funny",
+"answer": "面白い",
+"romaji": "o mo shi ro i"
+},
+{
+"question": "boring",
+"answer": "つまらない",
+"romaji": "tsu ma ra na i"
+},
+{
+"question": "noisy / annoying",
+"answer": "喧しい（煩い）",
+"romaji": "u ru sa i"
+}
+]

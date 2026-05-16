@@ -10,8 +10,7 @@ export const STAGE_CONFIGS = {
   N3: [],
   N4: [],
   N5: [
-    {
-      id: 1,
+    { id: 1,
       name: "numbers",
       files: ["N5_stage1.json"],
       bgKey: "stage_1",
@@ -19,8 +18,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Kappa"],
       bossType: "KappaOyabun",
     },
-    {
-      id: 2,
+    { id: 2,
       name: "times of days",
       files: ["N5_stage2.json"],
       bgKey: "stage_2",
@@ -28,8 +26,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Kappa"],
       bossType: "KappaOyabun",
     },
-      {
-      id: 3,
+    { id: 3,
       name: "dates & years",
       files: ["N5_stage3.json"],
       bgKey: "stage_3",
@@ -37,8 +34,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Kappa"],
       bossType: "KappaOyabun",
     },
-     {
-      id: 4,
+    { id: 4,
       name: "days of the week",
       files: ["N5_stage4.json"],
       bgKey: "stage_4",
@@ -46,8 +42,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Kappa","OneEyedGoblin"],
       bossType: "KappaOyabun",
     },
-     {
-      id: 5,
+    { id: 5,
       name: "family",
       files: ["N5_stage5.json"],
       bgKey: "stage_5",
@@ -55,8 +50,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Kappa","OneEyedGoblin"],
       bossType: "OneEyedGoblinOyabun",
     },
-      {
-      id: 6,
+    { id: 6,
       name: "people & identity",
       files: ["N5_stage6.json"],
       bgKey: "stage_6",
@@ -64,8 +58,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Kappa","OneEyedGoblin"],
       bossType: "OneEyedGoblinOyabun",
     },
-      {
-      id: 7,
+    { id: 7,
       name: "colors",
       files: ["N5_stage7.json"],
       bgKey: "stage_7",
@@ -73,8 +66,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["OneEyedGoblinOyabun","OneEyedGoblin"],
       bossType: "Oogama",
     },
-      {
-      id: 8,
+    { id: 8,
       name: "nature & seasons",
       files: ["N5_stage8.json"],
       bgKey: "stage_8",
@@ -82,8 +74,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["OneEyedGoblinOyabun","KappaOyabun"],
       bossType: "Oogama",
     },
-     {
-      id: 9,
+    { id: 9,
       name: "transport",
       files: ["N5_stage9.json"],
       bgKey: "stage_9",
@@ -91,8 +82,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["OneEyedGoblinOyabun","KappaOyabun", "Oogama"],
       bossType: "ObakeKinoko",
     },
-     {
-      id: 10,
+    { id: 10,
       name: "services & daily life",
       files: ["N5_stage10.json"],
       bgKey: "stage_10",
@@ -100,8 +90,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Oogama"],
       bossType: "Kakashi",
     },
-      {
-      id: 11,
+    { id: 11,
       name: "Infrastructure & Commerce",
       files: ["N5_stage11.json"],
       bgKey: "stage_11",
@@ -109,8 +98,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["ObakeKinoko","Oogama"],
       bossType: "Kakashi",
     },
-      {
-      id: 12,
+    { id: 12,
       name: "Ingredients & Basic Foods",
       files: ["N5_stage12.json"],
       bgKey: "stage_12",
@@ -118,8 +106,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin"],
       bossType: "Genin",
     },
-      {
-      id: 13,
+    { id: 13,
       name: "Meals & Beverages",
       files: ["N5_stage13.json"],
       bgKey: "stage_13",
@@ -127,8 +114,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin","Oogama"],
       bossType: "Genin",
     },
-      {
-      id: 14,
+    { id: 14,
       name: "Jobs & Roles",
       files: ["N5_stage14.json"],
       bgKey: "stage_14",
@@ -136,8 +122,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin","Oogama"],
       bossType: "Kamaitachi",
     },
-      {
-      id: 15,
+    { id: 15,
       name: "Household Items & Appliances",
       files: ["N5_stage15.json"],
       bgKey: "stage_15",
@@ -145,8 +130,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin","Oogama"],
       bossType: "Kamaitachi",
     },
-      {
-      id: 16,
+    { id: 16,
       name: "House Structure & Rooms",
       files: ["N5_stage16.json"],
       bgKey: "stage_16",
@@ -154,8 +138,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["Genin","Oogama","KappaOyabun","OneEyedGoblinOyabun"],
       bossType: "KoganeKozou",
     },
-      {
-      id: 17,
+    { id: 17,
       name: "Study Materials & Tools",
       files: ["N5_stage17.json"],
       bgKey: "stage_17",
@@ -163,8 +146,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["KappaOyabun","OneEyedGoblinOyabun"],
       bossType: "AkaOni",
     }, 
-     {
-      id: 18,
+    { id: 18,
       name: "Learning & Activities",
       files: ["N5_stage18.json"],
       bgKey: "stage_18",
@@ -172,8 +154,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["AoOni"],
       bossType: "AkaOni",
     },
-     {
-      id: 19,
+    { id: 19,
       name: "Body Parts & Sensory",
       files: ["N5_stage19.json"],
       bgKey: "stage_19",
@@ -186,8 +167,7 @@ export const STAGE_CONFIGS = {
     ////////////////////////////
     /////      動詞
     ////////////////////////////'
-    {
-      id: 20,
+    { id: 20,
       name: "Daily Life & Basic Actions",
       files: ["N5_stage20.json"],
       bgKey: "stage_20",
@@ -195,8 +175,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["NoroiMusha"],
       bossType: "OoOni",
     },
-    {
-      id: 21,
+    { id: 21,
       name: "Meals, Sleep, Chores & Personal Care",
       files: ["N5_stage21.json"],
       bgKey: "stage_21",
@@ -204,8 +183,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["NoroiMusha"],
       bossType: "OoOni",
     },
-    {
-      id: 22,
+    { id: 22,
       name: "Movement & Direction",
       files: ["N5_stage22.json"],
       bgKey: "stage_22",
@@ -213,8 +191,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["NoroiMusha"],
       bossType: "OoOni",
     },
-    {
-      id: 23,
+    { id: 23,
       name: "Communication, Thinking & Senses",
       files: ["N5_stage23.json"],
       bgKey: "stage_23",
@@ -222,8 +199,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["NoroiMusha","HitotsumeKomori"],
       bossType: "OoOni",
     },
-    {
-      id: 24,
+    { id: 24,
       name: "Object Manipulation & Changes of State",
       files: ["N5_stage24.json"],
       bgKey: "stage_24",
@@ -231,17 +207,23 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["HitotsumeKomori"],
       bossType: "Tengu",
     },
-    {
-      id: 25,
+    { id: 25,
       name: "Clothing, Natural Phenomena & Others",
       files: ["N5_stage25.json"],
       bgKey: "stage_25",
       enemyLevel: 25,
-      enemyTypes: [],
-      bossType: "",
+      enemyTypes: ["HitotsumeKomori","NoroiMusha","KappaOyabun"],
+      bossType: "Tengu",
     },
-    {
-      id: 0,
+    { id: 26,
+      name: "Sensory & Physical Properties",
+      files: ["N5_stage26.json"],
+      bgKey: "stage_26",
+      enemyLevel: 26,
+      enemyTypes: ["Ashigaru"],
+      bossType: "SamuraiTaishou",
+    },
+    { id: 27,
       name: "",
       files: ["N5_stage.json"],
       bgKey: "stage_",
@@ -249,8 +231,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: [],
       bossType: "",
     },
-    {
-      id: 0,
+    { id: 28,
       name: "",
       files: ["N5_stage.json"],
       bgKey: "stage_",
@@ -286,6 +267,8 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 22 },
   { category: "N5", stageId: 23 },
   { category: "N5", stageId: 24 },
+  { category: "N5", stageId: 25 },
+  { category: "N5", stageId: 26 },
 ];
 
 export function findStageConfig(category, stageId) {

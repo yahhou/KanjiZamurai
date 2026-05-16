@@ -1,0 +1,82 @@
+[
+{
+"question": "hot (weather)",
+"answer": "暑い",
+"romaji": "atsu i"
+},
+{
+"question": "cold (weather)",
+"answer": "寒い",
+"romaji": "samu i"
+},
+{
+"question": "hot (to the touch)",
+"answer": "熱い",
+"romaji": "atsu i"
+},
+{
+"question": "cold (to the touch)",
+"answer": "冷たい",
+"romaji": "tsu me ta i"
+},
+{
+"question": "warm",
+"answer": "暖かい",
+"romaji": "atata ka i"
+},
+{
+"question": "cool",
+"answer": "涼しい",
+"romaji": "suzu shi i"
+},
+{
+"question": "heavy",
+"answer": "重い",
+"romaji": "omo i"
+},
+{
+"question": "light (weight)",
+"answer": "軽い",
+"romaji": "karu i"
+},
+{
+"question": "bright",
+"answer": "明るい",
+"romaji": "aka ru i"
+},
+{
+"question": "dark",
+"answer": "暗い",
+"romaji": "kura i"
+},
+{
+"question": "round",
+"answer": "丸い",
+"romaji": "maru i"
+},
+{
+"question": "sweet",
+"answer": "甘い",
+"romaji": "ama i"
+},
+{
+"question": "spicy / salty",
+"answer": "辛い",
+"romaji": "kara i"
+},
+{
+"question": "sour",
+"answer": "酸っぱい",
+"romaji": "su ppa i"
+},
+{
+"question": "bad-tasting",
+"answer": "不味い",
+"romaji": "ma zu i"
+},
+{
+"question": "delicious",
+"answer": "美味しい",
+"romaji": "o i shi i"
+}
+]
