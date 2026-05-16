@@ -190,17 +190,11 @@ export const battleManager = {
   // 敵の情報を渡して正確に計算
   let { damage, isCritical } = this.calculatePlayerDamage(targetEnemy);
 
-  // コンボ数（必殺技）による威力の底上げ
-  if (this.comboCount >= 6 && this.player.playUltimateFinishingMove) {
-    // 6連撃以上：必殺技側で1.5倍などにするため、ベースダメージを渡す
-    this.player.playUltimateFinishingMove(targetEnemy, damage);
-  } else if (this.comboCount >= 3 && this.player.playFinishingMove) {
-    // 3連撃以上
-    this.player.playFinishingMove(targetEnemy, damage);
-  } else {
-    // 通常正解
-    this.player.playAttackAnimation(targetEnemy, damage, isCritical);
-  }
+  if (this.comboCount >= 3 && this.player.playUltimateFinishingMove) {
+  this.player.playUltimateFinishingMove(targetEnemy, damage);
+} else {
+  this.player.playAttackAnimation(targetEnemy, damage, isCritical);
+}
 
     setTimeout(() => {
       if (!this.player || this.player.hp <= 0) return;

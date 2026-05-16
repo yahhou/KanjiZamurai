@@ -1,38 +1,35 @@
 import { Player } from './player.js';
 
-  export class Samurai extends Player {
-    constructor() {
-      super({
-        id: "player",          
-        imgSrc: "assets/images/Samurai-Sheet.png", 
-        hp: 25,
-        mp: 0,
-        atk: 10,
-        def: 5,
-        mdf: 5,
-        eva: 5,
-        critRate: 5,
-        width: 80,  // 個別の幅
-        height: 80,  // 個別の高さ
-        sizeRatio: 45,
-        frameCount: 8,
-        deathFrame: 4,
-        idleFrameCount: 2,
-      });
-      this.name = "Samurai";
-      // 効果音の設定
-      this.attackSound = new Audio('assets/sounds/attack1.mp3');
-      }
-   
+export class Samurai extends Player {
+  constructor() {
+    super({
+      id: "player",          
+      imgSrc: "assets/images/Samurai-Sheet.png", 
+      hp: 25,
+      mp: 0,
+      atk: 10,
+      def: 5,
+      mdf: 5,
+      eva: 5,
+      critRate: 5,
+      width: 80,  
+      height: 80,  
+      sizeRatio: 45,
+      frameCount: 9,
+      deathFrame: 4,
+      idleFrameCount: 2,
+    });
+    this.name = "Samurai";
+    this.attackSound = new Audio('assets/sounds/attack1.mp3');
+  }
 
-  // フレーム番号から背景位置を計算するヘルパー（ズレ防止）
   getFramePos(frameIndex) {
-    const totalFrames = 8; 
+    const totalFrames = 9; 
     return `${(frameIndex / (totalFrames - 1)) * 100}% 100%`;
   }
 
-   /* ==========================================================================
-  通常攻撃 (修正版)
+  /* ==========================================================================
+  通常攻撃
   ========================================================================== */
   playAttackAnimation(target, damage, isCritical, isEvaded = false) {
     if (!this.el || !target || !target.el) return;
@@ -43,11 +40,9 @@ import { Player } from './player.js';
     const selfRect = this.el.getBoundingClientRect();
     const distanceX = (targetRect.left - selfRect.left) * 0.7;
 
-    // --- ステップ1: 構え (フレーム2) ---
     this.sprite.style.backgroundPosition = this.getFramePos(2);
 
     setTimeout(() => {
-      // --- ステップ2: 斬撃＆突進 (フレーム3) ---
       this.sprite.style.transition = "transform 0.1s ease-out";
       this.sprite.style.backgroundPosition = this.getFramePos(3);
       this.sprite.style.transform = `translateX(${distanceX}px)`;
@@ -66,13 +61,9 @@ import { Player } from './player.js';
         target.takeDamage?.(damage, isCritical);
       }
 
-      // --- ステップ3: 帰還 ---
       setTimeout(() => {
         this.sprite.style.transition = "none";
-        
-        // ★ここを追加：元の位置に戻る瞬間に、待機フレーム（例: フレーム1）に画像を切り替える
         this.sprite.style.backgroundPosition = this.getFramePos(1); 
-        
         this.sprite.style.transform = `translateX(0px)`;
         this.isAttacking = false;
         this.startIdle();
@@ -81,99 +72,164 @@ import { Player } from './player.js';
   }
 
   /* ==========================================================================
-  必殺技: 三連正解時 (フレーム5, 6を使用)
+  必殺技コントロール（コンボ数による出し分け）
   ========================================================================== */
-  playFinishingMove(target, damage) {
+  playUltimateFinishingMove(target, damage) {
     if (!this.el || !target || !target.el) return;
+
+    const currentCombo = window.battleManager?.comboCount || 3;
+    
+    // ① 9連続以上：3撃の必殺（フレーム5 -> 6 -> 7 -> 8）
+    if (currentCombo >= 9) {
+      this.play9ComboUltimate(target, damage);
+      return;
+    }
+
+    // ② 6連続以上：2撃の必殺（フレーム5 -> 6 -> 7）
+    if (currentCombo >= 6) {
+      this.play6ComboUltimate(target, damage);
+      return;
+    }
+
+    // ③ 3連続以上：1撃の必殺（フレーム5 -> 6）
+    this.play3ComboUltimate(target, damage);
+  }
+
+  /* ==========================================================================
+  1. 通常の必殺技: 三連続以上 (1撃)
+  ========================================================================== */
+  play3ComboUltimate(target, damage) {
     this.isAttacking = true;
     this.stopIdle();
 
-    const targetRect = target.el.getBoundingClientRect();
-    const selfRect = this.el.getBoundingClientRect();
-    const distanceX = (targetRect.left - selfRect.left) * 0.8;
+    const distanceX = (target.el.getBoundingClientRect().left - this.el.getBoundingClientRect().left) * 0.8;
 
-    // 1. 空中モーションへ (フレーム5)
+    // 空中モーションへ (フレーム5)
     this.sprite.style.transition = "transform 0.2s ease-out";
     this.sprite.style.backgroundPosition = this.getFramePos(5);
-    this.sprite.style.transform = `translate(${distanceX * 0.5}px, -40px)`; 
+    this.sprite.style.transform = `translateX(${distanceX * 0.8}px)`;
 
     setTimeout(() => {
-      // 2. 急降下攻撃 (フレーム6)
+      // 1撃目：急降下攻撃をして終了 (フレーム6)
       this.sprite.style.transition = "transform 0.1s ease-in";
       this.sprite.style.backgroundPosition = this.getFramePos(6);
-      this.sprite.style.transform = `translate(${distanceX}px, 0px)`; 
+      this.sprite.style.transform = `translateX(${distanceX}px)`;
 
       this.triggerFlash();
       this.playCriticalHitSE();
-      
-      if (target.takeDamage) {
-        target.takeDamage(damage * 1.5, true);
-      }
+      target.takeDamage?.(damage * 1.5, true);
 
-      // 3. 元の場所へ一瞬で戻り、待機モーションを開始
+      // 元の位置に戻る
       setTimeout(() => {
-        // 位置を即座にリセット
-        this.sprite.style.transition = "none";
-        this.sprite.style.transform = "translate(0px, 0px)";
-        
-        // --- ここが重要：戻ると同時に見た目を待機に戻す ---
-        this.isAttacking = false; 
-        this.sprite.style.backgroundPosition = this.getFramePos(0); // 最初のフレームに強制セット
-        this.startIdle(); // 待機アニメーション（0と1のループ）を再開 
-      }, 400); // 攻撃ポーズ（フレーム6）を見せる時間      
+        this.resetToIdle();
+      }, 400);
     }, 400);
   }
 
   /* ==========================================================================
-  超必殺技: 六連正解以上 (フレーム5, 6, 7を使用する2回連続攻撃)
+  2. 超必殺技: 六連続以上 (2撃)
   ========================================================================== */
-  playUltimateFinishingMove(target, damage) {
-    if (!this.el || !target || !target.el) return;
+  play6ComboUltimate(target, damage) {
     this.isAttacking = true;
     this.stopIdle();
 
-    const targetRect = target.el.getBoundingClientRect();
-    const selfRect = this.el.getBoundingClientRect();
-    const distanceX = (targetRect.left - selfRect.left) * 0.8;
+    const distanceX = (target.el.getBoundingClientRect().left - this.el.getBoundingClientRect().left) * 0.8;
 
-    // 1. 空中モーションへ (フレーム5)
+    // 空中モーションへ (フレーム5)
     this.sprite.style.transition = "transform 0.2s ease-out";
     this.sprite.style.backgroundPosition = this.getFramePos(5);
-    this.sprite.style.transform = `translate(${distanceX * 0.5}px, -40px)`; 
+    this.sprite.style.transform = `translateX(${distanceX * 0.8}px)`;; 
 
     setTimeout(() => {
-      // 2. 1撃目：急降下攻撃 (フレーム6)
+      // 1撃目：急降下攻撃 (フレーム6)
       this.sprite.style.transition = "transform 0.1s ease-in";
       this.sprite.style.backgroundPosition = this.getFramePos(6);
-      this.sprite.style.transform = `translate(${distanceX}px, 0px)`; 
+      this.sprite.style.transform = `translateX(${distanceX}px)`;
 
       this.triggerFlash();
       this.playCriticalHitSE();
-      
-      if (target.takeDamage) {
-        target.takeDamage(damage * 1.5, true); // クリティカル
-      }
+      target.takeDamage?.(damage * 1.5, true);
 
-      // 3. 2撃目：追加の斬撃 (フレーム7)
+      // 2撃目：追加の斬撃 (フレーム7)
       setTimeout(() => {
-        this.sprite.style.backgroundPosition = this.getFramePos(7); // ※シートの8枚目(インデックス7)
+        this.sprite.style.backgroundPosition = this.getFramePos(7); 
 
         this.triggerFlash();
         this.playCriticalHitSE();
+        target.takeDamage?.(damage * 1.5, true); 
 
-        if (target.takeDamage) {
-          target.takeDamage(damage * 1.5, true); // 2回目のクリティカルダメージ
-        }
-
-        // 4. 元の場所へ戻る
+        // 元の場所へ戻る
         setTimeout(() => {
-          this.sprite.style.transition = "none";
-          this.sprite.style.transform = "translate(0px, 0px)";
-          this.isAttacking = false; 
-          this.sprite.style.backgroundPosition = this.getFramePos(0); 
-          this.startIdle(); 
-        }, 400); // フレーム7の表示時間
-      }, 300); // 1撃目から2撃目までの間隔
+          this.resetToIdle();
+        }, 400);
+      }, 300);
     }, 400);
+  }
+
+   /* ==========================================================================
+  3. 超必殺技(極): 九連続以上 (高速三連斬り)
+========================================================================== */
+play9ComboUltimate(target, damage) {
+  this.isAttacking = true;
+  this.stopIdle();
+
+  const distanceX =
+    (target.el.getBoundingClientRect().left -
+      this.el.getBoundingClientRect().left) * 0.9;
+
+  // 接近 + 構え (5)
+  this.sprite.style.transition = "transform 0.3s ease-out";
+  this.sprite.style.backgroundPosition = this.getFramePos(5);
+  this.sprite.style.transform = `translateX(${distanceX * 0.8}px)`;; 
+
+  setTimeout(() => {
+
+    // 1撃目 (6)
+    this.sprite.style.backgroundPosition = this.getFramePos(6);
+
+    this.triggerFlash();
+    this.playCriticalHitSE();
+    target.takeDamage?.(damage * 1.5, true);
+
+    setTimeout(() => {
+
+      // 2撃目 (7)
+      this.sprite.style.backgroundPosition = this.getFramePos(7);
+
+      this.triggerFlash();
+      this.playCriticalHitSE();
+      target.takeDamage?.(damage * 1.5, true);
+
+      setTimeout(() => {
+
+        // 最後の斬り (3)
+        this.sprite.style.backgroundPosition = this.getFramePos(3);
+        this.sprite.style.transform = `translateX(${distanceX * 0.8}px)`;; 
+
+        this.triggerFlash();
+        this.playCriticalHitSE();
+        target.takeDamage?.(damage * 2, true);
+
+        // 終了
+        setTimeout(() => {
+          this.resetToIdle();
+        }, 180);
+
+      }, 120);
+
+    }, 120);
+
+  }, 500);
+}
+
+  /* ==========================================================================
+  共通ヘルパー: 待機状態への強制リセット
+  ========================================================================== */
+  resetToIdle() {
+    this.sprite.style.transition = "none";
+    this.sprite.style.transform = "translate(0px, 0px)";
+    this.isAttacking = false; 
+    this.sprite.style.backgroundPosition = this.getFramePos(0); 
+    this.startIdle(); 
   }
 }
