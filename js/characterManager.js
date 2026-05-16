@@ -249,23 +249,33 @@ export class Character {
   ///////////////////////////////////
   //       ダメージ計算
   ///////////////////////////////////
-  calculateDamage(target) {
-    const baseDamage = this.atk - Math.floor(target.def / 2);
-    const variation = 0.7 + (Math.random() * 0.2); 
-    let finalDamage = Math.floor(Math.max(1, baseDamage * variation));
+  // characterManager.js 内の calculateDamage を改良
+calculateDamage(target, customAtk = null) {
+  // customAtk が指定されていればそれ（必殺技用など）、なければ通常の計算値
+  const currentAtk = customAtk !== null ? customAtk : this.atk;
+  
+  // 防御力の計算（減算しつつ、最低でも攻撃力の10%は通るように救済）
+  let baseDamage = currentAtk - Math.floor(target.def / 2);
+  const minDamage = Math.max(1, Math.floor(currentAtk * 0.1)); 
+  if (baseDamage < minDamage) {
+    baseDamage = minDamage;
+  }
 
-    const isCritical = Math.random() * 100 < this.critRate;
+  // ダメージの振れ幅 (0.9 ~ 1.1倍)
+  const variation = 0.9 + (Math.random() * 0.2); 
+  let finalDamage = Math.floor(baseDamage * variation);
 
-    if(isCritical){
+  // クリティカル判定（一貫して1.5倍、または1.7倍に統一）
+  const isCritical = Math.random() * 100 < this.critRate;
+  if (isCritical) {
+    finalDamage = Math.floor(finalDamage * 1.5); // 倍率は統一
+  }
 
-      finalDamage = Math.floor(finalDamage * 1.7);
-    }
-  return{
-    amount: finalDamage,
+  return {
+    amount: Math.max(1, finalDamage),
     isCritical: isCritical
   };
-
-  }
+}
 
 
   ///////////////////////////////////

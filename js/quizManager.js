@@ -107,7 +107,7 @@ export const quizManager = {
           // <span>タグを活かすため、中身の変数だけを個別にエスケープします。
           const label = isBoss 
             ? escapeHtml(o.answer) 
-            : `${escapeHtml(o.answer)} <span class="romaji-text">/ ${escapeHtml(o.romaji)} /</span>`;
+            : `${escapeHtml(o.answer)} <span class="romaji-text">${escapeHtml(o.romaji)}</span>`;
           
           return `
             <button type="button" class="quiz-button" data-answer="${escapeHtml(o.answer)}">
@@ -162,7 +162,7 @@ export const quizManager = {
     }
 
     if (battleManager) battleManager.updateStreakBonus(this.streak);
-    this.updateKiwamiIcon(); // ここでパネルが出る可能性がある
+    this.updateKiwamiIcon(); // ここでゲージMAXならスキルパネルが開く
     this.updateQuestionProgress();
 
     if (battleManager.player?.isRegenerating) battleManager.player.applyRegeneration();
@@ -174,34 +174,32 @@ export const quizManager = {
       }
     });
 
-    // ★修正箇所: スキルパネルが出ているかチェック
+    // 【修正】通常ステージクリア（ボス移行）の判定
+    if (this.quizMode === "normal") {
+      const totalInStage = this.wordList[this.currentStage]?.length || 0;
+      if (this.correctAnswerCount >= totalInStage) {
+        // ステージクリア時は即座にvictoryへ行き、以降の通常遷移タイマーを回さない
+        setTimeout(() => {
+          this.victory();
+        }, battleManager.answerTurnDelayMs || 1000);
+        return;
+      }
+    }
+
+    // スキルパネルが出ている場合は、ここで通常進行のタイマーを止める
     const panel = document.getElementById("skill-panel");
     const isSkillPanelVisible = (panel && panel.style.display === "flex");
-
-    // スキルパネルが出ている場合は、ここで処理を終了する。
-    // （次の問題やボス移行は、gameManager.selectItem の中で行うため）
     if (isSkillPanelVisible) {
       console.log("スキル選択待ちのため、次問への遷移をストップしました");
       return; 
     }
 
-    // スキルパネルが出ていない場合のみ、ターン演出後に次へ
+    // 通常の次問遷移
     setTimeout(() => {
       if (this.isVictoryActive) return;
-
-      if (this.quizMode === "boss") {
-        this.randomQuestion();
-      } else {
-        const totalInStage = this.wordList[this.currentStage]?.length || 0;
-        if (this.correctAnswerCount >= totalInStage) {
-          this.victory();
-        } else {
-          this.randomQuestion();
-        }
-      }
+      this.randomQuestion();
     }, battleManager.answerTurnDelayMs || 1000);
   },
-  
 
   /////////////////////////
   //    不正解時のボタン停止
@@ -305,7 +303,6 @@ export const quizManager = {
   //　　　　勝利
   /////////////////////////
   victory() {
-    // すでにリザルト画面が出ているなら重複させない
     if (this.isVictoryActive && document.getElementById("nextStageBtn")) return;
 
     // 1. 雑魚戦が終わった直後 -> ボス戦へ移行
@@ -313,17 +310,14 @@ export const quizManager = {
       this.quizMode = "boss";
       this.usedWords = [];           
 
-      // 2. スキルパネルが出ているかチェック
       const panel = document.getElementById("skill-panel");
       const isSkillPanelVisible = (panel && panel.style.display === "flex");
 
       if (isSkillPanelVisible) {
-        // スキルパネルが出ているなら、パネルが閉じるのを待つ
-        // ※gameManager側の「スキル選択完了」イベント等にフックする
-        console.log("スキル選択待ち...");
-  
+        // スキルパネルが出ているなら、プレイヤーがアイテムを選ぶまでボス出現を保留する
+        console.log("通常戦クリア、かつスキルゲージMAXのためスキル選択を待機します");
       } else {
-        // 出ていなければ即座にボス演出開始
+        // スキルパネルが出ていなければ、即座にボス演出を開始
         this.triggerBossAppearance();
       }
       return;
@@ -332,17 +326,14 @@ export const quizManager = {
     // 2. ボス戦終了（本当のステージクリア）
     this.isVictoryActive = true;
 
-    // ★追加：ボスBGMを止める
-    if (assets && assets.sounds && assets.sounds.bgm_BossBattle) {
+    if (assets?.sounds?.bgm_BossBattle) {
       const bossBgm = assets.sounds.bgm_BossBattle;
       bossBgm.pause();
-      bossBgm.currentTime = 0; // 次回のために再生位置をリセット
+      bossBgm.currentTime = 0;
     }
     
-    // クリア画面を出すときだけ、スキルパネルを隠す
     window.gameManager?.hideSkillPanel();
 
-    // ボタンのHTMLを先に構築
     let buttonHtml = window.gameManager?.isStoryMode
       ? `<button type="button" id="nextStageBtn" class="retry-btn">Next Stage</button>`
       : `<button type="button" id="retryBtn" class="retry-btn">RETRY</button>`;
@@ -357,7 +348,6 @@ export const quizManager = {
       </div>
     `);
 
-    // innerHTMLを書き換えた直後にイベントリスナーを再登録
     document.getElementById("nextStageBtn")?.addEventListener("click", () => {
       window.gameManager?.nextStage();
     });

@@ -17,6 +17,8 @@ import { NoroiMusha } from "../characters/enemies/noroiMusha.js";
 import { HitotsumeKomori } from "../characters/enemies/hitotsumeKomori.js";
 import { Ashigaru } from "../characters/enemies/ashigaru.js";
 import { SamuraiTaishou } from "../characters/enemies/samuraiTaishou.js";
+import { IwaAtama } from "../characters/enemies/iwaAtama.js";
+import { OoZaru } from "../characters/enemies/ooZaru.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -39,6 +41,8 @@ const ENEMY_CLASSES = {
   HitotsumeKomori,
   Ashigaru,
   SamuraiTaishou,
+  IwaAtama,
+  OoZaru,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -163,16 +167,17 @@ export const battleManager = {
   ///////////////////////////////////
   //    プレイヤーのダメージ計算
   ///////////////////////////////////
-  calculatePlayerDamage() {
-    // 基礎攻撃力
-    let atk = this.player.atk || 10;
-    
-    // クリティカル判定（例: 10%の確率）
-    const isCritical = Math.random() < (this.player.critRate / 100);
-    let damage = isCritical ? Math.floor(atk * 1.5) : atk;
-
-    return { damage, isCritical };
-  },
+  calculatePlayerDamage(targetEnemy) {
+  if (!this.player || !targetEnemy) return { damage: 10, isCritical: false };
+  
+  // Characterクラスの計算メソッドをそのまま利用（これで武器・コンボ・乱数が一木に反映される）
+  const result = this.player.calculateDamage(targetEnemy);
+  
+  return { 
+    damage: result.amount, 
+    isCritical: result.isCritical 
+  };
+},
 
   
   ///////////////////////////////////
@@ -180,32 +185,31 @@ export const battleManager = {
   ///////////////////////////////////
   resolveCorrectAnswerTurn() {
     this.comboCount = (this.comboCount || 0) + 1;
-    const { damage, isCritical } = this.calculatePlayerDamage();
+  const targetEnemy = this.enemy;
+  
+  // 敵の情報を渡して正確に計算
+  let { damage, isCritical } = this.calculatePlayerDamage(targetEnemy);
 
-    // 攻撃前のターゲットを保持しておく（リスポーン後の新敵への攻撃化け防止）
-    const targetEnemy = this.enemy;
+  // コンボ数（必殺技）による威力の底上げ
+  if (this.comboCount >= 6 && this.player.playUltimateFinishingMove) {
+    // 6連撃以上：必殺技側で1.5倍などにするため、ベースダメージを渡す
+    this.player.playUltimateFinishingMove(targetEnemy, damage);
+  } else if (this.comboCount >= 3 && this.player.playFinishingMove) {
+    // 3連撃以上
+    this.player.playFinishingMove(targetEnemy, damage);
+  } else {
+    // 通常正解
+    this.player.playAttackAnimation(targetEnemy, damage, isCritical);
+  }
 
-   if (this.comboCount >= 3 && this.player.playFinishingMove) {
-  this.player.playFinishingMove(targetEnemy, damage);
-} else {
-  this.player.playAttackAnimation(targetEnemy, damage, isCritical);
-}
-
-    // 2. 反撃の予約
     setTimeout(() => {
-      // プレイヤーが消えている、または死んでいる場合は何もしない
       if (!this.player || this.player.hp <= 0) return;
-
-      // 【重要】攻撃した対象（targetEnemy）がまだ存在し、かつ生きているかチェック
-      // 新しくスポーンした敵（this.enemy）ではなく、さっき攻撃した相手を見ることがポイント
       if (!targetEnemy || targetEnemy.hp <= 0 || targetEnemy.isDead || targetEnemy.ishandled) {
         console.log("ターゲットは撃破済みのため、反撃をスキップします");
         return; 
       }
-
-      // まだ生きていれば反撃
       this.enemyAttack(0.5);
-    }, 1500); 
+    }, 1000);
   },
 
   ///////////////////////////////////
@@ -342,9 +346,19 @@ export const battleManager = {
   defeatEnemy() {
     if (!this.player || !this.enemy) return;
 
+    // 【重要】敵を倒した瞬間にプレイヤー自身も死んでいたら、その場でゲームオーバー
+    if (this.player.hp <= 0) {
+      console.log("敵を倒しましたがプレイヤーも死亡しているため、ゲームオーバーにします");
+      if (window.quizManager && typeof window.quizManager.gameOver === "function") {
+        window.quizManager.gameOver();
+      }
+      return; 
+    }
+
     const exp = this.enemy.expReward || 5;
     
-    if (window.quizManager.quizMode === "boss") {
+    // クイズモードがボス、かつ実際にボス戦が始まっている時だけ victory()
+    if (window.quizManager.quizMode === "boss" && window.quizManager.hasBossAppeared) {
       this.player.exp += exp;
       while (this.player.exp >= this.player.maxExp) {
         this.player.exp -= this.player.maxExp;
@@ -355,15 +369,17 @@ export const battleManager = {
       return;
     }
 
-    // ザコ敵の経験値獲得
+    // 通常の経験値獲得
     this.player.gainExp(exp);
 
     // 次の敵を出すタイマー
     setTimeout(() => {
-      // クイズが継続中なら敵を出す
+      if (this.player && this.player.hp <= 0) return;
+
       if (!window.quizManager.isVictoryActive) {
+        // ボス突入前（スキルパネル中やボス演出待ち）なら新しい雑魚を湧かせない
         if (window.quizManager.quizMode === "normal") {
-          this.enemySpawn(); // ここで確実に新しい敵を生成
+          this.enemySpawn(); 
         }
       }
     }, 1100);
@@ -462,6 +478,7 @@ export const battleManager = {
       "stage_26": "assets/images/stage_castle.png",
       "stage_27": "assets/images/stage_castle.png",
       "stage_28": "assets/images/stage_castle.png",
+      "stage_29": "assets/images/stage_sakuraPath.png",
     };
 
     for (const key in bgList) {

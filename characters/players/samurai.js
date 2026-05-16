@@ -15,7 +15,7 @@ import { Player } from './player.js';
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 45,
-        frameCount: 7,
+        frameCount: 8,
         deathFrame: 4,
         idleFrameCount: 2,
       });
@@ -27,7 +27,7 @@ import { Player } from './player.js';
 
   // フレーム番号から背景位置を計算するヘルパー（ズレ防止）
   getFramePos(frameIndex) {
-    const totalFrames = 7; 
+    const totalFrames = 8; 
     return `${(frameIndex / (totalFrames - 1)) * 100}% 100%`;
   }
 
@@ -121,6 +121,59 @@ import { Player } from './player.js';
         this.sprite.style.backgroundPosition = this.getFramePos(0); // 最初のフレームに強制セット
         this.startIdle(); // 待機アニメーション（0と1のループ）を再開 
       }, 400); // 攻撃ポーズ（フレーム6）を見せる時間      
+    }, 400);
+  }
+
+  /* ==========================================================================
+  超必殺技: 六連正解以上 (フレーム5, 6, 7を使用する2回連続攻撃)
+  ========================================================================== */
+  playUltimateFinishingMove(target, damage) {
+    if (!this.el || !target || !target.el) return;
+    this.isAttacking = true;
+    this.stopIdle();
+
+    const targetRect = target.el.getBoundingClientRect();
+    const selfRect = this.el.getBoundingClientRect();
+    const distanceX = (targetRect.left - selfRect.left) * 0.8;
+
+    // 1. 空中モーションへ (フレーム5)
+    this.sprite.style.transition = "transform 0.2s ease-out";
+    this.sprite.style.backgroundPosition = this.getFramePos(5);
+    this.sprite.style.transform = `translate(${distanceX * 0.5}px, -40px)`; 
+
+    setTimeout(() => {
+      // 2. 1撃目：急降下攻撃 (フレーム6)
+      this.sprite.style.transition = "transform 0.1s ease-in";
+      this.sprite.style.backgroundPosition = this.getFramePos(6);
+      this.sprite.style.transform = `translate(${distanceX}px, 0px)`; 
+
+      this.triggerFlash();
+      this.playCriticalHitSE();
+      
+      if (target.takeDamage) {
+        target.takeDamage(damage * 1.5, true); // クリティカル
+      }
+
+      // 3. 2撃目：追加の斬撃 (フレーム7)
+      setTimeout(() => {
+        this.sprite.style.backgroundPosition = this.getFramePos(7); // ※シートの8枚目(インデックス7)
+
+        this.triggerFlash();
+        this.playCriticalHitSE();
+
+        if (target.takeDamage) {
+          target.takeDamage(damage * 1.5, true); // 2回目のクリティカルダメージ
+        }
+
+        // 4. 元の場所へ戻る
+        setTimeout(() => {
+          this.sprite.style.transition = "none";
+          this.sprite.style.transform = "translate(0px, 0px)";
+          this.isAttacking = false; 
+          this.sprite.style.backgroundPosition = this.getFramePos(0); 
+          this.startIdle(); 
+        }, 400); // フレーム7の表示時間
+      }, 300); // 1撃目から2撃目までの間隔
     }, 400);
   }
 }

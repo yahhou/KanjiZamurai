@@ -1,0 +1,82 @@
+[
+{
+"question": "beautiful / clean",
+"answer": "綺麗",
+"romaji": "ki rei"
+},
+{
+"question": "famous",
+"answer": "有名",
+"romaji": "yuu mei"
+},
+{
+"question": "lively / bustling",
+"answer": "賑やか",
+"romaji": "nigi ya ka"
+},
+{
+"question": "quiet / silent",
+"answer": "静か",
+"romaji": "shizu ka"
+},
+{
+"question": "kind",
+"answer": "親切",
+"romaji": "shin setsu"
+},
+{
+"question": "energetic / healthy",
+"answer": "元気",
+"romaji": "gen ki"
+},
+{
+"question": "convenient",
+"answer": "便利",
+"romaji": "ben ri"
+},
+{
+"question": "inconvenient",
+"answer": "不便",
+"romaji": "fu ben"
+},
+{
+"question": "important / precious",
+"answer": "大切",
+"romaji": "tai setsu"
+},
+{
+"question": "all right / okay",
+"answer": "大丈夫",
+"romaji": "dai jou bu"
+},
+{
+"question": "tough / difficult / severe",
+"answer": "大変",
+"romaji": "tai hen"
+},
+{
+"question": "like / favorite",
+"answer": "好き",
+"romaji": "su ki"
+},
+{
+"question": "dislike / hate",
+"answer": "嫌い",
+"romaji": "kira i"
+},
+{
+"question": "skillful / good at",
+"answer": "上手",
+"romaji": "jou zu"
+},
+{
+"question": "unskillful / poor at",
+"answer": "下手",
+"romaji": "he ta"
+},
+{
+"question": "fine / okay / no thank you",
+"answer": "結構",
+"romaji": "ke kkou"
+}
+]

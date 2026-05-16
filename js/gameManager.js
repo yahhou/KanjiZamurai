@@ -483,24 +483,43 @@ export const gameManager = {
 
 
   selectItem(itemId) {
+    // コンテキストが外れても安全なように window.gameManager または this を固定
+    const self = window.gameManager || this;
+
     itemManager.applyItem(itemId, battleManager.player);
     refreshPlayerBuffIcons();
     
-    this.hideSkillPanel();
+    self.hideSkillPanel();
     
     // スキルを使ったのでゲージはリセット
     quizManager.correctQuestionCount = 0;
     quizManager.updateKiwamiIcon();
 
-    // ★チェック：全問正解してボスモードに切り替わっているか？ かつ まだ演出前か？
-    if (quizManager.quizMode === "boss" && !quizManager.hasBossAppeared) {
-      console.log("スキル選択完了：ボス演出を開始します");
-      quizManager.triggerBossAppearance();
-    } else {
-      // すでにボス戦の真っ最中、あるいはまだ雑魚戦の途中なら次の問題へ
-      quizManager.randomQuestion();
+    // 1. スキル直後にプレイヤーが死んでいるなら、即ゲームオーバー画面へ
+    if (battleManager.player && battleManager.player.hp <= 0) {
+      console.log("スキル選択後にプレイヤーの死亡を確認。ゲームオーバーへ移行します。");
+      self.clearBattleResult();
+      if (window.quizManager && typeof window.quizManager.gameOver === "function") {
+        window.quizManager.gameOver();
+      }
+      return; 
     }
-  }
+
+    // 2. クイズモードがすでにボス（通常戦クリア済み）かつ、ボスが未出現なら演出を開始
+    if (quizManager.quizMode === "boss" && !quizManager.hasBossAppeared) {
+      console.log("スキル選択が完了したため、保留していたボス出現演出を開始します");
+      if (typeof quizManager.triggerBossAppearance === "function") {
+        quizManager.triggerBossAppearance();
+      }
+    } else {
+      // 雑魚戦の途中でスキルを使っただけなら、そのまま次のクイズ問題へ進む
+      if (typeof quizManager.randomQuestion === "function") {
+        quizManager.randomQuestion();
+      } else if (typeof quizManager.nextQuestion === "function") {
+        quizManager.nextQuestion();
+      }
+    }
+  },
 }
 
 gameManager.init();
