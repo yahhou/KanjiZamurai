@@ -1,72 +1,100 @@
 [
   {
-    "question": "Parents",
+    "word": "parents",
+    "sentence": "I live together with my parents.",
+    "highlight": "parents",
     "answer": "両親",
-    "romaji": "ryou shin"
+    "hiragana": "りょうしん"
   },
   {
-    "question": "Older brother",
+    "word": "older brother",
+    "sentence": "My older brother is a university student.",
+    "highlight": "older brother",
     "answer": "兄",
-    "romaji": "ani"
+    "hiragana": "あに"
   },
   {
-    "question": "Brothers / Siblings",
+    "word": "siblings",
+    "sentence": "Do you have any siblings?",
+    "highlight": "siblings",
     "answer": "兄弟",
-    "romaji": "kyou dai"
+    "hiragana": "きょうだい"
   },
   {
-    "question": "Husband",
+    "word": "husband",
+    "sentence": "Her husband works at a bank.",
+    "highlight": "husband",
     "answer": "夫",
-    "romaji": "otto"
+    "hiragana": "おっと"
   },
   {
-    "question": "Sisters",
+    "word": "sisters",
+    "sentence": "She has two sisters.",
+    "highlight": "sisters",
     "answer": "姉妹",
-    "romaji": "shi mai"
+    "hiragana": "しまい"
   },
   {
-    "question": "Younger sister",
+    "word": "younger sister",
+    "sentence": "I bought a present for my younger sister.",
+    "highlight": "younger sister",
     "answer": "妹",
-    "romaji": "imouto"
+    "hiragana": "いもうと"
   },
   {
-    "question": "Wife",
+    "word": "wife",
+    "sentence": "I cooked dinner for my wife.",
+    "highlight": "wife",
     "answer": "妻",
-    "romaji": "tsuma"
+    "hiragana": "つま"
   },
   {
-    "question": "Older sister",
+    "word": "older sister",
+    "sentence": "My older sister lives in Tokyo.",
+    "highlight": "older sister",
     "answer": "姉",
-    "romaji": "ane"
+    "hiragana": "あね"
   },
   {
-    "question": "Family",
+    "word": "family",
+    "sentence": "There are four people in my family.",
+    "highlight": "family",
     "answer": "家族",
-    "romaji": "ka zoku"
+    "hiragana": "かぞく"
   },
   {
-    "question": "Younger brother",
+    "word": "younger brother",
+    "sentence": "My younger brother plays soccer every day.",
+    "highlight": "younger brother",
     "answer": "弟",
-    "romaji": "otouto"
+    "hiragana": "おとうと"
   },
   {
-    "question": "Mother",
+    "word": "mother",
+    "sentence": "My mother is very kind.",
+    "highlight": "mother",
     "answer": "母",
-    "romaji": "haha"
+    "hiragana": "はは"
   },
   {
-    "question": "Father",
+    "word": "father",
+    "sentence": "My father likes coffee.",
+    "highlight": "father",
     "answer": "父",
-    "romaji": "chichi"
+    "hiragana": "ちち"
   },
   {
-    "question": "Grandmother",
+    "word": "grandmother",
+    "sentence": "My grandmother grows flowers in the garden.",
+    "highlight": "grandmother",
     "answer": "祖母",
-    "romaji": "so bo"
+    "hiragana": "そぼ"
   },
   {
-    "question": "Grandfather",
+    "word": "grandfather",
+    "sentence": "My grandfather enjoys walking every morning.",
+    "highlight": "grandfather",
     "answer": "祖父",
-    "romaji": "so fu"
+    "hiragana": "そふ"
   }
 ]

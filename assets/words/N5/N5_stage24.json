@@ -1,67 +1,93 @@
 [
-{
-"question": "to cut",
-"answer": "切る",
-"romaji": "ki ru"
-},
-{
-"question": "to pull",
-"answer": "引く",
-"romaji": "hi ku"
-},
-{
-"question": "to push",
-"answer": "押す",
-"romaji": "o su"
-},
-{
-"question": "to close / to shut (intransitive)",
-"answer": "閉まる",
-"romaji": "shi ma ru"
-},
-{
-"question": "to close / to shut (transitive)",
-"answer": "閉める",
-"romaji": "shi me ru"
-},
-{
-"question": "to open (intransitive)",
-"answer": "開く",
-"romaji": "a ku"
-},
-{
-"question": "to open (transitive)",
-"answer": "開ける",
-"romaji": "a ke ru"
-},
-{
-"question": "to disappear / to go out",
-"answer": "消える",
-"romaji": "ki e ru"
-},
-{
-"question": "to turn off / to erase",
-"answer": "消す",
-"romaji": "ke su"
-},
-{
-"question": "to lose (something)",
-"answer": "失くす",
-"romaji": "na ku su"
-},
-{
-"question": "to stick / to paste",
-"answer": "貼る",
-"romaji": "ha ru"
-},
-{
-"question": "to begin / to start (intransitive)",
-"answer": "始まる",
-"romaji": "haji ma ru"
-},
-{
-"question": "to begin / to start (transitive)",
-"answer": "始める",
-"romaji": "haji me ru"
-}
+  {
+    "word": "cut",
+    "sentence": "She cut the sweet apple into four pieces.",
+    "highlight": "cut",
+    "answer": "切る",
+    "hiragana": "きる"
+  },
+  {
+    "word": "pull",
+    "sentence": "Please pull the door to open it.",
+    "highlight": "pull",
+    "answer": "引く",
+    "hiragana": "ひく"
+  },
+  {
+    "word": "push",
+    "sentence": "You need to push the button to start the machine.",
+    "highlight": "push",
+    "answer": "押す",
+    "hiragana": "おす"
+  },
+  {
+    "word": "close",
+    "sentence": "The store will close at eight o'clock tonight.",
+    "highlight": "close",
+    "answer": "閉まる",
+    "hiragana": "しまる"
+  },
+  {
+    "word": "close",
+    "sentence": "Please close the window because it is cold outside.",
+    "highlight": "close",
+    "answer": "閉める",
+    "hiragana": "しめる"
+  },
+  {
+    "word": "open",
+    "sentence": "The bank will open at nine in the morning.",
+    "highlight": "open",
+    "answer": "開く",
+    "hiragana": "あく"
+  },
+  {
+    "word": "open",
+    "sentence": "He opened the door to let the dog in.",
+    "highlight": "opened",
+    "answer": "開ける",
+    "hiragana": "あける"
+  },
+  {
+    "word": "disappear",
+    "sentence": "The stars disappear when the sun rises.",
+    "highlight": "disappear",
+    "answer": "消える",
+    "hiragana": "きえる"
+  },
+  {
+    "word": "turn off",
+    "sentence": "Remember to turn off the television before bed.",
+    "highlight": "turn off",
+    "answer": "消す",
+    "hiragana": "けす"
+  },
+  {
+    "word": "lose",
+    "sentence": "I always lose my keys inside my house.",
+    "highlight": "lose",
+    "answer": "失くす",
+    "hiragana": "なくす"
+  },
+  {
+    "word": "stick",
+    "sentence": "Please stick the stamp on the envelope.",
+    "highlight": "stick",
+    "answer": "貼る",
+    "hiragana": "はる"
+  },
+  {
+    "word": "start",
+    "sentence": "The movie will start in five minutes.",
+    "highlight": "start",
+    "answer": "始まる",
+    "hiragana": "はじまる"
+  },
+  {
+    "word": "start",
+    "sentence": "Let's start the meeting right now.",
+    "highlight": "start",
+    "answer": "始める",
+    "hiragana": "はじめる"
+  }
 ]

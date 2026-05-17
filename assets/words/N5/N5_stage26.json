@@ -1,82 +1,114 @@
 [
-{
-"question": "hot (weather)",
-"answer": "暑い",
-"romaji": "atsu i"
-},
-{
-"question": "cold (weather)",
-"answer": "寒い",
-"romaji": "samu i"
-},
-{
-"question": "hot (to the touch)",
-"answer": "熱い",
-"romaji": "atsu i"
-},
-{
-"question": "cold (to the touch)",
-"answer": "冷たい",
-"romaji": "tsu me ta i"
-},
-{
-"question": "warm",
-"answer": "暖かい",
-"romaji": "atata ka i"
-},
-{
-"question": "cool",
-"answer": "涼しい",
-"romaji": "suzu shi i"
-},
-{
-"question": "heavy",
-"answer": "重い",
-"romaji": "omo i"
-},
-{
-"question": "light (weight)",
-"answer": "軽い",
-"romaji": "karu i"
-},
-{
-"question": "bright",
-"answer": "明るい",
-"romaji": "aka ru i"
-},
-{
-"question": "dark",
-"answer": "暗い",
-"romaji": "kura i"
-},
-{
-"question": "round",
-"answer": "丸い",
-"romaji": "maru i"
-},
-{
-"question": "sweet",
-"answer": "甘い",
-"romaji": "ama i"
-},
-{
-"question": "spicy / salty",
-"answer": "辛い",
-"romaji": "kara i"
-},
-{
-"question": "sour",
-"answer": "酸っぱい",
-"romaji": "su ppa i"
-},
-{
-"question": "bad-tasting",
-"answer": "不味い",
-"romaji": "ma zu i"
-},
-{
-"question": "delicious",
-"answer": "美味しい",
-"romaji": "o i shi i"
-}
+  {
+    "word": "hot",
+    "sentence": "It is very hot today, so let's stay inside.",
+    "highlight": "hot",
+    "answer": "暑い",
+    "hiragana": "あつい"
+  },
+  {
+    "word": "cold",
+    "sentence": "The weather becomes cold in December.",
+    "highlight": "cold",
+    "answer": "寒い",
+    "hiragana": "さむい"
+  },
+  {
+    "word": "hot",
+    "sentence": "Please be careful with this hot soup.",
+    "highlight": "hot",
+    "answer": "熱い",
+    "hiragana": "あつい"
+  },
+  {
+    "word": "cold",
+    "sentence": "I want to drink a glass of cold water.",
+    "highlight": "cold",
+    "answer": "冷たい",
+    "hiragana": "つめたい"
+  },
+  {
+    "word": "warm",
+    "sentence": "We enjoy the warm sunlight in spring.",
+    "highlight": "warm",
+    "answer": "暖かい",
+    "hiragana": "あたたかい"
+  },
+  {
+    "word": "cool",
+    "sentence": "A cool breeze blows in the evening.",
+    "highlight": "cool",
+    "answer": "涼しい",
+    "hiragana": "すずしい"
+  },
+  {
+    "word": "heavy",
+    "sentence": "This suitcase is too heavy for me to carry.",
+    "highlight": "heavy",
+    "answer": "重い",
+    "hiragana": "おもい"
+  },
+  {
+    "word": "light",
+    "sentence": "The new laptop is very light and compact.",
+    "highlight": "light",
+    "answer": "軽い",
+    "hiragana": "かるい"
+  },
+  {
+    "word": "bright",
+    "sentence": "The living room is bright during the day.",
+    "highlight": "bright",
+    "answer": "明るい",
+    "hiragana": "あかるい"
+  },
+  {
+    "word": "dark",
+    "sentence": "The street becomes dark after sunset.",
+    "highlight": "dark",
+    "answer": "暗い",
+    "hiragana": "くらい"
+  },
+  {
+    "word": "round",
+    "sentence": "The children sat around the round table.",
+    "highlight": "round",
+    "answer": "丸い",
+    "hiragana": "まるい"
+  },
+  {
+    "word": "sweet",
+    "sentence": "This ripe strawberry is very sweet.",
+    "highlight": "sweet",
+    "answer": "甘い",
+    "hiragana": "あまい"
+  },
+  {
+    "word": "spicy",
+    "sentence": "He loves to eat hot and spicy curry.",
+    "highlight": "spicy",
+    "answer": "辛い",
+    "hiragana": "からい"
+  },
+  {
+    "word": "sour",
+    "sentence": "Lemons have a very sour taste.",
+    "highlight": "sour",
+    "answer": "酸っぱい",
+    "hiragana": "すっぱい"
+  },
+  {
+    "word": "bad-tasting",
+    "sentence": "The medicine was bitter and bad-tasting.",
+    "highlight": "bad-tasting",
+    "answer": "不味い",
+    "hiragana": "まずい"
+  },
+  {
+    "word": "delicious",
+    "sentence": "My mother makes a delicious apple pie.",
+    "highlight": "delicious",
+    "answer": "美味しい",
+    "hiragana": "おいしい"
+  }
 ]

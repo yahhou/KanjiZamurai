@@ -1,77 +1,107 @@
 [
   {
-    "question": "Mountain",
+    "word": "mountain",
+    "sentence": "We can see a high mountain from here.",
+    "highlight": "mountain",
     "answer": "山",
-    "romaji": "yama"
+    "hiragana": "やま"
   },
   {
-    "question": "River",
+    "word": "river",
+    "sentence": "The river flows through the town.",
+    "highlight": "river",
     "answer": "川",
-    "romaji": "kawa"
+    "hiragana": "かわ"
   },
   {
-    "question": "Sky",
+    "word": "sky",
+    "sentence": "There are no clouds in the sky today.",
+    "highlight": "sky",
     "answer": "空",
-    "romaji": "sora"
+    "hiragana": "そら"
   },
   {
-    "question": "Sea / Ocean",
+    "word": "sea",
+    "sentence": "They enjoy swimming in the sea every summer.",
+    "highlight": "sea",
     "answer": "海",
-    "romaji": "umi"
+    "hiragana": "うみ"
   },
   {
-    "question": "Pond",
+    "word": "pond",
+    "sentence": "Many ducks are swimming in the pond.",
+    "highlight": "pond",
     "answer": "池",
-    "romaji": "ike"
+    "hiragana": "いけ"
   },
   {
-    "question": "Tree",
+    "word": "tree",
+    "sentence": "Birds are singing on the tall tree.",
+    "highlight": "tree",
     "answer": "木",
-    "romaji": "ki"
+    "hiragana": "き"
   },
   {
-    "question": "Flower",
+    "word": "flower",
+    "sentence": "She put a beautiful flower in the vase.",
+    "highlight": "flower",
     "answer": "花",
-    "romaji": "hana"
+    "hiragana": "はな"
   },
   {
-    "question": "Leaf",
+    "word": "leaf",
+    "sentence": "A single green leaf fell from the branch.",
+    "highlight": "leaf",
     "answer": "葉",
-    "romaji": "ha"
+    "hiragana": "は"
   },
   {
-    "question": "Rain",
+    "word": "rain",
+    "sentence": "The heavy rain stopped an hour ago.",
+    "highlight": "rain",
     "answer": "雨",
-    "romaji": "ame"
+    "hiragana": "あめ"
   },
   {
-    "question": "Snow",
+    "word": "snow",
+    "sentence": "The ground is completely covered with snow.",
+    "highlight": "snow",
     "answer": "雪",
-    "romaji": "yuki"
+    "hiragana": "ゆき"
   },
   {
-    "question": "Wind",
+    "word": "wind",
+    "sentence": "A strong wind is blowing from the north.",
+    "highlight": "wind",
     "answer": "風",
-    "romaji": "kaze"
+    "hiragana": "かぜ"
   },
   {
-    "question": "Spring",
+    "word": "spring",
+    "sentence": "Cherry blossoms come out in early spring.",
+    "highlight": "spring",
     "answer": "春",
-    "romaji": "haru"
+    "hiragana": "はる"
   },
   {
-    "question": "Summer",
+    "word": "summer",
+    "sentence": "It gets very hot during the summer vacation.",
+    "highlight": "summer",
     "answer": "夏",
-    "romaji": "natsu"
+    "hiragana": "なつ"
   },
   {
-    "question": "Autumn / Fall",
+    "word": "autumn",
+    "sentence": "The leaves turn red and yellow in autumn.",
+    "highlight": "autumn",
     "answer": "秋",
-    "romaji": "aki"
+    "hiragana": "あき"
   },
   {
-    "question": "Winter",
+    "word": "winter",
+    "sentence": "We usually have a lot of snow in winter.",
+    "highlight": "winter",
     "answer": "冬",
-    "romaji": "fuyu"
+    "hiragana": "ふゆ"
   }
 ]

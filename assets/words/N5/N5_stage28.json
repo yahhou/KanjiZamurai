@@ -1,37 +1,51 @@
 [
-{
-"question": "busy",
-"answer": "忙しい",
-"romaji": "isoga shi i"
-},
-{
-"question": "dangerous",
-"answer": "危ない",
-"romaji": "abu na i"
-},
-{
-"question": "painful",
-"answer": "痛い",
-"romaji": "ita i"
-},
-{
-"question": "dirty",
-"answer": "汚い",
-"romaji": "kitana i"
-},
-{
-"question": "interesting / funny",
-"answer": "面白い",
-"romaji": "omo shiro i"
-},
-{
-"question": "boring",
-"answer": "つまらない",
-"romaji": "tsu ma ra na i"
-},
-{
-"question": "noisy / annoying",
-"answer": "うるさい",
-"romaji": "u ru sa i"
-}
+  {
+    "word": "busy",
+    "sentence": "My father is always busy with his work.",
+    "highlight": "busy",
+    "answer": "忙しい",
+    "hiragana": "いそがしい"
+  },
+  {
+    "word": "dangerous",
+    "sentence": "It is dangerous to swim in this deep river.",
+    "highlight": "dangerous",
+    "answer": "危ない",
+    "hiragana": "あぶない"
+  },
+  {
+    "word": "painful",
+    "sentence": "I have a painful headache since this morning.",
+    "highlight": "painful",
+    "answer": "痛い",
+    "hiragana": "いたい"
+  },
+  {
+    "word": "dirty",
+    "sentence": "Wash your dirty hands after playing outside.",
+    "highlight": "dirty",
+    "answer": "汚い",
+    "hiragana": "きたない"
+  },
+  {
+    "word": "interesting",
+    "sentence": "This movie is very interesting and funny.",
+    "highlight": "interesting",
+    "answer": "面白い",
+    "hiragana": "おもしろい"
+  },
+  {
+    "word": "boring",
+    "sentence": "The long speech was quite boring for everyone.",
+    "highlight": "boring",
+    "answer": "つまらない",
+    "hiragana": "つまらない"
+  },
+  {
+    "word": "noisy",
+    "sentence": "The street downstairs is noisy during the day.",
+    "highlight": "noisy",
+    "answer": "うるさい",
+    "hiragana": "うるさい"
+  }
 ]

@@ -1,52 +1,72 @@
 [
   {
-    "question": "Door",
-    "answer": "戸",
-    "romaji": "to"
+    "word": "door",
+    "sentence": "Please close the door when you leave the room.",
+    "highlight": "door",
+    "answer": "ドア",
+    "hiragana": "どあ"
   },
   {
-    "question": "Window",
+    "word": "window",
+    "sentence": "He opened the window to let some fresh air in.",
+    "highlight": "window",
     "answer": "窓",
-    "romaji": "ma do"
+    "hiragana": "まど"
   },
   {
-    "question": "Toilet / Restroom",
+    "word": "restroom",
+    "sentence": "Excuse me, where is the restroom?",
+    "highlight": "restroom",
     "answer": "お手洗い",
-    "romaji": "o te ara i"
+    "hiragana": "おてあらい"
   },
   {
-    "question": "Bathroom / Bath",
+    "word": "bath",
+    "sentence": "I like to take a warm bath before going to bed.",
+    "highlight": "bath",
     "answer": "お風呂",
-    "romaji": "o fu ro"
+    "hiragana": "おふろ"
   },
   {
-    "question": "Kitchen",
+    "word": "kitchen",
+    "sentence": "My mother is cooking delicious food in the kitchen.",
+    "highlight": "kitchen",
     "answer": "台所",
-    "romaji": "dai dokoro"
+    "hiragana": "だいどころ"
   },
   {
-    "question": "House / Home",
+    "word": "house",
+    "sentence": "They built a new white house near the park.",
+    "highlight": "house",
     "answer": "家",
-    "romaji": "ie"
+    "hiragana": "いえ"
   },
   {
-    "question": "Room",
+    "word": "room",
+    "sentence": "My room is always clean and well-organized.",
+    "highlight": "room",
     "answer": "部屋",
-    "romaji": "he ya"
+    "hiragana": "へや"
   },
   {
-    "question": "Stairs",
+    "word": "stairs",
+    "sentence": "We walked up the stairs to the second floor.",
+    "highlight": "stairs",
     "answer": "階段",
-    "romaji": "kai dan"
+    "hiragana": "かいだん"
   },
   {
-    "question": "Entrance",
+    "word": "entrance",
+    "sentence": "Please take off your shoes at the entrance.",
+    "highlight": "entrance",
     "answer": "玄関",
-    "romaji": "gen kan"
+    "hiragana": "げんかん"
   },
   {
-    "question": "Garden / Yard",
+    "word": "garden",
+    "sentence": "Beautiful red flowers are blooming in the garden.",
+    "highlight": "garden",
     "answer": "庭",
-    "romaji": "niwa"
+    "hiragana": "にわ"
   }
 ]

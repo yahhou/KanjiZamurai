@@ -1,82 +1,114 @@
 [
   {
-    "question": "Beef",
+    "word": "beef",
+    "sentence": "I used beef to make the sukiyaki.",
+    "highlight": "beef",
     "answer": "牛肉",
-    "romaji": "gyuu niku"
+    "hiragana": "ぎゅうにく"
   },
   {
-    "question": "Pork",
+    "word": "pork",
+    "sentence": "This restaurant serves delicious pork cutlets.",
+    "highlight": "pork",
     "answer": "豚肉",
-    "romaji": "buta niku"
+    "hiragana": "ぶたにく"
   },
   {
-    "question": "Chicken",
+    "word": "chicken",
+    "sentence": "We had fried chicken for dinner last night.",
+    "highlight": "chicken",
     "answer": "鶏肉",
-    "romaji": "tori niku"
+    "hiragana": "とりにく"
   },
   {
-    "question": "Meat",
+    "word": "meat",
+    "sentence": "He does not eat meat because he is a vegetarian.",
+    "highlight": "meat",
     "answer": "肉",
-    "romaji": "niku"
+    "hiragana": "にく"
   },
   {
-    "question": "Fish",
+    "word": "fish",
+    "sentence": "The cats are looking at the fish in the tank.",
+    "highlight": "fish",
     "answer": "魚",
-    "romaji": "sakana"
+    "hiragana": "さかな"
   },
   {
-    "question": "Egg",
+    "word": "egg",
+    "sentence": "I usually boil an egg for breakfast.",
+    "highlight": "egg",
     "answer": "卵",
-    "romaji": "tamago"
+    "hiragana": "たまご"
   },
   {
-    "question": "Vegetables",
+    "word": "vegetables",
+    "sentence": "You should eat fresh vegetables every day.",
+    "highlight": "vegetables",
     "answer": "野菜",
-    "romaji": "ya sai"
+    "hiragana": "やさい"
   },
   {
-    "question": "Fruit",
+    "word": "fruit",
+    "sentence": "My grandmother always buys fresh fruit at the market.",
+    "highlight": "fruit",
     "answer": "果物",
-    "romaji": "kuda mono"
+    "hiragana": "くだもの"
   },
   {
-    "question": "Banana",
+    "word": "banana",
+    "sentence": "I ate a banana before going to the gym.",
+    "highlight": "banana",
     "answer": "バナナ",
-    "romaji": "ba na na"
+    "hiragana": "ばなな"
   },
   {
-    "question": "Mandarin Orange",
+    "word": "mandarin orange",
+    "sentence": "Eating a mandarin orange in winter is wonderful.",
+    "highlight": "mandarin orange",
     "answer": "みかん",
-    "romaji": "mi kan"
+    "hiragana": "みかん"
   },
   {
-    "question": "Apple",
+    "word": "apple",
+    "sentence": "She cut the sweet apple into four pieces.",
+    "highlight": "apple",
     "answer": "りんご",
-    "romaji": "rin go"
+    "hiragana": "りんご"
   },
   {
-    "question": "Salt",
+    "word": "salt",
+    "sentence": "Could you pass me the salt, please?",
+    "highlight": "salt",
     "answer": "塩",
-    "romaji": "shio"
+    "hiragana": "しお"
   },
   {
-    "question": "Sugar",
+    "word": "sugar",
+    "sentence": "I prefer to drink coffee without sugar.",
+    "highlight": "sugar",
     "answer": "砂糖",
-    "romaji": "sa tou"
+    "hiragana": "さとう"
   },
   {
-    "question": "Soy sauce",
+    "word": "soy sauce",
+    "sentence": "Pour a little soy sauce over the tofu.",
+    "highlight": "soy sauce",
     "answer": "醤油",
-    "romaji": "shou yu"
+    "hiragana": "しょうゆ"
   },
   {
-    "question": "Candy",
+    "word": "candy",
+    "sentence": "The child has a sweet strawberry candy in his mouth.",
+    "highlight": "candy",
     "answer": "飴",
-    "romaji": "ame"
+    "hiragana": "あめ"
   },
   {
-    "question": "Sweets / Snacks",
+    "word": "sweets",
+    "sentence": "Don't eat too many sweets before lunchtime.",
+    "highlight": "sweets",
     "answer": "お菓子",
-    "romaji": "o ka shi"
+    "hiragana": "おかし"
   }
 ]

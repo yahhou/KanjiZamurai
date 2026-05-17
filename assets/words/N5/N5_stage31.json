@@ -1,0 +1,72 @@
+[
+  {
+    "word": "over there",
+    "sentence": "The restaurant we are looking for is over there.",
+    "highlight": "over there",
+    "answer": "あそこ",
+    "hiragana": "あそこ"
+  },
+  {
+    "word": "you",
+    "sentence": "Are you going to the party tonight?",
+    "highlight": "you",
+    "answer": "あなた",
+    "hiragana": "あなた"
+  },
+  {
+    "word": "here",
+    "sentence": "Please sit here and wait for a moment.",
+    "highlight": "here",
+    "answer": "ここ",
+    "hiragana": "ここ"
+  },
+  {
+    "word": "where",
+    "sentence": "Where is the nearest convenience store?",
+    "highlight": "Where",
+    "answer": "どこ",
+    "hiragana": "どこ"
+  },
+  {
+    "word": "which way",
+    "sentence": "Which way is the exit of this building?",
+    "highlight": "Which way",
+    "answer": "どちら",
+    "hiragana": "どちら"
+  },
+  {
+    "word": "other",
+    "sentence": "I want to see some other options before deciding.",
+    "highlight": "other",
+    "answer": "他",
+    "hiragana": "ほか"
+  },
+  {
+    "word": "I",
+    "sentence": "I love listening to music in my free time.",
+    "highlight": "I",
+    "answer": "私",
+    "hiragana": "わたし"
+  },
+  {
+    "word": "myself",
+    "sentence": "I usually make lunch by myself.",
+    "highlight": "myself",
+    "answer": "自分",
+    "hiragana": "じぶん"
+  },
+  {
+    "word": "who",
+    "sentence": "Who is that person talking to the teacher?",
+    "highlight": "Who",
+    "answer": "誰",
+    "hiragana": "だれ"
+  },
+  {
+    "word": "someone",
+    "sentence": "Someone is knocking on the front door.",
+    "highlight": "Someone",
+    "answer": "誰か",
+    "hiragana": "だれか"
+  }
+]

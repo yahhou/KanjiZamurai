@@ -1,42 +1,58 @@
 [
-{
-"question": "to take off (clothes)",
-"answer": "脱ぐ",
-"romaji": "nu gu"
-},
-{
-"question": "to wear (upper body)",
-"answer": "着る",
-"romaji": "ki ru"
-},
-{
-"question": "to wear (lower body)",
-"answer": "履く",
-"romaji": "ha ku"
-},
-{
-"question": "to wear (on head)",
-"answer": "被る",
-"romaji": "kabu ru"
-},
-{
-"question": "to smoke / to inhale",
-"answer": "吸う",
-"romaji": "su u"
-},
-{
-"question": "to blow (wind)",
-"answer": "吹く",
-"romaji": "fu ku"
-},
-{
-"question": "to bloom",
-"answer": "咲く",
-"romaji": "sa ku"
-},
-{
-"question": "to fall (rain, snow)",
-"answer": "降る",
-"romaji": "fu ru"
-}
+  {
+    "word": "take off",
+    "sentence": "Please take off your coat in the room.",
+    "highlight": "take off",
+    "answer": "脱ぐ",
+    "hiragana": "ぬぐ"
+  },
+  {
+    "word": "wear",
+    "sentence": "I wear a warm sweater in the winter.",
+    "highlight": "wear",
+    "answer": "着る",
+    "hiragana": "きる"
+  },
+  {
+    "word": "wear",
+    "sentence": "She likes to wear black shoes.",
+    "highlight": "wear",
+    "answer": "履く",
+    "hiragana": "はく"
+  },
+  {
+    "word": "wear",
+    "sentence": "You should wear a hat on a sunny day.",
+    "highlight": "wear",
+    "answer": "被る",
+    "hiragana": "かぶる"
+  },
+  {
+    "word": "smoke",
+    "sentence": "You must not smoke inside this building.",
+    "highlight": "smoke",
+    "answer": "吸う",
+    "hiragana": "すう"
+  },
+  {
+    "word": "blow",
+    "sentence": "A cold wind began to blow from the north.",
+    "highlight": "blow",
+    "answer": "吹く",
+    "hiragana": "ふく"
+  },
+  {
+    "word": "bloom",
+    "sentence": "Cherry blossoms bloom in the spring.",
+    "highlight": "bloom",
+    "answer": "咲く",
+    "hiragana": "さく"
+  },
+  {
+    "word": "fall",
+    "sentence": "Heavy snow will fall tonight.",
+    "highlight": "fall",
+    "answer": "降る",
+    "hiragana": "ふる"
+  }
 ]

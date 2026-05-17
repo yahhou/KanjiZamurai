@@ -1,67 +1,79 @@
 [
   {
-    "question": "You",
-    "answer": "あなた",
-    "romaji": "a na ta"
-  },
-  {
-    "question": "Person",
+    "word": "person",
+    "sentence": "He is a very kind person.",
+    "highlight": "person",
     "answer": "人",
-    "romaji": "hito"
+    "hiragana": "ひと"
   },
   {
-    "question": "Friend",
+    "word": "friend",
+    "sentence": "I will meet my friend today.",
+    "highlight": "friend",
     "answer": "友達",
-    "romaji": "tomo dachi"
+    "hiragana": "ともだち"
   },
   {
-    "question": "Adult",
+    "word": "adult",
+    "sentence": "The movie ticket is cheaper for an adult.",
+    "highlight": "adult",
     "answer": "大人",
-    "romaji": "otona"
+    "hiragana": "おとな"
   },
   {
-    "question": "Woman / Female",
-    "answer": "女",
-    "romaji": "onna"
+    "word": "woman",
+    "sentence": "She is a beautiful woman.",
+    "highlight": "woman",
+    "answer": "女の人",
+    "hiragana": "おんなのひと"
   },
   {
-    "question": "Girl",
+    "word": "girl",
+    "sentence": "The little girl is playing with a doll.",
+    "highlight": "girl",
     "answer": "女の子",
-    "romaji": "onna no ko"
+    "hiragana": "おんなのこ"
   },
   {
-    "question": "Child",
-    "answer": "子 / 子供",
-    "romaji": "ko / ko domo"
+    "word": "child",
+    "sentence": "The child is sleeping on the bed.",
+    "highlight": "child",
+    "answer": "子供",
+    "hiragana": "こども"
   },
   {
-    "question": "Man / Male",
-    "answer": "男",
-    "romaji": "otoko"
+    "word": "man",
+    "sentence": "A tall man opened the door.",
+    "highlight": "man",
+    "answer": "男の人",
+    "hiragana": "おとこのひと"
   },
   {
-    "question": "Boy",
+    "word": "boy",
+    "sentence": "The boy runs very fast.",
+    "highlight": "boy",
     "answer": "男の子",
-    "romaji": "otoko no ko"
+    "hiragana": "おとこのこ"
   },
   {
-    "question": "I / Me",
-    "answer": "私",
-    "romaji": "watashi"
-  },
-  {
-    "question": "Boyfriend",
+    "word": "boyfriend",
+    "sentence": "She went to a restaurant with her boyfriend.",
+    "highlight": "boyfriend",
     "answer": "彼氏",
-    "romaji": "kare shi"
+    "hiragana": "かれし"
   },
   {
-    "question": "Girlfriend",
+    "word": "girlfriend",
+    "sentence": "He is looking for a present for his girlfriend.",
+    "highlight": "girlfriend",
     "answer": "彼女",
-    "romaji": "kano jo"
+    "hiragana": "かのじょ"
   },
   {
-    "question": "Baby",
+    "word": "baby",
+    "sentence": "The baby started to cry.",
+    "highlight": "baby",
     "answer": "赤ちゃん",
-    "romaji": "aka chan"
+    "hiragana": "あかちゃん"
   }
 ]

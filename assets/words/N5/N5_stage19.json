@@ -1,62 +1,86 @@
 [
   {
-    "question": "Body",
+    "word": "body",
+    "sentence": "Regular exercise is good for your body.",
+    "highlight": "body",
     "answer": "体",
-    "romaji": "karada"
+    "hiragana": "からだ"
   },
   {
-    "question": "Stomach",
-    "answer": "腹",
-    "romaji": "hara"
+    "word": "stomach",
+    "sentence": "I have a slight pain in my stomach.",
+    "highlight": "stomach",
+    "answer": "お腹",
+    "hiragana": "おなか"
   },
   {
-    "question": "Leg / Foot",
+    "word": "leg",
+    "sentence": "He injured his left leg during the race.",
+    "highlight": "leg",
     "answer": "足",
-    "romaji": "ashi"
+    "hiragana": "あし"
   },
   {
-    "question": "Hand",
+    "word": "hand",
+    "sentence": "She held a warm cup of tea in her hand.",
+    "highlight": "hand",
     "answer": "手",
-    "romaji": "te"
+    "hiragana": "て"
   },
   {
-    "question": "Finger / Toe",
+    "word": "finger",
+    "sentence": "She is wearing a beautiful ring on her finger.",
+    "highlight": "finger",
     "answer": "指",
-    "romaji": "yubi"
+    "hiragana": "ゆび"
   },
   {
-    "question": "Back",
+    "word": "back",
+    "sentence": "The cat rubbed its back against the chair.",
+    "highlight": "back",
     "answer": "背中",
-    "romaji": "se naka"
+    "hiragana": "せなか"
   },
   {
-    "question": "Head",
+    "word": "head",
+    "sentence": "Please wear a helmet to protect your head.",
+    "highlight": "head",
     "answer": "頭",
-    "romaji": "atama"
+    "hiragana": "あたま"
   },
   {
-    "question": "Eye",
+    "word": "eye",
+    "sentence": "The baby has big and beautiful eyes.",
+    "highlight": "eyes",
     "answer": "目",
-    "romaji": "me"
+    "hiragana": "め"
   },
   {
-    "question": "Ear",
+    "word": "ear",
+    "sentence": "The rabbit has very long ears.",
+    "highlight": "ears",
     "answer": "耳",
-    "romaji": "mimi"
+    "hiragana": "みみ"
   },
   {
-    "question": "Mouth",
+    "word": "mouth",
+    "sentence": "Don't talk with your mouth full.",
+    "highlight": "mouth",
     "answer": "口",
-    "romaji": "kuchi"
+    "hiragana": "くち"
   },
   {
-    "question": "Nose",
+    "word": "nose",
+    "sentence": "The dog has a very sensitive nose.",
+    "highlight": "nose",
     "answer": "鼻",
-    "romaji": "hana"
+    "hiragana": "はな"
   },
   {
-    "question": "Voice",
+    "word": "voice",
+    "sentence": "I could hear her clear voice from the next room.",
+    "highlight": "voice",
     "answer": "声",
-    "romaji": "koe"
+    "hiragana": "こえ"
   }
 ]

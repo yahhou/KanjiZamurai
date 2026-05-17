@@ -19,6 +19,7 @@ import { Ashigaru } from "../characters/enemies/ashigaru.js";
 import { SamuraiTaishou } from "../characters/enemies/samuraiTaishou.js";
 import { IwaAtama } from "../characters/enemies/iwaAtama.js";
 import { OoZaru } from "../characters/enemies/ooZaru.js";
+import { Monk } from "../characters/enemies/monk.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -43,6 +44,7 @@ const ENEMY_CLASSES = {
   SamuraiTaishou,
   IwaAtama,
   OoZaru,
+  Monk,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -473,6 +475,7 @@ export const battleManager = {
       "stage_27": "assets/images/stage_castle.png",
       "stage_28": "assets/images/stage_castle.png",
       "stage_29": "assets/images/stage_sakuraPath.png",
+      "stage_30": "assets/images/stage_forestPath.png",
     };
 
     for (const key in bgList) {

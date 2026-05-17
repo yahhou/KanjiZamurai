@@ -215,6 +215,11 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["HitotsumeKomori","NoroiMusha","KappaOyabun"],
       bossType: "Tengu",
     },
+
+
+    ////////////////////////////
+    /////      形容詞
+    ////////////////////////////'
     { id: 26,
       name: "Sensory & Physical Properties",
       files: ["N5_stage26.json"],
@@ -247,6 +252,46 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["IwaAtama"],
       bossType: "OoZaru",
     },
+
+
+    ////////////////////////////
+    /////      副詞
+    ////////////////////////////
+    { id: 30,
+      name: "Adverbs",
+      files: ["N5_stage30.json"],
+      bgKey: "stage_30",
+      enemyLevel: 30,
+      enemyTypes: ["Monk"],
+      bossType: "OoZaru",
+    },
+
+
+    ////////////////////////////
+    /////      代名詞
+    ////////////////////////////
+    { id: 31,
+      name: "Pronouns",
+      files: ["N5_stage31.json"],
+      bgKey: "stage_31",
+      enemyLevel: 31,
+      enemyTypes: ["Monk"],
+      bossType: "OoZaru",
+    },
+
+
+    ////////////////////////////
+    /////      助詞
+    ////////////////////////////
+    { id: 32,
+      name: "Topic vs Subject",
+      files: ["N5_stage32.json"],
+      bgKey: "stage_32",
+      enemyLevel: 32,
+      enemyTypes: ["Monk"],
+      bossType: "OoZaru",
+    },
+
   ],
 };
 
@@ -280,6 +325,9 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 27 },
   { category: "N5", stageId: 28 },
   { category: "N5", stageId: 29 },
+  { category: "N5", stageId: 30 },
+  { category: "N5", stageId: 31 },
+  { category: "N5", stageId: 32 },
 ];
 
 export function findStageConfig(category, stageId) {

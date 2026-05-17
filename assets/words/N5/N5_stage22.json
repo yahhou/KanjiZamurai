@@ -1,92 +1,128 @@
 [
-{
-"question": "to line up",
-"answer": "並ぶ",
-"romaji": "nara bu"
-},
-{
-"question": "to line up / to arrange",
-"answer": "並べる",
-"romaji": "nara be ru"
-},
-{
-"question": "to ride / to board",
-"answer": "乗る",
-"romaji": "no ru"
-},
-{
-"question": "to enter",
-"answer": "入る",
-"romaji": "hai ru"
-},
-{
-"question": "to put in / to insert",
-"answer": "入れる",
-"romaji": "i re ru"
-},
-{
-"question": "to take out / to hand in",
-"answer": "出す",
-"romaji": "da su"
-},
-{
-"question": "to go out / to leave",
-"answer": "出る",
-"romaji": "de ru"
-},
-{
-"question": "to go",
-"answer": "行く",
-"romaji": "i ku"
-},
-{
-"question": "to come",
-"answer": "来る",
-"romaji": "ku ru"
-},
-{
-"question": "to return / to go home",
-"answer": "帰る",
-"romaji": "kae ru"
-},
-{
-"question": "to walk",
-"answer": "歩く",
-"romaji": "aru ku"
-},
-{
-"question": "to run",
-"answer": "走る",
-"romaji": "hashi ru"
-},
-{
-"question": "to fly / to jump",
-"answer": "飛ぶ",
-"romaji": "to bu"
-},
-{
-"question": "to climb",
-"answer": "登る",
-"romaji": "nobo ru"
-},
-{
-"question": "to cross",
-"answer": "渡る",
-"romaji": "wata ru"
-},
-{
-"question": "to turn",
-"answer": "曲がる",
-"romaji": "ma ga ru"
-},
-{
-"question": "to arrive",
-"answer": "着く",
-"romaji": "tsu ku"
-},
-{
-"question": "to get off (a train etc.)",
-"answer": "降りる",
-"romaji": "o ri ru"
-}
+  {
+    "word": "line up",
+    "sentence": "Many people line up to buy tickets for the concert.",
+    "highlight": "line up",
+    "answer": "並ぶ",
+    "hiragana": "ならぶ"
+  },
+  {
+    "word": "arrange",
+    "sentence": "Please arrange the chairs nicely in the classroom.",
+    "highlight": "arrange",
+    "answer": "並べる",
+    "hiragana": "ならべる"
+  },
+  {
+    "word": "ride",
+    "sentence": "I ride the train to school every morning.",
+    "highlight": "ride",
+    "answer": "乗る",
+    "hiragana": "のる"
+  },
+  {
+    "word": "enter",
+    "sentence": "Please take off your shoes when you enter the house.",
+    "highlight": "enter",
+    "answer": "入る",
+    "hiragana": "はいる"
+  },
+  {
+    "word": "put in",
+    "sentence": "He put some sugar in his coffee.",
+    "highlight": "put in",
+    "answer": "入れる",
+    "hiragana": "いれる"
+  },
+  {
+    "word": "take out",
+    "sentence": "Remember to take out the trash tonight.",
+    "highlight": "take out",
+    "answer": "出す",
+    "hiragana": "だす"
+  },
+  {
+    "word": "leave",
+    "sentence": "We should leave the room quietly.",
+    "highlight": "leave",
+    "answer": "出る",
+    "hiragana": "でる"
+  },
+  {
+    "word": "go",
+    "sentence": "I want to go to Kyoto with my family.",
+    "highlight": "go",
+    "answer": "行く",
+    "hiragana": "いく"
+  },
+  {
+    "word": "come",
+    "sentence": "Please come to my house this weekend.",
+    "highlight": "come",
+    "answer": "来る",
+    "hiragana": "くる"
+  },
+  {
+    "word": "return",
+    "sentence": "He will return to his hometown next month.",
+    "highlight": "return",
+    "answer": "帰る",
+    "hiragana": "かえる"
+  },
+  {
+    "word": "walk",
+    "sentence": "They usually walk in the park after dinner.",
+    "highlight": "walk",
+    "answer": "歩く",
+    "hiragana": "あるく"
+  },
+  {
+    "word": "run",
+    "sentence": "Don't run in the school hallway.",
+    "highlight": "run",
+    "answer": "走る",
+    "hiragana": "はしる"
+  },
+  {
+    "word": "fly",
+    "sentence": "Birds can fly high in the sky.",
+    "highlight": "fly",
+    "answer": "飛ぶ",
+    "hiragana": "とぶ"
+  },
+  {
+    "word": "climb",
+    "sentence": "We plan to climb a high mountain this summer.",
+    "highlight": "climb",
+    "answer": "登る",
+    "hiragana": "のぼる"
+  },
+  {
+    "word": "cross",
+    "sentence": "Be careful when you cross the street.",
+    "highlight": "cross",
+    "answer": "渡る",
+    "hiragana": "わたる"
+  },
+  {
+    "word": "turn",
+    "sentence": "Turn right at the next traffic light.",
+    "highlight": "Turn",
+    "answer": "曲がる",
+    "hiragana": "まがる"
+  },
+  {
+    "word": "arrive",
+    "sentence": "The train will arrive at the station soon.",
+    "highlight": "arrive",
+    "answer": "着く",
+    "hiragana": "つく"
+  },
+  {
+    "word": "get off",
+    "sentence": "I need to get off at the next stop.",
+    "highlight": "get off",
+    "answer": "降りる",
+    "hiragana": "おりる"
+  }
 ]

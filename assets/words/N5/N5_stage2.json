@@ -1,42 +1,51 @@
 [
   {
-    "question": "Morning / A.M.",
-    "answer": "午前",
-    "romaji": "go zen"
-  },
-  {
-    "question": "Afternoon / P.M.",
-    "answer": "午後",
-    "romaji": "go go"
-  },
-  {
-    "question": "Late afternoon / Evening",
-    "answer": "夕方",
-    "romaji": "yuu gata"
-  },
-  {
-    "question": "Night",
-    "answer": "夜",
-    "romaji": "yoru"
-  },
-  {
-    "question": "Daytime / Midday",
-    "answer": "昼",
-    "romaji": "hiru"
-  },
-  {
-    "question": "Time / Hours",
-    "answer": "時間",
-    "romaji": "ji kan"
-  },
-  {
-    "question": "Morning",
+    "word": "morning",
+    "sentence": "I usually wake up early in the morning.",
+    "highlight": "morning",
     "answer": "朝",
-    "romaji": "asa"
+    "hiragana": "あさ"
   },
   {
-    "question": "Evening / Night",
-    "answer": "晩",
-    "romaji": "ban"
+    "word": "a.m.",
+    "sentence": "The train leaves at 9 a.m.",
+    "highlight": "a.m.",
+    "answer": "午前",
+    "hiragana": "ごぜん"
+  },
+  {
+    "word": "afternoon",
+    "sentence": "She studies Japanese every afternoon.",
+    "highlight": "afternoon",
+    "answer": "午後",
+    "hiragana": "ごご"
+  },
+  {
+    "word": "evening",
+    "sentence": "We went for a walk in the evening.",
+    "highlight": "evening",
+    "answer": "夕方",
+    "hiragana": "ゆうがた"
+  },
+  {
+    "word": "night",
+    "sentence": "The city looks beautiful at night.",
+    "highlight": "night",
+    "answer": "夜",
+    "hiragana": "よる"
+  },
+  {
+    "word": "daytime",
+    "sentence": "It gets very hot during the daytime.",
+    "highlight": "daytime",
+    "answer": "昼間",
+    "hiragana": "ひるま"
+  },
+  {
+    "word": "time",
+    "sentence": "I don't have enough time today.",
+    "highlight": "time",
+    "answer": "時間",
+    "hiragana": "じかん"
   }
 ]

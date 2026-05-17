@@ -1,67 +1,93 @@
 [
-{
-"question": "to wake up / to occur",
-"answer": "起きる",
-"romaji": "o ki ru"
-},
-{
-"question": "to sleep",
-"answer": "寝る",
-"romaji": "ne ru"
-},
-{
-"question": "to eat",
-"answer": "食べる",
-"romaji": "ta be ru"
-},
-{
-"question": "to drink",
-"answer": "飲む",
-"romaji": "no mu"
-},
-{
-"question": "to wash",
-"answer": "洗う",
-"romaji": "a ra u"
-},
-{
-"question": "to do laundry",
-"answer": "洗濯する",
-"romaji": "sen taku su ru"
-},
-{
-"question": "to clean (a room etc.)",
-"answer": "掃除する",
-"romaji": "so ji su ru"
-},
-{
-"question": "to brush (teeth) / to polish",
-"answer": "磨く",
-"romaji": "miga ku"
-},
-{
-"question": "to take (a shower) / to bathe",
-"answer": "浴びる",
-"romaji": "a bi ru"
-},
-{
-"question": "to cook",
-"answer": "料理する",
-"romaji": "ryo ri su ru"
-},
-{
-"question": "to buy",
-"answer": "買う",
-"romaji": "ka u"
-},
-{
-"question": "to do shopping",
-"answer": "買物する",
-"romaji": "kai mono su ru"
-},
-{
-"question": "to get married",
-"answer": "結婚する",
-"romaji": "kek kon su ru"
-}
+  {
+    "word": "wake up",
+    "sentence": "I usually wake up at six o'clock every morning.",
+    "highlight": "wake up",
+    "answer": "起きる",
+    "hiragana": "おきる"
+  },
+  {
+    "word": "sleep",
+    "sentence": "You need to sleep well to stay healthy.",
+    "highlight": "sleep",
+    "answer": "寝る",
+    "hiragana": "ねる"
+  },
+  {
+    "word": "eat",
+    "sentence": "Let's eat dinner together tonight.",
+    "highlight": "eat",
+    "answer": "食べる",
+    "hiragana": "たべる"
+  },
+  {
+    "word": "drink",
+    "sentence": "He likes to drink hot tea in the winter.",
+    "highlight": "drink",
+    "answer": "飲む",
+    "hiragana": "のむ"
+  },
+  {
+    "word": "wash",
+    "sentence": "Remember to wash your hands before meals.",
+    "highlight": "wash",
+    "answer": "洗う",
+    "hiragana": "あらう"
+  },
+  {
+    "word": "do laundry",
+    "sentence": "I will do laundry because it is sunny today.",
+    "highlight": "do laundry",
+    "answer": "洗濯する",
+    "hiragana": "せんたくする"
+  },
+  {
+    "word": "clean",
+    "sentence": "We clean our classroom after school every day.",
+    "highlight": "clean",
+    "answer": "掃除する",
+    "hiragana": "そうじする"
+  },
+  {
+    "word": "brush",
+    "sentence": "You should brush your teeth after eating.",
+    "highlight": "brush",
+    "answer": "磨く",
+    "hiragana": "みがく"
+  },
+  {
+    "word": "take",
+    "sentence": "I always take a shower in the morning.",
+    "highlight": "take",
+    "answer": "浴びる",
+    "hiragana": "あびる"
+  },
+  {
+    "word": "cook",
+    "sentence": "My father loves to cook special meals on weekends.",
+    "highlight": "cook",
+    "answer": "料理する",
+    "hiragana": "りょうりする"
+  },
+  {
+    "word": "buy",
+    "sentence": "I want to buy a new notebook at the store.",
+    "highlight": "buy",
+    "answer": "買う",
+    "hiragana": "かう"
+  },
+  {
+    "word": "go shopping",
+    "sentence": "She plans to go shopping at the department store.",
+    "highlight": "go shopping",
+    "answer": "買物する",
+    "hiragana": "かいものする"
+  },
+  {
+    "word": "get married",
+    "sentence": "They decided to get married next spring.",
+    "highlight": "get married",
+    "answer": "結婚する",
+    "hiragana": "けっこんする"
+  }
 ]

@@ -1,47 +1,65 @@
 [
   {
-    "question": "Saturday",
+    "word": "Saturday",
+    "sentence": "I usually go shopping on Saturday.",
+    "highlight": "Saturday",
     "answer": "土曜日",
-    "romaji": "do you bi"
+    "hiragana": "どようび"
   },
   {
-    "question": "Monday",
+    "word": "Monday",
+    "sentence": "The museum is closed on Monday.",
+    "highlight": "Monday",
     "answer": "月曜日",
-    "romaji": "ge tsu you bi"
+    "hiragana": "げつようび"
   },
   {
-    "question": "Weekday",
+    "word": "weekday",
+    "sentence": "The library is less crowded on a weekday.",
+    "highlight": "weekday",
     "answer": "平日",
-    "romaji": "hei jitsu"
+    "hiragana": "へいじつ"
   },
   {
-    "question": "Tuesday",
+    "word": "Tuesday",
+    "sentence": "We have a piano lesson every Tuesday.",
+    "highlight": "Tuesday",
     "answer": "火曜日",
-    "romaji": "ka you bi"
+    "hiragana": "かようび"
   },
   {
-    "question": "Friday",
+    "word": "Friday",
+    "sentence": "I like to watch movies on Friday night.",
+    "highlight": "Friday",
     "answer": "金曜日",
-    "romaji": "kin you bi"
+    "hiragana": "きんようび"
   },
   {
-    "question": "Thursday",
+    "word": "Thursday",
+    "sentence": "He plays tennis every Thursday afternoon.",
+    "highlight": "Thursday",
     "answer": "木曜日",
-    "romaji": "moku you bi"
+    "hiragana": "もくようび"
   },
   {
-    "question": "Sunday",
+    "word": "Sunday",
+    "sentence": "They go to the park on Sunday.",
+    "highlight": "Sunday",
     "answer": "日曜日",
-    "romaji": "nichi you bi"
+    "hiragana": "にちようび"
   },
   {
-    "question": "Weekend",
+    "word": "weekend",
+    "sentence": "What are you going to do this weekend?",
+    "highlight": "weekend",
     "answer": "週末",
-    "romaji": "shuu matsu"
+    "hiragana": "しゅうまつ"
   },
   {
-    "question": "Wednesday",
+    "word": "Wednesday",
+    "sentence": "The clinic is open until noon on Wednesday.",
+    "highlight": "Wednesday",
     "answer": "水曜日",
-    "romaji": "sui you bi"
+    "hiragana": "すいようび"
   }
 ]

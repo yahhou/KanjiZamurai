@@ -1,47 +1,65 @@
 [
   {
-    "question": "Notebook",
+    "word": "notebook",
+    "sentence": "I write down important notes in my notebook.",
+    "highlight": "notebook",
     "answer": "ノート",
-    "romaji": "noo to"
+    "hiragana": "のーと"
   },
   {
-    "question": "Pen",
+    "word": "pen",
+    "sentence": "Can I borrow your black pen for a moment?",
+    "highlight": "pen",
     "answer": "ペン",
-    "romaji": "pen"
+    "hiragana": "ぺん"
   },
   {
-    "question": "Newspaper",
+    "word": "newspaper",
+    "sentence": "My father reads the newspaper every morning.",
+    "highlight": "newspaper",
     "answer": "新聞",
-    "romaji": "shin bun"
+    "hiragana": "しんぶん"
   },
   {
-    "question": "Book",
+    "word": "book",
+    "sentence": "She is reading an interesting book in her room.",
+    "highlight": "book",
     "answer": "本",
-    "romaji": "hon"
+    "hiragana": "ほん"
   },
   {
-    "question": "Eraser",
+    "word": "eraser",
+    "sentence": "I used an eraser to clean up the mistake.",
+    "highlight": "eraser",
     "answer": "消しゴム",
-    "romaji": "ke shi go mu"
+    "hiragana": "けしごむ"
   },
   {
-    "question": "Paper",
+    "word": "paper",
+    "sentence": "Please write your name on a piece of paper.",
+    "highlight": "paper",
     "answer": "紙",
-    "romaji": "ka mi"
+    "hiragana": "かみ"
   },
   {
-    "question": "Dictionary",
+    "word": "dictionary",
+    "sentence": "You should look up the difficult word in a dictionary.",
+    "highlight": "dictionary",
     "answer": "辞書",
-    "romaji": "ji sho"
+    "hiragana": "じしょ"
   },
   {
-    "question": "Pencil",
+    "word": "pencil",
+    "sentence": "The child is drawing a picture with a yellow pencil.",
+    "highlight": "pencil",
     "answer": "鉛筆",
-    "romaji": "en pitsu"
+    "hiragana": "えんぴつ"
   },
   {
-    "question": "Magazine",
+    "word": "magazine",
+    "sentence": "This fashion magazine comes out every month.",
+    "highlight": "magazine",
     "answer": "雑誌",
-    "romaji": "zas shi"
+    "hiragana": "ざっし"
   }
 ]

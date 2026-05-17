@@ -1,52 +1,72 @@
 [
   {
-    "question": "Apartment",
+    "word": "apartment",
+    "sentence": "He lives in a quiet apartment near the station.",
+    "highlight": "apartment",
     "answer": "アパート",
-    "romaji": "a paato"
+    "hiragana": "あぱーと"
   },
   {
-    "question": "Bank",
+    "word": "bank",
+    "sentence": "I need to withdraw some money from the bank.",
+    "highlight": "bank",
     "answer": "銀行",
-    "romaji": "gin kou"
+    "hiragana": "ぎんこう"
   },
   {
-    "question": "Embassy",
+    "word": "embassy",
+    "sentence": "She went to the embassy to get a visa.",
+    "highlight": "embassy",
     "answer": "大使館",
-    "romaji": "tai shi kan"
+    "hiragana": "たいしかん"
   },
   {
-    "question": "Hospital",
+    "word": "hospital",
+    "sentence": "The doctor works at a large hospital in Tokyo.",
+    "highlight": "hospital",
     "answer": "病院",
-    "romaji": "byou in"
+    "hiragana": "びょういん"
   },
   {
-    "question": "Library",
+    "word": "library",
+    "sentence": "Students usually study in the school library.",
+    "highlight": "library",
     "answer": "図書館",
-    "romaji": "to sho kan"
+    "hiragana": "としょかん"
   },
   {
-    "question": "Park",
+    "word": "park",
+    "sentence": "Children are playing with a ball in the park.",
+    "highlight": "park",
     "answer": "公園",
-    "romaji": "kou en"
+    "hiragana": "こうえん"
   },
   {
-    "question": "Police box",
+    "word": "police box",
+    "sentence": "If you lose your wallet, go to the police box.",
+    "highlight": "police box",
     "answer": "交番",
-    "romaji": "kou ban"
+    "hiragana": "こうばん"
   },
   {
-    "question": "Post office",
+    "word": "post office",
+    "sentence": "I am going to the post office to send a letter.",
+    "highlight": "post office",
     "answer": "郵便局",
-    "romaji": "yuu bin kyoku"
+    "hiragana": "ゆうびんきょく"
   },
   {
-    "question": "School",
+    "word": "school",
+    "sentence": "We walk to school together every morning.",
+    "highlight": "school",
     "answer": "学校",
-    "romaji": "ga kkou"
+    "hiragana": "がっこう"
   },
   {
-    "question": "University / College",
+    "word": "university",
+    "sentence": "My older sister studies history at a university.",
+    "highlight": "university",
     "answer": "大学",
-    "romaji": "dai gaku"
+    "hiragana": "だいがく"
   }
 ]

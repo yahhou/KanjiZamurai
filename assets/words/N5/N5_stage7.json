@@ -1,62 +1,86 @@
 [
   {
-    "question": "White",
+    "word": "white",
+    "sentence": "The snow looks beautiful and white.",
+    "highlight": "white",
     "answer": "白",
-    "romaji": "shiro"
+    "hiragana": "しろ"
   },
   {
-    "question": "Black",
+    "word": "black",
+    "sentence": "He usually wears a black coat.",
+    "highlight": "black",
     "answer": "黒",
-    "romaji": "kuro"
+    "hiragana": "くろ"
   },
   {
-    "question": "Red",
+    "word": "red",
+    "sentence": "She has a beautiful red bag.",
+    "highlight": "red",
     "answer": "赤",
-    "romaji": "aka"
+    "hiragana": "あか"
   },
   {
-    "question": "Blue",
+    "word": "blue",
+    "sentence": "The sky is very clear and blue today.",
+    "highlight": "blue",
     "answer": "青",
-    "romaji": "ao"
+    "hiragana": "あお"
   },
   {
-    "question": "Yellow",
+    "word": "yellow",
+    "sentence": "Bananas turn yellow when they are ripe.",
+    "highlight": "yellow",
     "answer": "黄色",
-    "romaji": "ki iro"
+    "hiragana": "きいろ"
   },
   {
-    "question": "Brown",
+    "word": "brown",
+    "sentence": "The dog has cute brown eyes.",
+    "highlight": "brown",
     "answer": "茶色",
-    "romaji": "cha iro"
+    "hiragana": "ちゃいろ"
   },
   {
-    "question": "Green",
+    "word": "green",
+    "sentence": "The trees are full of green leaves.",
+    "highlight": "green",
     "answer": "緑",
-    "romaji": "midori"
+    "hiragana": "みどり"
   },
   {
-    "question": "Orange",
+    "word": "orange",
+    "sentence": "The sunset painted the sky orange.",
+    "highlight": "orange",
     "answer": "オレンジ",
-    "romaji": "o re n ji"
+    "hiragana": "おれんじ"
   },
   {
-    "question": "Pink",
+    "word": "pink",
+    "sentence": "Cherry blossoms have a beautiful pink color.",
+    "highlight": "pink",
     "answer": "ピンク",
-    "romaji": "pi n ku"
+    "hiragana": "ぴんく"
   },
   {
-    "question": "Gray",
+    "word": "gray",
+    "sentence": "The sky is gray on a rainy day.",
+    "highlight": "gray",
     "answer": "灰色",
-    "romaji": "hai iro"
+    "hiragana": "いいろ"
   },
   {
-    "question": "Gold",
+    "word": "gold",
+    "sentence": "The winner received a shiny gold medal.",
+    "highlight": "gold",
     "answer": "金色",
-    "romaji": "kin iro"
+    "hiragana": "きんいろ"
   },
   {
-    "question": "Silver",
+    "word": "silver",
+    "sentence": "She wears a nice silver ring.",
+    "highlight": "silver",
     "answer": "銀色",
-    "romaji": "gin iro"
+    "hiragana": "ぎんいろ"
   }
 ]

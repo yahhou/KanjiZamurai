@@ -1,0 +1,93 @@
+[
+  {
+    "word": "fine",
+    "sentence": "That's fine, you don't need to worry about it.",
+    "highlight": "fine",
+    "answer": "いい",
+    "hiragana": "いい"
+  },
+  {
+    "word": "always",
+    "sentence": "She always drinks a glass of water after waking up.",
+    "highlight": "always",
+    "answer": "いつも",
+    "hiragana": "いつも"
+  },
+  {
+    "word": "immediately",
+    "sentence": "Please reply to this email immediately.",
+    "highlight": "immediately",
+    "answer": "すぐ",
+    "hiragana": "すぐ"
+  },
+  {
+    "word": "just",
+    "sentence": "He arrived at the station just at three o'clock.",
+    "highlight": "just",
+    "answer": "ちょうど",
+    "hiragana": "ちょうど"
+  },
+  {
+    "word": "moment",
+    "sentence": "Please wait a moment until I finish this phone call.",
+    "highlight": "moment",
+    "answer": "ちょっと",
+    "hiragana": "ちょっと"
+  },
+  {
+    "word": "how",
+    "sentence": "How is your new life in Tokyo?",
+    "highlight": "How",
+    "answer": "どう",
+    "hiragana": "どう"
+  },
+  {
+    "word": "why",
+    "sentence": "Why were you absent from the meeting yesterday?",
+    "highlight": "Why",
+    "answer": "どうして",
+    "hiragana": "どうして"
+  },
+  {
+    "word": "here you go",
+    "sentence": "Here you go, please enjoy the hot tea.",
+    "highlight": "Here you go",
+    "answer": "どうぞ",
+    "hiragana": "どうぞ"
+  },
+  {
+    "word": "thanks",
+    "sentence": "Thanks for helping me with my heavy bags.",
+    "highlight": "Thanks",
+    "answer": "どうも",
+    "hiragana": "どうも"
+  },
+  {
+    "word": "very",
+    "sentence": "This scientific book is very difficult to understand.",
+    "highlight": "very",
+    "answer": "とても",
+    "hiragana": "とても"
+  },
+  {
+    "word": "slowly",
+    "sentence": "Please speak more slowly for the international students.",
+    "highlight": "slowly",
+    "answer": "ゆっくり",
+    "hiragana": "ゆっくり"
+  },
+  {
+    "word": "yet",
+    "sentence": "The package has not arrived yet.",
+    "highlight": "yet",
+    "answer": "まだ",
+    "hiragana": "まだ"
+  },
+  {
+    "word": "again",
+    "sentence": "I hope to visit this beautiful island again next summer.",
+    "highlight": "again",
+    "answer": "また",
+    "hiragana": "また"
+  }
+]

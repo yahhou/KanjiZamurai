@@ -1,47 +1,65 @@
 [
   {
-    "question": "Taxi",
+    "word": "taxi",
+    "sentence": "We took a taxi from the station to the hotel.",
+    "highlight": "taxi",
     "answer": "タクシー",
-    "romaji": "ta ku shii"
+    "hiragana": "たくしー"
   },
   {
-    "question": "Bus",
+    "word": "bus",
+    "sentence": "The bus arrives here every ten minutes.",
+    "highlight": "bus",
     "answer": "バス",
-    "romaji": "ba su"
+    "hiragana": "ばす"
   },
   {
-    "question": "Subway",
+    "word": "subway",
+    "sentence": "The subway is the fastest way to travel in the city.",
+    "highlight": "subway",
     "answer": "地下鉄",
-    "romaji": "chi ka tetsu"
+    "hiragana": "ちかてつ"
   },
   {
-    "question": "Bullet train",
+    "word": "bullet train",
+    "sentence": "I want to ride the bullet train to Kyoto.",
+    "highlight": "bullet train",
     "answer": "新幹線",
-    "romaji": "shin kan sen"
+    "hiragana": "しんかんせん"
   },
   {
-    "question": "Bicycle",
+    "word": "bicycle",
+    "sentence": "He goes to school by bicycle every day.",
+    "highlight": "bicycle",
     "answer": "自転車",
-    "romaji": "ji ten sha"
+    "hiragana": "じてんしゃ"
   },
   {
-    "question": "Ship / Boat",
+    "word": "ship",
+    "sentence": "The large ship sailed across the ocean.",
+    "highlight": "ship",
     "answer": "船",
-    "romaji": "fune"
+    "hiragana": "ふね"
   },
   {
-    "question": "Car",
+    "word": "car",
+    "sentence": "My father bought a new blue car last week.",
+    "highlight": "car",
     "answer": "車",
-    "romaji": "kuruma"
+    "hiragana": "くるま"
   },
   {
-    "question": "Train",
+    "word": "train",
+    "sentence": "The train was very crowded this morning.",
+    "highlight": "train",
     "answer": "電車",
-    "romaji": "den sha"
+    "hiragana": "でんしゃ"
   },
   {
-    "question": "Airplane",
+    "word": "airplane",
+    "sentence": "The airplane flew high above the clouds.",
+    "highlight": "airplane",
     "answer": "飛行機",
-    "romaji": "hi kou ki"
+    "hiragana": "ひこうき"
   }
 ]

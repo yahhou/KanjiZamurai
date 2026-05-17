@@ -1,87 +1,121 @@
 [
   {
-    "question": "Drink / Beverage",
+    "word": "drink",
+    "sentence": "Would you like something to drink?",
+    "highlight": "drink",
     "answer": "飲み物",
-    "romaji": "no mi mono"
+    "hiragana": "のみもの"
   },
   {
-    "question": "Water",
+    "word": "water",
+    "sentence": "Please give me a glass of cold water.",
+    "highlight": "water",
     "answer": "水",
-    "romaji": "mizu"
+    "hiragana": "みず"
   },
   {
-    "question": "Tea (Green tea)",
+    "word": "green tea",
+    "sentence": "Japanese people often drink green tea after meals.",
+    "highlight": "green tea",
     "answer": "お茶",
-    "romaji": "o cha"
+    "hiragana": "おちゃ"
   },
   {
-    "question": "Black tea",
+    "word": "black tea",
+    "sentence": "She prefers black tea with milk and sugar.",
+    "highlight": "black tea",
     "answer": "紅茶",
-    "romaji": "kou cha"
+    "hiragana": "こうちゃ"
   },
   {
-    "question": "Coffee",
+    "word": "coffee",
+    "sentence": "I cannot start my day without a cup of coffee.",
+    "highlight": "coffee",
     "answer": "コーヒー",
-    "romaji": "koo hii"
+    "hiragana": "こーひー"
   },
   {
-    "question": "Juice",
+    "word": "juice",
+    "sentence": "The child spilled orange juice on the floor.",
+    "highlight": "juice",
     "answer": "ジュース",
-    "romaji": "juu su"
+    "hiragana": "じゅーす"
   },
   {
-    "question": "Milk",
+    "word": "milk",
+    "sentence": "Drinking milk helps build strong bones.",
+    "highlight": "milk",
     "answer": "牛乳",
-    "romaji": "gyuu nyuu"
+    "hiragana": "ぎゅうにゅう"
   },
   {
-    "question": "Beer",
+    "word": "beer",
+    "sentence": "He ordered a cold beer after work.",
+    "highlight": "beer",
     "answer": "ビール",
-    "romaji": "bii ru"
+    "hiragana": "びーる"
   },
   {
-    "question": "Alcohol",
+    "word": "alcohol",
+    "sentence": "You must not drive after drinking alcohol.",
+    "highlight": "alcohol",
     "answer": "お酒",
-    "romaji": "o sake"
+    "hiragana": "おさけ"
   },
   {
-    "question": "Lunch box",
+    "word": "box lunch",
+    "sentence": "My mother makes a delicious box lunch for me every day.",
+    "highlight": "box lunch",
     "answer": "お弁当",
-    "romaji": "o ben tou"
+    "hiragana": "おべんとう"
   },
   {
-    "question": "Curry",
+    "word": "curry",
+    "sentence": "Spicy curry is very popular in Japan.",
+    "highlight": "curry",
     "answer": "カレー",
-    "romaji": "ka ree"
+    "hiragana": "かれー"
   },
   {
-    "question": "Bread",
+    "word": "bread",
+    "sentence": "I bought some fresh bread at the bakery.",
+    "highlight": "bread",
     "answer": "パン",
-    "romaji": "pan"
+    "hiragana": "ぱん"
   },
   {
-    "question": "Rice / Meal",
+    "word": "rice",
+    "sentence": "We eat rice almost every day.",
+    "highlight": "rice",
     "answer": "ご飯",
-    "romaji": "go han"
+    "hiragana": "ごはん"
   },
   {
-    "question": "Cooking / Cuisine",
+    "word": "cooking",
+    "sentence": "Her hobby is cooking traditional Italian food.",
+    "highlight": "cooking",
     "answer": "料理",
-    "romaji": "ryou ri"
+    "hiragana": "りょうり"
   },
   {
-    "question": "Breakfast",
+    "word": "breakfast",
+    "sentence": "Eating a good breakfast gives you energy for the day.",
+    "highlight": "breakfast",
     "answer": "朝ご飯",
-    "romaji": "asa go han"
+    "hiragana": "あさごはん"
   },
   {
-    "question": "Lunch",
+    "word": "lunch",
+    "sentence": "Let's meet at the restaurant for lunch at noon.",
+    "highlight": "lunch",
     "answer": "昼ご飯",
-    "romaji": "hiru go han"
+    "hiragana": "ひるごはん"
   },
   {
-    "question": "Dinner",
+    "word": "dinner",
+    "sentence": "The whole family gathered around the table for dinner.",
+    "highlight": "dinner",
     "answer": "晩ご飯",
-    "romaji": "ban go han"
+    "hiragana": "ばんごはん"
   }
 ]

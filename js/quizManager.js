@@ -51,14 +51,13 @@ export const quizManager = {
   //   ランダムクイズの準備）
   /////////////////////////
   randomQuestion() {
-    if (this.isVictoryActive) return;
+  if (this.isVictoryActive) return;
 
   const currentStageWords = this.wordList[this.currentStage];
   if (!currentStageWords?.length) return;
 
-  // ★修正: item.kanji -> item.answer
   let availableWords = currentStageWords.filter(
-    (item) => !this.usedWords.includes(item.answer)
+    (item) => !this.usedWords.includes(item.sentence)
   );
 
   if (availableWords.length === 0) {
@@ -69,68 +68,141 @@ export const quizManager = {
       this.victory();
       return;
     }
-    
   }
 
-  const correct = availableWords[Math.floor(Math.random() * availableWords.length)];
-  const options = [correct];
-  while (options.length < 3) {
-    const rand = currentStageWords[Math.floor(Math.random() * currentStageWords.length)];
-    // ★修正: opt.kanji -> opt.answer
-    if (!options.some((opt) => opt.answer === rand.answer)) {
-      options.push(rand);
+  // =========================
+  // 正解問題を決定
+  // =========================
+  const correct =
+    availableWords[Math.floor(Math.random() * availableWords.length)];
+
+  let options = [];
+
+  // =========================
+  // は・が専用の二択
+  // =========================
+  if (correct.choices) {
+
+  options = correct.choices;
+
+} else {
+
+    // 通常問題
+    options = [correct];
+
+    while (options.length < 3) {
+      const rand =
+        currentStageWords[
+          Math.floor(Math.random() * currentStageWords.length)
+        ];
+
+      if (!options.some((opt) => opt.answer === rand.answer)) {
+        options.push(rand);
+      }
     }
-   }
+  }
 
   options.sort(() => Math.random() - 0.5);
+
   this.currentQuestion = correct;
+
   this.renderQuestion(correct, options);
+
   this.updateQuestionProgress();
-  },
+},
 
   /////////////////////////
   //      問題の表示
   /////////////////////////
-    renderQuestion(correct, options) {
-    const quizArea = document.getElementById("quizArea");
-    if (!quizArea) return;
+   renderQuestion(correct, options) {
+  const quizArea = document.getElementById("quizArea");
+  if (!quizArea) return;
 
-    const isBoss = (this.quizMode === "boss");
+  const isBoss = (this.quizMode === "boss");
 
-    quizArea.innerHTML = `
-      <div class="question-container ${isBoss ? 'boss-mode-ui' : ''}">
-        <h2>${escapeHtml(correct.question)}</h2>
-      </div>
-      <div id="optionArea" class="button-container">
-        ${options.map(o => {
-          // 通常時はローマ字を .romaji-text で囲む。ボス時は答えのみ。
-          // <span>タグを活かすため、中身の変数だけを個別にエスケープします。
-          const label = isBoss 
-            ? escapeHtml(o.answer) 
-            : `${escapeHtml(o.answer)} <span class="romaji-text">${escapeHtml(o.romaji)}</span>`;
-          
-          return `
-            <button type="button" class="quiz-button" data-answer="${escapeHtml(o.answer)}">
-              <div class="answer-text">${label}</div>
-            </button>`;
-        }).join("")}
-      </div>
-    `;
+  // =========================
+  // ハイライト処理
+  // =========================
+  let displaySentence = escapeHtml(correct.sentence);
 
-    /// renderQuestion 内のイベントリスナー部分
+  if (correct.highlight) {
+    const escapedHighlight = escapeHtml(correct.highlight);
+
+    const regex = new RegExp(`\\b${escapedHighlight}\\b`, "g");
+
+displaySentence = displaySentence.replace(
+  regex,
+  `<span class="highlight-word">${escapedHighlight}</span>`
+);
+  }
+
+  // =========================
+  // HTML生成
+  // =========================
+  quizArea.innerHTML = `
+    <div class="question-container ${isBoss ? 'boss-mode-ui' : ''}">
+      <h2 class="question-sentence">
+        ${displaySentence.replace(/\n/g, "<br>")}
+      </h2>
+    </div>
+
+    <div id="optionArea" class="button-container">
+      ${options.map(o => {
+
+        const label = isBoss
+          ? `
+            <div class="answer-wrapper">
+              <span class="kanji-text">
+                ${escapeHtml(o.answer)}
+              </span>
+            </div>
+          `
+          : `
+            <div class="answer-wrapper">
+              <span class="hiragana-text">
+                ${escapeHtml(o.hiragana)}
+              </span>
+
+              <span class="kanji-text">
+                ${escapeHtml(o.answer)}
+              </span>
+            </div>
+          `;
+
+        return `
+          <button
+            type="button"
+            class="quiz-button"
+            data-answer="${escapeHtml(o.answer)}"
+          >
+            <div class="answer-text">
+              ${label}
+            </div>
+          </button>
+        `;
+      }).join("")}
+    </div>
+  `;
+
+  // =========================
+  // ボタンイベント
+  // =========================
+  const optionArea = document.getElementById("optionArea");
+
   optionArea.querySelectorAll(".quiz-button").forEach((btn) => {
     btn.addEventListener("click", () => {
+
       const selected = btn.getAttribute("data-answer");
-    
-    // ★修正: 以前の kanji/english 判定を削除し、answer プロパティで比較
-      const isCorrect = (selected === this.currentQuestion.answer);
-    
+
+      const isCorrect =
+        (selected === this.currentQuestion.answer);
+
       this.answer(selected, isCorrect);
     });
   });
 
-    this.updateKiwamiIcon();
-  },
+  this.updateKiwamiIcon();
+},
  
   /////////////////////////
   //      回答
@@ -141,9 +213,9 @@ export const quizManager = {
 
   if (isCorrect) {
     // ★修正: kanji -> answer
-    if (!this.usedWords.includes(this.currentQuestion.answer)) {
-      this.usedWords.push(this.currentQuestion.answer);
-    }
+   if (!this.usedWords.includes(this.currentQuestion.sentence)) {
+  this.usedWords.push(this.currentQuestion.sentence);
+}
     this.handleCorrectAnswer(buttons, selected);
   } else {
     this.handleWrongAnswer(buttons, selected);
@@ -225,9 +297,9 @@ export const quizManager = {
     const q = this.currentQuestion;
     if (q) {
       this.wrongAnswersLog.push({
-        question: q.question,
+        question: q.sentence,
         answer: q.answer || "",
-        romaji: q.romaji || "",
+        hiragana: q.hiragana || "",
         correctEnglish: q.english,
       });
     }
@@ -445,7 +517,7 @@ export const quizManager = {
   /////////////////////////
   buildWrongAnswersReviewHtml() {
     if (!this.wrongAnswersLog.length) {
-      return `<p class="game-over-review-empty">このバトルで記録された誤答はありません。</p>`;
+      return `<p class="game-over-review-empty">no wrong answers</p>`;
     }
 
     const items = this.wrongAnswersLog
@@ -456,7 +528,7 @@ export const quizManager = {
           ${escapeHtml(row.question)}
         <div class="game-over-review-answer">
           <span class="game-over-review-label">A:</span> 
-          ${escapeHtml(row.answer)}${row.romaji ? ` / ${escapeHtml(row.romaji)}` : ""}
+          ${escapeHtml(row.answer)}${row.hiragana ? ` / ${escapeHtml(row.hiragana)}` : ""}
         </div>
       </li>`
       )

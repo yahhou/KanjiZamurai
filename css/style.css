@@ -1142,14 +1142,14 @@ body {
 
 .question-container h2 {
   width: 100%;
-  font-size: 6cqw;
-  line-height: 1.05;
+  font-size: 5cqw;
+  line-height: 1.3;
   margin: 0;
   font-family: inherit;
   color: #9e9e9e;
   text-shadow: 0 2px 4px #000000;
   overflow-wrap: anywhere;
-  font-weight: 550;
+  font-weight: 350;
 }
 
 .question-container p {
@@ -1212,7 +1212,7 @@ body {
   cursor: default;
 }
 
-#optionArea .romaji-text{
+#optionArea .hiragana-text{
   width: 100%;
   max-height: 100%;
   display: block; /* 縦に並べたい場合は block、横なら inline-block */
@@ -1222,8 +1222,8 @@ body {
   
   /* --- ここで緑色を指定 --- */
   color: #78e08f; /* 明るめの緑（暗い背景に映えます） */
-  font-size: 0.8em; /* 漢字より少し小さくする */
-  margin-top: 2px;  /* 漢字との間に少し隙間を作る */
+  font-size: 0.6em; /* 漢字より少し小さくする */
+  margin-bottom: 1.5cqw;  /* 漢字との間に少し隙間を作る */
 }
 
 #optionArea button:active {
@@ -1341,6 +1341,13 @@ body {
 .retry-btn:active {
   transform: scale(0.95);
 }
+
+.highlight-word {
+  color: #ffd700;
+  font-weight: 500;
+  text-shadow: 0 0 8px rgba(255,215,0,0.8);
+}
+
 /* ==========================================================================
 /* ==========================================================================
 /* ==========================================================================

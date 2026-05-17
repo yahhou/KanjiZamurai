@@ -1,72 +1,100 @@
 [
-{
-"question": "to say",
-"answer": "言う",
-"romaji": "i u"
-},
-{
-"question": "to speak / to talk",
-"answer": "話す",
-"romaji": "hana su"
-},
-{
-"question": "to listen / to hear / to ask",
-"answer": "聞く",
-"romaji": "ki ku"
-},
-{
-"question": "to read",
-"answer": "読む",
-"romaji": "yo mu"
-},
-{
-"question": "to write",
-"answer": "書く",
-"romaji": "ka ku"
-},
-{
-"question": "to remember / to memorize",
-"answer": "覚える",
-"romaji": "obo e ru"
-},
-{
-"question": "to forget",
-"answer": "忘れる",
-"romaji": "wasu re ru"
-},
-{
-"question": "to teach / to tell",
-"answer": "教える",
-"romaji": "oshi e ru"
-},
-{
-"question": "to learn",
-"answer": "習う",
-"romaji": "nara u"
-},
-{
-"question": "to answer",
-"answer": "答える",
-"romaji": "kota e ru"
-},
-{
-"question": "to ask / to request",
-"answer": "頼む",
-"romaji": "tano mu"
-},
-{
-"question": "to see / to watch / to look",
-"answer": "見る",
-"romaji": "mi ru"
-},
-{
-"question": "to show",
-"answer": "見せる",
-"romaji": "mi se ru"
-},
-{
-"question": "to know",
-"answer": "知る",
-"romaji": "shi ru"
-}
+  {
+    "word": "say",
+    "sentence": "What did you say just now?",
+    "highlight": "say",
+    "answer": "言う",
+    "hiragana": "いう"
+  },
+  {
+    "word": "speak",
+    "sentence": "She can speak English very well.",
+    "highlight": "speak",
+    "answer": "話す",
+    "hiragana": "はなす"
+  },
+  {
+    "word": "listen",
+    "sentence": "I like to listen to music in my room.",
+    "highlight": "listen",
+    "answer": "聴く",
+    "hiragana": "きく"
+  },
+  {
+    "word": "read",
+    "sentence": "He reads a book before going to sleep.",
+    "highlight": "reads",
+    "answer": "読む",
+    "hiragana": "よむ"
+  },
+  {
+    "word": "write",
+    "sentence": "Please write your name on the paper.",
+    "highlight": "write",
+    "answer": "書く",
+    "hiragana": "かく"
+  },
+  {
+    "word": "remember",
+    "sentence": "I cannot remember his phone number.",
+    "highlight": "remember",
+    "answer": "覚える",
+    "hiragana": "おぼえる"
+  },
+  {
+    "word": "forget",
+    "sentence": "Don't forget to lock the door.",
+    "highlight": "forget",
+    "answer": "忘れる",
+    "hiragana": "わすれる"
+  },
+  {
+    "word": "teach",
+    "sentence": "My older brother will teach me math tonight.",
+    "highlight": "teach",
+    "answer": "教える",
+    "hiragana": "おしえる"
+  },
+  {
+    "word": "learn",
+    "sentence": "Children learn many things at school.",
+    "highlight": "learn",
+    "answer": "習う",
+    "hiragana": "ならう"
+  },
+  {
+    "word": "answer",
+    "sentence": "It is difficult to answer this question.",
+    "highlight": "answer",
+    "answer": "答える",
+    "hiragana": "こたえる"
+  },
+  {
+    "word": "ask",
+    "sentence": "I want to ask him a favor.",
+    "highlight": "ask",
+    "answer": "頼む",
+    "hiragana": "たのむ"
+  },
+  {
+    "word": "watch",
+    "sentence": "We watch television together after dinner.",
+    "highlight": "watch",
+    "answer": "見る",
+    "hiragana": "みる"
+  },
+  {
+    "word": "show",
+    "sentence": "Please show me your passport.",
+    "highlight": "show",
+    "answer": "見せる",
+    "hiragana": "みせる"
+  },
+  {
+    "word": "know",
+    "sentence": "Do you know the way to the station?",
+    "highlight": "know",
+    "answer": "知る",
+    "hiragana": "しる"
+  }
 ]

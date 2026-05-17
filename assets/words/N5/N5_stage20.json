@@ -1,97 +1,135 @@
 [
-{
-"question": "to give",
-"answer": "あげる",
-"romaji": "a ge ru"
-},
-{
-"question": "to do",
-"answer": "する",
-"romaji": "su ru"
-},
-{
-"question": "to do / to give",
-"answer": "やる",
-"romaji": "ya ru"
-},
-{
-"question": "to meet",
-"answer": "会う",
-"romaji": "a u"
-},
-{
-"question": "to rest / to take a day off",
-"answer": "休む",
-"romaji": "yasu mu"
-},
-{
-"question": "to live / to reside",
-"answer": "住む",
-"romaji": "su mu"
-},
-{
-"question": "to make",
-"answer": "作る",
-"romaji": "tsuku ru"
-},
-{
-"question": "to use",
-"answer": "使う",
-"romaji": "tsuka u"
-},
-{
-"question": "to borrow",
-"answer": "借りる",
-"romaji": "ka ri ru"
-},
-{
-"question": "to work",
-"answer": "働く",
-"romaji": "hatara ku"
-},
-{
-"question": "to work for / to be employed",
-"answer": "勤める",
-"romaji": "tsuto me ru"
-},
-{
-"question": "to understand",
-"answer": "分かる",
-"romaji": "wa ka ru"
-},
-{
-"question": "to take / to get",
-"answer": "取る",
-"romaji": "to ru"
-},
-{
-"question": "to call / to invite",
-"answer": "呼ぶ",
-"romaji": "yo bu"
-},
-{
-"question": "to become",
-"answer": "なる",
-"romaji": "na ru"
-},
-{
-"question": "to be troubled",
-"answer": "困る",
-"romaji": "koma ru"
-},
-{
-"question": "to die",
-"answer": "死ぬ",
-"romaji": "shi nu"
-},
-{
-"question": "to exist / to have",
-"answer": "有る",
-"romaji": "a ru"
-},
-{
-"question": "to put / to place",
-"answer": "置く",
-"romaji": "o ku"
-}
+  {
+    "word": "give",
+    "sentence": "I will give a birthday present to my friend.",
+    "highlight": "give",
+    "answer": "あげる",
+    "hiragana": "あげる"
+  },
+  {
+    "word": "do",
+    "sentence": "What are you going to do this weekend?",
+    "highlight": "do",
+    "answer": "する",
+    "hiragana": "する"
+  },
+  {
+    "word": "do",
+    "sentence": "Let's do our best together.",
+    "highlight": "do",
+    "answer": "やる",
+    "hiragana": "やる"
+  },
+  {
+    "word": "meet",
+    "sentence": "I want to meet you at the station tomorrow.",
+    "highlight": "meet",
+    "answer": "会う",
+    "hiragana": "あう"
+  },
+  {
+    "word": "rest",
+    "sentence": "You should rest after a long walk.",
+    "highlight": "rest",
+    "answer": "休む",
+    "hiragana": "やすむ"
+  },
+  {
+    "word": "live",
+    "sentence": "My uncle and aunt live in Kyoto.",
+    "highlight": "live",
+    "answer": "住む",
+    "hiragana": "すむ"
+  },
+  {
+    "word": "make",
+    "sentence": "She loves to make delicious cakes for her family.",
+    "highlight": "make",
+    "answer": "作る",
+    "hiragana": "つくる"
+  },
+  {
+    "word": "use",
+    "sentence": "Can I use your computer for a moment?",
+    "highlight": "use",
+    "answer": "使う",
+    "hiragana": "つかう"
+  },
+  {
+    "word": "borrow",
+    "sentence": "I need to borrow a dictionary from the library.",
+    "highlight": "borrow",
+    "answer": "借りる",
+    "hiragana": "かりる"
+  },
+  {
+    "word": "work",
+    "sentence": "They work hard from morning till night.",
+    "highlight": "work",
+    "answer": "働く",
+    "hiragana": "はたらく"
+  },
+  {
+    "word": "work for",
+    "sentence": "My brother works for a big trading company.",
+    "highlight": "works for",
+    "answer": "勤める",
+    "hiragana": "つとめる"
+  },
+  {
+    "word": "understand",
+    "sentence": "I don't understand the meaning of this sentence.",
+    "highlight": "understand",
+    "answer": "分かる",
+    "hiragana": "わかる"
+  },
+  {
+    "word": "take",
+    "sentence": "Please take a piece of candy from the box.",
+    "highlight": "take",
+    "answer": "取る",
+    "hiragana": "とる"
+  },
+  {
+    "word": "call",
+    "sentence": "Please call a taxi for me, please.",
+    "highlight": "call",
+    "answer": "呼ぶ",
+    "hiragana": "よぶ"
+  },
+  {
+    "word": "become",
+    "sentence": "He wants to become a doctor in the future.",
+    "highlight": "become",
+    "answer": "なる",
+    "hiragana": "なる"
+  },
+  {
+    "word": "be troubled",
+    "sentence": "If it rains tomorrow, we will be troubled.",
+    "highlight": "be troubled",
+    "answer": "困る",
+    "hiragana": "こまる"
+  },
+  {
+    "word": "die",
+    "sentence": "Plants will die without water and sunlight.",
+    "highlight": "die",
+    "answer": "死ぬ",
+    "hiragana": "しぬ"
+  },
+  {
+    "word": "exist",
+    "sentence": "There is an old temple near the river.",
+    "highlight": "is",
+    "answer": "ある",
+    "hiragana": "ある"
+  },
+  {
+    "word": "put",
+    "sentence": "You can put your bag on the desk.",
+    "highlight": "put",
+    "answer": "置く",
+    "hiragana": "おく"
+  }
 ]

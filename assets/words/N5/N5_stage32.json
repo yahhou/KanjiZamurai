@@ -1,0 +1,182 @@
+[
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "topic marker",
+    "sentence": "A: Let's talk about you.\nB: I am a student.",
+    "highlight": "am",
+    "answer": "（私）は",
+    "hiragana": "わたしは"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "subject marker",
+    "sentence": "A: Who is a student?\nB: I am a student.",
+    "highlight": "am",
+    "answer": "（私）が",
+    "hiragana": "わたしが"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "topic marker",
+    "sentence": "A: What about you?\nB: I am busy today.",
+    "highlight": "am",
+    "answer": "（私）は",
+    "hiragana": "わたしは"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "subject marker",
+    "sentence": "A: Who is busy today?\nB: I am busy today.",
+    "highlight": "am",
+    "answer": "（私）が",
+    "hiragana": "わたしが"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "topic marker",
+    "sentence": "A: Let's talk about your height.\nB: I am tall.",
+    "highlight": "am",
+    "answer": "（私）は",
+    "hiragana": "わたしは"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "subject marker",
+    "sentence": "A: Who is tall here?\nB: I am tall.",
+    "highlight": "am",
+    "answer": "（私）が",
+    "hiragana": "わたしが"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "topic marker",
+    "sentence": "A: What about your status?\nB: I am ready.",
+    "highlight": "am",
+    "answer": "（私）は",
+    "hiragana": "わたしは"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "subject marker",
+    "sentence": "A: Who is ready to go?\nB: I am ready.",
+    "highlight": "am",
+    "answer": "（私）が",
+    "hiragana": "わたしが"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "topic marker",
+    "sentence": "A: Let's talk about your feelings.\nB: I am happy.",
+    "highlight": "am",
+    "answer": "（私）は",
+    "hiragana": "わたしは"
+  },
+  {
+    "category": "particle-comparison",
+    "choices": [
+      {
+        "answer": "（私）は",
+        "hiragana": "わたしは"
+      },
+      {
+        "answer": "（私）が",
+        "hiragana": "わたしが"
+      }
+    ],
+    "word": "subject marker",
+    "sentence": "A: Who is happy with the result?\nB: I am happy.",
+    "highlight": "am",
+    "answer": "（私）が",
+    "hiragana": "わたしが"
+  }
+]

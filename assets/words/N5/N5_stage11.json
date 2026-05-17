@@ -1,67 +1,93 @@
 [
   {
-    "question": "Airport",
+    "word": "airport",
+    "sentence": "The plane landed safely at the airport.",
+    "highlight": "airport",
     "answer": "空港",
-    "romaji": "kuu kou"
+    "hiragana": "くうこう"
   },
   {
-    "question": "Bridge",
+    "word": "bridge",
+    "sentence": "A long bridge connects the two islands.",
+    "highlight": "bridge",
     "answer": "橋",
-    "romaji": "hashi"
+    "hiragana": "はし"
   },
   {
-    "question": "Bus stop",
+    "word": "bus stop",
+    "sentence": "Several people are waiting at the bus stop.",
+    "highlight": "bus stop",
     "answer": "バス停",
-    "romaji": "basu tei"
+    "hiragana": "ばすてい"
   },
   {
-    "question": "Coffee shop / Café",
+    "word": "café",
+    "sentence": "I usually drink coffee at a local café.",
+    "highlight": "café",
     "answer": "喫茶店",
-    "romaji": "kissa ten"
+    "hiragana": "きっさてん"
   },
   {
-    "question": "Corner",
+    "word": "corner",
+    "sentence": "Turn left at the next corner.",
+    "highlight": "corner",
     "answer": "角",
-    "romaji": "kado"
+    "hiragana": "かど"
   },
   {
-    "question": "Department store",
+    "word": "department store",
+    "sentence": "She loves shopping at the department store.",
+    "highlight": "department store",
     "answer": "デパート",
-    "romaji": "depaato"
+    "hiragana": "でぱーと"
   },
   {
-    "question": "Intersection",
+    "word": "intersection",
+    "sentence": "The accident happened at the busy intersection.",
+    "highlight": "intersection",
     "answer": "交差点",
-    "romaji": "kou sa ten"
+    "hiragana": "こうさてん"
   },
   {
-    "question": "Kiosk / Stall",
+    "word": "stall",
+    "sentence": "He bought a newspaper at the train station stall.",
+    "highlight": "stall",
     "answer": "売店",
-    "romaji": "bai ten"
+    "hiragana": "ばいてん"
   },
   {
-    "question": "Restaurant",
+    "word": "restaurant",
+    "sentence": "We had a delicious lunch at the Italian restaurant.",
+    "highlight": "restaurant",
     "answer": "レストラン",
-    "romaji": "resu to ran"
+    "hiragana": "れすとらん"
   },
   {
-    "question": "Road / Street",
+    "word": "road",
+    "sentence": "Be careful when you cross the road.",
+    "highlight": "road",
     "answer": "道",
-    "romaji": "michi"
+    "hiragana": "みち"
   },
   {
-    "question": "Shop / Store",
+    "word": "store",
+    "sentence": "This store sells fresh fruits and vegetables.",
+    "highlight": "store",
     "answer": "店",
-    "romaji": "mise"
+    "hiragana": "みせ"
   },
   {
-    "question": "Station",
+    "word": "station",
+    "sentence": "I will meet you in front of the station.",
+    "highlight": "station",
     "answer": "駅",
-    "romaji": "eki"
+    "hiragana": "えき"
   },
   {
-    "question": "Traffic light",
+    "word": "traffic light",
+    "sentence": "The traffic light turned from green to red.",
+    "highlight": "traffic light",
     "answer": "信号",
-    "romaji": "shin gou"
+    "hiragana": "しんごう"
   }
 ]

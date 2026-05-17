@@ -1,62 +1,86 @@
 [
   {
-    "question": "Test / Exam",
+    "word": "test",
+    "sentence": "I studied hard to pass the math test.",
+    "highlight": "test",
     "answer": "テスト",
-    "romaji": "te su to"
+    "hiragana": "てすと"
   },
   {
-    "question": "Essay / Composition",
+    "word": "essay",
+    "sentence": "We have to write a short essay about our summer vacation.",
+    "highlight": "essay",
     "answer": "作文",
-    "romaji": "saku bun"
+    "hiragana": "さくぶん"
   },
   {
-    "question": "Study",
+    "word": "study",
+    "sentence": "Daily study is important for improving your skills.",
+    "highlight": "study",
     "answer": "勉強",
-    "romaji": "ben kyou"
+    "hiragana": "べんきょう"
   },
   {
-    "question": "Problem / Question",
+    "word": "problem",
+    "sentence": "This is a very difficult problem to solve.",
+    "highlight": "problem",
     "answer": "問題",
-    "romaji": "mon dai"
+    "hiragana": "もんだい"
   },
   {
-    "question": "Homework",
+    "word": "homework",
+    "sentence": "I must finish my English homework before dinner.",
+    "highlight": "homework",
     "answer": "宿題",
-    "romaji": "shuku dai"
+    "hiragana": "しゅくだい"
   },
   {
-    "question": "Meaning",
+    "word": "meaning",
+    "sentence": "I don't know the exact meaning of this word.",
+    "highlight": "meaning",
     "answer": "意味",
-    "romaji": "i mi"
+    "hiragana": "いみ"
   },
   {
-    "question": "Class / Lesson",
+    "word": "lesson",
+    "sentence": "The students listened carefully during the history lesson.",
+    "highlight": "lesson",
     "answer": "授業",
-    "romaji": "ju gyou"
+    "hiragana": "じゅぎょう"
   },
   {
-    "question": "Kanji",
+    "word": "kanji",
+    "sentence": "He can read and write about one hundred kanji.",
+    "highlight": "kanji",
     "answer": "漢字",
-    "romaji": "kan ji"
+    "hiragana": "かんじ"
   },
   {
-    "question": "Answer",
+    "word": "answer",
+    "sentence": "Please write your answer on the blackboard.",
+    "highlight": "answer",
     "answer": "答え",
-    "romaji": "kota e"
+    "hiragana": "こたえ"
   },
   {
-    "question": "English",
+    "word": "English",
+    "sentence": "She practices speaking English every day.",
+    "highlight": "English",
     "answer": "英語",
-    "romaji": "ei go"
+    "hiragana": "えいご"
   },
   {
-    "question": "Word / Language",
+    "word": "word",
+    "sentence": "Kind words can make people happy.",
+    "highlight": "word",
     "answer": "言葉",
-    "romaji": "koto ba"
+    "hiragana": "ことば"
   },
   {
-    "question": "Classroom",
+    "word": "classroom",
+    "sentence": "There are twenty desks in the classroom.",
+    "highlight": "classroom",
     "answer": "教室",
-    "romaji": "kyou shitsu"
+    "hiragana": "きょうしつ"
   }
 ]

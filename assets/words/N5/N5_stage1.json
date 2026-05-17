@@ -1,67 +1,93 @@
 [
   {
-    "question": "1",
+    "word": "1",
+    "sentence": "I have 1 cat.",
+    "highlight": "1",
     "answer": "一",
-    "romaji": "ichi"
+    "hiragana": "いち"
   },
   {
-    "question": "2",
+    "word": "2",
+    "sentence": "She bought 2 books.",
+    "highlight": "2",
     "answer": "二",
-    "romaji": "ni"
+    "hiragana": "に"
   },
   {
-    "question": "3",
+    "word": "3",
+    "sentence": "There are 3 apples.",
+    "highlight": "3",
     "answer": "三",
-    "romaji": "san"
+    "hiragana": "さん"
   },
   {
-    "question": "4",
+    "word": "4",
+    "sentence": "He has 4 dogs.",
+    "highlight": "4",
     "answer": "四",
-    "romaji": "yon / shi"
+    "hiragana": "よん / し"
   },
   {
-    "question": "5",
+    "word": "5",
+    "sentence": "We need 5 players.",
+    "highlight": "5",
     "answer": "五",
-    "romaji": "go"
+    "hiragana": "ご"
   },
   {
-    "question": "6",
+    "word": "6",
+    "sentence": "They found 6 coins.",
+    "highlight": "6",
     "answer": "六",
-    "romaji": "roku"
+    "hiragana": "ろく"
   },
   {
-    "question": "7",
+    "word": "7",
+    "sentence": "I worked for 7 hours.",
+    "highlight": "7",
     "answer": "七",
-    "romaji": "nana / shichi"
+    "hiragana": "なな / しち"
   },
   {
-    "question": "8",
+    "word": "8",
+    "sentence": "There are 8 chairs.",
+    "highlight": "8",
     "answer": "八",
-    "romaji": "hachi"
+    "hiragana": "はち"
   },
   {
-    "question": "9",
+    "word": "9",
+    "sentence": "She scored 9 points.",
+    "highlight": "9",
     "answer": "九",
-    "romaji": "kyuu / ku"
+    "hiragana": "きゅう / く"
   },
   {
-    "question": "10",
+    "word": "10",
+    "sentence": "He owns 10 games.",
+    "highlight": "10",
     "answer": "十",
-    "romaji": "juu"
+    "hiragana": "じゅう"
   },
   {
-    "question": "100",
+    "word": "100",
+    "sentence": "The item costs 100 yen.",
+    "highlight": "100",
     "answer": "百",
-    "romaji": "hyaku"
+    "hiragana": "ひゃく"
   },
   {
-    "question": "1,000",
+    "word": "1,000",
+    "sentence": "I saved 1,000 yen.",
+    "highlight": "1,000",
     "answer": "千",
-    "romaji": "sen"
+    "hiragana": "せん"
   },
   {
-    "question": "10,000",
-    "answer": "万",
-    "romaji": "man"
+    "word": "10,000",
+    "sentence": "He won 10,000 yen.",
+    "highlight": "10,000",
+    "answer": "一万",
+    "hiragana": "いちまん"
   }
 ]

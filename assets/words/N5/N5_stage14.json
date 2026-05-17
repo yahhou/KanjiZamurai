@@ -1,72 +1,100 @@
 [
   {
-    "question": "Doctor",
+    "word": "doctor",
+    "sentence": "The doctor examined the patient carefully.",
+    "highlight": "doctor",
     "answer": "医者",
-    "romaji": "i sha"
+    "hiragana": "いしゃ"
   },
   {
-    "question": "Nurse",
+    "word": "nurse",
+    "sentence": "The nurse took my temperature at the hospital.",
+    "highlight": "nurse",
     "answer": "看護師",
-    "romaji": "kan go shi"
+    "hiragana": "かんごし"
   },
   {
-    "question": "Teacher",
+    "word": "teacher",
+    "sentence": "Our English teacher is very passionate.",
+    "highlight": "teacher",
     "answer": "先生",
-    "romaji": "sen sei"
+    "hiragana": "せんせい"
   },
   {
-    "question": "Student",
+    "word": "student",
+    "sentence": "He is a hardworking high school student.",
+    "highlight": "student",
     "answer": "学生",
-    "romaji": "gaku sei"
+    "hiragana": "がくせい"
   },
   {
-    "question": "International student",
+    "word": "international student",
+    "sentence": "An international student from France joined our class.",
+    "highlight": "international student",
     "answer": "留学生",
-    "romaji": "ryuu gaku sei"
+    "hiragana": "りゅうがくせい"
   },
   {
-    "question": "Office worker / Company employee",
+    "word": "office worker",
+    "sentence": "My uncle is an office worker in Tokyo.",
+    "highlight": "office worker",
     "answer": "会社員",
-    "romaji": "kai sha in"
+    "hiragana": "かいしゃいん"
   },
   {
-    "question": "Bank clerk / Banker",
+    "word": "banker",
+    "sentence": "The banker helped me open a new account.",
+    "highlight": "banker",
     "answer": "銀行員",
-    "romaji": "gin kou in"
+    "hiragana": "ぎんこういん"
   },
   {
-    "question": "Police officer",
+    "word": "police officer",
+    "sentence": "The police officer gave directions to the tourist.",
+    "highlight": "police officer",
     "answer": "警官",
-    "romaji": "kei kan"
+    "hiragana": "けいかん"
   },
   {
-    "question": "Store clerk / Shop assistant",
+    "word": "store clerk",
+    "sentence": "The store clerk wrapped the gift beautifully.",
+    "highlight": "store clerk",
     "answer": "店員",
-    "romaji": "ten in"
+    "hiragana": "てんいん"
   },
   {
-    "question": "Cook / Chef",
+    "word": "chef",
+    "sentence": "The professional chef prepared a wonderful meal.",
+    "highlight": "chef",
     "answer": "料理人",
-    "romaji": "ryou ri nin"
+    "hiragana": "りょうりにん"
   },
   {
-    "question": "Driver",
+    "word": "driver",
+    "sentence": "The bus driver greeted the passengers with a smile.",
+    "highlight": "driver",
     "answer": "運転手",
-    "romaji": "un ten shu"
+    "hiragana": "うんてんしゅ"
   },
   {
-    "question": "Ambassador",
+    "word": "ambassador",
+    "sentence": "The ambassador attended the international conference.",
+    "highlight": "ambassador",
     "answer": "大使",
-    "romaji": "tai shi"
+    "hiragana": "たいし"
   },
   {
-    "question": "Homemaker / Housewife",
+    "word": "homemaker",
+    "sentence": "She manages the household budget as a homemaker.",
+    "highlight": "homemaker",
     "answer": "主婦",
-    "romaji": "shu fu"
+    "hiragana": "しゅふ"
   },
   {
-    "question": "Shop owner",
+    "word": "shop owner",
+    "sentence": "The shop owner opens the bakery early every morning.",
+    "highlight": "shop owner",
     "answer": "店主",
-    "romaji": "ten shu"
+    "hiragana": "てんしゅ"
   }
 ]

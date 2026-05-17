@@ -1,67 +1,93 @@
 [
   {
-    "question": "This year",
+    "word": "this year",
+    "sentence": "I am planning to visit Japan this year.",
+    "highlight": "this year",
     "answer": "今年",
-    "romaji": "koto shi"
+    "hiragana": "ことし"
   },
   {
-    "question": "Today",
+    "word": "today",
+    "sentence": "The weather is very beautiful today.",
+    "highlight": "today",
     "answer": "今日",
-    "romaji": "kyou"
+    "hiragana": "きょう"
   },
   {
-    "question": "This month",
+    "word": "this month",
+    "sentence": "I have a lot of work to do this month.",
+    "highlight": "this month",
     "answer": "今月",
-    "romaji": "kon getsu"
+    "hiragana": "こんげつ"
   },
   {
-    "question": "This week",
+    "word": "this week",
+    "sentence": "We are going to have a meeting this week.",
+    "highlight": "this week",
     "answer": "今週",
-    "romaji": "kon shuu"
+    "hiragana": "こんしゅう"
   },
   {
-    "question": "Last month",
+    "word": "last month",
+    "sentence": "She moved to a new apartment last month.",
+    "highlight": "last month",
     "answer": "先月",
-    "romaji": "sen getsu"
+    "hiragana": "せんげつ"
   },
   {
-    "question": "Last week",
+    "word": "last week",
+    "sentence": "I watched a great movie last week.",
+    "highlight": "last week",
     "answer": "先週",
-    "romaji": "sen shuu"
+    "hiragana": "せんしゅう"
   },
   {
-    "question": "Last year",
+    "word": "last year",
+    "sentence": "They graduated from university last year.",
+    "highlight": "last year",
     "answer": "去年",
-    "romaji": "kyo nen"
+    "hiragana": "きょねん"
   },
   {
-    "question": "The day after tomorrow",
+    "word": "the day after tomorrow",
+    "sentence": "The package will arrive the day after tomorrow.",
+    "highlight": "the day after tomorrow",
     "answer": "明後日",
-    "romaji": "asatte"
+    "hiragana": "あさって"
   },
   {
-    "question": "Tomorrow",
+    "word": "tomorrow",
+    "sentence": "I will call you tomorrow morning.",
+    "highlight": "tomorrow",
     "answer": "明日",
-    "romaji": "ashita"
+    "hiragana": "あした"
   },
   {
-    "question": "Yesterday",
+    "word": "yesterday",
+    "sentence": "It rained heavily all day yesterday.",
+    "highlight": "yesterday",
     "answer": "昨日",
-    "romaji": "kinou"
+    "hiragana": "きのう"
   },
   {
-    "question": "Next year",
+    "word": "next year",
+    "sentence": "He wants to start a new business next year.",
+    "highlight": "next year",
     "answer": "来年",
-    "romaji": "rai nen"
+    "hiragana": "らいねん"
   },
   {
-    "question": "Next month",
+    "word": "next month",
+    "sentence": "My friend is coming to see me next month.",
+    "highlight": "next month",
     "answer": "来月",
-    "romaji": "rai getsu"
+    "hiragana": "らいげつ"
   },
   {
-    "question": "Next week",
+    "word": "next week",
+    "sentence": "We are going on a trip next week.",
+    "highlight": "next week",
     "answer": "来週",
-    "romaji": "rai shuu"
+    "hiragana": "らいしゅう"
   }
 ]

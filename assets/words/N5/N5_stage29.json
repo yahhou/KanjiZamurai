@@ -1,82 +1,114 @@
 [
-{
-"question": "beautiful / clean",
-"answer": "綺麗",
-"romaji": "ki rei"
-},
-{
-"question": "famous",
-"answer": "有名",
-"romaji": "yuu mei"
-},
-{
-"question": "lively / bustling",
-"answer": "賑やか",
-"romaji": "nigi ya ka"
-},
-{
-"question": "quiet / silent",
-"answer": "静か",
-"romaji": "shizu ka"
-},
-{
-"question": "kind",
-"answer": "親切",
-"romaji": "shin setsu"
-},
-{
-"question": "energetic / healthy",
-"answer": "元気",
-"romaji": "gen ki"
-},
-{
-"question": "convenient",
-"answer": "便利",
-"romaji": "ben ri"
-},
-{
-"question": "inconvenient",
-"answer": "不便",
-"romaji": "fu ben"
-},
-{
-"question": "important / precious",
-"answer": "大切",
-"romaji": "tai setsu"
-},
-{
-"question": "all right / okay",
-"answer": "大丈夫",
-"romaji": "dai jou bu"
-},
-{
-"question": "tough / difficult / severe",
-"answer": "大変",
-"romaji": "tai hen"
-},
-{
-"question": "like / favorite",
-"answer": "好き",
-"romaji": "su ki"
-},
-{
-"question": "dislike / hate",
-"answer": "嫌い",
-"romaji": "kira i"
-},
-{
-"question": "skillful / good at",
-"answer": "上手",
-"romaji": "jou zu"
-},
-{
-"question": "unskillful / poor at",
-"answer": "下手",
-"romaji": "he ta"
-},
-{
-"question": "fine / okay / no thank you",
-"answer": "結構",
-"romaji": "ke kkou"
-}
+  {
+    "word": "beautiful",
+    "sentence": "The view from the top of the mountain was beautiful.",
+    "highlight": "beautiful",
+    "answer": "綺麗",
+    "hiragana": "きれい"
+  },
+  {
+    "word": "famous",
+    "sentence": "This city is famous for its delicious seafood.",
+    "highlight": "famous",
+    "answer": "有名",
+    "hiragana": "ゆうめい"
+  },
+  {
+    "word": "lively",
+    "sentence": "The market is always lively on weekend mornings.",
+    "highlight": "lively",
+    "answer": "賑やか",
+    "hiragana": "にぎやか"
+  },
+  {
+    "word": "quiet",
+    "sentence": "You should stay quiet in the library.",
+    "highlight": "quiet",
+    "answer": "静か",
+    "hiragana": "しずか"
+  },
+  {
+    "word": "kind",
+    "sentence": "The local people were very kind to tourists.",
+    "highlight": "kind",
+    "answer": "親切",
+    "hiragana": "しんせつ"
+  },
+  {
+    "word": "healthy",
+    "sentence": "The energetic children are playing outside.",
+    "highlight": "energetic",
+    "answer": "元気",
+    "hiragana": "げんき"
+  },
+  {
+    "word": "convenient",
+    "sentence": "Smartphones are very convenient for daily life.",
+    "highlight": "convenient",
+    "answer": "便利",
+    "hiragana": "べんり"
+  },
+  {
+    "word": "inconvenient",
+    "sentence": "Living far from the station can be inconvenient.",
+    "highlight": "inconvenient",
+    "answer": "不便",
+    "hiragana": "ふべん"
+  },
+  {
+    "word": "important",
+    "sentence": "Health is the most important thing in life.",
+    "highlight": "important",
+    "answer": "大切",
+    "hiragana": "たいせつ"
+  },
+  {
+    "word": "okay",
+    "sentence": "Everything will be okay, so don't worry.",
+    "highlight": "okay",
+    "answer": "大丈夫",
+    "hiragana": "だいじょうぶ"
+  },
+  {
+    "word": "tough",
+    "sentence": "It was a tough day, but I finished all my work.",
+    "highlight": "tough",
+    "answer": "大変",
+    "hiragana": "たいへん"
+  },
+  {
+    "word": "favorite",
+    "sentence": "Apple pie is my favorite dessert.",
+    "highlight": "favorite",
+    "answer": "好き",
+    "hiragana": "すき"
+  },
+  {
+    "word": "dislike",
+    "sentence": "I dislike waking up early on cold mornings.",
+    "highlight": "dislike",
+    "answer": "嫌い",
+    "hiragana": "きらい"
+  },
+  {
+    "word": "good at",
+    "sentence": "She is good at playing the piano.",
+    "highlight": "good at",
+    "answer": "上手",
+    "hiragana": "じょうず"
+  },
+  {
+    "word": "poor at",
+    "sentence": "I am poor at drawing pictures.",
+    "highlight": "poor at",
+    "answer": "下手",
+    "hiragana": "へた"
+  },
+  {
+    "word": "fine",
+    "sentence": "No more coffee for me, thank you. I am fine.",
+    "highlight": "fine",
+    "answer": "結構",
+    "hiragana": "けっこう"
+  }
 ]

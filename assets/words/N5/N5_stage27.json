@@ -1,97 +1,135 @@
 [
-{
-"question": "good",
-"answer": "良い",
-"romaji": "yo i"
-},
-{
-"question": "bad",
-"answer": "悪い",
-"romaji": "waru i"
-},
-{
-"question": "new",
-"answer": "新しい",
-"romaji": "atara shi i"
-},
-{
-"question": "old",
-"answer": "古い",
-"romaji": "furu i"
-},
-{
-"question": "expensive / high",
-"answer": "高い",
-"romaji": "taka i"
-},
-{
-"question": "low",
-"answer": "低い",
-"romaji": "hiku i"
-},
-{
-"question": "cheap",
-"answer": "安い",
-"romaji": "yasu i"
-},
-{
-"question": "spacious / wide",
-"answer": "広い",
-"romaji": "hiro i"
-},
-{
-"question": "narrow",
-"answer": "狭い",
-"romaji": "sema i"
-},
-{
-"question": "big",
-"answer": "大きい",
-"romaji": "oo ki i"
-},
-{
-"question": "small",
-"answer": "小さい",
-"romaji": "chii sa i"
-},
-{
-"question": "many / much",
-"answer": "多い",
-"romaji": "oo i"
-},
-{
-"question": "few / little",
-"answer": "少ない",
-"romaji": "suku na i"
-},
-{
-"question": "long",
-"answer": "長い",
-"romaji": "naga i"
-},
-{
-"question": "short",
-"answer": "短い",
-"romaji": "mijika i"
-},
-{
-"question": "early",
-"answer": "早い",
-"romaji": "haya i"
-},
-{
-"question": "late / slow",
-"answer": "遅い",
-"romaji": "oso i"
-},
-{
-"question": "fast / quick",
-"answer": "速い",
-"romaji": "haya i"
-},
-{
-"question": "young",
-"answer": "若い",
-"romaji": "waka i"
-}
+  {
+    "word": "good",
+    "sentence": "Have a good time at the party tonight.",
+    "highlight": "good",
+    "answer": "良い",
+    "hiragana": "いい"
+  },
+  {
+    "word": "bad",
+    "sentence": "It is a bad habit to stay up late.",
+    "highlight": "bad",
+    "answer": "悪い",
+    "hiragana": "わるい"
+  },
+  {
+    "word": "new",
+    "sentence": "She bought a new dress for the wedding.",
+    "highlight": "new",
+    "answer": "新しい",
+    "hiragana": "あたらしい"
+  },
+  {
+    "word": "old",
+    "sentence": "This old clock still works perfectly.",
+    "highlight": "old",
+    "answer": "古い",
+    "hiragana": "ふるい"
+  },
+  {
+    "word": "expensive",
+    "sentence": "The restaurant was too expensive for us.",
+    "highlight": "expensive",
+    "answer": "高い",
+    "hiragana": "たかい"
+  },
+  {
+    "word": "low",
+    "sentence": "The ceiling in this room is very low.",
+    "highlight": "low",
+    "answer": "低い",
+    "hiragana": "ひくい"
+  },
+  {
+    "word": "cheap",
+    "sentence": "Vegetables are very cheap at this market.",
+    "highlight": "cheap",
+    "answer": "安い",
+    "hiragana": "やすい"
+  },
+  {
+    "word": "spacious",
+    "sentence": "They moved into a spacious apartment.",
+    "highlight": "spacious",
+    "answer": "広い",
+    "hiragana": "ひろい"
+  },
+  {
+    "word": "narrow",
+    "sentence": "The car drove down a narrow street.",
+    "highlight": "narrow",
+    "answer": "狭い",
+    "hiragana": "せまい"
+  },
+  {
+    "word": "big",
+    "sentence": "There is a big tree in front of our school.",
+    "highlight": "big",
+    "answer": "大きい",
+    "hiragana": "おおきい"
+  },
+  {
+    "word": "small",
+    "sentence": "The bird made a small nest in the bush.",
+    "highlight": "small",
+    "answer": "小さい",
+    "hiragana": "ちいさい"
+  },
+  {
+    "word": "many",
+    "sentence": "Many students gather in the library after class.",
+    "highlight": "Many",
+    "answer": "多い",
+    "hiragana": "おおい"
+  },
+  {
+    "word": "few",
+    "sentence": "There are few cars on the road today.",
+    "highlight": "few",
+    "answer": "少ない",
+    "hiragana": "すくない"
+  },
+  {
+    "word": "long",
+    "sentence": "We had a long conversation about our future.",
+    "highlight": "long",
+    "answer": "長い",
+    "hiragana": "ながい"
+  },
+  {
+    "word": "short",
+    "sentence": "Winter days are much shorter than summer days.",
+    "highlight": "shorter",
+    "answer": "短い",
+    "hiragana": "みじかい"
+  },
+  {
+    "word": "early",
+    "sentence": "He woke up early to catch the first train.",
+    "highlight": "early",
+    "answer": "早い",
+    "hiragana": "はやい"
+  },
+  {
+    "word": "slow",
+    "sentence": "The internet connection is very slow today.",
+    "highlight": "slow",
+    "answer": "遅い",
+    "hiragana": "おそい"
+  },
+  {
+    "word": "fast",
+    "sentence": "The cheetah is the fastest animal on land.",
+    "highlight": "fastest",
+    "answer": "速い",
+    "hiragana": "はやい"
+  },
+  {
+    "word": "young",
+    "sentence": "The young doctor is very popular with patients.",
+    "highlight": "young",
+    "answer": "若い",
+    "hiragana": "わかい"
+  }
 ]

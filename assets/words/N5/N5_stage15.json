@@ -1,92 +1,128 @@
 [
   {
-    "question": "Shampoo",
+    "word": "shampoo",
+    "sentence": "I need to buy a bottle of shampoo today.",
+    "highlight": "shampoo",
     "answer": "シャンプー",
-    "romaji": "shan puu"
+    "hiragana": "しゃんぷー"
   },
   {
-    "question": "Towel",
+    "word": "towel",
+    "sentence": "Please dry your hands with this clean towel.",
+    "highlight": "towel",
     "answer": "タオル",
-    "romaji": "ta o ru"
+    "hiragana": "たおる"
   },
   {
-    "question": "Table",
+    "word": "table",
+    "sentence": "We put a vase of flowers on the table.",
+    "highlight": "table",
     "answer": "テーブル",
-    "romaji": "tee bu ru"
+    "hiragana": "てーぶる"
   },
   {
-    "question": "TV",
+    "word": "TV",
+    "sentence": "He likes to watch the news on TV after dinner.",
+    "highlight": "TV",
     "answer": "テレビ",
-    "romaji": "te re bi"
+    "hiragana": "てれび"
   },
   {
-    "question": "Bed",
+    "word": "bed",
+    "sentence": "The hotel room has a large, comfortable bed.",
+    "highlight": "bed",
     "answer": "ベッド",
-    "romaji": "bed do"
+    "hiragana": "べっど"
   },
   {
-    "question": "Refrigerator",
+    "word": "refrigerator",
+    "sentence": "Please put the fresh milk into the refrigerator.",
+    "highlight": "refrigerator",
     "answer": "冷蔵庫",
-    "romaji": "rei zou ko"
+    "hiragana": "れいぞうこ"
   },
   {
-    "question": "Vacuum cleaner",
+    "word": "vacuum cleaner",
+    "sentence": "She cleaned the living room rug with a vacuum cleaner.",
+    "highlight": "vacuum cleaner",
     "answer": "掃除機",
-    "romaji": "sou ji ki"
+    "hiragana": "そうじき"
   },
   {
-    "question": "Clock / Watch",
+    "word": "clock",
+    "sentence": "The wall clock in the classroom is five minutes fast.",
+    "highlight": "clock",
     "answer": "時計",
-    "romaji": "to kei"
+    "hiragana": "とけい"
   },
   {
-    "question": "Bookshelf",
+    "word": "bookshelf",
+    "sentence": "He organized his favorite novels on the bookshelf.",
+    "highlight": "bookshelf",
     "answer": "本棚",
-    "romaji": "hon dana"
+    "hiragana": "ほんだな"
   },
   {
-    "question": "Desk",
+    "word": "desk",
+    "sentence": "I usually study at my desk every evening.",
+    "highlight": "desk",
     "answer": "机",
-    "romaji": "tsukue"
+    "hiragana": "つくえ"
   },
   {
-    "question": "Chair",
+    "word": "chair",
+    "sentence": "Please sit down on this wooden chair.",
+    "highlight": "chair",
     "answer": "椅子",
-    "romaji": "i su"
+    "hiragana": "いす"
   },
   {
-    "question": "Toothbrush",
+    "word": "toothbrush",
+    "sentence": "You should change your toothbrush every few months.",
+    "highlight": "toothbrush",
     "answer": "歯ブラシ",
-    "romaji": "ha bu ra shi"
+    "hiragana": "はぶらし"
   },
   {
-    "question": "Washing machine",
+    "word": "washing machine",
+    "sentence": "We put our dirty clothes into the washing machine.",
+    "highlight": "washing machine",
     "answer": "洗濯機",
-    "romaji": "sen taku ki"
+    "hiragana": "せんたくき"
   },
   {
-    "question": "Soap",
+    "word": "soap",
+    "sentence": "Wash your hands thoroughly with warm water and soap.",
+    "highlight": "soap",
     "answer": "石鹸",
-    "romaji": "sek ken"
+    "hiragana": "せっけん"
   },
   {
-    "question": "Key",
+    "word": "key",
+    "sentence": "I cannot find the house key anywhere.",
+    "highlight": "key",
     "answer": "鍵",
-    "romaji": "kagi"
+    "hiragana": "かぎ"
   },
   {
-    "question": "Mirror",
+    "word": "mirror",
+    "sentence": "She looked at her reflection in the mirror.",
+    "highlight": "mirror",
     "answer": "鏡",
-    "romaji": "kagami"
+    "hiragana": "かがみ"
   },
   {
-    "question": "Light / Electricity",
+    "word": "light",
+    "sentence": "Could you turn on the light in this room?",
+    "highlight": "light",
     "answer": "電気",
-    "romaji": "den ki"
+    "hiragana": "でんき"
   },
   {
-    "question": "Telephone",
+    "word": "telephone",
+    "sentence": "The office telephone rang several times this morning.",
+    "highlight": "telephone",
     "answer": "電話",
-    "romaji": "den wa"
+    "hiragana": "でんわ"
   }
 ]
