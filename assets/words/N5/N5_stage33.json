@@ -1,0 +1,182 @@
+[
+  {
+    "category": "particle-and",
+    "choices": [
+      { "answer": "（〜）と", "hiragana": "" },
+      { "answer": "（〜）の", "hiragana": "" }
+    ],
+    "word": "and (complete list)",
+    "sentence": "A: Who bought the cake?\nB: Ken AND Jack bought it. (Only the two of them)",
+    "highlight": "AND",
+    "answer": "（〜）と",
+    "hiragana": "〜と"
+  },
+  {
+    "category": "particle-and",
+    "choices": [
+      { "answer": "（〜）と", "hiragana": "" },
+      { "answer": "（〜）も", "hiragana": "" }
+    ],
+    "word": "and (complete list)",
+    "sentence": "A: Who went to the meeting?\nB: The manager AND the staff went to the meeting.",
+    "highlight": "AND",
+    "answer": "（〜）と",
+    "hiragana": "〜と"
+  },
+  {
+    "category": "particle-with",
+    "choices": [
+      { "answer": "（〜）と", "hiragana": "" },
+      { "answer": "（〜）の", "hiragana": "" }
+    ],
+    "word": "with (together)",
+    "sentence": "A: Who did Ken go to the movie with?\nB: Ken went to the movie WITH his friend.",
+    "highlight": "WITH",
+    "answer": "（〜）と",
+    "hiragana": "〜と"
+  },
+  {
+    "category": "particle-and",
+    "choices": [
+      { "answer": "（〜）と", "hiragana": "" },
+      { "answer": "（〜）も", "hiragana": "" }
+    ],
+    "word": "and (complete list)",
+    "sentence": "A: What did you drink?\nB: I drank coffee AND milk.",
+    "highlight": "AND",
+    "answer": "（〜）と",
+    "hiragana": "〜と"
+  },
+  {
+    "category": "particle-with",
+    "choices": [
+      { "answer": "（〜）と", "hiragana": "" },
+      { "answer": "（〜）の", "hiragana": "" }
+    ],
+    "word": "with (together)",
+    "sentence": "A: Do you live alone?\nB: No, I live WITH my family.",
+    "highlight": "WITH",
+    "answer": "（〜）と",
+    "hiragana": "〜と"
+  },
+  {
+    "category": "particle-possessive",
+    "choices": [
+      { "answer": "（〜）の", "hiragana": "" },
+      { "answer": "（〜）と", "hiragana": "" }
+    ],
+    "word": "possessive",
+    "sentence": "A: Whose bag is this?\nB: This is KEN'S bag.",
+    "highlight": "KEN'S",
+    "answer": "（〜）の",
+    "hiragana": "〜の"
+  },
+  {
+    "category": "particle-belonging",
+    "choices": [
+      { "answer": "（〜）の", "hiragana": "" },
+      { "answer": "（〜）も", "hiragana": "" }
+    ],
+    "word": "belonging",
+    "sentence": "A: Is that the teacher's house?\nB: Yes, that is the TEACHER'S house.",
+    "highlight": "TEACHER'S",
+    "answer": "（〜）の",
+    "hiragana": "〜の"
+  },
+  {
+    "category": "particle-belonging",
+    "choices": [
+      { "answer": "（〜）の", "hiragana": "" },
+      { "answer": "（〜）と", "hiragana": "" }
+    ],
+    "word": "belonging (origin)",
+    "sentence": "A: Whose opinion is this?\nB: This is the BOSS'S opinion.",
+    "highlight": "BOSS'S",
+    "answer": "（〜）の",
+    "hiragana": "〜の"
+  },
+  {
+    "category": "particle-possessive",
+    "choices": [
+      { "answer": "（〜）の", "hiragana": "" },
+      { "answer": "（〜）も", "hiragana": "" }
+    ],
+    "word": "possessive",
+    "sentence": "A: Is this your phone?\nB: No, this is ANNA'S phone.",
+    "highlight": "ANNA'S",
+    "answer": "（〜）の",
+    "hiragana": "〜の"
+  },
+  {
+    "category": "particle-belonging",
+    "choices": [
+      { "answer": "（〜）の", "hiragana": "" },
+      { "answer": "（〜）と", "hiragana": "" }
+    ],
+    "word": "belonging (company)",
+    "sentence": "A: Which car is yours?\nB: That is TOYOTA'S car.",
+    "highlight": "TOYOTA'S",
+    "answer": "（〜）の",
+    "hiragana": "〜の"
+  },
+  {
+    "category": "particle-also",
+    "choices": [
+      { "answer": "（〜）も", "hiragana": "〜も" },
+      { "answer": "（〜）と", "hiragana": "〜と" }
+    ],
+    "word": "also",
+    "sentence": "A: Tanaka is going to the party. What about Ken?\nB: Ken ALSO is going to the party.",
+    "highlight": "ALSO",
+    "answer": "（〜）も",
+    "hiragana": "〜も"
+  },
+  {
+    "category": "particle-too",
+    "choices": [
+      { "answer": "（〜）も", "hiragana": "" },
+      { "answer": "（〜）の", "hiragana": "" }
+    ],
+    "word": "too",
+    "sentence": "A: Ken is a university student.\nB: Anna is a university student, TOO.",
+    "highlight": "TOO",
+    "answer": "（〜）も",
+    "hiragana": "〜も"
+  },
+  {
+    "category": "particle-also",
+    "choices": [
+      { "answer": "（〜）も", "hiragana": "" },
+      { "answer": "（〜）と", "hiragana": "" }
+    ],
+    "word": "also (another item)",
+    "sentence": "A: Everyone else failed the exam. How about Tom?\nB: Tom ALSO failed the exam.",
+    "highlight": "ALSO",
+    "answer": "（〜）も",
+    "hiragana": "〜も"
+  },
+  {
+    "category": "particle-too",
+    "choices": [
+      { "answer": "（〜）も", "hiragana": "" },
+      { "answer": "（〜）の", "hiragana": "" }
+    ],
+    "word": "too",
+    "sentence": "A: I like ice cream.\nB: Sam likes ice cream, TOO.",
+    "highlight": "TOO",
+    "answer": "（〜）も",
+    "hiragana": "〜も"
+  },
+  {
+    "category": "particle-also",
+    "choices": [
+      { "answer": "（〜）も", "hiragana": "" },
+      { "answer": "（〜）と", "hiragana": "" }
+    ],
+    "word": "also",
+    "sentence": "A: Mary speaks French. Does she speak Spanish?\nB: Yes, she ALSO speaks Spanish.",
+    "highlight": "ALSO",
+    "answer": "（〜）も",
+    "hiragana": "〜も"
+  }
+]

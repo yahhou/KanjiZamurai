@@ -20,6 +20,10 @@ import { SamuraiTaishou } from "../characters/enemies/samuraiTaishou.js";
 import { IwaAtama } from "../characters/enemies/iwaAtama.js";
 import { OoZaru } from "../characters/enemies/ooZaru.js";
 import { Monk } from "../characters/enemies/monk.js";
+import { Youko } from "../characters/enemies/youko.js";
+import { HitokuiBana } from "../characters/enemies/hitokuiBana.js";
+import { ShiroOni } from "../characters/enemies/shiroOni.js";
+import { PhantomDeer } from "../characters/enemies/phantomDeer.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { ENEMY_BALANCE } from "./balanceConfig.js";
 
@@ -45,6 +49,10 @@ const ENEMY_CLASSES = {
   IwaAtama,
   OoZaru,
   Monk,
+  Youko,
+  HitokuiBana,
+  ShiroOni,
+  PhantomDeer,
 };
 
 function normalizeEnemyTypes(enemyTypes) {
@@ -476,6 +484,10 @@ export const battleManager = {
       "stage_28": "assets/images/stage_castle.png",
       "stage_29": "assets/images/stage_sakuraPath.png",
       "stage_30": "assets/images/stage_forestPath.png",
+      "stage_31": "assets/images/stage_forestPath.png",
+      "stage_32": "assets/images/stage_mountainPath2.png",
+      "stage_33": "assets/images/stage_mountainPath2.png",
+      "stage_34": "assets/images/stage_mountainPath2.png",
     };
 
     for (const key in bgList) {

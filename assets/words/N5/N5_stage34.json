@@ -1,0 +1,242 @@
+[
+  {
+    "category": "particle-such-as",
+    "choices": [
+      { "answer": "（〜）や", "hiragana": "" },
+      { "answer": "（〜）に", "hiragana": "" }
+    ],
+    "word": "such as",
+    "sentence": "A: What kind of food do you like?\nB: I like Japanese food, SUCH AS sushi and ramen.",
+    "highlight": "SUCH AS",
+    "answer": "（〜）や",
+    "hiragana": "〜や"
+  },
+  {
+    "category": "particle-such-as",
+    "choices": [
+      { "answer": "（〜）や", "hiragana": "" },
+      { "answer": "（〜）で", "hiragana": "" }
+    ],
+    "word": "such as (examples)",
+    "sentence": "A: Which countries do you want to visit?\nB: I want to go to Asian countries, SUCH AS Thailand and Vietnam.",
+    "highlight": "SUCH AS",
+    "answer": "（〜）や",
+    "hiragana": "〜や"
+  },
+  {
+    "category": "particle-such-as",
+    "choices": [
+      { "answer": "（〜）や", "hiragana": "" },
+      { "answer": "（〜）へ", "hiragana": "" }
+    ],
+    "word": "such as",
+    "sentence": "A: What do you do on weekends?\nB: I enjoy hobbies, SUCH AS watching movies and reading.",
+    "highlight": "SUCH AS",
+    "answer": "（〜）や",
+    "hiragana": "〜や"
+  },
+  {
+    "category": "particle-such-as",
+    "choices": [
+      { "answer": "（〜）や", "hiragana": "" },
+      { "answer": "（〜）に", "hiragana": "" }
+    ],
+    "word": "such as (examples)",
+    "sentence": "A: What pets are easy to keep?\nB: Small animals, SUCH AS cats and rabbits, are popular.",
+    "highlight": "SUCH AS",
+    "answer": "（〜）や",
+    "hiragana": "〜や"
+  },
+  {
+    "category": "particle-such-as",
+    "choices": [
+      { "answer": "（〜）や", "hiragana": "" },
+      { "answer": "（〜）で", "hiragana": "" }
+    ],
+    "word": "such as",
+    "sentence": "A: What sports do you like?\nB: I like ball games, SUCH AS tennis and basketball.",
+    "highlight": "SUCH AS",
+    "answer": "（〜）や",
+    "hiragana": "〜や"
+  },
+  {
+    "category": "particle-place-action",
+    "choices": [
+      { "answer": "（〜）で", "hiragana": "" },
+      { "answer": "（〜）に", "hiragana": "" }
+    ],
+    "word": "at / in (action place)",
+    "sentence": "A: Where did you eat lunch?\nB: I ate lunch AT a restaurant.",
+    "highlight": "AT",
+    "answer": "（〜）で",
+    "hiragana": "〜で"
+  },
+  {
+    "category": "particle-method",
+    "choices": [
+      { "answer": "（〜）で", "hiragana": "〜で" },
+      { "answer": "（〜）や", "hiragana": "〜や" }
+    ],
+    "word": "by / with (method/tool)",
+    "sentence": "A: How do you go to school?\nB: I go to school BY train.",
+    "highlight": "BY",
+    "answer": "（〜）で",
+    "hiragana": "〜で"
+  },
+  {
+    "category": "particle-method",
+    "choices": [
+      { "answer": "（〜）で", "hiragana": "" },
+      { "answer": "（〜）へ", "hiragana": "" }
+    ],
+    "word": "with (tool)",
+    "sentence": "A: Can I eat this with my hands?\nB: No, please eat WITH chopsticks.",
+    "highlight": "WITH",
+    "answer": "（〜）で",
+    "hiragana": "〜で"
+  },
+  {
+    "category": "particle-place-action",
+    "choices": [
+      { "answer": "（〜）で", "hiragana": "" },
+      { "answer": "（〜）に", "hiragana": "" }
+    ],
+    "word": "at / in (action place)",
+    "sentence": "A: Where do you study?\nB: I always study IN the library.",
+    "highlight": "IN",
+    "answer": "（〜）で",
+    "hiragana": "〜で"
+  },
+  {
+    "category": "particle-method",
+    "choices": [
+      { "answer": "（〜）で", "hiragana": "" },
+      { "answer": "（〜）や", "hiragana": "" }
+    ],
+    "word": "in / with (language)",
+    "sentence": "A: How do you say this in Japanese?\nB: Please speak IN Japanese.",
+    "highlight": "IN",
+    "answer": "（〜）で",
+    "hiragana": "〜で"
+  },
+  {
+    "category": "particle-place-exist",
+    "choices": [
+      { "answer": "（〜）に", "hiragana": "" },
+      { "answer": "（〜）で", "hiragana": "" }
+    ],
+    "word": "at / in / on (existence)",
+    "sentence": "A: Where is your key?\nB: It is ON the table.",
+    "highlight": "ON",
+    "answer": "（〜）に",
+    "hiragana": "〜に"
+  },
+  {
+    "category": "particle-time",
+    "choices": [
+      { "answer": "（〜）に", "hiragana": "" },
+      { "answer": "（〜）や", "hiragana": "" }
+    ],
+    "word": "at / on (specific time)",
+    "sentence": "A: What time do you wake up?\nB: I wake up AT 7 o'clock.",
+    "highlight": "AT",
+    "answer": "（〜）に",
+    "hiragana": "〜に"
+  },
+  {
+    "category": "particle-direction",
+    "choices": [
+      { "answer": "（〜）に", "hiragana": "〜に" },
+      { "answer": "（〜）で", "hiragana": "〜で" }
+    ],
+    "word": "to (destination)",
+    "sentence": "A: Where are you going now?\nB: I am going TO Japan.",
+    "highlight": "TO",
+    "answer": "（〜）に",
+    "hiragana": "〜に"
+  },
+  {
+    "category": "particle-place-exist",
+    "choices": [
+      { "answer": "（〜）に", "hiragana": "" },
+      { "answer": "（〜）へ", "hiragana": "" }
+    ],
+    "word": "in / at (live/stay)",
+    "sentence": "A: Where do you live?\nB: I live IN Tokyo.",
+    "highlight": "IN",
+    "answer": "（〜）に",
+    "hiragana": "〜に"
+  },
+  {
+    "category": "particle-time",
+    "choices": [
+      { "answer": "（〜）に", "hiragana": "" },
+      { "answer": "（〜）で", "hiragana": "" }
+    ],
+    "word": "on (day of the week)",
+    "sentence": "A: When is the meeting?\nB: It is ON Sunday.",
+    "highlight": "ON",
+    "answer": "（〜）に",
+    "hiragana": "〜に"
+  },
+  {
+    "category": "particle-direction",
+    "choices": [
+      { "answer": "（〜）へ", "hiragana": "" },
+      { "answer": "（〜）で", "hiragana": "" }
+    ],
+    "word": "toward / to (direction)",
+    "sentence": "A: Which way did the bus go?\nB: It went TOWARD the station.",
+    "highlight": "TOWARD",
+    "answer": "（〜）へ",
+    "hiragana": "〜へ"
+  },
+  {
+    "category": "particle-direction",
+    "choices": [
+      { "answer": "（〜）へ", "hiragana": "" },
+      { "answer": "（〜）や", "hiragana": "" }
+    ],
+    "word": "to (destination)",
+    "sentence": "A: Welcome back! Where did you travel?\nB: I went TO Kyoto.",
+    "highlight": "TO",
+    "answer": "（〜）へ",
+    "hiragana": "〜へ"
+  },
+  {
+    "category": "particle-direction",
+    "choices": [
+      { "answer": "（〜）へ", "hiragana": "" },
+      { "answer": "（〜）の", "hiragana": "" }
+    ],
+    "word": "to (heading for)",
+    "sentence": "A: Pack your bags.\nB: We are flying TO America tomorrow.",
+    "highlight": "TO",
+    "answer": "（〜）へ",
+    "hiragana": "〜へ"
+  },
+  {
+    "category": "particle-direction",
+    "choices": [
+      { "answer": "（〜）へ", "hiragana": "" },
+      { "answer": "（〜）で", "hiragana": "" }
+    ],
+    "word": "toward (direction)",
+    "sentence": "A: Look at the sky.\nB: Birds are flying TOWARD the south.",
+    "highlight": "TOWARD",
+    "answer": "（〜）へ",
+    "hiragana": "〜へ"
+  },
+  {
+    "category": "particle-direction",
+    "choices": [
+      { "answer": "（〜）へ", "hiragana": "" },
+      { "answer": "（〜）や", "hiragana": "" }
+    ],
+    "word": "to (destination)",
+    "sentence": "A: Where should we ship this package?\nB: Please send it TO the office.",
+    "highlight": "TO",
+    "answer": "（〜）へ",
+    "hiragana": "〜へ"
+  }
+]

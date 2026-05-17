@@ -262,7 +262,7 @@ export const STAGE_CONFIGS = {
       files: ["N5_stage30.json"],
       bgKey: "stage_30",
       enemyLevel: 30,
-      enemyTypes: ["Monk"],
+      enemyTypes: ["Youko"],
       bossType: "OoZaru",
     },
 
@@ -275,8 +275,8 @@ export const STAGE_CONFIGS = {
       files: ["N5_stage31.json"],
       bgKey: "stage_31",
       enemyLevel: 31,
-      enemyTypes: ["Monk"],
-      bossType: "OoZaru",
+      enemyTypes: ["Youko"],
+      bossType: "HitokuiBana",
     },
 
 
@@ -284,12 +284,28 @@ export const STAGE_CONFIGS = {
     /////      助詞
     ////////////////////////////
     { id: 32,
-      name: "Topic vs Subject",
+      name: "は vs が",
       files: ["N5_stage32.json"],
       bgKey: "stage_32",
       enemyLevel: 32,
-      enemyTypes: ["Monk"],
-      bossType: "OoZaru",
+      enemyTypes: ["PhantomDeer"],
+      bossType: "ShiroOni",
+    },
+    { id: 33,
+      name: "と vs の vs も",
+      files: ["N5_stage33.json"],
+      bgKey: "stage_33",
+      enemyLevel: 33,
+      enemyTypes: ["PhantomDeer"],
+      bossType: "ShiroOni",
+    },
+    { id: 34,
+      name: "に vs へ vs で vs や",
+      files: ["N5_stage34.json"],
+      bgKey: "stage_34",
+      enemyLevel: 34,
+      enemyTypes: ["PhantomDeer"],
+      bossType: "ShiroOni",
     },
 
   ],
@@ -328,6 +344,8 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 30 },
   { category: "N5", stageId: 31 },
   { category: "N5", stageId: 32 },
+  { category: "N5", stageId: 33 },
+  { category: "N5", stageId: 34 },
 ];
 
 export function findStageConfig(category, stageId) {
