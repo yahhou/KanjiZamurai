@@ -116,25 +116,29 @@ export const quizManager = {
   /////////////////////////
    renderQuestion(correct, options) {
   const quizArea = document.getElementById("quizArea");
-  if (!quizArea) return;
+    if (!quizArea) return;
 
-  const isBoss = (this.quizMode === "boss");
+    const isBoss = (this.quizMode === "boss");
 
-  // =========================
-  // ハイライト処理
-  // =========================
-  let displaySentence = escapeHtml(correct.sentence);
+    // =========================
+    // ハイライト処理
+    // =========================
+    let displaySentence = escapeHtml(correct.sentence);
 
-  if (correct.highlight) {
-    const escapedHighlight = escapeHtml(correct.highlight);
+    if (correct.highlight) {
+      const escapedHighlight = escapeHtml(correct.highlight);
+      
+      // ドット(.)などの記号が正規表現のエラーにならないようにエスケープする処理
+      const safeHighlight = escapedHighlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      
+      // \b を外して、文字がそのまま一致する部分を置き換える
+      const regex = new RegExp(safeHighlight, "g");
 
-    const regex = new RegExp(`\\b${escapedHighlight}\\b`, "g");
-
-displaySentence = displaySentence.replace(
-  regex,
-  `<span class="highlight-word">${escapedHighlight}</span>`
-);
-  }
+      displaySentence = displaySentence.replace(
+        regex,
+        `<span class="highlight-word">${escapedHighlight}</span>`
+      );
+    }
 
   // =========================
   // HTML生成
