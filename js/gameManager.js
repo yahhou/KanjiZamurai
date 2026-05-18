@@ -559,8 +559,8 @@ export const gameManager = {
     const content = panel.querySelector(".panel-content");
     if (content) {
       content.innerHTML = "";
-      // itemManagerを使って2つのランダムなアイテムを表示
-      itemManager.renderOptions(content, 2);
+      // 回復アイテムを1枠保証しつつ、3択で表示
+      itemManager.renderOptions(content, 3, { guaranteeRecovery: true });
     }
 
     panel.style.display = "flex";

@@ -1738,7 +1738,7 @@ body {
 .panel-content {
   position: absolute;
   bottom: 30%;
-  width: 70%;
+  width: 86%;
   height: 25%;
   padding: 2cqw;
   text-align: center;
@@ -1758,8 +1758,8 @@ body {
 
 .item-choice-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10cqw;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3cqw;
   justify-items: center;
   align-items: center;
   width: 100%;
@@ -1828,13 +1828,13 @@ body {
 
 .item-name {
   font-weight: bold;
-  font-size: 7cqw;
+  font-size: 5.2cqw;
 }
 
 .item-description {
   color: #4eb3fa;
-  font-size: 5cqw;
-  line-height: 15cqw;
+  font-size: 3.8cqw;
+  line-height: 8cqw;
 }
 
 /* =============================

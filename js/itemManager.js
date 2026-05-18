@@ -14,6 +14,7 @@ export class Item {
     isHaori = false,
     isBand = false, // 追加
     isBeads = false,
+    isRecovery = false,
     apply,
   }) {
     this.id = id;
@@ -26,6 +27,7 @@ export class Item {
     this.isHaori = isHaori;
     this.isBand = isBand;
     this.isBeads = isBeads;
+    this.isRecovery = isRecovery;
     this.apply = apply;
   }
 }
@@ -75,6 +77,7 @@ export const itemManager = {
       description: "HP 50%Restore",
       frame: 0,
       rarity: "common",
+      isRecovery: true,
       apply(player) {
         const restoreAmount = Math.floor(player.maxHp * 0.5);
         player.hp = Math.min(player.maxHp, player.hp + restoreAmount);
@@ -87,6 +90,7 @@ export const itemManager = {
       description: "HP +3%/correct",
       frame: 1,
       rarity: "uncommon",
+      isRecovery: true,
       apply(player) {
         player.isRegenerating = true;
       },
@@ -97,6 +101,7 @@ export const itemManager = {
       description: "HP FullRestore",
       frame: 2,
       rarity: "rare",
+      isRecovery: true,
       apply(player) {
         player.hp = player.maxHp;
         player.refreshStats();
@@ -485,10 +490,9 @@ export const itemManager = {
   //////////////////////////////
   //     抽選
   //////////////////////////////
-    pickItems(count, player) {
+    filterAvailableItems(player) {
+      let pool = [...this.items];
 
-    
-    let pool = [...this.items];
     ///////////////////////////////////////////
     // 装備武器より低いレア度を除外
     ///////////////////////////////////////////
@@ -496,7 +500,7 @@ export const itemManager = {
     // --- レアリティ順序の定義（共通で使う） ---
     const getRank = (rarity) => this.rarityOrder[String(rarity).toLowerCase()] || 0;
 
-    pool = pool.filter((item) => {
+    return pool.filter((item) => {
       // 1. 武器（isWeapon）のチェック
       if (item.isWeapon && player?.weaponRarity) {
         const currentWeaponRank = getRank(player.weaponRarity);
@@ -527,14 +531,13 @@ export const itemManager = {
 
       return true;
     });
+    },
 
     ///////////////////////////////////////////
     // 重み付きランダム
     ///////////////////////////////////////////
-
-    const choices = [];
-
-    while (choices.length < count && pool.length > 0) {
+    pickWeightedItem(pool) {
+      if (!pool.length) return null;
 
       const totalWeight = pool.reduce(
         (sum, item) => sum + this.getItemWeight(item),
@@ -548,22 +551,43 @@ export const itemManager = {
         return roll <= 0;
       });
 
-      choices.push(...pool.splice(Math.max(0, index), 1));
+      return pool.splice(Math.max(0, index), 1)[0] || null;
+    },
+
+    pickItems(count, player, options = {}) {
+    const pool = this.filterAvailableItems(player);
+    const choices = [];
+
+    if (options.guaranteeRecovery) {
+      const recoveryPool = pool.filter((item) => item.isRecovery);
+      const recoveryItem = this.pickWeightedItem(recoveryPool);
+      if (recoveryItem) {
+        choices.push(recoveryItem);
+        const poolIndex = pool.findIndex((item) => item.id === recoveryItem.id);
+        if (poolIndex >= 0) pool.splice(poolIndex, 1);
+      }
     }
 
+    while (choices.length < count && pool.length > 0) {
+      const item = this.pickWeightedItem(pool);
+      if (item) choices.push(item);
+    }
+
+    choices.sort(() => Math.random() - 0.5);
     return choices;
     },
 
   //////////////////////////////
   //     選択肢表示
   //////////////////////////////
-    renderOptions(container, count = 2) {
+    renderOptions(container, count = 2, options = {}) {
 
     if (!container) return;
 
     const choices = this.pickItems(
       count,
-      battleManager.player
+      battleManager.player,
+      options
     );
 
     const frameCount = this.getFrameCount();
