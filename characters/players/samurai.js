@@ -74,31 +74,48 @@ export class Samurai extends Player {
   /* ==========================================================================
   必殺技コントロール（コンボ数による出し分け）
   ========================================================================== */
-  playUltimateFinishingMove(target, damage) {
+  playUltimateFinishingMove(target) {
     if (!this.el || !target || !target.el) return;
 
     const currentCombo = window.battleManager?.comboCount || 3;
     
     // ① 9連続以上：3撃の必殺（フレーム5 -> 6 -> 7 -> 8）
     if (currentCombo >= 9) {
-      this.play9ComboUltimate(target, damage);
+      this.play9ComboUltimate(target);
       return;
     }
 
     // ② 6連続以上：2撃の必殺（フレーム5 -> 6 -> 7）
     if (currentCombo >= 6) {
-      this.play6ComboUltimate(target, damage);
+      this.play6ComboUltimate(target);
       return;
     }
 
     // ③ 3連続以上：1撃の必殺（フレーム5 -> 6）
-    this.play3ComboUltimate(target, damage);
+    this.play3ComboUltimate(target);
+  }
+
+  applyComboHit(target, damageMultiplier = 1) {
+    if (!target || target.hp <= 0 || target.isDead) return;
+
+    const { amount, isCritical } = this.calculateDamage(target);
+    const damage = Math.max(1, Math.floor(amount * damageMultiplier));
+
+    if (isCritical) {
+      this.triggerFlash();
+      this.playCriticalHitSE();
+    } else {
+      this.attackSound.currentTime = 0;
+      this.attackSound.play();
+    }
+
+    target.takeDamage?.(damage, isCritical);
   }
 
   /* ==========================================================================
   1. 通常の必殺技: 三連続以上 (1撃)
   ========================================================================== */
-  play3ComboUltimate(target, damage) {
+  play3ComboUltimate(target) {
     this.isAttacking = true;
     this.stopIdle();
 
@@ -115,9 +132,7 @@ export class Samurai extends Player {
       this.sprite.style.backgroundPosition = this.getFramePos(6);
       this.sprite.style.transform = `translateX(${distanceX}px)`;
 
-      this.triggerFlash();
-      this.playCriticalHitSE();
-      target.takeDamage?.(damage * 1.5, true);
+      this.applyComboHit(target, 1.5);
 
       // 元の位置に戻る
       setTimeout(() => {
@@ -129,7 +144,7 @@ export class Samurai extends Player {
   /* ==========================================================================
   2. 超必殺技: 六連続以上 (2撃)
   ========================================================================== */
-  play6ComboUltimate(target, damage) {
+  play6ComboUltimate(target) {
     this.isAttacking = true;
     this.stopIdle();
 
@@ -146,17 +161,13 @@ export class Samurai extends Player {
       this.sprite.style.backgroundPosition = this.getFramePos(6);
       this.sprite.style.transform = `translateX(${distanceX}px)`;
 
-      this.triggerFlash();
-      this.playCriticalHitSE();
-      target.takeDamage?.(damage * 1.5, true);
+      this.applyComboHit(target);
 
       // 2撃目：追加の斬撃 (フレーム7)
       setTimeout(() => {
         this.sprite.style.backgroundPosition = this.getFramePos(7); 
 
-        this.triggerFlash();
-        this.playCriticalHitSE();
-        target.takeDamage?.(damage * 1.5, true); 
+        this.applyComboHit(target);
 
         // 元の場所へ戻る
         setTimeout(() => {
@@ -169,7 +180,7 @@ export class Samurai extends Player {
    /* ==========================================================================
   3. 超必殺技(極): 九連続以上 (高速三連斬り)
 ========================================================================== */
-play9ComboUltimate(target, damage) {
+play9ComboUltimate(target) {
   this.isAttacking = true;
   this.stopIdle();
 
@@ -187,18 +198,14 @@ play9ComboUltimate(target, damage) {
     // 1撃目 (6)
     this.sprite.style.backgroundPosition = this.getFramePos(6);
 
-    this.triggerFlash();
-    this.playCriticalHitSE();
-    target.takeDamage?.(damage * 1.5, true);
+    this.applyComboHit(target);
 
     setTimeout(() => {
 
       // 2撃目 (7)
       this.sprite.style.backgroundPosition = this.getFramePos(7);
 
-      this.triggerFlash();
-      this.playCriticalHitSE();
-      target.takeDamage?.(damage * 1.5, true);
+      this.applyComboHit(target);
 
       setTimeout(() => {
 
@@ -206,9 +213,7 @@ play9ComboUltimate(target, damage) {
         this.sprite.style.backgroundPosition = this.getFramePos(3);
         this.sprite.style.transform = `translateX(${distanceX * 0.8}px)`;; 
 
-        this.triggerFlash();
-        this.playCriticalHitSE();
-        target.takeDamage?.(damage * 2, true);
+        this.applyComboHit(target);
 
         // 終了
         setTimeout(() => {

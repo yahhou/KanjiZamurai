@@ -197,12 +197,11 @@ export const battleManager = {
     this.comboCount = (this.comboCount || 0) + 1;
   const targetEnemy = this.enemy;
   
+  if (this.comboCount >= 3 && this.player.playUltimateFinishingMove) {
+  this.player.playUltimateFinishingMove(targetEnemy);
+} else {
   // 敵の情報を渡して正確に計算
   let { damage, isCritical } = this.calculatePlayerDamage(targetEnemy);
-
-  if (this.comboCount >= 3 && this.player.playUltimateFinishingMove) {
-  this.player.playUltimateFinishingMove(targetEnemy, damage);
-} else {
   this.player.playAttackAnimation(targetEnemy, damage, isCritical);
 }
 
