@@ -47,7 +47,7 @@ export const quizManager = {
   wordList: [],
   currentStage: 0,
   kiwamiGauge: 0,
-  MAX_KIWAMI_GAUGE: 10,
+  MAX_KIWAMI_GAUGE: 9,
   HEAL_GAUGE_COST: 3,
   usedWords: [],
   /** いま出題中の正解データ */
@@ -365,17 +365,20 @@ export const quizManager = {
 
     const count = Math.max(0, Math.min(this.MAX_KIWAMI_GAUGE, this.kiwamiGauge));
     const frameIndex = Math.min(9, count);
-    const xPosition = frameIndex * 15;
+    const xPosition = frameIndex * 80;
     img.style.left = `-${xPosition}cqw`;
 
     const healBtn = document.getElementById("kiwami-heal-btn");
     const finisherBtn = document.getElementById("kiwami-finisher-btn");
 
-    healBtn?.classList.toggle("is-visible", count >= this.HEAL_GAUGE_COST);
+    healBtn?.classList.toggle(
+      "is-visible",
+      count >= this.HEAL_GAUGE_COST && count < this.MAX_KIWAMI_GAUGE && this.quizMode === "normal"
+    );
     finisherBtn?.classList.toggle("is-visible", count >= this.MAX_KIWAMI_GAUGE && this.quizMode === "normal");
 
-    if (count >= this.MAX_KIWAMI_GAUGE) img.classList.add("is-rainbow");
-    else img.classList.remove("is-rainbow");
+    //if (count >= this.MAX_KIWAMI_GAUGE) img.classList.add("is-rainbow");
+    //else img.classList.remove("is-rainbow");
   },
 
   useKiwamiHeal() {
