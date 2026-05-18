@@ -48,7 +48,7 @@ const storyStorage = {
       hp: (status.maxHp || 25) + bonus.hp,
       baseAtk: (status.baseAtk || 10) + bonus.atk,
       baseDef: (status.baseDef || 5) + bonus.def,
-      baseMdf: (status.baseMdf || 5) + bonus.mdf,
+      //baseMdf: (status.baseMdf || 5) + bonus.mdf,
     };
     progress.practiceBonuses = { ...(progress.practiceBonuses || {}), [key]: true };
     this.saveProgress(progress);
@@ -118,7 +118,7 @@ function getStageBonusPreview(status, bonus) {
     hp: status?.hp || status?.maxHp || 25,
     baseAtk: status?.baseAtk || 10,
     baseDef: status?.baseDef || 5,
-    baseMdf: status?.baseMdf || 5,
+    //baseMdf: status?.baseMdf || 5,
   };
 
   return {
@@ -128,7 +128,7 @@ function getStageBonusPreview(status, bonus) {
       hp: current.maxHp + bonus.hp,
       baseAtk: current.baseAtk + bonus.atk,
       baseDef: current.baseDef + bonus.def,
-      baseMdf: current.baseMdf + (bonus.mdf || 0),
+      //baseMdf: current.baseMdf + (bonus.mdf || 0),
     },
   };
 }
@@ -222,14 +222,14 @@ export const gameManager = {
       ["HP", `${Math.ceil(character.hp ?? 0)} / ${character.maxHp ?? 0}`],
       ["ATK", character.atk ?? "-"],
       ["DEF", character.def ?? "-"],
-      ["MDF", character.mdf ?? "-"],
+     // ["MDF", character.mdf ?? "-"],
       ["EVA", `${character.eva ?? 0}%`],
       ["CRT", `${character.critRate ?? 0}%`],
     ];
 
-    if (options.showExp) {
-      rows.push(["EXP", `${character.exp ?? 0} / ${character.maxExp ?? 0}`]);
-    }
+    //if (options.showExp) {
+      //rows.push(["EXP", `${character.exp ?? 0} / ${character.maxExp ?? 0}`]);
+    //}
 
     if (options.showExpReward) {
       rows.push(["Reward", character.expReward ?? "-"]);
@@ -521,7 +521,7 @@ export const gameManager = {
         hp: rankGrowth.hp,
         atk: statGrowth.atk,
         def: statGrowth.def,
-        mdf: statGrowth.mdf,
+        //mdf: statGrowth.mdf,
       };
       const applied = stage?.category && stage?.stageId
         ? storyStorage.addPracticeBonusToStoryStatus(stage.category, stage.stageId, bonus)
@@ -550,12 +550,6 @@ export const gameManager = {
                 <span class="growth-before">${preview.before.baseDef}</span>
                 <span class="growth-arrow">→</span>
                 <span class="growth-after">${preview.after.baseDef}</span>
-              </div>
-              <div class="growth-row">
-                <span class="growth-label">MDF</span>
-                <span class="growth-before">${preview.before.baseMdf}</span>
-                <span class="growth-arrow">→</span>
-                <span class="growth-after">${preview.after.baseMdf}</span>
               </div>
             </div>
           </div>
