@@ -1,4 +1,4 @@
-
+import { ITEM_BALANCE } from "./balanceConfig.js";
 
 export class Character {
   constructor({ id, imgSrc, hp, mp, atk, def, mdf, eva, critRate, width, height,
@@ -451,7 +451,7 @@ calculateDamage(target, customAtk = null) {
 
     if (!this.isRegenerating) return;
 
-    const heal = Math.max(1, Math.floor(this.maxHp * 0.05));
+    const heal = Math.max(1, Math.floor(this.maxHp * ITEM_BALANCE.regenerationRate));
     this.hp = Math.min(this.maxHp, this.hp + heal);
     this.refreshStats();
   }

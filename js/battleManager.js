@@ -25,7 +25,7 @@ import { HitokuiBana } from "../characters/enemies/hitokuiBana.js";
 import { ShiroOni } from "../characters/enemies/shiroOni.js";
 import { PhantomDeer } from "../characters/enemies/phantomDeer.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
-import { ENEMY_BALANCE } from "./balanceConfig.js";
+import { COMBAT_BALANCE, ENEMY_BALANCE } from "./balanceConfig.js";
 
 const ENEMY_CLASSES = {
   Tengu,
@@ -131,7 +131,7 @@ export const battleManager = {
   bossSpawn(bossTypeName = null) {
     if (this.enemy) this.enemy.destroy();
 
-    const BossClass = ENEMY_CLASSES[bossTypeName || this.currentBossType] || Ninja;
+    const BossClass = ENEMY_CLASSES[bossTypeName || this.currentBossType] || KappaOyabun;
 
     this.enemy = new BossClass(); 
     this.scaleEnemyToStageLevel(this.enemy, this.getBossLevel());
@@ -212,7 +212,7 @@ export const battleManager = {
         console.log("ターゲットは撃破済みのため、反撃をスキップします");
         return; 
       }
-      this.enemyAttack(0.5);
+      this.enemyAttack(COMBAT_BALANCE.correctAnswerEnemyAttackMultiplier);
     }, 1000);
   },
 
@@ -228,7 +228,7 @@ export const battleManager = {
       if (this.player.hp <= 0) return;
       if (this.enemy.hp <= 0 || this.enemy.isDead) return;
 
-      this.playerAttack(0.5);
+      this.playerAttack(COMBAT_BALANCE.wrongAnswerPlayerCounterMultiplier);
     }, this.counterAttackDelayMs);
   },
 
@@ -307,7 +307,7 @@ export const battleManager = {
 
     let bonusFromQuiz = 0;
     if (ENEMY_BALANCE.extraLevelEveryNCorrect > 0) {
-      const correct = window.quizManager?.stageCorrectCount ?? 0;
+      const correct = window.quizManager?.correctAnswerCount ?? 0;
       bonusFromQuiz = Math.floor(Math.max(0, correct) / ENEMY_BALANCE.extraLevelEveryNCorrect);
     }
 
@@ -318,13 +318,20 @@ export const battleManager = {
     const hpScale = 1 + (level - 1) * ENEMY_BALANCE.hpScalePerLevel;
     const statScale = 1 + (level - 1) * ENEMY_BALANCE.statScalePerLevel;
     const expScale = 1 + (level - 1) * ENEMY_BALANCE.expScalePerLevel;
+    const isBossFight = specifiedLevel !== null;
+    const maxExpReward = isBossFight
+      ? ENEMY_BALANCE.maxBossExpReward
+      : ENEMY_BALANCE.maxNormalExpReward;
 
     enemy.maxHp = Math.floor(enemy.maxHp * hpScale);
     enemy.hp = enemy.maxHp;
     enemy.baseAtk = Math.floor(enemy.baseAtk * statScale);
     enemy.baseDef = Math.floor(enemy.baseDef * statScale);
     enemy.mdf = Math.floor(enemy.mdf * statScale);
-    enemy.expReward = Math.floor((enemy.expReward || 5) * expScale);
+    enemy.expReward = Math.min(
+      maxExpReward,
+      Math.max(ENEMY_BALANCE.minExpReward, Math.floor((enemy.expReward || 5) * expScale))
+    );
   },
 
   getBossLevel() {
@@ -398,7 +405,12 @@ export const battleManager = {
     this.refreshStreakDisplay(streakCount);
   // 1. ボーナス倍率を計算 (例: 1コンボにつき 5% アップなら 0.05)
   // streakCountが 2 以上なら 1.1, 1.2... と増えていくイメージ
-    const bonus = streakCount >= 2 ? 1.0 + (streakCount * 0.05) : 1.0;
+    const bonus = streakCount >= 2
+      ? Math.min(
+          COMBAT_BALANCE.maxStreakMultiplier,
+          1.0 + (streakCount * COMBAT_BALANCE.streakBonusPerCorrect)
+        )
+      : 1.0;
   
     // 2. 攻撃力そのものではなく、「倍率」の変数に代入する
     this.player.streakMultiplier = bonus;

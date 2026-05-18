@@ -37,6 +37,14 @@ function getStageIntroText(stageConfig) {
   return "";
 }
 
+function escapeHtml(text) {
+  return String(text ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 export const gameManager = {
   // --- プロパティ ---
   currentConfig: null,
@@ -84,6 +92,122 @@ export const gameManager = {
   bindBattleControls() {
     const homeBtn = document.getElementById("battleHomeBtn");
     if (homeBtn) homeBtn.onclick = () => this.showQuitConfirm();
+
+    const statsBtn = document.getElementById("battleStatsBtn");
+    if (statsBtn) statsBtn.onclick = () => this.toggleBattleStatsPanel();
+  },
+
+  buildCharacterStatsRows(character, options = {}) {
+    if (!character) {
+      return `<div class="battle-stats-empty">No character</div>`;
+    }
+
+    const rows = [
+      ["Lv", character.level ?? "-"],
+      ["HP", `${Math.ceil(character.hp ?? 0)} / ${character.maxHp ?? 0}`],
+      ["ATK", character.atk ?? "-"],
+      ["DEF", character.def ?? "-"],
+      ["MDF", character.mdf ?? "-"],
+      ["EVA", `${character.eva ?? 0}%`],
+      ["CRT", `${character.critRate ?? 0}%`],
+    ];
+
+    if (options.showExp) {
+      rows.push(["EXP", `${character.exp ?? 0} / ${character.maxExp ?? 0}`]);
+    }
+
+    if (options.showExpReward) {
+      rows.push(["Reward", character.expReward ?? "-"]);
+    }
+
+    return rows
+      .map(([label, value]) => `
+        <div class="battle-stats-row">
+          <span>${escapeHtml(label)}</span>
+          <strong>${escapeHtml(value)}</strong>
+        </div>
+      `)
+      .join("");
+  },
+
+  getPlayerEquipmentSummary(player) {
+    if (!player) return "";
+
+    const summaries = [
+      player.weaponRarity ? `Weapon: ${player.weaponRarity}` : null,
+      player.haoriRarity ? `Haori: ${player.haoriRarity}` : null,
+      player.bandRarity ? `Band: ${player.bandRarity}` : null,
+      player.beadsRarity ? `Beads: ${player.beadsRarity}` : null,
+      player.isRegenerating ? "Regen: active" : null,
+      player.hasStreakBonus ? `Streak: x${player.streakMultiplier.toFixed(2)}` : null,
+    ].filter(Boolean);
+
+    if (!summaries.length) return `<div class="battle-stats-note">No active equipment bonuses</div>`;
+
+    return `<div class="battle-stats-note">${summaries.map(escapeHtml).join(" / ")}</div>`;
+  },
+
+  renderBattleStatsPanel() {
+    const panel = document.getElementById("battleStatsPanel");
+    if (!panel) return;
+
+    const player = battleManager.player;
+    const enemy = battleManager.enemy;
+    const playerName = player?.name || "Player";
+    const enemyName = enemy?.name || enemy?.constructor?.name || "Enemy";
+
+    panel.innerHTML = `
+      <div class="battle-stats-dialog" role="dialog" aria-modal="false" aria-labelledby="battleStatsTitle">
+        <div class="battle-stats-header">
+          <h2 id="battleStatsTitle">Battle Stats</h2>
+          <button type="button" id="battleStatsCloseBtn" class="battle-stats-close" aria-label="Close stats">Close</button>
+        </div>
+        <div class="battle-stats-grid">
+          <section class="battle-stats-card">
+            <h3>${escapeHtml(playerName)}</h3>
+            ${this.buildCharacterStatsRows(player, { showExp: true })}
+            ${this.getPlayerEquipmentSummary(player)}
+          </section>
+          <section class="battle-stats-card">
+            <h3>${escapeHtml(enemyName)}</h3>
+            ${this.buildCharacterStatsRows(enemy, { showExpReward: true })}
+          </section>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("battleStatsCloseBtn")?.addEventListener("click", () => this.hideBattleStatsPanel());
+  },
+
+  showBattleStatsPanel() {
+    const panel = document.getElementById("battleStatsPanel");
+    if (!panel) return;
+
+    this.renderBattleStatsPanel();
+    panel.style.display = "block";
+    panel.setAttribute("aria-hidden", "false");
+    panel.onclick = (event) => {
+      if (event.target === panel) this.hideBattleStatsPanel();
+    };
+  },
+
+  hideBattleStatsPanel() {
+    const panel = document.getElementById("battleStatsPanel");
+    if (!panel) return;
+
+    panel.style.display = "none";
+    panel.setAttribute("aria-hidden", "true");
+    panel.innerHTML = "";
+    panel.onclick = null;
+  },
+
+  toggleBattleStatsPanel() {
+    const panel = document.getElementById("battleStatsPanel");
+    if (!panel || panel.style.display === "none" || !panel.style.display) {
+      this.showBattleStatsPanel();
+    } else {
+      this.hideBattleStatsPanel();
+    }
   },
 
   showQuitConfirm() {
@@ -127,6 +251,7 @@ export const gameManager = {
 
   returnToTitle() {
     this.hideQuitConfirm();
+    this.hideBattleStatsPanel();
     this.stopBattleSounds();
     battleManager.clearCharacters();
     quizManager.reset();
@@ -157,6 +282,7 @@ export const gameManager = {
 
   clearBattleResult() {
     document.getElementById("battleResultOverlay")?.remove();
+    this.hideBattleStatsPanel();
   },
 
   // --- 画面表示系 ---

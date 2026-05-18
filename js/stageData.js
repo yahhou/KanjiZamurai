@@ -159,7 +159,7 @@ export const STAGE_CONFIGS = {
       files: ["N5_stage19.json"],
       bgKey: "stage_19",
       enemyLevel: 19,
-      enemyTypes: ["AoOni","akaOni"],
+      enemyTypes: ["AoOni","AkaOni"],
       bossType: "OoOni",
     },
 

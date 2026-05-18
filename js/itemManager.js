@@ -84,7 +84,7 @@ export const itemManager = {
     new Item({//greenTea
       id: "green tea",
       name: "Green tea",
-      description: "HP +3%/turn",
+      description: "HP +3%/correct",
       frame: 1,
       rarity: "uncommon",
       apply(player) {
@@ -109,14 +109,14 @@ export const itemManager = {
     new Item({
       id: "kanesada",
       name: "Kanesada",
-      description: "Atk +150%",
+      description: "Atk +20%",
       frame: 3,
       rarity: "common",
       isWeapon: true,
 
       apply(player) {
         player.isWeaponEquipped = true;
-        player.weaponMultiplier = 1.5;
+        player.weaponMultiplier = 1.2;
         player.weaponRarity = "common";
 
         player.refreshStats();
@@ -126,14 +126,14 @@ export const itemManager = {
     new Item({
       id: "kiku-ichimonji",
       name: "Kiku-Ichimonji",
-      description: "Atk +200%",
+      description: "Atk +45%",
       frame: 4,
       rarity: "uncommon",
       isWeapon: true,
 
       apply(player) {
         player.isWeaponEquipped = true;
-        player.weaponMultiplier = 2;
+        player.weaponMultiplier = 1.45;
         player.weaponRarity = "uncommon";
 
         player.refreshStats();
@@ -143,14 +143,14 @@ export const itemManager = {
     new Item({
       id: "muramasa",
       name: "Muramasa",
-      description: "Atk +300%",
+      description: "Atk +75%",
       frame: 5,
       rarity: "rare",
       isWeapon: true,
 
       apply(player) {
         player.isWeaponEquipped = true;
-        player.weaponMultiplier = 3;
+        player.weaponMultiplier = 1.75;
         player.weaponRarity = "rare";
 
         player.refreshStats();
@@ -160,14 +160,14 @@ export const itemManager = {
     new Item({
       id: "masamune",
       name: "Masamune",
-      description: "Atk +400%",
+      description: "Atk +110%",
       frame: 6,
       rarity: "legendary",
       isWeapon: true,
 
       apply(player) {
         player.isWeaponEquipped = true;
-        player.weaponMultiplier = 4;
+        player.weaponMultiplier = 2.1;
         player.weaponRarity = "legendary";
 
         player.refreshStats();
@@ -177,14 +177,14 @@ export const itemManager = {
     new Item({
       id: "kusanagi-no-tsurugi",
       name: "Kusanagi-no-Tsurugi",
-      description: "Atk +500%",
+      description: "Atk +160%",
       frame: 7,
       rarity: "mythic",
       isWeapon: true,
 
       apply(player) {
         player.isWeaponEquipped = true;
-        player.weaponMultiplier = 6;
+        player.weaponMultiplier = 2.6;
         player.weaponRarity = "mythic";
 
         player.refreshStats();
@@ -198,14 +198,14 @@ export const itemManager = {
     new Item({
       id: "Worn Haori",
       name: "Worn Haori",
-      description: "Def +150%",
+      description: "Def +15%",
       frame: 18,
       rarity: "common",
       isHaori: true,
 
       apply(player) {
         player.isHaoriEquipped = true;
-        player.haoriMultiplier = 1.5;
+        player.haoriMultiplier = 1.15;
         player.haoriRarity = "common";
 
         player.refreshStats();
@@ -215,14 +215,14 @@ export const itemManager = {
     new Item({
       id: "Guardian Haori",
       name: "Guardian Haori",
-      description: "Def +200%",
+      description: "Def +35%",
       frame: 19,
       rarity: "uncommon",
       isHaori: true,
 
       apply(player) {
         player.isHaoriEquipped = true;
-        player.haoriMultiplier = 2;
+        player.haoriMultiplier = 1.35;
         player.haoriRarity = "uncommon";
 
         player.refreshStats();
@@ -232,14 +232,14 @@ export const itemManager = {
     new Item({
       id: "Kongou Haori",
       name: "Kongou Haori",
-      description: "Def +300%",
+      description: "Def +60%",
       frame: 20,
       rarity: "rare",
       isHaori: true,
 
       apply(player) {
         player.isHaoriEquipped = true;
-        player.haoriMultiplier = 3;
+        player.haoriMultiplier = 1.6;
         player.haoriRarity = "rare";
 
         player.refreshStats();
@@ -249,14 +249,14 @@ export const itemManager = {
     new Item({
       id: "Moonshadow Haori",
       name: "Moonshadow Haori",
-      description: "Def +400%",
+      description: "Def +90%",
       frame: 21,
       rarity: "legendary",
       isHaori: true,
 
       apply(player) {
         player.isHaoriEquipped = true;
-        player.haoriMultiplier = 4;
+        player.haoriMultiplier = 1.9;
         player.haoriRarity = "legendary";
 
         player.refreshStats();
@@ -266,14 +266,14 @@ export const itemManager = {
      new Item({
       id: "Yakumo Haori",
       name: "Yakumo Haori",
-      description: "Def +500%",
+      description: "Def +130%",
       frame: 22,
       rarity: "mythic",
       isHaori: true,
 
       apply(player) {
         player.isHaoriEquipped = true;
-        player.haoriMultiplier = 5;
+        player.haoriMultiplier = 2.3;
         player.haoriRarity = "mythic";
 
         player.refreshStats();
@@ -287,14 +287,14 @@ export const itemManager = {
     new Item({
       id: "Novice Band",
       name: "Novice Band",
-      description: "CRT → 10%",
+      description: "CRT -> 8%",
       frame: 8,
       rarity: "common",
       isBand: true,
 
       apply(player) {
         player.isBandEquipped = true;
-        player.critRate = 10;
+        player.critRate = 8;
         player.bandRarity = "common";
 
         player.refreshStats();
@@ -304,14 +304,14 @@ export const itemManager = {
     new Item({
     id: "Insight Band",
       name: "Insight Band",
-      description: "CRT → 20%",
+      description: "CRT -> 14%",
       frame: 9,
       rarity: "uncommon",
       isBand: true,
 
       apply(player) {
         player.isBandEquipped = true;
-        player.critRate = 20;
+        player.critRate = 14;
         player.bandRarity = "uncommon";
 
         player.refreshStats();
@@ -321,14 +321,14 @@ export const itemManager = {
      new Item({
     id: "Mindeye Band",
       name: "Mindeye Band",
-      description: "CRT → 30%",
+      description: "CRT -> 20%",
       frame: 10,
       rarity: "rare",
       isBand: true,
 
       apply(player) {
         player.isBandEquipped = true;
-        player.critRate = 30;
+        player.critRate = 20;
         player.bandRarity = "rare";
 
         player.refreshStats();
@@ -338,14 +338,14 @@ export const itemManager = {
     new Item({
     id: "Demon Gaze Band",
       name: "Oni Eye Band",
-      description: "CRT → 40%",
+      description: "CRT -> 27%",
       frame: 11,
       rarity: "legendary",
       isBand: true,
 
       apply(player) {
         player.isBandEquipped = true;
-        player.critRate = 40;
+        player.critRate = 27;
         player.bandRarity = "legendary";
 
         player.refreshStats();
@@ -355,14 +355,14 @@ export const itemManager = {
     new Item({
     id: "Musou Band",
       name: "Musou Band",
-      description: "CRT → 70%",
+      description: "CRT -> 35%",
       frame: 12,
       rarity: "mythic",
       isBand: true,
 
       apply(player) {
         player.isBandEquipped = true;
-        player.critRate = 70;
+        player.critRate = 35;
         player.bandRarity = "mythic";
 
         player.refreshStats();
@@ -376,14 +376,14 @@ export const itemManager = {
     new Item({
     id: "Old Beads",
       name: "Old Beads",
-      description: "Eva → 10%",
+      description: "Eva -> 8%",
       frame: 13,
       rarity: "common",
       isBeads: true,
 
       apply(player) {
         player.isBeadsEquipped = true;
-        player.eva = 10;
+        player.eva = 8;
         player.beadsRarity = "common";
 
         player.refreshStats();
@@ -393,14 +393,14 @@ export const itemManager = {
     new Item({
     id: "Warding Beads",
       name: "Warding Beads",
-      description: "Eva → 20%",
+      description: "Eva -> 13%",
       frame: 14,
       rarity: "uncommon",
       isBeads: true,
 
       apply(player) {
         player.isBeadsEquipped = true;
-        player.eva = 20;
+        player.eva = 13;
         player.beadsRarity = "uncommon";
 
         player.refreshStats();
@@ -410,14 +410,14 @@ export const itemManager = {
     new Item({
     id: "Phantom Beads",
       name: "Phantom Beads",
-      description: "Eva → 30%",
+      description: "Eva -> 18%",
       frame: 15,
       rarity: "rare",
       isBeads: true,
 
       apply(player) {
         player.isBeadsEquipped = true;
-        player.eva = 30;
+        player.eva = 18;
         player.beadsRarity = "rare";
 
         player.refreshStats();
@@ -427,14 +427,14 @@ export const itemManager = {
     new Item({
     id: "Onyx Beads",
       name: "Onyx Beads",
-      description: "Eva → 40%",
+      description: "Eva -> 24%",
       frame: 16,
       rarity: "legendary",
       isBeads: true,
 
       apply(player) {
         player.isBeadsEquipped = true;
-        player.eva = 40;
+        player.eva = 24;
         player.beadsRarity = "legendary";
 
         player.refreshStats();
@@ -444,14 +444,14 @@ export const itemManager = {
     new Item({
     id: "Amaterasu Beads",
       name: "Amaterasu Beads",
-      description: "Eva → 70%",
+      description: "Eva -> 30%",
       frame: 17,
       rarity: "mythic",
       isBeads: true,
 
       apply(player) {
         player.isBeadsEquipped = true;
-        player.eva = 70;
+        player.eva = 30;
         player.beadsRarity = "mythic";
 
         player.refreshStats();

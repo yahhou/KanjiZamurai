@@ -320,6 +320,135 @@ body {
   transform: scale(0.96);
 }
 
+.battle-stats-btn {
+  position: absolute;
+  top: 1.5cqw;
+  left: 1.5cqw;
+  z-index: 250;
+  min-width: 13cqw;
+  min-height: 7cqw;
+  padding: 0 2.5cqw;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.58);
+  color: #ffffff;
+  font-size: 3.2cqw;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+  text-shadow: 0 1px 2px #000000;
+}
+
+.battle-stats-btn:active {
+  transform: scale(0.96);
+}
+
+.battle-stats-panel {
+  position: absolute;
+  inset: 0;
+  z-index: 260;
+  padding: 10cqw 3cqw 3cqw;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.34);
+  pointer-events: auto;
+}
+
+.battle-stats-dialog {
+  width: min(92cqw, 760px);
+  max-height: 82%;
+  margin: 0 auto;
+  padding: 3cqw;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 215, 0, 0.78);
+  border-radius: 6px;
+  background: rgba(9, 9, 9, 0.94);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.68);
+  overflow: auto;
+}
+
+.battle-stats-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2cqw;
+  margin-bottom: 2cqw;
+}
+
+.battle-stats-header h2 {
+  margin: 0;
+  color: #ffd700;
+  font-size: 5cqw;
+  line-height: 1.1;
+}
+
+.battle-stats-close {
+  min-width: 16cqw;
+  min-height: 6cqw;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 4px;
+  background: #2b2b2b;
+  color: #ffffff;
+  font-size: 3cqw;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.battle-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2cqw;
+}
+
+.battle-stats-card {
+  padding: 2cqw;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.battle-stats-card h3 {
+  margin: 0 0 1.5cqw;
+  color: #ffffff;
+  font-size: 3.7cqw;
+  line-height: 1.1;
+}
+
+.battle-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2cqw;
+  min-height: 4cqw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 2.8cqw;
+  line-height: 1.2;
+}
+
+.battle-stats-row span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.battle-stats-row strong {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.battle-stats-note,
+.battle-stats-empty {
+  margin-top: 1.6cqw;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 2.5cqw;
+  line-height: 1.35;
+}
+
+@media (max-width: 640px) {
+  .battle-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .quit-confirm-modal {
   position: absolute;
   inset: 0;
