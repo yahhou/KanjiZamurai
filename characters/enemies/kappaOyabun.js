@@ -6,13 +6,6 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/KappaOyabun-Sheet.png", 
-        hp: 25,
-        mp: 0,
-        atk: 17,
-        def: 8,
-        mdf: 8,
-        eva: 0,
-        critRate: 10,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 47,
@@ -20,7 +13,6 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "KappaOyabun";
-      this.expReward = 25;
     }
 
   // 専用のスキルを作りたくなったらここに追加

@@ -17,9 +17,121 @@ const storyStorage = {
   },
   loadProgress() {
     const saved = localStorage.getItem(this.SAVE_KEY);
-    return saved ? JSON.parse(saved) : { currentStageIndex: 0, playerStatus: null };
+    return saved ? JSON.parse(saved) : { currentStageIndex: 0, playerStatus: null, stageRanks: {}, practiceBonuses: {} };
+  },
+  getStageKey(category, stageId) {
+    return `${category}:${stageId}`;
+  },
+  saveStageRank(category, stageId, rank) {
+    const progress = this.loadProgress();
+    const key = this.getStageKey(category, stageId);
+    const order = { S: 4, A: 3, B: 2, C: 1 };
+    const currentRank = progress.stageRanks?.[key];
+    if (currentRank && order[currentRank] >= order[rank]) return;
+
+    progress.stageRanks = { ...(progress.stageRanks || {}), [key]: rank };
+    this.saveProgress(progress);
+  },
+  getStageRank(category, stageId) {
+    const progress = this.loadProgress();
+    return progress.stageRanks?.[this.getStageKey(category, stageId)] || "-";
+  },
+  addPracticeBonusToStoryStatus(category, stageId, bonus) {
+    const progress = this.loadProgress();
+    const key = this.getStageKey(category, stageId);
+    if (progress.practiceBonuses?.[key]) return false;
+
+    const status = progress.playerStatus || {};
+    progress.playerStatus = {
+      ...status,
+      maxHp: (status.maxHp || 25) + bonus.hp,
+      hp: (status.maxHp || 25) + bonus.hp,
+      baseAtk: (status.baseAtk || 10) + bonus.atk,
+      baseDef: (status.baseDef || 5) + bonus.def,
+      baseMdf: (status.baseMdf || 5) + bonus.mdf,
+    };
+    progress.practiceBonuses = { ...(progress.practiceBonuses || {}), [key]: true };
+    this.saveProgress(progress);
+    return true;
   }
 };
+
+function getRankClass(rank) {
+  const value = String(rank || "-").toUpperCase();
+  if (value === "-") return "";
+  return `stage-rank-${value}`;
+}
+
+function getPracticeVisibleStages(category, stages) {
+  const progress = storyStorage.loadProgress();
+  return stages.filter((stage) => {
+    const rank = progress.stageRanks?.[storyStorage.getStageKey(category, stage.id)];
+    return rank && rank !== "-";
+  });
+}
+
+function rankScore(rank) {
+  const map = { S: 4, A: 3, B: 2, C: 1 };
+  return map[String(rank || "").toUpperCase()] || 0;
+}
+
+function getOverallRankFromProgress(progress) {
+  const ranks = Object.values(progress?.stageRanks || {})
+    .map((rank) => String(rank || "").toUpperCase())
+    .filter((rank) => ["S", "A", "B", "C"].includes(rank));
+
+  if (!ranks.length) return "C";
+
+  const average = ranks.reduce((sum, rank) => sum + rankScore(rank), 0) / ranks.length;
+  if (average >= 3.5) return "S";
+  if (average >= 2.75) return "A";
+  if (average >= 2.0) return "B";
+  return "C";
+}
+
+function getRankGrowth(rank) {
+  const growthTable = {
+    S: { hp: 16, stats: 9 },
+    A: { hp: 13, stats: 7 },
+    B: { hp: 10, stats: 5 },
+    C: { hp: 7, stats: 3 },
+  };
+  return growthTable[String(rank || "C").toUpperCase()] || growthTable.C;
+}
+
+function getRankStatGrowth(rank) {
+  const growth = getRankGrowth(rank);
+  const stats = { atk: 0, def: 0, mdf: 0 };
+  const keys = ["atk", "def", "mdf"];
+
+  for (let i = 0; i < growth.stats; i++) {
+    const key = keys[i % keys.length];
+    stats[key] += 1;
+  }
+
+  return stats;
+}
+
+function getStageBonusPreview(status, bonus) {
+  const current = {
+    maxHp: status?.maxHp || 25,
+    hp: status?.hp || status?.maxHp || 25,
+    baseAtk: status?.baseAtk || 10,
+    baseDef: status?.baseDef || 5,
+    baseMdf: status?.baseMdf || 5,
+  };
+
+  return {
+    before: current,
+    after: {
+      maxHp: current.maxHp + bonus.hp,
+      hp: current.maxHp + bonus.hp,
+      baseAtk: current.baseAtk + bonus.atk,
+      baseDef: current.baseDef + bonus.def,
+      baseMdf: current.baseMdf + (bonus.mdf || 0),
+    },
+  };
+}
 
 function stageWordUrl(category, fileName) {
   return new URL(`../assets/words/${category}/${fileName}`, import.meta.url);
@@ -52,6 +164,7 @@ export const gameManager = {
   currentStageIndex: 0,
   isLoaded: false,
   loadingInterval: null,
+  bossRetryStatus: null,
   
   startBtnSE: new Audio("assets/sounds/StartButton.mp3"),
   gameOverSE: new Audio("assets/sounds/gameOver.mp3"),
@@ -104,6 +217,8 @@ export const gameManager = {
 
     const rows = [
       ["Lv", character.level ?? "-"],
+      ...(character.battleGrade ? [["Rank", character.battleGrade]] : []),
+      ...(character.enemyRank ? [["Rank", character.enemyRank]] : []),
       ["HP", `${Math.ceil(character.hp ?? 0)} / ${character.maxHp ?? 0}`],
       ["ATK", character.atk ?? "-"],
       ["DEF", character.def ?? "-"],
@@ -347,8 +462,9 @@ export const gameManager = {
     
     // ★ここを確実に！
     const currentPlayerStatus = battleManager.getCurrentPlayerStatus();
-    console.log("セーブ直前のExp:", currentPlayerStatus.exp); // ここで 0 じゃないかチェック！
+    const existingProgress = storyStorage.loadProgress();
     const saveData = {
+      ...existingProgress,
       currentStageIndex: this.currentStageIndex,
       playerStatus: currentPlayerStatus, // currentPlayerStatus を使う
       lastUpdated: new Date().getTime()
@@ -356,6 +472,148 @@ export const gameManager = {
     
     storyStorage.saveProgress(saveData);
     this.launchStoryStage();
+  },
+
+  calculateStageRank() {
+    const total = Math.max(1, quizManager.totalAnswerCount || 0);
+    const accuracy = quizManager.correctAnswerCount / total;
+    if (accuracy >= 0.95) return { rank: "S", accuracy };
+    if (accuracy >= 0.85) return { rank: "A", accuracy };
+    if (accuracy >= 0.7) return { rank: "B", accuracy };
+    return { rank: "C", accuracy };
+  },
+
+  getOverallStoryRank() {
+    return getOverallRankFromProgress(storyStorage.loadProgress());
+  },
+
+  applyOverallStoryRankToPlayer() {
+    const player = battleManager.player;
+    if (!player) return "C";
+
+    const rank = this.getOverallStoryRank();
+    player.battleGrade = rank;
+    player.refreshStats();
+    return rank;
+  },
+
+  showStageClearRankResult() {
+    const result = this.calculateStageRank();
+    const rank = result.rank;
+    const player = battleManager.player;
+    const stage = this.currentConfig;
+    const growth = this.isStoryMode && player ? player.applyStageRankGrowth(rank) : null;
+    const rankGrowth = getRankGrowth(rank);
+
+    if (this.isStoryMode && stage?.category && stage?.stageId) {
+      storyStorage.saveStageRank(stage.category, stage.stageId, rank);
+    }
+    if (!this.isStoryMode && stage?.category && stage?.stageId) {
+      storyStorage.saveStageRank(stage.category, stage.stageId, rank);
+    }
+
+    this.applyOverallStoryRankToPlayer();
+
+    let practiceBonusText = "";
+    if (!this.isStoryMode && rank === "S") {
+      const statGrowth = getRankStatGrowth(rank);
+      const bonus = {
+        hp: rankGrowth.hp,
+        atk: statGrowth.atk,
+        def: statGrowth.def,
+        mdf: statGrowth.mdf,
+      };
+      const applied = stage?.category && stage?.stageId
+        ? storyStorage.addPracticeBonusToStoryStatus(stage.category, stage.stageId, bonus)
+        : false;
+      if (applied) {
+        const progress = storyStorage.loadProgress();
+        const preview = getStageBonusPreview(progress.playerStatus, bonus);
+        practiceBonusText = `
+          <div class="practice-bonus-preview">
+            <p class="practice-bonus-title">Story stats updated</p>
+            <div class="rank-growth-list rank-S">
+              <div class="growth-row">
+                <span class="growth-label">HP</span>
+                <span class="growth-before">${preview.before.maxHp}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${preview.after.maxHp}</span>
+              </div>
+              <div class="growth-row">
+                <span class="growth-label">ATK</span>
+                <span class="growth-before">${preview.before.baseAtk}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${preview.after.baseAtk}</span>
+              </div>
+              <div class="growth-row">
+                <span class="growth-label">DEF</span>
+                <span class="growth-before">${preview.before.baseDef}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${preview.after.baseDef}</span>
+              </div>
+              <div class="growth-row">
+                <span class="growth-label">MDF</span>
+                <span class="growth-before">${preview.before.baseMdf}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${preview.after.baseMdf}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    const nextButton = this.isStoryMode
+      ? `<button type="button" id="nextStageBtn" class="retry-btn">Next Stage</button>`
+      : `<button type="button" id="retryBtn" class="retry-btn">Back to menu</button>`;
+
+    this.showBattleResult(`
+      <div class="announcement-area">
+        <div class="victory-message-area">
+          <h2>Stage Clear!</h2>
+          <p class="${getRankClass(rank)}">Rank ${rank} / ${Math.round(result.accuracy * 100)}%</p>
+          ${growth ? `
+            <div class="rank-growth-list rank-${rank}">
+              <div class="growth-row">
+                <span class="growth-label">Lv</span>
+                <span class="growth-before">${growth.before.level}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${growth.after.level}</span>
+              </div>
+              <div class="growth-row">
+                <span class="growth-label">HP</span>
+                <span class="growth-before">${growth.before.hp}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${growth.after.hp}</span>
+              </div>
+              <div class="growth-row">
+                <span class="growth-label">ATK</span>
+                <span class="growth-before">${growth.before.atk}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${growth.after.atk}</span>
+              </div>
+              <div class="growth-row">
+                <span class="growth-label">DEF</span>
+                <span class="growth-before">${growth.before.def}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${growth.after.def}</span>
+              </div>
+              <div class="growth-row">
+                <span class="growth-label">MDF</span>
+                <span class="growth-before">${growth.before.mdf}</span>
+                <span class="growth-arrow">→</span>
+                <span class="growth-after">${growth.after.mdf}</span>
+              </div>
+            </div>
+          ` : ""}
+          ${practiceBonusText}
+        </div>
+        <div class="menu-container result-actions">${nextButton}</div>
+      </div>
+    `);
+
+    document.getElementById("nextStageBtn")?.addEventListener("click", () => this.nextStage());
+    document.getElementById("retryBtn")?.addEventListener("click", () => this.retry());
   },
 
   showNextStageInDevelopment() {
@@ -406,16 +664,19 @@ export const gameManager = {
       enemyTypes = stageInfo.enemyTypes || stageInfo.enemyType || "Kappa";
       bossType = stageInfo.bossType || "kappaOyabun";
     } else if (activeConfig) {
-      enemyTypes = activeConfig.enemyTypes || activeConfig.enemyType || "Kappa";
-      bossType = activeConfig.bossType || "kappaOyabun";
+      enemyTypes = ["Kappa"];
+      bossType = "KappaOyabun";
     }
 
     const bgKey = activeConfig ? activeConfig.bgKey : null;
-    const enemyLevel = activeConfig?.enemyLevel || null;
+    const enemyLevel = this.isStoryMode ? (activeConfig?.enemyLevel || null) : 1;
+    const enemyRank = this.isStoryMode ? (activeConfig?.enemyRank || null) : 1;
+    const bossRank = this.isStoryMode ? (activeConfig?.bossRank || null) : 1;
     quizManager.quizMode = "normal";
 
     // 読み込んだ savedStatus を渡すことでレベルが継続される
-    battleManager.init(savedStatus, bgKey, enemyTypes, enemyLevel, bossType);
+    battleManager.init(savedStatus, bgKey, enemyTypes, enemyLevel, bossType, enemyRank, bossRank);
+    this.applyOverallStoryRankToPlayer();
     this.showStageIntro(activeConfig);
 
     const bgm = assets.sounds.bgm_Battle;
@@ -521,18 +782,31 @@ export const gameManager = {
 
   showStageMenu(category) {
     const container = document.getElementById("uiWrapper");
-    const stages = this.stageConfigs[category];
+    const stages = this.isStoryMode
+      ? this.stageConfigs[category]
+      : getPracticeVisibleStages(category, this.stageConfigs[category]);
     container.innerHTML = `
       <div class="menu-container">
         <h3 class="category-title">${category}</h3>
-        ${stages.map(s => `<button type="button" class="mode-btn" data-stage-id="${s.id}">${s.name}</button>`).join("")}
+        ${
+          stages.length
+            ? stages.map((s) => {
+                const rank = storyStorage.getStageRank(category, s.id);
+                return `<button type="button" class="mode-btn" data-stage-id="${s.id}">${s.name} <span class="${getRankClass(rank)}">[${rank}]</span></button>`;
+              }).join("")
+            : `<div class="empty-stage-list">Cleared stages only</div>`
+        }
         <button type="button" class="back-btn" id="backBtn">Back</button>
       </div>
     `;
+    if (!stages.length) {
+      document.getElementById("backBtn").addEventListener("click", () => this.showCategoryMenu());
+      return;
+    }
     container.querySelectorAll(".mode-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const stage = stages.find(s => s.id == e.target.dataset.stageId);
-        this.currentConfig = stage;
+        this.currentConfig = { ...stage, category, stageId: stage.id };
         this.loadSelectedStageData(category, stage.files);
       });
     });
@@ -542,7 +816,7 @@ export const gameManager = {
   //////////////////////////////
   //    スキル選択パネルの表示
   //////////////////////////////
-  showSkillPanel() {
+  showSkillPanel(options = {}) {
     // 勝利演出中などは出さない
     if (quizManager.isVictoryActive) return;
 
@@ -559,8 +833,11 @@ export const gameManager = {
     const content = panel.querySelector(".panel-content");
     if (content) {
       content.innerHTML = "";
-      // 回復アイテムを1枠保証しつつ、3択で表示
-      itemManager.renderOptions(content, 3, { guaranteeRecovery: true });
+      const count = options.count || 2;
+      itemManager.renderOptions(content, count, {
+        guaranteeRecovery: Boolean(options.guaranteeRecovery),
+        excludeRecovery: Boolean(options.excludeRecovery),
+      });
     }
 
     panel.style.display = "flex";
@@ -575,9 +852,15 @@ export const gameManager = {
     const bgm = assets.sounds.bgm_Battle;
     if (bgm) bgm.pause();
     if (this.gameOverSE) this.gameOverSE.play();
-    let buttons = this.isStoryMode ? `<button type="button" id="re-challengeBtn" class="retry-btn">Retry Stage</button>` : "";
+    const canRetryBoss = quizManager.quizMode === "boss" && this.bossRetryStatus;
+    let buttons = canRetryBoss ? `<button type="button" id="retryBossBtn" class="retry-btn">Retry Boss</button>` : "";
+    buttons += this.isStoryMode && !canRetryBoss ? `<button type="button" id="re-challengeBtn" class="retry-btn">Retry Stage</button>` : "";
     buttons += `<button type="button" id="retryBtn" class="retry-btn">Back to menu</button>`;
     this.showBattleResult(`<div class="announcement-area--gameover"><h2>Game Over</h2>${quizManager.buildWrongAnswersReviewHtml()}<div class="menu-container result-actions">${buttons}</div></div>`);
+    document.getElementById("retryBossBtn")?.addEventListener("click", () => {
+      this.clearBattleResult();
+      this.retryBossBattle();
+    });
     document.getElementById("re-challengeBtn")?.addEventListener("click", () => {
       this.clearBattleResult();
       this.launchStoryStage();
@@ -616,24 +899,19 @@ export const gameManager = {
     refreshPlayerBuffIcons();
     
     self.hideSkillPanel();
-    
-    // スキルを使ったのでゲージはリセット
-    quizManager.correctQuestionCount = 0;
-    quizManager.updateKiwamiIcon();
 
     // 1. スキル直後にプレイヤーが死んでいるなら、即ゲームオーバー画面へ
     if (battleManager.player && battleManager.player.hp <= 0) {
       console.log("スキル選択後にプレイヤーの死亡を確認。ゲームオーバーへ移行します。");
       self.clearBattleResult();
-      if (window.quizManager && typeof window.quizManager.gameOver === "function") {
-        window.quizManager.gameOver();
-      }
+      self.handleGameOver();
       return; 
     }
 
     // 2. クイズモードがすでにボス（通常戦クリア済み）かつ、ボスが未出現なら演出を開始
     if (quizManager.quizMode === "boss" && !quizManager.hasBossAppeared) {
       console.log("スキル選択が完了したため、保留していたボス出現演出を開始します");
+      self.bossRetryStatus = battleManager.getCurrentPlayerStatus();
       if (typeof quizManager.triggerBossAppearance === "function") {
         quizManager.triggerBossAppearance();
       }
@@ -645,6 +923,23 @@ export const gameManager = {
         quizManager.nextQuestion();
       }
     }
+  },
+
+  retryBossBattle() {
+    const activeConfig = this.currentConfig;
+    const bgKey = activeConfig ? activeConfig.bgKey : null;
+    const enemyTypes = activeConfig?.enemyTypes || activeConfig?.enemyType || "Kappa";
+    const enemyLevel = activeConfig?.enemyLevel || null;
+    const bossType = activeConfig?.bossType || "KappaOyabun";
+    const enemyRank = activeConfig?.enemyRank || null;
+    const bossRank = activeConfig?.bossRank || null;
+
+    quizManager.reset();
+    battleManager.init(this.bossRetryStatus, bgKey, enemyTypes, enemyLevel, bossType, enemyRank, bossRank);
+    this.applyOverallStoryRankToPlayer();
+    quizManager.setupKiwami();
+    quizManager.quizMode = "boss";
+    quizManager.triggerBossAppearance();
   },
 }
 

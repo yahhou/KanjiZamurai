@@ -5,13 +5,6 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/Oogama-Sheet.png", 
-        hp: 25,
-        mp: 0,
-        atk: 15,
-        def: 7,
-        mdf: 10,
-        eva: 0,
-        critRate: 10,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 48,
@@ -19,8 +12,6 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "Oogama";
-      this.expReward = 22;
-      
     }
 
   // 専用のスキルを作りたくなったらここに追加

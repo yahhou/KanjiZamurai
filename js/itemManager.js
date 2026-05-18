@@ -1,6 +1,6 @@
 import { assets } from "./assets.js";
 import { battleManager } from "./battleManager.js";
-import { gameManager } from "./gameManager.js";
+import { EQUIPMENT_BALANCE } from "./balanceConfig.js";
 
 export class Item {
   constructor({
@@ -64,6 +64,55 @@ export const itemManager = {
     mythic: 4,
   },
 
+  getEquipmentDurabilityMax(slot, rarity) {
+    const normalized = String(rarity || "common").toLowerCase();
+    const tableMap = {
+      weapon: EQUIPMENT_BALANCE.weaponDurabilityByRarity,
+      haori: EQUIPMENT_BALANCE.haoriDurabilityByRarity,
+      band: EQUIPMENT_BALANCE.bandDurabilityByRarity,
+      beads: EQUIPMENT_BALANCE.beadsDurabilityByRarity,
+    };
+    const table = tableMap[slot] || tableMap.weapon;
+
+    return table[normalized] || 0;
+  },
+
+  equipWeapon(player, multiplier, rarity) {
+    if (!player) return;
+    player.equipWeapon({
+      rarity,
+      multiplier,
+      maxDurability: this.getEquipmentDurabilityMax("weapon", rarity),
+    });
+  },
+
+  equipHaori(player, multiplier, rarity) {
+    if (!player) return;
+    player.equipHaori({
+      rarity,
+      multiplier,
+      maxDurability: this.getEquipmentDurabilityMax("haori", rarity),
+    });
+  },
+
+  equipBand(player, critRate, rarity) {
+    if (!player) return;
+    player.equipBand({
+      rarity,
+      critRate,
+      maxDurability: this.getEquipmentDurabilityMax("band", rarity),
+    });
+  },
+
+  equipBeads(player, eva, rarity) {
+    if (!player) return;
+    player.equipBeads({
+      rarity,
+      eva,
+      maxDurability: this.getEquipmentDurabilityMax("beads", rarity),
+    });
+  },
+
   //////////////////////////////
   //     アイテム一覧
   //////////////////////////////
@@ -120,11 +169,7 @@ export const itemManager = {
       isWeapon: true,
 
       apply(player) {
-        player.isWeaponEquipped = true;
-        player.weaponMultiplier = 1.2;
-        player.weaponRarity = "common";
-
-        player.refreshStats();
+        itemManager.equipWeapon(player, 1.2, "common");
       },
     }),
 
@@ -137,11 +182,7 @@ export const itemManager = {
       isWeapon: true,
 
       apply(player) {
-        player.isWeaponEquipped = true;
-        player.weaponMultiplier = 1.45;
-        player.weaponRarity = "uncommon";
-
-        player.refreshStats();
+        itemManager.equipWeapon(player, 1.45, "uncommon");
       },
     }),
 
@@ -154,11 +195,7 @@ export const itemManager = {
       isWeapon: true,
 
       apply(player) {
-        player.isWeaponEquipped = true;
-        player.weaponMultiplier = 1.75;
-        player.weaponRarity = "rare";
-
-        player.refreshStats();
+        itemManager.equipWeapon(player, 1.75, "rare");
       },
     }),
 
@@ -171,11 +208,7 @@ export const itemManager = {
       isWeapon: true,
 
       apply(player) {
-        player.isWeaponEquipped = true;
-        player.weaponMultiplier = 2.1;
-        player.weaponRarity = "legendary";
-
-        player.refreshStats();
+        itemManager.equipWeapon(player, 2.1, "legendary");
       },
     }),
 
@@ -188,11 +221,7 @@ export const itemManager = {
       isWeapon: true,
 
       apply(player) {
-        player.isWeaponEquipped = true;
-        player.weaponMultiplier = 2.6;
-        player.weaponRarity = "mythic";
-
-        player.refreshStats();
+        itemManager.equipWeapon(player, 2.6, "mythic");
       },
     }),
 
@@ -209,11 +238,7 @@ export const itemManager = {
       isHaori: true,
 
       apply(player) {
-        player.isHaoriEquipped = true;
-        player.haoriMultiplier = 1.15;
-        player.haoriRarity = "common";
-
-        player.refreshStats();
+        itemManager.equipHaori(player, 1.15, "common");
       },
     }),
 
@@ -226,11 +251,7 @@ export const itemManager = {
       isHaori: true,
 
       apply(player) {
-        player.isHaoriEquipped = true;
-        player.haoriMultiplier = 1.35;
-        player.haoriRarity = "uncommon";
-
-        player.refreshStats();
+        itemManager.equipHaori(player, 1.35, "uncommon");
       },
     }),
 
@@ -243,11 +264,7 @@ export const itemManager = {
       isHaori: true,
 
       apply(player) {
-        player.isHaoriEquipped = true;
-        player.haoriMultiplier = 1.6;
-        player.haoriRarity = "rare";
-
-        player.refreshStats();
+        itemManager.equipHaori(player, 1.6, "rare");
       },
     }),
 
@@ -260,11 +277,7 @@ export const itemManager = {
       isHaori: true,
 
       apply(player) {
-        player.isHaoriEquipped = true;
-        player.haoriMultiplier = 1.9;
-        player.haoriRarity = "legendary";
-
-        player.refreshStats();
+        itemManager.equipHaori(player, 1.9, "legendary");
       },
     }),
 
@@ -277,11 +290,7 @@ export const itemManager = {
       isHaori: true,
 
       apply(player) {
-        player.isHaoriEquipped = true;
-        player.haoriMultiplier = 2.3;
-        player.haoriRarity = "mythic";
-
-        player.refreshStats();
+        itemManager.equipHaori(player, 2.3, "mythic");
       },
     }),
 
@@ -298,11 +307,7 @@ export const itemManager = {
       isBand: true,
 
       apply(player) {
-        player.isBandEquipped = true;
-        player.critRate = 8;
-        player.bandRarity = "common";
-
-        player.refreshStats();
+        itemManager.equipBand(player, 8, "common");
       },
     }),
 
@@ -315,11 +320,7 @@ export const itemManager = {
       isBand: true,
 
       apply(player) {
-        player.isBandEquipped = true;
-        player.critRate = 14;
-        player.bandRarity = "uncommon";
-
-        player.refreshStats();
+        itemManager.equipBand(player, 14, "uncommon");
       },
     }),
 
@@ -332,11 +333,7 @@ export const itemManager = {
       isBand: true,
 
       apply(player) {
-        player.isBandEquipped = true;
-        player.critRate = 20;
-        player.bandRarity = "rare";
-
-        player.refreshStats();
+        itemManager.equipBand(player, 20, "rare");
       },
     }),
 
@@ -349,11 +346,7 @@ export const itemManager = {
       isBand: true,
 
       apply(player) {
-        player.isBandEquipped = true;
-        player.critRate = 27;
-        player.bandRarity = "legendary";
-
-        player.refreshStats();
+        itemManager.equipBand(player, 27, "legendary");
       },
     }),
 
@@ -366,11 +359,7 @@ export const itemManager = {
       isBand: true,
 
       apply(player) {
-        player.isBandEquipped = true;
-        player.critRate = 35;
-        player.bandRarity = "mythic";
-
-        player.refreshStats();
+        itemManager.equipBand(player, 35, "mythic");
       },
     }),
     
@@ -387,11 +376,7 @@ export const itemManager = {
       isBeads: true,
 
       apply(player) {
-        player.isBeadsEquipped = true;
-        player.eva = 8;
-        player.beadsRarity = "common";
-
-        player.refreshStats();
+        itemManager.equipBeads(player, 8, "common");
       },
     }),
     
@@ -404,11 +389,7 @@ export const itemManager = {
       isBeads: true,
 
       apply(player) {
-        player.isBeadsEquipped = true;
-        player.eva = 13;
-        player.beadsRarity = "uncommon";
-
-        player.refreshStats();
+        itemManager.equipBeads(player, 13, "uncommon");
       },
     }),
 
@@ -421,11 +402,7 @@ export const itemManager = {
       isBeads: true,
 
       apply(player) {
-        player.isBeadsEquipped = true;
-        player.eva = 18;
-        player.beadsRarity = "rare";
-
-        player.refreshStats();
+        itemManager.equipBeads(player, 18, "rare");
       },
     }),
 
@@ -438,11 +415,7 @@ export const itemManager = {
       isBeads: true,
 
       apply(player) {
-        player.isBeadsEquipped = true;
-        player.eva = 24;
-        player.beadsRarity = "legendary";
-
-        player.refreshStats();
+        itemManager.equipBeads(player, 24, "legendary");
       },
     }),
 
@@ -455,11 +428,7 @@ export const itemManager = {
       isBeads: true,
 
       apply(player) {
-        player.isBeadsEquipped = true;
-        player.eva = 30;
-        player.beadsRarity = "mythic";
-
-        player.refreshStats();
+        itemManager.equipBeads(player, 30, "mythic");
       },
     }),
     
@@ -555,7 +524,10 @@ export const itemManager = {
     },
 
     pickItems(count, player, options = {}) {
-    const pool = this.filterAvailableItems(player);
+    const pool = this.filterAvailableItems(player).filter((item) => {
+      if (options.excludeRecovery && item.isRecovery) return false;
+      return true;
+    });
     const choices = [];
 
     if (options.guaranteeRecovery) {

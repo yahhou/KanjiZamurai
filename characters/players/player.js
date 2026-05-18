@@ -1,7 +1,7 @@
 import { Character } from '../../js/characterManager.js';
 import { gameManager } from '../../js/gameManager.js';
 import { refreshPlayerBuffIcons } from '../../js/playerBuffIcons.js';
-import { PLAYER_BALANCE } from '../../js/balanceConfig.js';
+import { EQUIPMENT_BALANCE, PLAYER_BALANCE } from '../../js/balanceConfig.js';
 
 export class Player extends Character {
   constructor(config) {
@@ -17,12 +17,21 @@ export class Player extends Character {
     this.hasStreakBouns = false;
     this.isWeaponEquipped = false;
     this.weaponRarity = null;
+    this.weaponDurability = 0;
+    this.weaponMaxDurability = 0;
     this.isHaoriEquipped = false;
     this.haoriRarity = null;
+    this.haoriDurability = 0;
+    this.haoriMaxDurability = 0;
     this.isBandEquipped = false;
     this.isBeadsEquipped = false;
     this.bandRarity = null;
+    this.bandDurability = 0;
+    this.bandMaxDurability = 0;
     this.beadsRarity = null;
+    this.beadsDurability = 0;
+    this.beadsMaxDurability = 0;
+    this.battleGrade = "C";
 
     this.levelUpSound = new Audio('assets/sounds/levelUp.mp3');
   }
@@ -147,6 +156,206 @@ export class Player extends Character {
     console.log(`Level Up! ${this.level} になりました。`);
   }
 
+  applyStageRankGrowth(rank = "C") {
+    const growthTable = {
+      S: { hp: 16, stats: 9 },
+      A: { hp: 13, stats: 7 },
+      B: { hp: 10, stats: 5 },
+      C: { hp: 7, stats: 3 },
+    };
+    const growth = growthTable[rank] || growthTable.C;
+    const stats = ["baseAtk", "baseDef", "baseMdf"];
+    const before = {
+      level: this.level,
+      hp: this.maxHp,
+      atk: this.baseAtk,
+      def: this.baseDef,
+      mdf: this.baseMdf,
+    };
+
+    this.level++;
+    this.maxHp += growth.hp;
+    this.hp = this.maxHp;
+
+    for (let i = 0; i < growth.stats; i++) {
+      const targetStat = stats[i % stats.length];
+      this[targetStat] += 1;
+    }
+
+    this.maxExp = Math.floor(this.maxExp * PLAYER_BALANCE.maxExpMultiplier);
+    this.exp = 0;
+    this.refreshStats();
+    this.updateExpBar();
+    this.showLevelUpEffect();
+
+    return {
+      rank,
+      before,
+      after: {
+        level: this.level,
+        hp: this.maxHp,
+        atk: this.baseAtk,
+        def: this.baseDef,
+        mdf: this.baseMdf,
+      },
+    };
+  }
+
+  getEquipmentDurabilityMax(slot, rarity) {
+    const normalized = String(rarity || "").toLowerCase();
+    const tableMap = {
+      weapon: EQUIPMENT_BALANCE.weaponDurabilityByRarity,
+      haori: EQUIPMENT_BALANCE.haoriDurabilityByRarity,
+      band: EQUIPMENT_BALANCE.bandDurabilityByRarity,
+      beads: EQUIPMENT_BALANCE.beadsDurabilityByRarity,
+    };
+    const table = tableMap[slot] || tableMap.weapon;
+
+    return table[normalized] || 0;
+  }
+
+  equipWeapon({ rarity, multiplier, maxDurability = null }) {
+    const normalized = String(rarity || "").toLowerCase();
+    this.isWeaponEquipped = true;
+    this.weaponRarity = normalized;
+    this.weaponMultiplier = multiplier ?? this.weaponMultiplier ?? 1.0;
+    this.weaponMaxDurability = maxDurability ?? this.getEquipmentDurabilityMax("weapon", normalized);
+    this.weaponDurability = this.weaponMaxDurability;
+    this.refreshStats();
+  }
+
+  equipHaori({ rarity, multiplier, maxDurability = null }) {
+    const normalized = String(rarity || "").toLowerCase();
+    this.isHaoriEquipped = true;
+    this.haoriRarity = normalized;
+    this.haoriMultiplier = multiplier ?? this.haoriMultiplier ?? 1.0;
+    this.haoriMaxDurability = maxDurability ?? this.getEquipmentDurabilityMax("haori", normalized);
+    this.haoriDurability = this.haoriMaxDurability;
+    this.refreshStats();
+  }
+
+  equipBand({ rarity, critRate, maxDurability = null }) {
+    const normalized = String(rarity || "").toLowerCase();
+    this.isBandEquipped = true;
+    this.bandRarity = normalized;
+    this.critRate = critRate ?? this.baseCritRate ?? this.critRate ?? 5;
+    this.bandMaxDurability = maxDurability ?? this.getEquipmentDurabilityMax("band", normalized);
+    this.bandDurability = this.bandMaxDurability;
+    this.refreshStats();
+  }
+
+  equipBeads({ rarity, eva, maxDurability = null }) {
+    const normalized = String(rarity || "").toLowerCase();
+    this.isBeadsEquipped = true;
+    this.beadsRarity = normalized;
+    this.eva = eva ?? this.baseEva ?? this.eva ?? 0;
+    this.beadsMaxDurability = maxDurability ?? this.getEquipmentDurabilityMax("beads", normalized);
+    this.beadsDurability = this.beadsMaxDurability;
+    this.refreshStats();
+  }
+
+  breakWeapon() {
+    this.isWeaponEquipped = false;
+    this.weaponRarity = null;
+    this.weaponMultiplier = 1.0;
+    this.weaponDurability = 0;
+    this.weaponMaxDurability = 0;
+    this.refreshStats();
+  }
+
+  breakHaori() {
+    this.isHaoriEquipped = false;
+    this.haoriRarity = null;
+    this.haoriMultiplier = 1.0;
+    this.haoriDurability = 0;
+    this.haoriMaxDurability = 0;
+    this.refreshStats();
+  }
+
+  breakBand() {
+    this.isBandEquipped = false;
+    this.bandRarity = null;
+    this.bandDurability = 0;
+    this.bandMaxDurability = 0;
+    this.critRate = this.baseCritRate ?? 5;
+    this.refreshStats();
+  }
+
+  breakBeads() {
+    this.isBeadsEquipped = false;
+    this.beadsRarity = null;
+    this.beadsDurability = 0;
+    this.beadsMaxDurability = 0;
+    this.eva = this.baseEva ?? 0;
+    this.refreshStats();
+  }
+
+  damageWeaponDurability(amount = 1) {
+    if (!this.isWeaponEquipped) return false;
+
+    this.weaponDurability = Math.max(0, (this.weaponDurability || 0) - amount);
+    if (this.weaponDurability <= 0) {
+      this.breakWeapon();
+    } else {
+      this.refreshStats();
+    }
+
+    return true;
+  }
+
+  damageHaoriDurability(amount = 1) {
+    if (!this.isHaoriEquipped) return false;
+
+    this.haoriDurability = Math.max(0, (this.haoriDurability || 0) - amount);
+    if (this.haoriDurability <= 0) {
+      this.breakHaori();
+    } else {
+      this.refreshStats();
+    }
+
+    return true;
+  }
+
+  damageBandDurability(amount = 1) {
+    if (!this.isBandEquipped) return false;
+
+    this.bandDurability = Math.max(0, (this.bandDurability || 0) - amount);
+    if (this.bandDurability <= 0) {
+      this.breakBand();
+    } else {
+      this.refreshStats();
+    }
+
+    return true;
+  }
+
+  damageBeadsDurability(amount = 1) {
+    if (!this.isBeadsEquipped) return false;
+
+    this.beadsDurability = Math.max(0, (this.beadsDurability || 0) - amount);
+    if (this.beadsDurability <= 0) {
+      this.breakBeads();
+    } else {
+      this.refreshStats();
+    }
+
+    return true;
+  }
+
+  damageEquipmentDurability(amount = 1) {
+    const damagedWeapon = this.damageWeaponDurability(amount);
+    const damagedHaori = this.damageHaoriDurability(amount);
+    const damagedBand = this.damageBandDurability(amount);
+    const damagedBeads = this.damageBeadsDurability(amount);
+
+    if (!damagedWeapon && !damagedHaori && !damagedBand && !damagedBeads) {
+      return false;
+    }
+
+    refreshPlayerBuffIcons();
+    return true;
+  }
+
 
  /* ==========================================================================
   経験値の更新
@@ -163,7 +372,9 @@ export class Player extends Character {
 
     const levelEl = playerUi.querySelector(".level-text");
     if (levelEl) {
-      levelEl.textContent = `Lv.${this.level}`;
+      const rank = this.battleGrade ? `${this.battleGrade} ` : "";
+      levelEl.innerHTML = `${rank}<span class="level-number">Lv.${this.level}</span>`;
+      levelEl.dataset.rank = this.battleGrade || "";
     }
     }
 
@@ -232,12 +443,26 @@ export class Player extends Character {
       baseAtk: this.baseAtk,
       baseDef: this.baseDef,
       baseMdf: this.baseMdf,
-      // 装備品の状態も継続したい場合はここに追加
-      //isWeaponEquipped: this.isWeaponEquipped,
-      //weaponRarity: this.weaponRarity,
-      //isHaoriEquipped: this.isHaoriEquipped,
-      //haoriRarity: this.haoriRarity
-      // ...他、必要なフラグ
+      weaponMultiplier: this.weaponMultiplier,
+      weaponRarity: this.weaponRarity,
+      weaponDurability: this.weaponDurability,
+      weaponMaxDurability: this.weaponMaxDurability,
+      haoriMultiplier: this.haoriMultiplier,
+      haoriRarity: this.haoriRarity,
+      haoriDurability: this.haoriDurability,
+      haoriMaxDurability: this.haoriMaxDurability,
+      bandRarity: this.bandRarity,
+      bandDurability: this.bandDurability,
+      bandMaxDurability: this.bandMaxDurability,
+      beadsRarity: this.beadsRarity,
+      beadsDurability: this.beadsDurability,
+      beadsMaxDurability: this.beadsMaxDurability,
+      critRate: this.critRate,
+      eva: this.eva,
+      baseCritRate: this.baseCritRate,
+      baseEva: this.baseEva,
+      isRegenerating: this.isRegenerating,
+      battleGrade: this.battleGrade,
     };
   }
   
@@ -262,6 +487,30 @@ export class Player extends Character {
     this.baseAtk = status.baseAtk || this.baseAtk;
     this.baseDef = status.baseDef || this.baseDef;
     this.baseMdf = status.baseMdf || this.baseMdf;
+    this.weaponMultiplier = status.weaponMultiplier || this.weaponMultiplier;
+    this.weaponRarity = status.weaponRarity || null;
+    this.weaponMaxDurability = status.weaponMaxDurability ?? this.getEquipmentDurabilityMax("weapon", this.weaponRarity);
+    this.weaponDurability = status.weaponDurability ?? this.weaponMaxDurability;
+    this.haoriMultiplier = status.haoriMultiplier || this.haoriMultiplier;
+    this.haoriRarity = status.haoriRarity || null;
+    this.haoriMaxDurability = status.haoriMaxDurability ?? this.getEquipmentDurabilityMax("haori", this.haoriRarity);
+    this.haoriDurability = status.haoriDurability ?? this.haoriMaxDurability;
+    this.bandRarity = status.bandRarity || null;
+    this.bandMaxDurability = status.bandMaxDurability ?? this.getEquipmentDurabilityMax("band", this.bandRarity);
+    this.bandDurability = status.bandDurability ?? this.bandMaxDurability;
+    this.beadsRarity = status.beadsRarity || null;
+    this.beadsMaxDurability = status.beadsMaxDurability ?? this.getEquipmentDurabilityMax("beads", this.beadsRarity);
+    this.beadsDurability = status.beadsDurability ?? this.beadsMaxDurability;
+    this.critRate = status.critRate || this.critRate;
+    this.eva = status.eva || this.eva;
+    this.baseCritRate = status.baseCritRate ?? this.baseCritRate ?? this.critRate;
+    this.baseEva = status.baseEva ?? this.baseEva ?? this.eva;
+    this.isRegenerating = Boolean(status.isRegenerating);
+    this.battleGrade = status.battleGrade || this.battleGrade;
+    this.isWeaponEquipped = Boolean(this.weaponRarity);
+    this.isHaoriEquipped = Boolean(this.haoriRarity);
+    this.isBandEquipped = Boolean(this.bandRarity);
+    this.isBeadsEquipped = Boolean(this.beadsRarity);
 
     this.refreshStats();
     this.updateExpBar(); // ここでも呼んでいるので、基本的にはこれで同期されます

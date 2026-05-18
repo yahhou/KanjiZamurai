@@ -5,13 +5,6 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/AoOni-Sheet.png", 
-        hp: 34,
-        mp: 0,
-        atk: 18,
-        def: 22,
-        mdf: 5,
-        eva: 0,
-        critRate: 10,
         width: 40,  // 個別の幅
         height: 40,  // 個別の高さ
         sizeRatio: 25,
@@ -19,7 +12,6 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "AoOni";
-      this.expReward = 22;
     }
 
   // 専用のスキルを作りたくなったらここに追加

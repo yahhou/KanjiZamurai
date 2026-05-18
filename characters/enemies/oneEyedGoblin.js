@@ -5,13 +5,6 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/OneEyedGoblin-Sheet.png", 
-        hp: 15,
-        mp: 0,
-        atk: 15,
-        def: 5,
-        mdf: 10,
-        eva: 0,
-        critRate: 10,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 47,
@@ -19,7 +12,6 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "OneEyedGoblin";
-      this.expReward = 8;
       
     }
 

@@ -1,7 +1,7 @@
 import { ITEM_BALANCE } from "./balanceConfig.js";
 
 export class Character {
-  constructor({ id, imgSrc, hp, mp, atk, def, mdf, eva, critRate, width, height,
+  constructor({ id, imgSrc, hp = 1, mp = 0, atk = 1, def = 1, mdf = 0, eva = 0, critRate = 10, width, height,
               frameCount, sizeRatio, frameInterval, idleFrameCount, idleFrames, deathFrame}) {
     this.id = id;
     this.imgSrc = imgSrc;
@@ -19,6 +19,8 @@ export class Character {
     this.mdf = mdf;
     this.eva = eva;
     this.critRate = critRate || 5;
+    this.baseCritRate = this.critRate;
+    this.baseEva = this.eva;
     this.width = width || 80;  // デフォルト値
     this.height = height || 80; // デフォルト値
     this.frameCount = frameCount;
@@ -187,7 +189,9 @@ export class Character {
   // 2b. レベル表示（プレイヤー・敵とも this.level を反映）
   const levelText = uiContainer.querySelector('.level-text');
   if (levelText != null && this.level != null) {
-    levelText.textContent = `Lv.${this.level}`;
+    const rank = this.battleGrade ? `${this.battleGrade} ` : "";
+    levelText.innerHTML = `${rank}<span class="level-number">Lv.${this.level}</span>`;
+    levelText.dataset.rank = this.battleGrade || "";
   }
 
   // 3. パラメータの更新 (重要：uiContainer内から探す)

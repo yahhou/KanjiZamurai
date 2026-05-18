@@ -2,8 +2,18 @@ export const DEFAULT_STAGE_SETTINGS = {
   enemyTypes: ["Kappa"],
   bossType: "KappaOyabun",
   enemyLevel: null,
+  enemyRank: null,
+  bossRank: null,
 };
-
+/*  {
+    id: 12,
+    enemyLevel: 12,
+    enemyRank: 3,
+    bossRank: 4,
+    enemyTypes: ["Genin"],
+    bossType: "Genin",
+  }
+*/
 export const STAGE_CONFIGS = {
   N1: [],
   N2: [],

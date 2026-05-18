@@ -5,13 +5,6 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/Monk-Sheet.png", 
-        hp: 30,
-        mp: 0,
-        atk: 25,
-        def: 30,
-        mdf: 5,
-        eva: 0,
-        critRate: 10,
         width: 40,  // 個別の幅
         height: 40,  // 個別の高さ
         sizeRatio: 27,
@@ -19,7 +12,6 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "AoOni";
-      this.expReward = 333;
     }
 
   // 専用のスキルを作りたくなったらここに追加

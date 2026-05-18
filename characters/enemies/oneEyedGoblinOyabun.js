@@ -5,13 +5,6 @@ import { Enemy } from './enemy.js';
       super({
         id: "enemy",          
         imgSrc: "assets/images/OneEyedGoblinOyabun-Sheet.png", 
-        hp: 35,
-        mp: 0,
-        atk: 16,
-        def: 12,
-        mdf: 10,
-        eva: 0,
-        critRate: 10,
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 53,
@@ -19,7 +12,6 @@ import { Enemy } from './enemy.js';
         idleFrameCount: 2
       });
       this.name = "OneEyedGoblinOyabun";
-      this.expReward = 25;
       
     }
 

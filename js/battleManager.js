@@ -26,6 +26,7 @@ import { ShiroOni } from "../characters/enemies/shiroOni.js";
 import { PhantomDeer } from "../characters/enemies/phantomDeer.js";
 import { refreshPlayerBuffIcons } from "./playerBuffIcons.js";
 import { COMBAT_BALANCE, ENEMY_BALANCE } from "./balanceConfig.js";
+import { applyEnemyRankStats } from "./enemyRankConfig.js";
 
 const ENEMY_CLASSES = {
   Tengu,
@@ -69,6 +70,8 @@ export const battleManager = {
   bgImages: {},
   currentEnemyTypes: [],
   currentEnemyLevel: null,
+  currentEnemyRank: null,
+  currentBossRank: null,
   currentBossType: null,
   counterAttackDelayMs: 1000,
   answerTurnDelayMs: 1500,
@@ -76,7 +79,7 @@ export const battleManager = {
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
   ///////////////////////////////////
-  init(savedStatus = null, bgKey = null, enemyTypes = null, enemyLevel = null, bossType = null) { // 引数で保存データを受け取れるようにする
+  init(savedStatus = null, bgKey = null, enemyTypes = null, enemyLevel = null, bossType = null, enemyRank = null, bossRank = null) { // 引数で保存データを受け取れるようにする
     this.clearCharacters();
     this.setupBackgrounds();
     // ★追加：コンボとStreakの内部数値をリセット
@@ -90,6 +93,8 @@ export const battleManager = {
     
     this.currentEnemyTypes = normalizeEnemyTypes(enemyTypes);
     this.currentEnemyLevel = enemyLevel;
+    this.currentEnemyRank = enemyRank;
+    this.currentBossRank = bossRank;
     this.currentBossType = bossType;
 
     // 1. まず新しいインスタンスを作る（この時点ではLv1, Exp0）
@@ -134,6 +139,7 @@ export const battleManager = {
     const BossClass = ENEMY_CLASSES[bossTypeName || this.currentBossType] || KappaOyabun;
 
     this.enemy = new BossClass(); 
+    applyEnemyRankStats(this.enemy, bossTypeName || this.currentBossType, this.currentBossRank);
     this.scaleEnemyToStageLevel(this.enemy, this.getBossLevel());
     this.enemy.maxHp = Math.floor(this.enemy.maxHp * ENEMY_BALANCE.bossHpMultiplier);
     this.enemy.hp = this.enemy.maxHp;
@@ -274,16 +280,20 @@ export const battleManager = {
       : this.currentEnemyTypes;
 
     let EnemyClass;
+    let selectedTypeName;
     if (candidateTypes.length > 0) {
-      const typeName = candidateTypes[Math.floor(Math.random() * candidateTypes.length)];
-      EnemyClass = ENEMY_CLASSES[typeName];
+      selectedTypeName = candidateTypes[Math.floor(Math.random() * candidateTypes.length)];
+      EnemyClass = ENEMY_CLASSES[selectedTypeName];
     } else {
       // どこにも指定がない場合のみランダム（練習モード用など）
-      const classes = Object.values(ENEMY_CLASSES);
-      EnemyClass = classes[Math.floor(Math.random() * classes.length)];
+      const entries = Object.entries(ENEMY_CLASSES);
+      const [typeName, enemyClass] = entries[Math.floor(Math.random() * entries.length)];
+      selectedTypeName = typeName;
+      EnemyClass = enemyClass;
     }
 
     this.enemy = new EnemyClass();
+    applyEnemyRankStats(this.enemy, selectedTypeName, this.currentEnemyRank);
     this.scaleEnemyToStageLevel(this.enemy);
     this.enemy.refreshStats();
 
@@ -327,9 +337,13 @@ export const battleManager = {
     enemy.baseAtk = Math.floor(enemy.baseAtk * statScale);
     enemy.baseDef = Math.floor(enemy.baseDef * statScale);
     enemy.mdf = Math.floor(enemy.mdf * statScale);
+    const scaledExpReward = Math.floor(
+      ((enemy.expReward || 5) * expScale) + (level * ENEMY_BALANCE.expFlatPerLevel)
+    );
+
     enemy.expReward = Math.min(
       maxExpReward,
-      Math.max(ENEMY_BALANCE.minExpReward, Math.floor((enemy.expReward || 5) * expScale))
+      Math.max(ENEMY_BALANCE.minExpReward, scaledExpReward)
     );
   },
 
@@ -356,31 +370,23 @@ export const battleManager = {
   defeatEnemy() {
     if (!this.player || !this.enemy) return;
 
-    // 【重要】敵を倒した瞬間にプレイヤー自身も死んでいたら、その場でゲームオーバー
-    if (this.player.hp <= 0) {
-      console.log("敵を倒しましたがプレイヤーも死亡しているため、ゲームオーバーにします");
-      if (window.quizManager && typeof window.quizManager.gameOver === "function") {
-        window.quizManager.gameOver();
-      }
-      return; 
-    }
-
-    const exp = this.enemy.expReward || 5;
-    
-    // クイズモードがボス、かつ実際にボス戦が始まっている時だけ victory()
-    if (window.quizManager.quizMode === "boss" && window.quizManager.hasBossAppeared) {
-      this.player.exp += exp;
-      while (this.player.exp >= this.player.maxExp) {
-        this.player.exp -= this.player.maxExp;
-        this.player.levelUp();
-      }
-      this.player.updateExpBar();
-      window.quizManager.victory(); 
+    if (window.quizManager?.isBossTransitionPending) {
+      this.enemy.ishandled = true;
       return;
     }
 
-    // 通常の経験値獲得
-    this.player.gainExp(exp);
+    // 【重要】敵を倒した瞬間にプレイヤー自身も死んでいたら、その場でゲームオーバー
+    if (this.player.hp <= 0) {
+      console.log("敵を倒しましたがプレイヤーも死亡しているため、ゲームオーバーにします");
+      window.gameManager?.handleGameOver();
+      return; 
+    }
+
+    // クイズモードがボス、かつ実際にボス戦が始まっている時だけ victory()
+    if (window.quizManager.quizMode === "boss" && window.quizManager.hasBossAppeared) {
+      window.quizManager.victory(); 
+      return;
+    }
 
     // 次の敵を出すタイマー
     setTimeout(() => {
@@ -393,6 +399,15 @@ export const battleManager = {
         }
       }
     }, 1100);
+  },
+
+  defeatCurrentEnemyForBossTransition() {
+    if (!this.enemy) return;
+
+    this.enemy.ishandled = true;
+    this.enemy.hp = 0;
+    this.enemy.refreshStats?.();
+    this.enemy.die?.();
   },
 
   ///////////////////////////////////

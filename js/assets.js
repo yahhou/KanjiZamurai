@@ -13,7 +13,7 @@ export const assets = {
 
     // --- UI ---
     this.images.ui_Kiwami = new Image();
-    this.images.ui_Kiwami.src = "assets/images/Kiwami-Sheet.png";
+    this.images.ui_Kiwami.src = "assets/images/KiwamiGauge-Sheet.png";
 
     this.images.ui_Items = new Image();
     this.images.ui_Items.src = "assets/images/items-Sheet.png";
@@ -42,4 +42,3 @@ export const assets = {
     this.sounds.sE_ItemBonus = new Audio("assets/sounds/itemBonus.mp3");
   },
 };
-
