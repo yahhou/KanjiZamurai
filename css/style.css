@@ -1577,7 +1577,7 @@ body {
   background-color: transparent;
   border-radius: 0;
   color: #000000;
-  font-size: 4cqw;
+  font-size: 5cqw;
   line-height: 1.15;
   cursor: pointer;
   box-shadow: none;
@@ -1590,7 +1590,6 @@ body {
   overflow-wrap: anywhere;
   word-break: normal;
   transition: transform 0.08s ease, filter 0.15s ease, background-image 0.15s ease;
-  font-weight: 1000;
 }
 
 #optionArea button:hover:not(:disabled) {
