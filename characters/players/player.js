@@ -2,6 +2,7 @@ import { Character } from '../../js/characterManager.js';
 import { gameManager } from '../../js/gameManager.js';
 import { refreshPlayerBuffIcons } from '../../js/playerBuffIcons.js';
 import { EQUIPMENT_BALANCE, PLAYER_BALANCE } from '../../js/balanceConfig.js';
+import { registerAudio } from '../../js/assets.js';
 
 export class Player extends Character {
   constructor(config) {
@@ -33,7 +34,7 @@ export class Player extends Character {
     this.beadsMaxDurability = 0;
     this.battleGrade = "C";
 
-    this.levelUpSound = new Audio('assets/sounds/levelUp.mp3');
+    this.levelUpSound = registerAudio(new Audio('assets/sounds/levelUp.mp3'));
   }
 
  /* ==========================================================================

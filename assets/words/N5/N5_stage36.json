@@ -1,0 +1,122 @@
+[
+  {
+    "category": "particle-reason-casual",
+    "word": "because (casual)",
+    "sentence": "A: Why are you mad?\nB: BECAUSE you ate my chocolate!",
+    "highlight": "BECAUSE",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）から",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-casual",
+    "word": "so (casual)",
+    "sentence": "A: Wanna go out?\nB: It's too hot, SO I'll stay home.",
+    "highlight": "SO",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）から",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-casual",
+    "word": "because (casual)",
+    "sentence": "A: Did you sleep well?\nB: Yeah, BECAUSE my new bed is great!",
+    "highlight": "BECAUSE",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）から",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-casual",
+    "word": "so (casual)",
+    "sentence": "A: Hurry up!\nB: I forgot my wallet, SO wait a minute!",
+    "highlight": "SO",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）から",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-casual",
+    "word": "because (casual)",
+    "sentence": "A: Why do you love this game?\nB: BECAUSE the graphics are awesome!",
+    "highlight": "BECAUSE",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）から",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-polite",
+    "word": "because (polite)",
+    "sentence": "A: Why were you absent, Mr. Smith?\nB: BECAUSE I had a severe headache.",
+    "highlight": "BECAUSE",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）ので",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-polite",
+    "word": "because (polite)",
+    "sentence": "A: Excuse me, could you help me?\nB: Certainly, BECAUSE it looks heavy.",
+    "highlight": "BECAUSE",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）ので",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-polite",
+    "word": "so (polite)",
+    "sentence": "A: The train has stopped, SO we will be late.\nB: Understood. Let's call the office.",
+    "highlight": "SO",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）ので",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-polite",
+    "word": "because (polite)",
+    "sentence": "A: Why is the bank closed today?\nB: BECAUSE today is a holiday, sir.",
+    "highlight": "BECAUSE",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）ので",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-reason-polite",
+    "word": "because (polite)",
+    "sentence": "A: I am sorry. I forgot the documents.\nB: No problem, BECAUSE I have a copy here.",
+    "highlight": "BECAUSE",
+    "choices": [
+      { "answer": "（〜）から", "hiragana": "" },
+      { "answer": "（〜）ので", "hiragana": "" }
+    ],
+    "answer": "（〜）ので",
+    "hiragana": ""
+  }
+]

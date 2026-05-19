@@ -92,6 +92,30 @@ body {
   pointer-events: none;
 }
 
+.mute-btn {
+  position: absolute;
+  top: 2cqw;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 600;
+  width: 8cqw;
+  height: 8cqw;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  font-size: 4cqw;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+}
+
+.mute-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
 /* ==========================================================================
 /* ==========================================================================
 /* ==========================================================================

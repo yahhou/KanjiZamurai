@@ -1,4 +1,4 @@
-import { assets } from "./assets.js";
+import { assets, isAudioMuted, registerAudio, setAudioMuted, toggleAudioMuted } from "./assets.js";
 import { battleManager } from "./battleManager.js";
 import { quizManager } from "./quizManager.js";
 import { itemManager } from "./itemManager.js";
@@ -206,10 +206,15 @@ export const gameManager = {
 
   // --- 初期化 ---
   init() {
+    registerAudio(this.startBtnSE);
+    registerAudio(this.gameOverSE);
+    registerAudio(this.itemBonusSE);
     this.startLoadingAnimation();
     quizManager.onCorrect = () => battleManager.resolveCorrectAnswerTurn();
     quizManager.onWrong = () => battleManager.resolveWrongAnswerTurn();
     this.bindBattleControls();
+    this.bindMuteControl();
+    this.syncMuteButtonState();
 
     if (!this.isLoaded) {
       assets.loadAssets();
@@ -237,6 +242,29 @@ export const gameManager = {
 
     const statsBtn = document.getElementById("battleStatsBtn");
     if (statsBtn) statsBtn.onclick = () => this.toggleBattleStatsPanel();
+  },
+
+  bindMuteControl() {
+    const muteBtn = document.getElementById("muteBtn");
+    if (!muteBtn) return;
+    muteBtn.onclick = () => {
+      const nextMuted = toggleAudioMuted();
+      this.applyMuteState(nextMuted);
+    };
+  },
+
+  applyMuteState(isMuted) {
+    setAudioMuted(isMuted);
+    this.syncMuteButtonState();
+  },
+
+  syncMuteButtonState() {
+    const muteBtn = document.getElementById("muteBtn");
+    if (!muteBtn) return;
+    const muted = isAudioMuted();
+    muteBtn.textContent = muted ? "🔇" : "🔈";
+    muteBtn.setAttribute("aria-label", muted ? "Unmute" : "Mute");
+    muteBtn.dataset.muted = muted ? "1" : "0";
   },
 
   buildCharacterStatsRows(character, options = {}) {

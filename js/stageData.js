@@ -317,7 +317,7 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["PhantomDeer"],
       bossType: "ShiroOni",
     },
-     { id: 35,
+    { id: 35,
       name: "がある vs がいる vs になる",
       files: ["N5_stage35.json"],
       bgKey: "stage_35",
@@ -325,6 +325,23 @@ export const STAGE_CONFIGS = {
       enemyTypes: ["PhantomDeer"],
       bossType: "ShiroOni",
     },
+    { id: 36,
+      name: "から(casulal) vs ので(polite)",
+      files: ["N5_stage36.json"],
+      bgKey: "stage_36",
+      enemyLevel: 36,
+      enemyTypes: ["PhantomDeer"],
+      bossType: "ShiroOni",
+    },
+    { id: 37,
+      name: "だけど(casual) vs だけれども(polite)",
+      files: ["N5_stage37.json"],
+      bgKey: "stage_37",
+      enemyLevel: 37,
+      enemyTypes: ["PhantomDeer"],
+      bossType: "ShiroOni",
+    },
+    
 
 
   ],
@@ -366,6 +383,8 @@ export const STORY_STAGE_ORDER = [
   { category: "N5", stageId: 33 },
   { category: "N5", stageId: 34 },
   { category: "N5", stageId: 35 },
+  { category: "N5", stageId: 36 },
+  { category: "N5", stageId: 37 },
 ];
 
 export function findStageConfig(category, stageId) {

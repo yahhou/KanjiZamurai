@@ -1,5 +1,6 @@
 import { Character } from '../../js/characterManager.js';
 import { battleManager } from '../../js/battleManager.js';
+import { registerAudio } from '../../js/assets.js';
 
 
 export class Enemy extends Character {
@@ -7,7 +8,7 @@ export class Enemy extends Character {
     super(config);
 
     this.baseAtk = config.atk || 10;
-    this.attackSound1 = new Audio('assets/sounds/enemyAttack1.mp3');
+    this.attackSound1 = registerAudio(new Audio('assets/sounds/enemyAttack1.mp3'));
     // プレイヤー共通の初期化（例：現在のレベルなど）
     this.level = 1;
   }

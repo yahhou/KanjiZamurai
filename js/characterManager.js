@@ -1,4 +1,5 @@
 import { ITEM_BALANCE } from "./balanceConfig.js";
+import { registerAudio } from "./assets.js";
 
 export class Character {
   constructor({ id, imgSrc, hp = 1, mp = 0, atk = 1, def = 1, mdf = 0, eva = 0, critRate = 10, width, height,
@@ -43,8 +44,8 @@ export class Character {
 
     this.activeTimeouts = [];
 
-     this.criticalSound = new Audio('assets/sounds/criticalHit.mp3');
-     this.evadeSound = new Audio('assets/sounds/evade1.mp3');
+     this.criticalSound = registerAudio(new Audio('assets/sounds/criticalHit.mp3'));
+     this.evadeSound = registerAudio(new Audio('assets/sounds/evade1.mp3'));
 
      this.init();  
   }

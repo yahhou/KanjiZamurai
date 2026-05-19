@@ -1,4 +1,5 @@
 import { Player } from './player.js';
+import { registerAudio } from '../../js/assets.js';
 
 export class Samurai extends Player {
   constructor() {
@@ -20,7 +21,7 @@ export class Samurai extends Player {
       idleFrameCount: 2,
     });
     this.name = "Samurai";
-    this.attackSound = new Audio('assets/sounds/attack1.mp3');
+    this.attackSound = registerAudio(new Audio('assets/sounds/attack1.mp3'));
   }
 
   getFramePos(frameIndex) {

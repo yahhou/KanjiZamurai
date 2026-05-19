@@ -456,6 +456,8 @@ export const battleManager = {
       "stage_33": "assets/images/stage_mountainPath2.webp",
       "stage_34": "assets/images/stage_mountainPath2.webp",
       "stage_35": "assets/images/stage_mountainPath2.webp",
+      "stage_36": "assets/images/stage_nightTemple.webp",
+      "stage_37": "assets/images/stage_nightTemple.webp",
     };
 
     for (const key in bgList) {
