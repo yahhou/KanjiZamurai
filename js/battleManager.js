@@ -71,15 +71,13 @@ export const battleManager = {
   currentEnemyTypes: [],
   currentEnemyLevel: null,
   currentEnemyRank: null,
-  currentBossRank: null,
-  currentBossType: null,
   counterAttackDelayMs: 1000,
   answerTurnDelayMs: 1500,
 
   ///////////////////////////////////
   //    キャラクター・モンスターの生成
   ///////////////////////////////////
-  init(savedStatus = null, bgKey = null, enemyTypes = null, enemyLevel = null, bossType = null, enemyRank = null, bossRank = null) { // 引数で保存データを受け取れるようにする
+  init(savedStatus = null, bgKey = null, enemyTypes = null, enemyLevel = null, enemyRank = null) { // 引数で保存データを受け取れるようにする
     this.clearCharacters();
     this.setupBackgrounds();
     // ★追加：コンボとStreakの内部数値をリセット
@@ -94,8 +92,6 @@ export const battleManager = {
     this.currentEnemyTypes = normalizeEnemyTypes(enemyTypes);
     this.currentEnemyLevel = enemyLevel;
     this.currentEnemyRank = enemyRank;
-    this.currentBossRank = bossRank;
-    this.currentBossType = bossType;
 
     // 1. まず新しいインスタンスを作る（この時点ではLv1, Exp0）
     this.player = new Samurai();
@@ -130,29 +126,6 @@ export const battleManager = {
   },
   
   
-  ///////////////////////////////////
-  //   　　ボスのスポーン
-  ///////////////////////////////////
-  bossSpawn(bossTypeName = null) {
-    if (this.enemy) this.enemy.destroy();
-
-    const BossClass = ENEMY_CLASSES[bossTypeName || this.currentBossType] || KappaOyabun;
-
-    this.enemy = new BossClass(); 
-    applyEnemyRankStats(this.enemy, bossTypeName || this.currentBossType, this.currentBossRank);
-    this.scaleEnemyToStageLevel(this.enemy, this.getBossLevel());
-    this.enemy.maxHp = Math.floor(this.enemy.maxHp * ENEMY_BALANCE.bossHpMultiplier);
-    this.enemy.hp = this.enemy.maxHp;
-    this.enemy.baseAtk = Math.floor(this.enemy.baseAtk * ENEMY_BALANCE.bossAtkMultiplier);
-    this.enemy.refreshStats();
-
-    const actionArea = document.getElementById("actionArea");
-    if (actionArea && this.enemy.el) {
-      actionArea.appendChild(this.enemy.el);
-    }
-  },
-
-
   ///////////////////////////////////
   //   　　プレイヤーの攻撃
   ///////////////////////////////////
@@ -327,10 +300,7 @@ export const battleManager = {
     const hpScale = 1 + (level - 1) * ENEMY_BALANCE.hpScalePerLevel;
     const statScale = 1 + (level - 1) * ENEMY_BALANCE.statScalePerLevel;
     const expScale = 1 + (level - 1) * ENEMY_BALANCE.expScalePerLevel;
-    const isBossFight = specifiedLevel !== null;
-    const maxExpReward = isBossFight
-      ? ENEMY_BALANCE.maxBossExpReward
-      : ENEMY_BALANCE.maxNormalExpReward;
+    const maxExpReward = ENEMY_BALANCE.maxNormalExpReward;
 
     enemy.maxHp = Math.floor(enemy.maxHp * hpScale);
     enemy.hp = enemy.maxHp;
@@ -346,12 +316,6 @@ export const battleManager = {
       Math.max(ENEMY_BALANCE.minExpReward, scaledExpReward)
     );
   },
-
-  getBossLevel() {
-    const baseLevel = this.currentEnemyLevel || Math.max(1, Math.floor((this.player?.level || 1) * ENEMY_BALANCE.fallbackPlayerLevelRatio));
-    return baseLevel + ENEMY_BALANCE.bossLevelBonus;
-  },
-
 
   ///////////////////////////////////
   //         敵の生存状態を管理
@@ -370,11 +334,6 @@ export const battleManager = {
   defeatEnemy() {
     if (!this.player || !this.enemy) return;
 
-    if (window.quizManager?.isBossTransitionPending) {
-      this.enemy.ishandled = true;
-      return;
-    }
-
     // 【重要】敵を倒した瞬間にプレイヤー自身も死んでいたら、その場でゲームオーバー
     if (this.player.hp <= 0) {
       console.log("敵を倒しましたがプレイヤーも死亡しているため、ゲームオーバーにします");
@@ -382,32 +341,14 @@ export const battleManager = {
       return; 
     }
 
-    // クイズモードがボス、かつ実際にボス戦が始まっている時だけ victory()
-    if (window.quizManager.quizMode === "boss" && window.quizManager.hasBossAppeared) {
-      window.quizManager.victory(); 
-      return;
-    }
-
     // 次の敵を出すタイマー
     setTimeout(() => {
       if (this.player && this.player.hp <= 0) return;
 
       if (!window.quizManager.isVictoryActive) {
-        // ボス突入前（スキルパネル中やボス演出待ち）なら新しい雑魚を湧かせない
-        if (window.quizManager.quizMode === "normal") {
-          this.enemySpawn(); 
-        }
+        this.enemySpawn();
       }
     }, 1100);
-  },
-
-  defeatCurrentEnemyForBossTransition() {
-    if (!this.enemy) return;
-
-    this.enemy.ishandled = true;
-    this.enemy.hp = 0;
-    this.enemy.refreshStats?.();
-    this.enemy.die?.();
   },
 
   ///////////////////////////////////

@@ -132,6 +132,7 @@ body {
 
 .menu-container {
   box-sizing: border-box;
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 8cqh 0;            /* 上下の適度な余白 */
@@ -190,6 +191,25 @@ body {
 
   /* --- 追記：ボタン群全体を下にぐっと押し下げる --- */
   margin-top: 100cqw;
+}
+
+.donate-link {
+  position: absolute;
+  left: 50%;
+  bottom: 4cqw;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #f3e6b3;
+  text-decoration: none;
+  font-size: 3.2cqw;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+}
+
+.donate-link:hover {
+  color: #ffd86a;
+  text-decoration: underline;
 }
 
 .mode-btn {
@@ -444,12 +464,66 @@ body {
   font-weight: bold;
 }
 
+.battle-stats-card.rank-S .battle-stats-row strong,
+.battle-stats-card.rank-S .battle-stats-durability {
+  color: #ffd700;
+}
+
+.battle-stats-card.rank-A .battle-stats-row strong,
+.battle-stats-card.rank-A .battle-stats-durability {
+  color: #ff4d4f;
+}
+
+.battle-stats-card.rank-B .battle-stats-row strong,
+.battle-stats-card.rank-B .battle-stats-durability {
+  color: #4dabf7;
+}
+
+.battle-stats-card.rank-C .battle-stats-row strong,
+.battle-stats-card.rank-C .battle-stats-durability {
+  color: #40c057;
+}
+
 .battle-stats-note,
 .battle-stats-empty {
   margin-top: 1.6cqw;
   color: rgba(255, 255, 255, 0.78);
   font-size: 2.5cqw;
   line-height: 1.35;
+}
+
+.battle-stats-equipment-list {
+  margin-top: 1.6cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9cqw;
+}
+
+.battle-stats-equipment-line,
+.battle-stats-note-row {
+  margin: 0;
+  padding: 0;
+  line-height: 1.35;
+  font-size: 2.5cqw;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.battle-stats-equipment-label {
+  color: rgba(255, 255, 255, 0.62);
+  margin-right: 0.8cqw;
+}
+
+.battle-stats-equipment-name {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.battle-stats-equipment-effect {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.battle-stats-durability {
+  font-weight: 700;
 }
 
 .rank-growth-list {

@@ -62,6 +62,11 @@ function getRankClass(rank) {
   return `stage-rank-${value}`;
 }
 
+function getBattleRankClass(rank) {
+  const value = String(rank || "").toUpperCase();
+  return ["S", "A", "B", "C"].includes(value) ? `rank-${value}` : "";
+}
+
 function getPracticeVisibleStages(category, stages) {
   const progress = storyStorage.loadProgress();
   return stages.filter((stage) => {
@@ -157,6 +162,19 @@ function escapeHtml(text) {
     .replace(/"/g, "&quot;");
 }
 
+function formatEquipmentEffect(item) {
+  if (!item) return "";
+
+  const text = String(item.description || "").trim();
+  if (!text) return "";
+
+  return text
+    .replace(/^Atk\b/i, "ATK")
+    .replace(/^Def\b/i, "DEF")
+    .replace(/^Eva\b/i, "EVA")
+    .replace(/^CRT\b/i, "CRT");
+}
+
 export const gameManager = {
   // --- プロパティ ---
   currentConfig: null,
@@ -164,7 +182,6 @@ export const gameManager = {
   currentStageIndex: 0,
   isLoaded: false,
   loadingInterval: null,
-  bossRetryStatus: null,
   
   startBtnSE: new Audio("assets/sounds/StartButton.mp3"),
   gameOverSE: new Audio("assets/sounds/gameOver.mp3"),
@@ -239,7 +256,7 @@ export const gameManager = {
       .map(([label, value]) => `
         <div class="battle-stats-row">
           <span>${escapeHtml(label)}</span>
-          <strong>${escapeHtml(value)}</strong>
+          <strong class="battle-stats-value">${escapeHtml(value)}</strong>
         </div>
       `)
       .join("");
@@ -248,18 +265,48 @@ export const gameManager = {
   getPlayerEquipmentSummary(player) {
     if (!player) return "";
 
-    const summaries = [
-      player.weaponRarity ? `Weapon: ${player.weaponRarity}` : null,
-      player.haoriRarity ? `Haori: ${player.haoriRarity}` : null,
-      player.bandRarity ? `Band: ${player.bandRarity}` : null,
-      player.beadsRarity ? `Beads: ${player.beadsRarity}` : null,
-      player.isRegenerating ? "Regen: active" : null,
-      player.hasStreakBonus ? `Streak: x${player.streakMultiplier.toFixed(2)}` : null,
+    const equipmentRows = [];
+    const equipmentDefs = [
+      ["weapon", "Weapon", player.weaponRarity, "isWeapon", player.weaponDurability, player.weaponMaxDurability],
+      ["haori", "Haori", player.haoriRarity, "isHaori", player.haoriDurability, player.haoriMaxDurability],
+      ["band", "Band", player.bandRarity, "isBand", player.bandDurability, player.bandMaxDurability],
+      ["beads", "Beads", player.beadsRarity, "isBeads", player.beadsDurability, player.beadsMaxDurability],
+    ];
+
+    for (const [slot, label, rarity, typeKey, durability, maxDurability] of equipmentDefs) {
+      if (!rarity) continue;
+
+      const item = itemManager.items.find((candidate) => candidate[typeKey] && candidate.rarity === rarity) || null;
+      const effect = formatEquipmentEffect(item);
+      const durabilityText = Number.isFinite(durability) && Number.isFinite(maxDurability)
+        ? ` <span class="battle-stats-durability">(${Math.max(0, durability)}/${Math.max(0, maxDurability)})</span>`
+        : "";
+
+      equipmentRows.push(`
+        <p class="battle-stats-equipment-line">
+          <span class="battle-stats-equipment-label">${escapeHtml(label)}</span>
+          <span class="battle-stats-equipment-name">${escapeHtml(item?.name || rarity)}</span>
+          ${effect ? `<span class="battle-stats-equipment-effect">: ${escapeHtml(effect)}</span>` : ""}
+          ${durabilityText}
+        </p>
+      `);
+    }
+
+    const extraRows = [
+      player.isRegenerating ? `<p class="battle-stats-note-row">Regen: active</p>` : "",
+      player.hasStreakBonus ? `<p class="battle-stats-note-row">Streak: x${player.streakMultiplier.toFixed(2)}</p>` : "",
     ].filter(Boolean);
 
-    if (!summaries.length) return `<div class="battle-stats-note">No active equipment bonuses</div>`;
+    if (!equipmentRows.length && !extraRows.length) {
+      return `<div class="battle-stats-note">No active equipment bonuses</div>`;
+    }
 
-    return `<div class="battle-stats-note">${summaries.map(escapeHtml).join(" / ")}</div>`;
+    return `
+      <div class="battle-stats-equipment-list">
+        ${equipmentRows.join("")}
+        ${extraRows.join("")}
+      </div>
+    `;
   },
 
   renderBattleStatsPanel() {
@@ -278,12 +325,12 @@ export const gameManager = {
           <button type="button" id="battleStatsCloseBtn" class="battle-stats-close" aria-label="Close stats">Close</button>
         </div>
         <div class="battle-stats-grid">
-          <section class="battle-stats-card">
+          <section class="battle-stats-card ${getBattleRankClass(player?.battleGrade)}">
             <h3>${escapeHtml(playerName)}</h3>
             ${this.buildCharacterStatsRows(player, { showExp: true })}
             ${this.getPlayerEquipmentSummary(player)}
           </section>
-          <section class="battle-stats-card">
+          <section class="battle-stats-card ${getBattleRankClass(enemy?.battleGrade || enemy?.enemyRank)}">
             <h3>${escapeHtml(enemyName)}</h3>
             ${this.buildCharacterStatsRows(enemy, { showExpReward: true })}
           </section>
@@ -356,7 +403,7 @@ export const gameManager = {
   },
 
   stopBattleSounds() {
-    const sounds = [assets.sounds.bgm_Battle, assets.sounds.bgm_BossBattle];
+    const sounds = [assets.sounds.bgm_Battle];
     sounds.forEach((sound) => {
       if (!sound) return;
       sound.pause();
@@ -415,9 +462,18 @@ export const gameManager = {
         
         <!-- ボタン群（画像の上に重なる） -->
         <div class="button-overlay">
-          <button type="button" class="main-menu-btn story" id="storyBtn">Story Mode</button>
-          <button type="button" class="main-menu-btn practice" id="practiceBtn">Practice (自由練習)</button>
+          <button type="button" class="main-menu-btn story" id="storyBtn">Trials</button>
+          <button type="button" class="main-menu-btn practice" id="practiceBtn">Training</button>
         </div>
+
+        <a
+          class="donate-link"
+          href="https://buy.stripe.com/4gM8wJ2xv7WD5e45QkgUM00"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Donate to support Kiwami Samurai! 🙏
+        </a>
       </div>
     `;
 
@@ -650,26 +706,22 @@ export const gameManager = {
 
     let activeConfig = this.currentConfig;
     let enemyTypes = ["kappa"]; 
-    let bossType = "kappaOyabun";
 
     const stageInfo = getStoryStage(this.currentStageIndex);
     if (this.isStoryMode && stageInfo) {
       activeConfig = stageInfo;
       enemyTypes = stageInfo.enemyTypes || stageInfo.enemyType || "Kappa";
-      bossType = stageInfo.bossType || "kappaOyabun";
     } else if (activeConfig) {
       enemyTypes = ["Kappa"];
-      bossType = "KappaOyabun";
     }
 
     const bgKey = activeConfig ? activeConfig.bgKey : null;
     const enemyLevel = this.isStoryMode ? (activeConfig?.enemyLevel || null) : 1;
     const enemyRank = this.isStoryMode ? (activeConfig?.enemyRank || null) : 1;
-    const bossRank = this.isStoryMode ? (activeConfig?.bossRank || null) : 1;
     quizManager.quizMode = "normal";
 
     // 読み込んだ savedStatus を渡すことでレベルが継続される
-    battleManager.init(savedStatus, bgKey, enemyTypes, enemyLevel, bossType, enemyRank, bossRank);
+    battleManager.init(savedStatus, bgKey, enemyTypes, enemyLevel, enemyRank);
     this.applyOverallStoryRankToPlayer();
     this.showStageIntro(activeConfig);
 
@@ -839,22 +891,12 @@ export const gameManager = {
 
 
   handleGameOver() {
-    if (assets?.sounds?.bgm_BossBattle) {
-      assets.sounds.bgm_BossBattle.pause();
-    }
-
     const bgm = assets.sounds.bgm_Battle;
     if (bgm) bgm.pause();
     if (this.gameOverSE) this.gameOverSE.play();
-    const canRetryBoss = quizManager.quizMode === "boss" && this.bossRetryStatus;
-    let buttons = canRetryBoss ? `<button type="button" id="retryBossBtn" class="retry-btn">Retry Boss</button>` : "";
-    buttons += this.isStoryMode && !canRetryBoss ? `<button type="button" id="re-challengeBtn" class="retry-btn">Retry Stage</button>` : "";
+    let buttons = this.isStoryMode ? `<button type="button" id="re-challengeBtn" class="retry-btn">Retry Stage</button>` : "";
     buttons += `<button type="button" id="retryBtn" class="retry-btn">Back to menu</button>`;
     this.showBattleResult(`<div class="announcement-area--gameover"><h2>Game Over</h2>${quizManager.buildWrongAnswersReviewHtml()}<div class="menu-container result-actions">${buttons}</div></div>`);
-    document.getElementById("retryBossBtn")?.addEventListener("click", () => {
-      this.clearBattleResult();
-      this.retryBossBattle();
-    });
     document.getElementById("re-challengeBtn")?.addEventListener("click", () => {
       this.clearBattleResult();
       this.launchStoryStage();
@@ -902,38 +944,12 @@ export const gameManager = {
       return; 
     }
 
-    // 2. クイズモードがすでにボス（通常戦クリア済み）かつ、ボスが未出現なら演出を開始
-    if (quizManager.quizMode === "boss" && !quizManager.hasBossAppeared) {
-      console.log("スキル選択が完了したため、保留していたボス出現演出を開始します");
-      self.bossRetryStatus = battleManager.getCurrentPlayerStatus();
-      if (typeof quizManager.triggerBossAppearance === "function") {
-        quizManager.triggerBossAppearance();
-      }
-    } else {
-      // 雑魚戦の途中でスキルを使っただけなら、そのまま次のクイズ問題へ進む
-      if (typeof quizManager.randomQuestion === "function") {
-        quizManager.randomQuestion();
-      } else if (typeof quizManager.nextQuestion === "function") {
-        quizManager.nextQuestion();
-      }
+    // スキルを使ったら、そのまま次のクイズへ戻る
+    if (typeof quizManager.randomQuestion === "function") {
+      quizManager.randomQuestion();
+    } else if (typeof quizManager.nextQuestion === "function") {
+      quizManager.nextQuestion();
     }
-  },
-
-  retryBossBattle() {
-    const activeConfig = this.currentConfig;
-    const bgKey = activeConfig ? activeConfig.bgKey : null;
-    const enemyTypes = activeConfig?.enemyTypes || activeConfig?.enemyType || "Kappa";
-    const enemyLevel = activeConfig?.enemyLevel || null;
-    const bossType = activeConfig?.bossType || "KappaOyabun";
-    const enemyRank = activeConfig?.enemyRank || null;
-    const bossRank = activeConfig?.bossRank || null;
-
-    quizManager.reset();
-    battleManager.init(this.bossRetryStatus, bgKey, enemyTypes, enemyLevel, bossType, enemyRank, bossRank);
-    this.applyOverallStoryRankToPlayer();
-    quizManager.setupKiwami();
-    quizManager.quizMode = "boss";
-    quizManager.triggerBossAppearance();
   },
 }
 

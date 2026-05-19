@@ -1,5 +1,4 @@
 import { battleManager } from "./battleManager.js";
-import { assets } from "./assets.js";
 
 /** innerHTML に渡す前に、タグや引用符で壊れないようにする */
 function escapeHtml(text) {
@@ -61,9 +60,7 @@ export const quizManager = {
   onCorrect: null,
   onWrong: null,
   streak: 0,
-  quizMode: "normal", // "normal" か "boss"
-  hasBossAppeared: false, // ★追加: ボスが既に出現したか
-  isBossTransitionPending: false,
+  quizMode: "normal",
 
   
   /////////////////////////
@@ -75,7 +72,7 @@ export const quizManager = {
       return;
     }
     this.reset();
-    this.quizMode = "normal"; // スタート時は必ずnormal
+    this.quizMode = "normal";
     this.setupKiwami();
     this.randomQuestion();
   },
@@ -145,15 +142,13 @@ export const quizManager = {
   const quizArea = document.getElementById("quizArea");
     if (!quizArea) return;
 
-    const isBoss = (this.quizMode === "boss");
-
     const displaySentence = buildHighlightSentence(correct.sentence, correct.highlight);
 
   // =========================
   // HTML生成
   // =========================
   quizArea.innerHTML = `
-    <div class="question-container ${isBoss ? 'boss-mode-ui' : ''}">
+    <div class="question-container">
       <h2 class="question-sentence">
         ${displaySentence.replace(/\n/g, "<br>")}
       </h2>
@@ -162,26 +157,6 @@ export const quizManager = {
     <div id="optionArea" class="button-container">
       ${options.map(o => {
 
-        const label = isBoss
-          ? `
-            <div class="answer-wrapper">
-              <span class="kanji-text">
-                ${escapeHtml(o.answer)}
-              </span>
-            </div>
-          `
-          : `
-            <div class="answer-wrapper">
-              <span class="hiragana-text">
-                ${escapeHtml(o.hiragana)}
-              </span>
-
-              <span class="kanji-text">
-                ${escapeHtml(o.answer)}
-              </span>
-            </div>
-          `;
-
         return `
           <button
             type="button"
@@ -189,7 +164,14 @@ export const quizManager = {
             data-answer="${escapeHtml(o.answer)}"
           >
             <div class="answer-text">
-              ${label}
+              <div class="answer-wrapper">
+                <span class="hiragana-text">
+                  ${escapeHtml(o.hiragana)}
+                </span>
+                <span class="kanji-text">
+                  ${escapeHtml(o.answer)}
+                </span>
+              </div>
             </div>
           </button>
         `;
@@ -373,9 +355,9 @@ export const quizManager = {
 
     healBtn?.classList.toggle(
       "is-visible",
-      count >= this.HEAL_GAUGE_COST && count < this.MAX_KIWAMI_GAUGE && this.quizMode === "normal"
+      count >= this.HEAL_GAUGE_COST && count < this.MAX_KIWAMI_GAUGE
     );
-    finisherBtn?.classList.toggle("is-visible", count >= this.MAX_KIWAMI_GAUGE && this.quizMode === "normal");
+    finisherBtn?.classList.toggle("is-visible", count >= this.MAX_KIWAMI_GAUGE);
 
     //if (count >= this.MAX_KIWAMI_GAUGE) img.classList.add("is-rainbow");
     //else img.classList.remove("is-rainbow");
@@ -392,18 +374,14 @@ export const quizManager = {
   },
 
   useKiwamiFinisher() {
-    if (this.quizMode !== "normal") return;
     if (this.kiwamiGauge < this.MAX_KIWAMI_GAUGE) return;
     if (!battleManager.enemy || battleManager.enemy.hp <= 0) return;
 
     this.kiwamiGauge = 0;
     this.updateKiwamiIcon();
-    this.isBossTransitionPending = true;
-    this.quizMode = "boss";
-    this.hasBossAppeared = false;
-    battleManager.defeatCurrentEnemyForBossTransition();
-    this.usedWords = [];
-    window.gameManager?.showSkillPanel({ count: 2, excludeRecovery: true, bossBonus: true });
+    this.isVictoryActive = true;
+    window.gameManager?.hideSkillPanel();
+    window.gameManager?.showStageClearRankResult();
   },
 
 
@@ -413,80 +391,11 @@ export const quizManager = {
   victory() {
     if (this.isVictoryActive && document.getElementById("nextStageBtn")) return;
 
-    if (this.quizMode === "normal") {
-      return;
-    }
-
-    // 2. ボス戦終了（本当のステージクリア）
     this.isVictoryActive = true;
-
-    if (assets?.sounds?.bgm_BossBattle) {
-      const bossBgm = assets.sounds.bgm_BossBattle;
-      bossBgm.pause();
-      bossBgm.currentTime = 0;
-    }
     
     window.gameManager?.hideSkillPanel();
 
     window.gameManager?.showStageClearRankResult();
-  },
-
-  /////////////////////////
-  //　ボス登場の演出とBGM開始 
-  /////////////////////////
-  triggerBossAppearance() {
-    // すでに演出済みならスキップ
-    if (this.hasBossAppeared) return;
-    this.hasBossAppeared = true;
-    this.isBossTransitionPending = false;
-
-    // 1. 追加先を actionArea に変更
-    const actionArea = document.getElementById("actionArea");
-    if (!actionArea) return; // 安全策
-    
-    // ★ ボス戦用の赤いレイヤーを有効にするクラスを付与
-    actionArea.classList.add("boss-active");
-
-    // 1. ホワイトアウト用要素の作成
-    const overlay = document.createElement("div");
-    overlay.className = "black-out-overlay";
-    // body ではなく actionArea に追加
-    actionArea.appendChild(overlay);
-
-    // 強制的にブラウザに描画させてからアニメーション開始
-    requestAnimationFrame(() => {
-      overlay.classList.add("black-out-active");
-    });
-
-    // 2. 画面が真っ白になった頃（0.8秒後など）に処理を実行
-    setTimeout(() => {
-    
-      // BGM切り替え (gameManager内のassetsを参照)
-      if (window.gameManager && assets.sounds.bgm_BossBattle) {
-        // 既存のBGMを止める
-        if (assets.sounds.bgm_Battle) assets.sounds.bgm_Battle.pause();
-        
-        assets.sounds.bgm_BossBattle.currentTime = 0;
-        assets.sounds.bgm_BossBattle.volume = 0.5;
-        assets.sounds.bgm_BossBattle.play().catch(e => console.log("BGM Play Error:", e));
-      }
-
-      // ボス出現
-      if (window.battleManager) {
-        window.battleManager.bossSpawn();
-      }
-
-      // クイズ画面をボス用に更新
-      this.randomQuestion();
-     
-      // 3. ホワイトアウト解除（クラスを外す）
-      overlay.classList.remove("black-out-active");
-      
-      // アニメーションが終わるのを待ってから要素自体を削除
-      setTimeout(() => {
-        if (overlay.parentNode) overlay.remove();
-      }, 1000); 
-    }, 800); // ここをCSSのtransition時間に合わせる
   },
 
 
@@ -504,15 +413,6 @@ export const quizManager = {
     this.wrongAnswersLog = [];     // 誤答ログを空にする
     this.isVictoryActive = false;
     this.streak = 0;               // ストリークリセット
-    this.hasBossAppeared = false; // ★リセット時にここも戻す
-    this.isBossTransitionPending = false;
-
-    // ★ ステージリセット時に赤いフィルターも消す
-    const actionArea = document.getElementById("actionArea");
-    if (actionArea) {
-      actionArea.classList.remove("boss-active");
-    }
-
     if (battleManager.player) {
       battleManager.player.battleGrade = window.gameManager?.getOverallStoryRank?.() || "C";
       battleManager.player.refreshStats();

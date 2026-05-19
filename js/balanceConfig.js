@@ -13,13 +13,9 @@ export const ENEMY_BALANCE = {
   statScalePerLevel: 0.1,
   expScalePerLevel: 0.12,
   expFlatPerLevel: 7,
-  bossLevelBonus: 1,
-  bossHpMultiplier: 1.35,
-  bossAtkMultiplier: 1.25,
   extraLevelEveryNCorrect: 0,
   minExpReward: 6,
   maxNormalExpReward: 320,
-  maxBossExpReward: 650,
 };
 
 export const COMBAT_BALANCE = {
