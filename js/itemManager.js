@@ -599,7 +599,7 @@ export const itemManager = {
           <span
             class="item-icon"
             style="
-              background-image: url('assets/images/items-Sheet.png');
+              background-image: url('assets/images/items-Sheet.webp');
               background-size: ${frameCount * 100}% 100%;
               background-position:
                 ${this.getFramePosition(item.frame, frameCount)}% 0;

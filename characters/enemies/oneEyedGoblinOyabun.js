@@ -4,7 +4,7 @@ import { Enemy } from './enemy.js';
     constructor() {
       super({
         id: "enemy",          
-        imgSrc: "assets/images/OneEyedGoblinOyabun-Sheet.png", 
+        imgSrc: "assets/images/OneEyedGoblinOyabun-Sheet.webp", 
         width: 80,  // 個別の幅
         height: 80,  // 個別の高さ
         sizeRatio: 53,

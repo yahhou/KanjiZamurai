@@ -330,7 +330,7 @@ body {
   flex-direction: column;
   overflow: hidden;
   box-sizing: border-box;
-  background: #1f1f1f url("../assets/images/backGround.png") center center / cover no-repeat;
+  background: #1f1f1f url("../assets/images/backGround.webp") center center / cover no-repeat;
 }
 
 #battleScreen::before {
@@ -1517,7 +1517,7 @@ body {
   padding: 1cqw 8cqw 1cqw;
   box-sizing: border-box;
   border-bottom: none;
-  background-image: url("../assets/images/QuizBox.png");
+  background-image: url("../assets/images/QuizBox.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -1570,7 +1570,7 @@ body {
   height: 100%;
   width: 100%;
   padding: 1.2cqw 2cqw;
-  background-image: url("../assets/images/AnswerBox.png");
+  background-image: url("../assets/images/AnswerBox.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -1638,7 +1638,7 @@ body {
 .correct-answer {
   background-image:
     linear-gradient(rgba(55, 185, 92, 0.68), rgba(55, 185, 92, 0.68)),
-    url("../assets/images/AnswerBox.png") !important;
+    url("../assets/images/AnswerBox.webp") !important;
   background-blend-mode: multiply !important;
   color: #ffffff !important;
   filter: saturate(1.08) brightness(1.02);
@@ -1651,7 +1651,7 @@ body {
 .wrong-answer {
   background-image:
     linear-gradient(rgba(208, 58, 58, 0.72), rgba(208, 58, 58, 0.72)),
-    url("../assets/images/AnswerBox.png") !important;
+    url("../assets/images/AnswerBox.webp") !important;
   background-blend-mode: multiply !important;
   color: #ffffff !important;
   filter: saturate(1.08) brightness(1.02);

@@ -471,7 +471,7 @@ export const gameManager = {
     container.innerHTML = `
       <div class="menu-container">
         <!-- 背景画像 -->
-        <img src="assets/images/Kiwami_title.png" alt="Background">
+        <img src="assets/images/Kiwami_title.webp" alt="Background">
         
         <!-- ボタン群（画像の上に重なる） -->
         <div class="button-overlay">

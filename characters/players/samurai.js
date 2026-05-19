@@ -4,7 +4,7 @@ export class Samurai extends Player {
   constructor() {
     super({
       id: "player",          
-      imgSrc: "assets/images/Samurai-Sheet.png", 
+      imgSrc: "assets/images/Samurai-Sheet.webp", 
       hp: 25,
       mp: 0,
       atk: 10,

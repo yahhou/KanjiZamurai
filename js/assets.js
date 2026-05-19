@@ -9,14 +9,14 @@ export const assets = {
   loadAssets() {
     // --- プレイヤー関連 ---
     this.images.samurai = new Image();
-    this.images.samurai.src = "assets/images/Samurai-Sheet.png";
+    this.images.samurai.src = "assets/images/Samurai-Sheet.webp";
 
     // --- UI ---
     this.images.ui_Kiwami = new Image();
-    this.images.ui_Kiwami.src = "assets/images/KiwamiGauge-Sheet.png";
+    this.images.ui_Kiwami.src = "assets/images/KiwamiGauge-Sheet.webp";
 
     this.images.ui_Items = new Image();
-    this.images.ui_Items.src = "assets/images/items-Sheet.png";
+    this.images.ui_Items.src = "assets/images/items-Sheet.webp";
 
     // --- BGM ---
     this.sounds.bgm_Battle = new Audio("assets/sounds/Battle1.mp3");

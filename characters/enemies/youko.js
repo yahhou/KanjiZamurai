@@ -4,7 +4,7 @@ import { Enemy } from './enemy.js';
     constructor() {
       super({
         id: "enemy",          
-        imgSrc: "assets/images/Youko-Sheet.png", 
+        imgSrc: "assets/images/Youko-Sheet.webp", 
         width: 56,  // 個別の幅
         height: 48,  // 個別の高さ
         sizeRatio: 30,

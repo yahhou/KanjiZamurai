@@ -4,7 +4,7 @@ import { Enemy } from './enemy.js';
     constructor() {
       super({
         id: "enemy",          
-        imgSrc: "assets/images/IwaAtama-Sheet.png", 
+        imgSrc: "assets/images/IwaAtama-Sheet.webp", 
         width: 40,  // 個別の幅
         height: 40,  // 個別の高さ
         sizeRatio: 25,

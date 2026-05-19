@@ -1,6 +1,6 @@
 import { itemManager } from "./itemManager.js";
 
-const ITEMS_SHEET_URL = "assets/images/items-Sheet.png";
+const ITEMS_SHEET_URL = "assets/images/items-Sheet.webp";
 
 function getEquippedItem(typeKey, rarity) {
   if (!rarity) return null;

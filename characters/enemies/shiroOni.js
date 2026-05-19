@@ -4,7 +4,7 @@ import { Enemy } from './enemy.js';
     constructor() {
       super({
         id: "enemy",          
-        imgSrc: "assets/images/ShiroOni-Sheet.png", 
+        imgSrc: "assets/images/ShiroOni-Sheet.webp", 
         width: 48,  // 個別の幅
         height: 56,  // 個別の高さ
         sizeRatio: 35,
