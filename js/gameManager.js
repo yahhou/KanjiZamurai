@@ -116,8 +116,8 @@ function getRankGrowth(rank) {
 
 function getRankStatGrowth(rank) {
   const growth = getRankGrowth(rank);
-  const stats = { atk: 0, def: 0, mdf: 0 };
-  const keys = ["atk", "def", "mdf"];
+  const stats = { atk: 0, def: 0};
+  const keys = ["atk", "def"];
 
   for (let i = 0; i < growth.stats; i++) {
     const key = keys[i % keys.length];
@@ -149,7 +149,9 @@ function getStageBonusPreview(status, bonus) {
 }
 
 function stageWordUrl(category, fileName) {
-  return new URL(`../assets/words/${category}/${fileName}`, import.meta.url);
+  const url = new URL(`../assets/words/${category}/${fileName}`, import.meta.url);
+  url.searchParams.set("v", String(Date.now()));
+  return url;
 }
 
 function getStageIntroText(stageConfig) {
@@ -499,7 +501,10 @@ export const gameManager = {
     });
 
     document.getElementById("updateBtn").addEventListener("click", () => {
-      window.location.reload();
+      const url = new URL(window.location.href);
+      url.searchParams.set("v", String(Date.now()));
+      url.hash = "";
+      window.location.replace(url.toString());
     });
 
     document.getElementById("practiceBtn").addEventListener("click", () => {
@@ -668,12 +673,6 @@ export const gameManager = {
                 <span class="growth-arrow">→</span>
                 <span class="growth-after">${growth.after.def}</span>
               </div>
-              <div class="growth-row">
-                <span class="growth-label">MDF</span>
-                <span class="growth-before">${growth.before.mdf}</span>
-                <span class="growth-arrow">→</span>
-                <span class="growth-after">${growth.after.mdf}</span>
-              </div>
             </div>
           ` : ""}
           ${practiceBonusText}
@@ -796,7 +795,7 @@ export const gameManager = {
   // --- データ読み込み ---
   loadSelectedStageData(category, files) {
     this.startLoadingAnimation();
-    const fetchPromises = files.map(file => fetch(stageWordUrl(category, file)).then(res => res.json()));
+    const fetchPromises = files.map((file) => fetch(stageWordUrl(category, file).toString(), { cache: "no-store" }).then(res => res.json()));
 
     Promise.all(fetchPromises)
       .then(results => {
