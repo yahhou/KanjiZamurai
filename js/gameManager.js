@@ -22,7 +22,6 @@ const storyStorage = {
       playerStatus: null,
       stageRanks: {},
       practiceBonuses: {},
-      seenStoryStageCount: 0,
     };
   },
   getStageKey(category, stageId) {
@@ -60,20 +59,10 @@ const storyStorage = {
     this.saveProgress(progress);
     return true;
   },
-  getSeenStoryStageCount() {
-    const progress = this.loadProgress();
-    return Number(progress.seenStoryStageCount || 0);
-  },
-  markStoryStagesSeen(stageCount) {
-    const progress = this.loadProgress();
-    progress.seenStoryStageCount = Math.max(
-      Number(progress.seenStoryStageCount || 0),
-      Number(stageCount || 0)
-    );
-    this.saveProgress(progress);
-  },
   hasNewStoryStages(totalStageCount) {
-    return this.getSeenStoryStageCount() < Number(totalStageCount || 0);
+    const progress = this.loadProgress();
+    const currentStageIndex = Number(progress.currentStageIndex || 0);
+    return currentStageIndex < Math.max(0, Number(totalStageCount || 0) - 1);
   }
 };
 
@@ -506,15 +495,11 @@ export const gameManager = {
     // ...イベントリスナーはそのまま...
     document.getElementById("storyBtn").addEventListener("click", () => {
       this.playStartBtnSE();
-      storyStorage.markStoryStagesSeen(this.storyStages.length);
       this.startStoryMode();
     });
 
     document.getElementById("updateBtn").addEventListener("click", () => {
-      const url = new URL(window.location.href);
-      url.searchParams.set("v", String(Date.now()));
-      url.hash = "";
-      window.location.href = url.toString();
+      window.location.reload();
     });
 
     document.getElementById("practiceBtn").addEventListener("click", () => {

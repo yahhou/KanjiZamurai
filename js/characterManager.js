@@ -300,12 +300,14 @@ calculateDamage(target, customAtk = null) {
       return;
     }
 
-    const targetRect = this.el.getBoundingClientRect();
+    const anchorEl = this.sprite || this.el;
+    const targetRect = anchorEl.getBoundingClientRect();
     const areaRect = actionArea.getBoundingClientRect();
-    const verticalOffset = Math.max(10, Math.round(areaRect.height * 0.02));
+    const horizontalCenter = targetRect.left - areaRect.left + targetRect.width / 2;
+    const bottomOffset = Math.max(10, Math.round(areaRect.height * 0.03));
     popupEl.classList.add("damage-popup--world");
-    popupEl.style.left = `${targetRect.left - areaRect.left + targetRect.width / 2}px`;
-    popupEl.style.top = `${targetRect.top - areaRect.top + verticalOffset}px`;
+    popupEl.style.setProperty("--popup-left", `${horizontalCenter}px`);
+    popupEl.style.setProperty("--popup-bottom", `${bottomOffset}px`);
     actionArea.appendChild(popupEl);
   }
 

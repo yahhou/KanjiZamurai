@@ -978,10 +978,10 @@ body {
 
 .damage-popup {
   position: absolute;
-  bottom: -5%;
+  bottom: 50cqw;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 6cqw;
+  font-size: var(--damage-popup-size, 5cqw);
   font-family: inherit;
   pointer-events: none;
   z-index: 50;
@@ -990,8 +990,15 @@ body {
 }
 
 .damage-popup.damage-popup--world {
-  bottom: auto;
+  left: var(--popup-left, 50%);
+  bottom: var(--popup-bottom, auto);
+  top: auto;
   z-index: 120;
+}
+
+.damage-popup.damage-popup--world.critical,
+.damage-popup.damage-popup--world.evade-popup {
+  font-size: var(--damage-popup-size, 5cqw);
 }
 
 /* ============================
