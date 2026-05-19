@@ -1590,7 +1590,7 @@ body {
   overflow-wrap: anywhere;
   word-break: normal;
   transition: transform 0.08s ease, filter 0.15s ease, background-image 0.15s ease;
-  font-weight: 600;
+  font-weight: 1000;
 }
 
 #optionArea button:hover:not(:disabled) {
