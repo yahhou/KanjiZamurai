@@ -1,0 +1,122 @@
+[
+  {
+    "category": "particle-exist-inanimate",
+    "word": "there is (inanimate)",
+    "sentence": "A: Is there a restroom nearby?\nB: Yes, THERE IS a restroom near here.",
+    "highlight": "THERE IS",
+    "answer": "（〜）がある",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-inanimate",
+    "word": "have / there is",
+    "sentence": "A: Do you have any plans tomorrow?\nB: Yes, I HAVE plans tomorrow.",
+    "highlight": "HAVE",
+    "answer": "（〜）がある",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-inanimate",
+    "word": "there is (inanimate)",
+    "sentence": "A: What's wrong with your computer?\nB: THERE IS a problem with it.",
+    "highlight": "THERE IS",
+    "answer": "（〜）がある",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-inanimate",
+    "word": "there is (event)",
+    "sentence": "A: Why are you busy tonight?\nB: THERE IS a party at school.",
+    "highlight": "THERE IS",
+    "answer": "（〜）がある",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-inanimate",
+    "word": "there is (inanimate)",
+    "sentence": "A: Look! THERE IS a beautiful flower in the garden.",
+    "highlight": "THERE IS",
+    "answer": "（〜）がある",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-animate",
+    "word": "there is (animate)",
+    "sentence": "A: Who is in the classroom?\nB: A teacher IS in the classroom.",
+    "highlight": "IS",
+    "answer": "（〜）がいる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-animate",
+    "word": "there is (animal)",
+    "sentence": "A: Look under the car.\nB: Oh, THERE IS a cat under the car.",
+    "highlight": "THERE IS",
+    "answer": "（〜）がいる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-animate",
+    "word": "have (family/friends)",
+    "sentence": "A: Do you live alone?\nB: No, I HAVE two brothers.",
+    "highlight": "HAVE",
+    "answer": "（〜）がいる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-animate",
+    "word": "there are (people)",
+    "sentence": "A: Is the restaurant crowded?\nB: Yes, THERE ARE many people inside.",
+    "highlight": "THERE ARE",
+    "answer": "（〜）がいる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-exist-animate",
+    "word": "there is (animate)",
+    "sentence": "A: Is anyone home?\nB: Yes, Ken IS home.",
+    "highlight": "IS",
+    "answer": "（〜）がいる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-become",
+    "word": "become (job)",
+    "sentence": "A: What is your dream?\nB: I want to BECOME a doctor.",
+    "highlight": "BECOME",
+    "answer": "（〜）になる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-become",
+    "word": "become (age)",
+    "sentence": "A: When is your birthday?\nB: Next week. I will TURN 20 years old.",
+    "highlight": "TURN",
+    "answer": "（〜）になる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-become",
+    "word": "become (weather/season)",
+    "sentence": "A: It's getting warm outside.\nB: Yes, it has BECOME spring.",
+    "highlight": "BECOME",
+    "answer": "（〜）になる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-become",
+    "word": "become (time)",
+    "sentence": "A: Stop playing games.\nB: Oh, IT IS already 11 o'clock.",
+    "highlight": "IT IS",
+    "answer": "（〜）になる",
+    "hiragana": ""
+  },
+  {
+    "category": "particle-become",
+    "word": "become (change)",
+    "sentence": "A: Why is it so dark?\nB: Because it BECAME night.",
+    "highlight": "BECAME",
+    "answer": "（〜）になる",
+    "hiragana": ""
+  }
+]

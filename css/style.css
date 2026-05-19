@@ -544,12 +544,12 @@ body {
 }
 
 .rank-growth-list {
-  margin-top: 1.5cqw;
+  margin-top: 10cqw;
   padding: 1.5cqw 2cqw;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.04);
-  font-size: 2.8cqw;
+  font-size: 5cqw;
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -1521,6 +1521,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
+  
 }
 
 .question-container h2 {
@@ -1531,7 +1532,7 @@ body {
   font-family: inherit;
   color: #000000;
   overflow-wrap: anywhere;
-  font-weight: 600;
+  font-weight: 1000;
 }
 
 .question-container p {
@@ -1542,6 +1543,7 @@ body {
   margin: 1cqw 0 0;
   font-family: inherit;
   overflow-wrap: anywhere;
+  
 }
 
 /* ===========================
@@ -1588,6 +1590,7 @@ body {
   overflow-wrap: anywhere;
   word-break: normal;
   transition: transform 0.08s ease, filter 0.15s ease, background-image 0.15s ease;
+  font-weight: 600;
 }
 
 #optionArea button:hover:not(:disabled) {
@@ -1683,7 +1686,7 @@ body {
 
 .victory-message-area h2,
 .game-over-area h2 {
-  line-height: 1.15;
+  line-height: 4;
   margin: 0;
   font-size: 8cqw;
   color: #ffd700;

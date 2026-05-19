@@ -62,7 +62,7 @@ const storyStorage = {
   hasNewStoryStages(totalStageCount) {
     const progress = this.loadProgress();
     const currentStageIndex = Number(progress.currentStageIndex || 0);
-    return currentStageIndex < Math.max(0, Number(totalStageCount || 0) - 1);
+    return currentStageIndex < Math.max(0, Number(totalStageCount || 0));
   }
 };
 
@@ -573,6 +573,7 @@ export const gameManager = {
   },
 
   showStageClearRankResult() {
+    this.stopBattleSounds();
     const result = this.calculateStageRank();
     const rank = result.rank;
     const player = battleManager.player;
