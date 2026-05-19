@@ -157,6 +157,7 @@ body {
 /* メインメニュー用のスタイル例 */
 .main-menu-btn {
   display: block;
+  position: relative;
   width: 70cqw;
   height: 15cqw;
   margin: 2cqw;
@@ -169,6 +170,22 @@ body {
   border-radius: 8px;
   transition: all 0.3s;
   flex-shrink: 0; /* スクロール時に潰れないように固定 */
+}
+
+.menu-badge {
+  position: absolute;
+  top: -1.2cqw;
+  right: -1.8cqw;
+  padding: 0.5cqw 1.2cqw;
+  border-radius: 999px;
+  background: #d40000;
+  color: #ffffff;
+  font-size: 2.4cqw;
+  line-height: 1;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0.8cqw rgba(0, 0, 0, 0.5);
+  pointer-events: none;
 }
 
 .main-menu-btn:hover {
@@ -190,7 +207,7 @@ body {
   box-sizing: border-box;
 
   /* --- 追記：ボタン群全体を下にぐっと押し下げる --- */
-  margin-top: 100cqw;
+  margin-top: 80cqw;
 }
 
 .donate-link {

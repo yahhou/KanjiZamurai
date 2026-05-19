@@ -302,9 +302,10 @@ calculateDamage(target, customAtk = null) {
 
     const targetRect = this.el.getBoundingClientRect();
     const areaRect = actionArea.getBoundingClientRect();
+    const verticalOffset = Math.max(10, Math.round(areaRect.height * 0.02));
     popupEl.classList.add("damage-popup--world");
     popupEl.style.left = `${targetRect.left - areaRect.left + targetRect.width / 2}px`;
-    popupEl.style.top = `${targetRect.top - areaRect.top + targetRect.height * 0.85}px`;
+    popupEl.style.top = `${targetRect.top - areaRect.top + verticalOffset}px`;
     actionArea.appendChild(popupEl);
   }
 

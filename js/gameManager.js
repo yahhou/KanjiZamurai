@@ -17,7 +17,13 @@ const storyStorage = {
   },
   loadProgress() {
     const saved = localStorage.getItem(this.SAVE_KEY);
-    return saved ? JSON.parse(saved) : { currentStageIndex: 0, playerStatus: null, stageRanks: {}, practiceBonuses: {} };
+    return saved ? JSON.parse(saved) : {
+      currentStageIndex: 0,
+      playerStatus: null,
+      stageRanks: {},
+      practiceBonuses: {},
+      seenStoryStageCount: 0,
+    };
   },
   getStageKey(category, stageId) {
     return `${category}:${stageId}`;
@@ -53,6 +59,21 @@ const storyStorage = {
     progress.practiceBonuses = { ...(progress.practiceBonuses || {}), [key]: true };
     this.saveProgress(progress);
     return true;
+  },
+  getSeenStoryStageCount() {
+    const progress = this.loadProgress();
+    return Number(progress.seenStoryStageCount || 0);
+  },
+  markStoryStagesSeen(stageCount) {
+    const progress = this.loadProgress();
+    progress.seenStoryStageCount = Math.max(
+      Number(progress.seenStoryStageCount || 0),
+      Number(stageCount || 0)
+    );
+    this.saveProgress(progress);
+  },
+  hasNewStoryStages(totalStageCount) {
+    return this.getSeenStoryStageCount() < Number(totalStageCount || 0);
   }
 };
 
@@ -454,6 +475,7 @@ export const gameManager = {
     container.style.display = "flex";
     container.style.backgroundColor = "transparent";
     container.style.opacity = "1";
+    const hasNewStoryStages = storyStorage.hasNewStoryStages(this.storyStages.length);
     
     container.innerHTML = `
       <div class="menu-container">
@@ -462,7 +484,11 @@ export const gameManager = {
         
         <!-- ボタン群（画像の上に重なる） -->
         <div class="button-overlay">
-          <button type="button" class="main-menu-btn story" id="storyBtn">Trials</button>
+          <button type="button" class="main-menu-btn story" id="storyBtn">
+            Trials
+            ${hasNewStoryStages ? '<span class="menu-badge">NEW!</span>' : ""}
+          </button>
+          <button type="button" class="main-menu-btn update" id="updateBtn">Update</button>
           <button type="button" class="main-menu-btn practice" id="practiceBtn">Training</button>
         </div>
 
@@ -480,7 +506,15 @@ export const gameManager = {
     // ...イベントリスナーはそのまま...
     document.getElementById("storyBtn").addEventListener("click", () => {
       this.playStartBtnSE();
+      storyStorage.markStoryStagesSeen(this.storyStages.length);
       this.startStoryMode();
+    });
+
+    document.getElementById("updateBtn").addEventListener("click", () => {
+      const url = new URL(window.location.href);
+      url.searchParams.set("v", String(Date.now()));
+      url.hash = "";
+      window.location.href = url.toString();
     });
 
     document.getElementById("practiceBtn").addEventListener("click", () => {
