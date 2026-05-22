@@ -507,7 +507,6 @@ export const gameManager = {
             Trials
             ${hasNewStoryStages ? '<span class="menu-badge">NEW!</span>' : ""}
           </button>
-          <button type="button" class="main-menu-btn update" id="updateBtn">Update</button>
           <button type="button" class="main-menu-btn practice" id="practiceBtn">Training</button>
         </div>
 
